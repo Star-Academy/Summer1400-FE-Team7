@@ -4,10 +4,21 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <meta name="description" content="music, song, album">
+    <meta name="author" content="parsa arvaneh, milad nafar">
+
+    <title>Login</title>
     <link rel="stylesheet" href="style.css">
+    
   </head>
   <body>
-    
+    <main>
+      <form action="#" >
+        <input type="text" placeholder="Enter your username" minlength="4" maxlength="16">
+        <input type="password" placeholder="Enter yor password" pattern="^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$" 
+          minlength="4" maxlength="16">
+        <button type="submit">Login</button>
+      </form>
+    </main>
   </body>
 </html>
