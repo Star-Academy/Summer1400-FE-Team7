@@ -22,6 +22,7 @@ This project is a simple music player.
   - wave animation when playing
   - favourites
   - timestamp
+  - play/pause btn
 
 # player
   - required CTAs
