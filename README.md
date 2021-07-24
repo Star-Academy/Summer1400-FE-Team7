@@ -1,4 +1,4 @@
-Hi 👋,
+Hi 👋,<br>
 This project is a simple music player.
 
 # Landing Page
