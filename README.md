@@ -1,34 +1,35 @@
 Landing Page
 
-Login
-che dade hayi azamoon gerefte mishe?
-Sign Up
-che dade hayi azamoon gerefte mishe?
+# Login
+  - che dade hayi azamoon gerefte mishe?
+# Sign Up
+  - che dade hayi azamoon gerefte mishe?
 
-Main
-sidbar
-favourites
-search
-?.Playlist Title
-All songs
-Customized Playlist
-playList
-music cover
-name
-artist
-?.album
-wave animation when playing
-favourites
-timestamp
+# Main
+  - sidbar
+  - favourites
+  - search
+  - All songs
 
-player
-required CTAs
-lyrics
-showCase
+# playList
+  - music cover
+  - name
+  - artist
+  - wave animation when playing
+  - favourites
+  - timestamp
 
-optional
-drag & drop files from pc
-save to server
+# player
+  - required CTAs
+  - lyrics
+  - showCase
+
+# optional
+  - drag & drop files from pc
+  - save to server
+  - Playlist Title
+  - Customized Playlist
+  - album
 
 **_notes_**
 album or not?
