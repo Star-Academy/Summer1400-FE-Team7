@@ -1,5 +1,8 @@
-Landing Page
+Hi 👋,
+This project is a simple music player.
 
+# Landing Page
+  - Usual Stuff 
 # Login
   - che dade hayi azamoon gerefte mishe?
 # Sign Up
