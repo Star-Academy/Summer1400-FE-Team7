@@ -9,10 +9,11 @@ This project is a simple music player.
   - che dade hayi azamoon gerefte mishe?
 
 # Main
-  - sidbar
+## sidbar
   - favourites
   - search
   - All songs
+  - login/logout
 
 # playList
   - music cover
@@ -34,7 +35,7 @@ This project is a simple music player.
   - Customized Playlist
   - album
 
-**_notes_**
-album or not?
-dataset che shekli hast?
+**_notes_**<br>
+album or not?<br>
+dataset che shekli hast?<br>
 eng or per?
