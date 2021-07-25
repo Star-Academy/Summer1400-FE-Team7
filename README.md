@@ -23,6 +23,7 @@ This project is a simple music player.
   - favourites
   - timestamp
   - play/pause btn
+  - list/grid
 
 # player
   - required CTAs
