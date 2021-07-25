@@ -1,7 +1,281 @@
-* {
-  padding: 0;
-  margin: 0;
-  -webkit-box-sizing: border-box;
-          box-sizing: border-box;
+p,
+a,
+h1 {
+  text-shadow: 0 0 0.125em rgba(255, 255, 255, 0.3), 0 0 0.45em white;
+}
+
+body {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  background: linear-gradient(-45deg, var(--lg-bg-1), var(--lg-bg-2), var(--lg-bg-3), var(--lg-bg-4));
+  background-size: 400% 400%;
+  -webkit-animation: gradientBg 15s ease infinite;
+          animation: gradientBg 15s ease infinite;
+}
+
+@-webkit-keyframes gradientBg {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+@keyframes gradientBg {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+body header {
+  width: 80%;
+  max-width: 1440px;
+  height: 8vh;
+  font-size: clamp(15px, 2.5vw, 18px);
+  position: relative;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: reverse;
+      -ms-flex-direction: row-reverse;
+          flex-direction: row-reverse;
+  -webkit-box-align: end;
+      -ms-flex-align: end;
+          align-items: flex-end;
+  padding-bottom: 1em;
+}
+
+body header :is(a, p) {
+  color: white;
+  text-shadow: 0 0 0.125em rgba(255, 255, 255, 0.3), 0 0 0.2em var(--clr-black);
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none;
+}
+
+body header > p {
+  margin-left: auto;
+  font-size: 1em;
+}
+
+body header > ul {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  text-decoration: none;
+}
+
+body header > ul li {
+  margin-right: 2em;
+  list-style: none;
+}
+
+body header > ul li a {
+  text-decoration: none;
+  font-size: 1em;
+}
+
+body header > ul li a:hover {
+  color: #e6e6e6;
+}
+
+body header > ul li a:active {
+  color: #d9d9d9;
+}
+
+body header::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 4px;
+  border-radius: 100px;
+  -webkit-box-shadow: inset 0 0 0.5em white, 0 0 0.5em white;
+          box-shadow: inset 0 0 0.5em white, 0 0 0.5em white;
+  z-index: -1;
+}
+
+body main {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: reverse;
+      -ms-flex-direction: row-reverse;
+          flex-direction: row-reverse;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  width: 80%;
+  max-width: 1440px;
+  -webkit-box-flex: 1;
+      -ms-flex: 1;
+          flex: 1;
+}
+
+body main > section {
+  -webkit-box-flex: 1;
+      -ms-flex: 1;
+          flex: 1;
+}
+
+body main section:nth-of-type(1) {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: end;
+      -ms-flex-align: end;
+          align-items: flex-end;
+  gap: 2rem;
+}
+
+body main section:nth-of-type(1) > h1 {
+  font-size: clamp(24px, 2.8vw, 42px);
+}
+
+body main section:nth-of-type(1) > p {
+  font-size: clamp(18px, 2vw, 22px);
+}
+
+body main section:nth-of-type(2) {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+body main section:nth-of-type(2) > div {
+  border-radius: 100%;
+  -webkit-box-shadow: inset 0 0 6.5em white, 0 0 0.5em white;
+          box-shadow: inset 0 0 6.5em white, 0 0 0.5em white;
+  width: 35vw;
+  height: 35vw;
+  position: relative;
+}
+
+body main section:nth-of-type(2) > div > div {
+  width: 60%;
+  height: 60%;
+  border-radius: 100%;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  -webkit-transform: translate(-60%, -50%);
+          transform: translate(-60%, -50%);
+}
+
+body main section:nth-of-type(2) > div > div span {
+  -webkit-box-shadow: inset 0 0 0.4em white, 0 0 0.4em white;
+          box-shadow: inset 0 0 0.4em white, 0 0 0.4em white;
+  width: 100%;
+  height: 8px;
+  position: absolute;
+  border-radius: 100px;
+}
+
+body main section:nth-of-type(2) > div > div span:nth-of-type(1) {
+  right: 0;
+  top: 50%;
+  -webkit-transform: rotate(45deg) translateY(50%);
+          transform: rotate(45deg) translateY(50%);
+  -webkit-transform-origin: right;
+          transform-origin: right;
+  width: 71%;
+}
+
+body main section:nth-of-type(2) > div > div span:nth-of-type(2) {
+  right: 0;
+  top: 50%;
+  -webkit-transform: rotate(-45deg) translateY(-50%);
+          transform: rotate(-45deg) translateY(-50%);
+  -webkit-transform-origin: right;
+          transform-origin: right;
+  width: 71%;
+}
+
+body main section:nth-of-type(2) > div > div span:nth-of-type(3) {
+  left: 49.5%;
+  top: 0;
+  -webkit-transform: rotate(90deg);
+          transform: rotate(90deg);
+  -webkit-transform-origin: left;
+          transform-origin: left;
+}
+
+@media only screen and (max-width: 1000px) {
+  body main {
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: reverse;
+        -ms-flex-direction: column-reverse;
+            flex-direction: column-reverse;
+    -webkit-box-pack: end;
+        -ms-flex-pack: end;
+            justify-content: flex-end;
+    padding-top: 5rem;
+    gap: 3rem;
+  }
+  body main > section {
+    -webkit-box-flex: 0;
+        -ms-flex: none;
+            flex: none;
+  }
+  body main > section:nth-of-type(2) {
+    -webkit-box-align: end;
+        -ms-flex-align: end;
+            align-items: flex-end;
+  }
+  body main > section:nth-of-type(2) > div {
+    width: 70vw;
+    height: 70vw;
+    max-width: 350px;
+    max-height: 350px;
+  }
+  body main > section:nth-of-type(1) {
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+  }
+  body main > section:nth-of-type(1) > * {
+    text-align: center;
+    max-width: 40ch;
+  }
+}
+
+body ::-moz-selection {
+  background: var(--clr-blue);
+}
+
+body ::selection {
+  background: var(--clr-blue);
 }
 /*# sourceMappingURL=style.css.map */
