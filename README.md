@@ -35,6 +35,7 @@ This project is a simple music player.
   - Playlist Title
   - Customized Playlist
   - album
+  - signIn with google
 
 **_notes_**<br>
 album or not?<br>
