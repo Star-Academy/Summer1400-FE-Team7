@@ -1,0 +1,42 @@
+@font-face {
+  font-family: "Sahel";
+  src: url("../assets/fonts/Sahel-Bold.ttf");
+  src: url("../assets/fonts/Sahel.ttf");
+}
+
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  font-family: "Sahel" sans-serif;
+  outline: none;
+}
+
+:root {
+  --clr-bg: hsl(323 21% 16%);
+  --clr-blue: rgb(8, 192, 255);
+  --clr-black: rgb(0, 0, 0);
+  --clr-white: rgb(255, 255, 255);
+  --lg-bg-1: #ee7752;
+  --lg-bg-2: #e73c7e;
+  --lg-bg-3: #23a6d5;
+  --lg-bg-4: #23d5ab;
+}
+
+body {
+  width: 100vw;
+  height: 100vh;
+  font-size: 62.5%;
+}
+
+p,
+a,
+h1,
+h6,
+span {
+  text-align: right;
+}
+/*# sourceMappingURL=main.css.map */
