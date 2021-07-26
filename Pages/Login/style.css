@@ -1,11 +1,13 @@
-/* $--lg-bg-8 70% 80%,
-    $--lg-bg-9 80% 90%,
-    $--lg-bg-10 90% 100% */
 main {
   width: 100%;
   height: 100%;
   padding: 0 5vw;
-  background: linear-gradient(-45deg, #e35a01 0 10%, #4c7c71 10% 20%, #2e4769 20% 30%, #1f262e 30% 40%);
+  background: linear-gradient(-45deg, #e35a01 0 7.5%, #4c7c71 7.5% 15%, #2e4769 15% 22.5%, #1f262e 22.5% 30%);
+  background-size: 150% 150%;
+  -webkit-animation: bg-in-bt-rgh 1.5s ease;
+          animation: bg-in-bt-rgh 1.5s ease;
+  -webkit-animation-fill-mode: forwards;
+          animation-fill-mode: forwards;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -18,21 +20,21 @@ main {
   position: relative;
 }
 
-@-webkit-keyframes gradientBg {
+@-webkit-keyframes bg-in-bt-rgh {
   from {
-    background: linear-gradient(-45deg, #e35a01 0 10%, #4c7c71 10% 20%, #2e4769 20% 30%, #1f262e 30% 40%);
+    background-position: 0% 0%;
   }
   to {
-    background: linear-gradient(-45deg, #1f262e 90% 100%, #2e4769 80% 90%, #4c7c71 70% 80%, #1f262e 30% 40%);
+    background-position: 100% 100%;
   }
 }
 
-@keyframes gradientBg {
+@keyframes bg-in-bt-rgh {
   from {
-    background: linear-gradient(-45deg, #e35a01 0 10%, #4c7c71 10% 20%, #2e4769 20% 30%, #1f262e 30% 40%);
+    background-position: 0% 0%;
   }
   to {
-    background: linear-gradient(-45deg, #1f262e 90% 100%, #2e4769 80% 90%, #4c7c71 70% 80%, #1f262e 30% 40%);
+    background-position: 100% 100%;
   }
 }
 
@@ -41,10 +43,10 @@ main > .form-wrapper {
   height: 70%;
   -webkit-box-shadow: inset 0 0 0.3em white, 0 0 0.3em white;
           box-shadow: inset 0 0 0.3em white, 0 0 0.3em white;
-  -webkit-transition: -webkit-transform 5s ease;
-  transition: -webkit-transform 5s ease;
-  transition: transform 5s ease;
-  transition: transform 5s ease, -webkit-transform 5s ease;
+  -webkit-transition: -webkit-transform 1s ease;
+  transition: -webkit-transform 1s ease;
+  transition: transform 1s ease;
+  transition: transform 1s ease, -webkit-transform 1s ease;
 }
 
 main > .form-wrapper > form {
@@ -77,12 +79,15 @@ main > .form-wrapper > form > .input-wrapper {
   padding: 0 1.5em;
   width: 85%;
   height: 3rem;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
   position: relative;
 }
 
 main > .form-wrapper > form > .input-wrapper > img {
   width: 20px;
-  aspect-ratio: 1/1;
+  height: 20px;
 }
 
 main > .form-wrapper > form > .input-wrapper > input {
@@ -198,6 +203,10 @@ main > .form-wrapper > .login-form > div:nth-of-type(3) .forgot-pass > a {
   font-size: 1rem;
 }
 
+main > .form-wrapper > .signup-form > div:nth-of-type(2) {
+  margin: 5em 0;
+}
+
 .display-none {
   display: none !important;
 }
@@ -205,5 +214,102 @@ main > .form-wrapper > .login-form > div:nth-of-type(3) .forgot-pass > a {
 .signup-form-wrapper {
   -webkit-transform: translateX(calc(90vw - 100%));
           transform: translateX(calc(90vw - 100%));
+}
+
+.bg-animation-1 {
+  background: linear-gradient(-45deg, #e35a01 0 7.5%, #4c7c71 7.5% 15%, #2e4769 15% 22.5%, #1f262e 22.5% 30%);
+  background-size: 150% 150%;
+  -webkit-animation: bg-in-bt-rgh 1.5s ease;
+          animation: bg-in-bt-rgh 1.5s ease;
+  -webkit-animation-fill-mode: forwards;
+          animation-fill-mode: forwards;
+}
+
+@keyframes bg-in-bt-rgh {
+  from {
+    background-position: 0% 0%;
+  }
+  to {
+    background-position: 100% 100%;
+  }
+}
+
+.bg-animation-2 {
+  -webkit-animation: body-bg-bt-rgh-out 1s ease;
+          animation: body-bg-bt-rgh-out 1s ease;
+  -webkit-animation-fill-mode: forwards;
+          animation-fill-mode: forwards;
+}
+
+@-webkit-keyframes body-bg-bt-rgh-out {
+  from {
+    background-position: 100% 100%;
+  }
+  to {
+    background-position: 0% 0%;
+  }
+}
+
+@keyframes body-bg-bt-rgh-out {
+  from {
+    background-position: 100% 100%;
+  }
+  to {
+    background-position: 0% 0%;
+  }
+}
+
+.bg-animation-3 {
+  background: linear-gradient(135deg, #e35a01 0 7.5%, #4c7c71 7.5% 15%, #2e4769 15% 22.5%, #1f262e 22.5% 30%);
+  background-size: 150% 150%;
+  -webkit-animation: bg-in-tp-lft 1.5s ease;
+          animation: bg-in-tp-lft 1.5s ease;
+  -webkit-animation-fill-mode: forwards;
+          animation-fill-mode: forwards;
+}
+
+@-webkit-keyframes bg-in-tp-lft {
+  from {
+    background-position: 100% 100%;
+  }
+  to {
+    background-position: 0% 0%;
+  }
+}
+
+@keyframes bg-in-tp-lft {
+  from {
+    background-position: 100% 100%;
+  }
+  to {
+    background-position: 0% 0%;
+  }
+}
+
+.bg-animation-4 {
+  background: linear-gradient(135deg, #e35a01 0 7.5%, #4c7c71 7.5% 15%, #2e4769 15% 22.5%, #1f262e 22.5% 30%);
+  background-size: 150% 150%;
+  -webkit-animation: bg-out-tp-left 1s ease;
+          animation: bg-out-tp-left 1s ease;
+  -webkit-animation-fill-mode: forwards;
+          animation-fill-mode: forwards;
+}
+
+@-webkit-keyframes bg-out-tp-left {
+  from {
+    background-position: 0% 0%;
+  }
+  to {
+    background-position: 100% 100%;
+  }
+}
+
+@keyframes bg-out-tp-left {
+  from {
+    background-position: 0% 0%;
+  }
+  to {
+    background-position: 100% 100%;
+  }
 }
 /*# sourceMappingURL=style.css.map */

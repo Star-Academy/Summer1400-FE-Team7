@@ -14,11 +14,11 @@
     
   </head>
   <body>
-    <main>
+    <main class="bg-animation-1">
       <div class="form-wrapper">
         <form action="" class="login-form">
           <div class="input-wrapper">
-            <img src="../../assets/images/email.svg" alt="email icon">
+            <img src="../../assets/images/email.svg" alt="email icon" loading="lazy">
             <input type="email" id="--login-email-input" value="">
             <label for="--login-email-input">
               <p>ایمیل</p>
@@ -26,12 +26,12 @@
           </div>
 
           <div class="input-wrapper">
-            <img src="../../assets/images/password.svg" alt="">
+            <img src="../../assets/images/password.svg" alt="passowrd icon">
             <input type="password" pattern="^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$">
             <label for="--login-email-input">
               <p>رمز عبور</p>
             </label>
-            <img src="../../assets/images/show-password.svg"/>
+            <img src="../../assets/images/show-password.svg" alt="show password icon" loading="lazy"/>
           </div>
 
           <div>
@@ -48,13 +48,13 @@
           </div>
 
           <button type="submit">ورود</button>
-          <a href="#" id="already-have-account">قبلا عضو شده اید؟</a>
+          <a href="#" id="create-new-account">ساخت حساب جدید</a>
 
         </form>
 
         <form action="" class="signup-form display-none">
           <div class="input-wrapper">
-            <img src="../../assets/images/email.svg" alt="email icon">
+            <img src="../../assets/images/email.svg" alt="email icon" loading="lazy">
             <input type="email" id="--login-email-input" value="">
             <label for="--login-email-input">
               <p>ایمیل</p>
@@ -62,13 +62,25 @@
           </div>
 
           <div class="input-wrapper">
-            <img src="../../assets/images/password.svg" alt="">
+            <img src="../../assets/images/password.svg" alt="password icon" loading="lazy">
             <input type="password" pattern="^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$">
             <label for="--login-email-input">
               <p>رمز عبور</p>
             </label>
-            <img src="../../assets/images/show-password.svg"/>
+            <img src="../../assets/images/show-password.svg" alt="show password icon" loading="lazy"/>
           </div>
+
+          <div class="input-wrapper">
+            <img src="../../assets/images/confirm-password.svg" alt="confirm password icon" loading="lazy">
+            <input type="password" pattern="^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$">
+            <label for="--login-email-input">
+              <p>تکرار رمز عبور</p>
+            </label>
+            <img src="../../assets/images/show-password.svg" alt="show password icon" loading="lazy"/>
+          </div>
+
+          <button type="submit">ثبت نام</button>
+          <a href="#" id="already-have-account">قبلا عضو شده اید؟</a>
 
         </form>
       </div>
