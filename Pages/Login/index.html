@@ -9,16 +9,75 @@
 
     <title>Login</title>
     <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="../../styles/main.css">
+    <script src="./app.js" defer></script>
     
   </head>
   <body>
     <main>
-      <form action="#" >
-        <input type="text" placeholder="Enter your username" minlength="4" maxlength="16">
-        <input type="password" placeholder="Enter yor password" pattern="^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$" 
-          minlength="4" maxlength="16">
-        <button type="submit">Login</button>
-      </form>
+      <div class="form-wrapper">
+        <form action="" class="login-form">
+          <div class="input-wrapper">
+            <img src="../../assets/images/email.svg" alt="email icon">
+            <input type="email" id="--login-email-input" value="">
+            <label for="--login-email-input">
+              <p>ایمیل</p>
+            </label>
+          </div>
+
+          <div class="input-wrapper">
+            <img src="../../assets/images/password.svg" alt="">
+            <input type="password" pattern="^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$">
+            <label for="--login-email-input">
+              <p>رمز عبور</p>
+            </label>
+            <img src="../../assets/images/show-password.svg"/>
+          </div>
+
+          <div>
+            <div class="input-checkbox">
+              <input type="checkbox" id="--checkbox-input"/>
+              <label for="--checkbox-input">
+                <p>مرا به خاطر بسپار</p>
+              </label>
+            </div>
+
+            <div class="forgot-pass">
+              <a href="">رمز عبورم را فراموش کردم</a>
+            </div>
+          </div>
+
+          <button type="submit">ورود</button>
+          <a href="#" id="already-have-account">قبلا عضو شده اید؟</a>
+
+        </form>
+
+        <form action="" class="signup-form display-none">
+          <div class="input-wrapper">
+            <img src="../../assets/images/email.svg" alt="email icon">
+            <input type="email" id="--login-email-input" value="">
+            <label for="--login-email-input">
+              <p>ایمیل</p>
+            </label>
+          </div>
+
+          <div class="input-wrapper">
+            <img src="../../assets/images/password.svg" alt="">
+            <input type="password" pattern="^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$">
+            <label for="--login-email-input">
+              <p>رمز عبور</p>
+            </label>
+            <img src="../../assets/images/show-password.svg"/>
+          </div>
+
+        </form>
+      </div>
     </main>
   </body>
 </html>
+
+
+<!-- TODO 
+  - font family 'sahel' is not working
+  - why 1rem !== 10px
+-->

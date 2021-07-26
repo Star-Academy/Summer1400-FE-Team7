@@ -11,7 +11,7 @@
   padding: 0;
   -webkit-box-sizing: border-box;
           box-sizing: border-box;
-  font-family: "Sahel" sans-serif;
+  font-family: "Sahel", sans-serif;
   outline: none;
 }
 
@@ -36,7 +36,8 @@ p,
 a,
 h1,
 h6,
-span {
+span,
+input {
   text-align: right;
 }
 /*# sourceMappingURL=main.css.map */
