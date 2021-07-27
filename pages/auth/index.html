@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="fa-IR">
+  <head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="دسترسی به محبوب‌ترین آهنگ‌های جدید و قدیمی در دنیا و امکان انتخاب و ثبت آهنگ‌های مورد علاقه">
+    <meta name="author" content="parsa arvaneh, milad nafar">
+
+    <title>Login</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="../../styles/main.css">
+    <script src="./app.js" defer></script>
+    
+  </head>
+  <body>
+    <main class="bg-animation-1">
+      <div class="form-wrapper">
+        <form action="" class="login-form">
+          <div class="input-wrapper">
+            <img src="../../assets/images/email.svg" alt="" >
+            <input type="email" id="--login-email-input" value="">
+            <label for="--login-email-input">
+              ایمیل
+            </label>
+          </div>
+
+          <div class="input-wrapper">
+            <img src="../../assets/images/password.svg" alt="">
+            <input type="password" pattern="^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$" 
+            title="رمز عبور باید دارای حداقل ۸ کاراکتر،یک حرف و یک عدد باشد">
+            <label for="--login-email-input">
+             رمز عبور
+            </label>
+            <img src="../../assets/images/show-password.svg" alt=""/>
+          </div>
+
+          <div>
+            <div class="input-checkbox">
+              <input type="checkbox" id="--checkbox-input"/>
+              <label for="--checkbox-input">
+                مرا به خاطر بسپار
+              </label>
+            </div>
+
+            <div class="forgot-pass">
+              <a href="#">رمز عبورم را فراموش کردم</a>
+            </div>
+          </div>
+
+          <button type="submit">ورود</button>
+          <a href="#" id="create-new-account">ساخت حساب جدید</a>
+
+        </form>
+
+        <form action="" class="signup-form display-none">
+          <div class="input-wrapper">
+            <img src="../../assets/images/email.svg" alt="">
+            <input type="email" id="--login-email-input" value="">
+            <label for="--login-email-input">
+              ایمیل 
+            </label>
+          </div>
+
+          <div class="input-wrapper">
+            <img src="../../assets/images/password.svg" alt="">
+            <input type="password" pattern="^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$" 
+            title="رمز عبور باید دارای حداقل ۸ کاراکتر،یک حرف و یک عدد باشد">
+            <label for="--login-email-input">
+             رمز عبور
+            </label>
+            <p>  رمز عبور باید دارای حداقل ۸ کاراکتر،یک حرف و یک عدد باشد </p>
+      
+            <img src="../../assets/images/show-password.svg" alt=""/>
+          </div>
+
+          <div class="input-wrapper">
+            <img src="../../assets/images/confirm-password.svg" alt="" >
+            <input type="password" pattern="^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$" 
+            title="رمز عبور باید دارای حداقل ۸ کاراکتر،یک حرف و یک عدد باشد">
+            <label for="--login-email-input">
+             تکرار رمز عبور 
+            </label>
+            <img src="../../assets/images/show-password.svg" alt="" />
+          </div>
+
+          <button type="submit">ثبت نام</button>
+          <a href="#" id="already-have-account">قبلا عضو شده اید؟</a>
+
+        </form>
+      </div>
+    </main>
+  </body>
+</html>
+
+
