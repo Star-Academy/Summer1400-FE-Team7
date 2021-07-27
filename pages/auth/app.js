@@ -12,7 +12,7 @@ createNewAccountCta.addEventListener("click", () => {
 
   setTimeout(() => {
     main[0].className = "bg-animation-3";
-  }, 400);
+  }, 250);
 });
 
 alreadyHaveAnAccountCta.addEventListener("click", () => {
@@ -20,7 +20,7 @@ alreadyHaveAnAccountCta.addEventListener("click", () => {
   main[0].className = "bg-animation-4";
   setTimeout(() => {
     main[0].className = "bg-animation-1";
-  }, 400);
+  }, 250);
 });
 
 const formPosChanHandler = () => {
