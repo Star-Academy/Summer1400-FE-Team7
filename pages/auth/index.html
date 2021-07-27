@@ -1,10 +1,10 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="fa-IR">
   <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="music, song, album">
+    <meta name="description" content="دسترسی به محبوب‌ترین آهنگ‌های جدید و قدیمی در دنیا و امکان انتخاب و ثبت آهنگ‌های مورد علاقه">
     <meta name="author" content="parsa arvaneh, milad nafar">
 
     <title>Login</title>
@@ -18,32 +18,33 @@
       <div class="form-wrapper">
         <form action="" class="login-form">
           <div class="input-wrapper">
-            <img src="../../assets/images/email.svg" alt="email icon" loading="lazy">
+            <img src="../../assets/images/email.svg" alt="" >
             <input type="email" id="--login-email-input" value="">
             <label for="--login-email-input">
-              <p>ایمیل</p>
+              ایمیل
             </label>
           </div>
 
           <div class="input-wrapper">
-            <img src="../../assets/images/password.svg" alt="passowrd icon">
-            <input type="password" pattern="^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$">
+            <img src="../../assets/images/password.svg" alt="">
+            <input type="password" pattern="^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$" 
+            title="رمز عبور باید دارای حداقل ۸ کاراکتر،یک حرف و یک عدد باشد">
             <label for="--login-email-input">
-              <p>رمز عبور</p>
+             رمز عبور
             </label>
-            <img src="../../assets/images/show-password.svg" alt="show password icon" loading="lazy"/>
+            <img src="../../assets/images/show-password.svg" alt=""/>
           </div>
 
           <div>
             <div class="input-checkbox">
               <input type="checkbox" id="--checkbox-input"/>
               <label for="--checkbox-input">
-                <p>مرا به خاطر بسپار</p>
+                مرا به خاطر بسپار
               </label>
             </div>
 
             <div class="forgot-pass">
-              <a href="">رمز عبورم را فراموش کردم</a>
+              <a href="#">رمز عبورم را فراموش کردم</a>
             </div>
           </div>
 
@@ -54,29 +55,33 @@
 
         <form action="" class="signup-form display-none">
           <div class="input-wrapper">
-            <img src="../../assets/images/email.svg" alt="email icon" loading="lazy">
-            <input type="email" id="--login-email-input" value="">
+            <img src="../../assets/images/email.svg" alt="">
+            <input type="text" id="--login-email-input" value="">
             <label for="--login-email-input">
-              <p>ایمیل</p>
+              ایمیل 
             </label>
           </div>
 
           <div class="input-wrapper">
-            <img src="../../assets/images/password.svg" alt="password icon" loading="lazy">
-            <input type="password" pattern="^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$">
+            <img src="../../assets/images/password.svg" alt="">
+            <input type="password" pattern="^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$" 
+            title="رمز عبور باید دارای حداقل ۸ کاراکتر،یک حرف و یک عدد باشد">
             <label for="--login-email-input">
-              <p>رمز عبور</p>
+             رمز عبور
             </label>
-            <img src="../../assets/images/show-password.svg" alt="show password icon" loading="lazy"/>
+            <p>  رمز عبور باید دارای حداقل ۸ کاراکتر،یک حرف و یک عدد باشد </p>
+      
+            <img src="../../assets/images/show-password.svg" alt=""/>
           </div>
 
           <div class="input-wrapper">
-            <img src="../../assets/images/confirm-password.svg" alt="confirm password icon" loading="lazy">
-            <input type="password" pattern="^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$">
+            <img src="../../assets/images/confirm-password.svg" alt="" >
+            <input type="password" pattern="^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$" 
+            title="رمز عبور باید دارای حداقل ۸ کاراکتر،یک حرف و یک عدد باشد">
             <label for="--login-email-input">
-              <p>تکرار رمز عبور</p>
+             تکرار رمز عبور 
             </label>
-            <img src="../../assets/images/show-password.svg" alt="show password icon" loading="lazy"/>
+            <img src="../../assets/images/show-password.svg" alt="" />
           </div>
 
           <button type="submit">ثبت نام</button>
@@ -87,9 +92,3 @@
     </main>
   </body>
 </html>
-
-
-<!-- TODO 
-  - font family 'sahel' is not working
-  - why 1rem !== 10px
--->
