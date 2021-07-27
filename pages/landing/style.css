@@ -73,7 +73,7 @@ body header :is(a, p) {
           user-select: none;
 }
 
-body header > p {
+body header > img {
   margin-left: auto;
   font-size: 1em;
 }
