@@ -101,6 +101,7 @@ main {
   padding: 0 5vw;
 
   @include body-bg-bt-rgh-in();
+  background:black;
 
   display: flex;
   align-items: center;
@@ -125,6 +126,16 @@ main {
       align-items: center;
 
       padding-top: 5rem;
+
+      & > h2 {
+        text-align: center;
+        font-size: 2.5rem;
+        letter-spacing: 1px;
+        margin-bottom: 2rem;
+        color: $--lg-bg-4;
+      
+      }
+
 
       & > .input-wrapper {
         display: flex;
@@ -151,8 +162,7 @@ main {
           padding-right: 1em;
           position: relative;
 
-          &:focus,
-          :valid {
+          &:focus {
             top: 0;
 
             & ~ label {
@@ -163,6 +173,7 @@ main {
               transition: all 0.5s ease;
             }
           }
+          //TODO fix floating lable
         }
 
         & > label {

@@ -6,6 +6,7 @@ main {
   background-size: 150% 150%;
   animation: bg-in-bt-rgh 1.5s ease;
   animation-fill-mode: forwards;
+  background: black;
   display: flex;
   align-items: center;
   justify-content: flex-start;
@@ -34,6 +35,13 @@ main > .form-wrapper > form {
   align-items: center;
   padding-top: 5rem;
 }
+main > .form-wrapper > form > h2 {
+  text-align: center;
+  font-size: 2.5rem;
+  letter-spacing: 1px;
+  margin-bottom: 2rem;
+  color: #e3e6e0;
+}
 main > .form-wrapper > form > .input-wrapper {
   display: flex;
   flex-direction: row-reverse;
@@ -56,12 +64,10 @@ main > .form-wrapper > form > .input-wrapper > input {
   padding-right: 1em;
   position: relative;
 }
-main > .form-wrapper > form > .input-wrapper > input:focus,
-main > .form-wrapper > form > .input-wrapper > input :valid {
+main > .form-wrapper > form > .input-wrapper > input:focus {
   top: 0;
 }
-main > .form-wrapper > form > .input-wrapper > input:focus ~ label,
-main > .form-wrapper > form > .input-wrapper > input :valid ~ label {
+main > .form-wrapper > form > .input-wrapper > input:focus ~ label {
   top: 0;
   right: 0;
   transform: translateY(-100%);
