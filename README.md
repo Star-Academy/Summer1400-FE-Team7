@@ -1,40 +1,51 @@
 Hi 👋,<br>
-This project is a simple music player.
+This project is a simple music player.<br>
+https://star-academy.github.io/Summer1400-FE-Team7/pages/landing/
 
 # Landing Page
-  - Usual Stuff 
+
+- Usual Stuff
+
 # Login
-  - che dade hayi azamoon gerefte mishe?
+
+- che dade hayi azamoon gerefte mishe?
+
 # Sign Up
-  - che dade hayi azamoon gerefte mishe?
+
+- che dade hayi azamoon gerefte mishe?
 
 # Main
+
 ## sidbar
-  - favourites
-  - search
-  - All songs
-  - login/logout
+
+- favourites
+- search
+- All songs
+- login/logout
 
 # playList
-  - music cover
-  - name
-  - artist
-  - wave animation when playing
-  - favourites
-  - timestamp
-  - play/pause btn
+
+- music cover
+- name
+- artist
+- wave animation when playing
+- favourites
+- timestamp
+- play/pause btn
 
 # player
-  - required CTAs
-  - lyrics
-  - showCase
+
+- required CTAs
+- lyrics
+- showCase
 
 # optional
-  - drag & drop files from pc
-  - save to server
-  - Playlist Title
-  - Customized Playlist
-  - album
+
+- drag & drop files from pc
+- save to server
+- Playlist Title
+- Customized Playlist
+- album
 
 **_notes_**<br>
 album or not?<br>
