@@ -10,7 +10,7 @@
     <title>Login</title>
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="../../styles/main.css">
-    <script src="./app.js" defer></script>
+    <script src="./style.js" defer></script>
     
   </head>
   <body>
@@ -20,33 +20,26 @@
           <h2 class="switch--up">ورود</h2>
           <div class="input-wrapper">
             <img src="../../assets/images/email.svg" alt="" >
-            <input type="email" id="--login-email-input" >
-            <label for="--login-email-input">
+            <input type="email" id="login-email-input" >
+            <label for="login-email-input">
               ایمیل
             </label>
           </div>
 
           <div class="input-wrapper">
-<<<<<<< HEAD:Pages/Login/index.html
-            <img src="../../assets/images/password.svg" alt="passowrd icon">
-            <input type="password" pattern="^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$" id="--login-password-input">
-            <label for="--login-password-input">
-              <p>رمز عبور</p>
-=======
             <img src="../../assets/images/password.svg" alt="">
-            <input type="password" pattern="^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$" 
+            <input type="password" pattern="^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$"  id="login-password-input"
             title="رمز عبور باید دارای حداقل ۸ کاراکتر،یک حرف و یک عدد باشد">
-            <label for="--login-email-input">
+            <label for="login-password-input">
              رمز عبور
->>>>>>> 6ceedc5bbf4b457690cb3c00667a081a92b2496b:pages/auth/index.html
             </label>
-            <img src="../../assets/images/show-password.svg" alt=""/>
+            <img src="../../assets/images/show-password.svg" alt="" class="show-pass-cta"/>
           </div>
 
           <div>
             <div class="input-checkbox">
-              <input type="checkbox" id="--checkbox-input"/>
-              <label for="--checkbox-input">
+              <input type="checkbox" id="checkbox-input"/>
+              <label for="checkbox-input">
                 مرا به خاطر بسپار
               </label>
             </div>
@@ -61,12 +54,12 @@
 
         </form>
 
-        <form action="" class="signup-form   display-none">
+        <form action="" class="signup-form display-none">
           <h2>ثبت‌نام</h2>
           <div class="input-wrapper">
             <img src="../../assets/images/email.svg" alt="">
-            <input type="text" id="--login-email-input" >
-            <label for="--login-email-input">
+            <input type="text" id="signup-email-input" >
+            <label for="signup-email-input">
               ایمیل 
             </label>
           </div>
@@ -74,23 +67,23 @@
           <div class="input-wrapper">
             <img src="../../assets/images/password.svg" alt="">
             <input type="password" pattern="^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$" 
-            title="رمز عبور باید دارای حداقل ۸ کاراکتر،یک حرف و یک عدد باشد">
-            <label for="--login-email-input">
+            title="رمز عبور باید دارای حداقل ۸ کاراکتر،یک حرف و یک عدد باشد" id="signup-password-input">
+
+            <label for="signup-password-input">
              رمز عبور
             </label>
-            <img src="../../assets/images/show-password.svg" alt=""/>
+            <img src="../../assets/images/show-password.svg" alt="" class="show-pass-cta"/>
           </div>
-          <!-- TODO add labale for pasword pattern  -->
           
 
           <div class="input-wrapper">
             <img src="../../assets/images/confirm-password.svg" alt="" >
             <input type="password" pattern="^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$" 
-            title="رمز عبور باید دارای حداقل ۸ کاراکتر،یک حرف و یک عدد باشد">
-            <label for="--login-email-input">
+            title="رمز عبور باید دارای حداقل ۸ کاراکتر،یک حرف و یک عدد باشد" id="signup-confirm-password-input">
+            <label for="signup-confirm-password-input">
              تکرار رمز عبور 
             </label>
-            <img src="../../assets/images/show-password.svg" alt="" />
+            <img src="../../assets/images/show-password.svg" alt="" class="show-pass-cta"/>
           </div>
 
           <button type="submit">ثبت نام</button>
@@ -99,5 +92,7 @@
         </form>
       </div>
     </main>
+
+
   </body>
 </html>

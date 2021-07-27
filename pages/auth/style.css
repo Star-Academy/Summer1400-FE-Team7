@@ -4,14 +4,31 @@ main {
   padding: 0 5vw;
   background: linear-gradient(-45deg, #e35a01 0 7.5%, #4c7c71 7.5% 15%, #2e4769 15% 22.5%, #1f262e 22.5% 30%);
   background-size: 150% 150%;
-  animation: bg-in-bt-rgh 1.5s ease;
-  animation-fill-mode: forwards;
-  background: black;
+  -webkit-animation: bg-in-bt-rgh 1.5s ease;
+          animation: bg-in-bt-rgh 1.5s ease;
+  -webkit-animation-fill-mode: forwards;
+          animation-fill-mode: forwards;
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
-  align-items: center;
-  justify-content: flex-start;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: start;
+      -ms-flex-pack: start;
+          justify-content: flex-start;
   position: relative;
 }
+
+@-webkit-keyframes bg-in-bt-rgh {
+  from {
+    background-position: 0% 0%;
+  }
+  to {
+    background-position: 100% 100%;
+  }
+}
+
 @keyframes bg-in-bt-rgh {
   from {
     background-position: 0% 0%;
@@ -20,21 +37,35 @@ main {
     background-position: 100% 100%;
   }
 }
+
 main > .form-wrapper {
   width: 450px;
   height: 70%;
-  box-shadow: inset 0 0 0.3em white, 0 0 0.3em white;
+  -webkit-box-shadow: inset 0 0 0.3em white, 0 0 0.3em white;
+          box-shadow: inset 0 0 0.3em white, 0 0 0.3em white;
+  -webkit-transition: -webkit-transform 1s ease;
+  transition: -webkit-transform 1s ease;
   transition: transform 1s ease;
+  transition: transform 1s ease, -webkit-transform 1s ease;
 }
+
 main > .form-wrapper > form {
   width: 100%;
   height: 100%;
   background: transparent;
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
-  flex-direction: column;
-  align-items: center;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
   padding-top: 5rem;
 }
+
 main > .form-wrapper > form > h2 {
   text-align: center;
   font-size: 2.5rem;
@@ -42,45 +73,61 @@ main > .form-wrapper > form > h2 {
   margin-bottom: 2rem;
   color: #e3e6e0;
 }
+
 main > .form-wrapper > form > .input-wrapper {
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
-  flex-direction: row-reverse;
-  box-shadow: inset 0 0 0.3em white, 0 0 0.3em white;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: reverse;
+      -ms-flex-direction: row-reverse;
+          flex-direction: row-reverse;
+  -webkit-box-shadow: inset 0 0 0.3em white, 0 0 0.3em white;
+          box-shadow: inset 0 0 0.3em white, 0 0 0.3em white;
   padding: 0 1.5em;
   width: 85%;
   height: 3rem;
-  align-items: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
   position: relative;
 }
+
 main > .form-wrapper > form > .input-wrapper > img {
   width: 20px;
   height: 20px;
 }
+
 main > .form-wrapper > form > .input-wrapper > input {
-  flex: 1;
+  -webkit-box-flex: 1;
+      -ms-flex: 1;
+          flex: 1;
   background: transparent;
   border: none;
   color: white;
   padding-right: 1em;
   position: relative;
 }
-main > .form-wrapper > form > .input-wrapper > input:focus {
-  top: 0;
-}
-main > .form-wrapper > form > .input-wrapper > input:focus ~ label {
-  top: 0;
-  right: 0;
-  transform: translateY(-100%);
-  transition: all 0.5s ease;
-}
+
 main > .form-wrapper > form > .input-wrapper > label {
   position: absolute;
   right: calc(20px + 1.5rem);
   top: 50%;
-  transform: translateY(-50%);
+  -webkit-transform: translateY(-50%);
+          transform: translateY(-50%);
   color: white;
   font-size: 1.15rem;
 }
+
+main > .form-wrapper > form > .input-wrapper > .full-label {
+  top: 0;
+  right: 0;
+  -webkit-transform: translateY(-100%);
+          transform: translateY(-100%);
+  -webkit-transition: all 0.5s ease;
+  transition: all 0.5s ease;
+}
+
 main > .form-wrapper > form > button {
   font-size: 1.2rem;
   padding: 0.5em 0em;
@@ -90,48 +137,76 @@ main > .form-wrapper > form > button {
   border: none;
   cursor: pointer;
   background: transparent;
-  box-shadow: inset 0 0 0.3em white, 0 0 0.3em 0.125em white;
+  -webkit-box-shadow: inset 0 0 0.3em white, 0 0 0.3em 0.125em white;
+          box-shadow: inset 0 0 0.3em white, 0 0 0.3em 0.125em white;
   color: white;
 }
+
 main > .form-wrapper > form > button:hover {
-  box-shadow: inset 0 0 0.65em white, 0 0 0.3em 0.125em white;
+  -webkit-box-shadow: inset 0 0 0.65em white, 0 0 0.3em 0.125em white;
+          box-shadow: inset 0 0 0.65em white, 0 0 0.3em 0.125em white;
 }
+
 main > .form-wrapper > form > a {
   color: white;
   font-size: 1.1rem;
   width: 85%;
   margin-top: 2em;
 }
+
 main > .form-wrapper > .login-form > .input-wrapper:nth-of-type(2) {
   margin: 5em 0 3em 0;
 }
+
 main > .form-wrapper > .login-form > .input-wrapper:nth-of-type(2) > img:nth-of-type(2) {
   cursor: pointer;
 }
+
 main > .form-wrapper > .login-form > div:nth-of-type(3) {
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
-  justify-content: flex-start;
-  flex-direction: row-reverse;
-  align-items: center;
+  -webkit-box-pack: start;
+      -ms-flex-pack: start;
+          justify-content: flex-start;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: reverse;
+      -ms-flex-direction: row-reverse;
+          flex-direction: row-reverse;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
   width: 85%;
 }
+
 main > .form-wrapper > .login-form > div:nth-of-type(3) .input-checkbox {
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
-  flex-direction: row-reverse;
-  align-items: center;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: reverse;
+      -ms-flex-direction: row-reverse;
+          flex-direction: row-reverse;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
 }
+
 main > .form-wrapper > .login-form > div:nth-of-type(3) .input-checkbox > label {
   padding-right: 0.8em;
   color: white;
   font-size: 0.9rem;
 }
+
 main > .form-wrapper > .login-form > div:nth-of-type(3) .forgot-pass {
   margin-right: auto;
 }
+
 main > .form-wrapper > .login-form > div:nth-of-type(3) .forgot-pass > a {
   color: white;
   font-size: 1rem;
 }
+
 main > .form-wrapper > .signup-form > div:nth-of-type(2) {
   margin: 5em 0;
 }
@@ -141,15 +216,19 @@ main > .form-wrapper > .signup-form > div:nth-of-type(2) {
 }
 
 .signup-form-wrapper {
-  transform: translateX(calc(90vw - 100%));
+  -webkit-transform: translateX(calc(90vw - 100%));
+          transform: translateX(calc(90vw - 100%));
 }
 
 .bg-animation-1 {
   background: linear-gradient(-45deg, #e35a01 0 7.5%, #4c7c71 7.5% 15%, #2e4769 15% 22.5%, #1f262e 22.5% 30%);
   background-size: 150% 150%;
-  animation: bg-in-bt-rgh 1.5s ease;
-  animation-fill-mode: forwards;
+  -webkit-animation: bg-in-bt-rgh 1.5s ease;
+          animation: bg-in-bt-rgh 1.5s ease;
+  -webkit-animation-fill-mode: forwards;
+          animation-fill-mode: forwards;
 }
+
 @keyframes bg-in-bt-rgh {
   from {
     background-position: 0% 0%;
@@ -160,9 +239,23 @@ main > .form-wrapper > .signup-form > div:nth-of-type(2) {
 }
 
 .bg-animation-2 {
-  animation: body-bg-bt-rgh-out 1s ease;
-  animation-fill-mode: forwards;
+  background: linear-gradient(-45deg, #e35a01 0 7.5%, #4c7c71 7.5% 15%, #2e4769 15% 22.5%, #1f262e 22.5% 30%);
+  background-size: 150% 150%;
+  -webkit-animation: body-bg-bt-rgh-out 1s ease;
+          animation: body-bg-bt-rgh-out 1s ease;
+  -webkit-animation-fill-mode: forwards;
+          animation-fill-mode: forwards;
 }
+
+@-webkit-keyframes body-bg-bt-rgh-out {
+  from {
+    background-position: 100% 100%;
+  }
+  to {
+    background-position: 0% 0%;
+  }
+}
+
 @keyframes body-bg-bt-rgh-out {
   from {
     background-position: 100% 100%;
@@ -175,9 +268,21 @@ main > .form-wrapper > .signup-form > div:nth-of-type(2) {
 .bg-animation-3 {
   background: linear-gradient(135deg, #e35a01 0 7.5%, #4c7c71 7.5% 15%, #2e4769 15% 22.5%, #1f262e 22.5% 30%);
   background-size: 150% 150%;
-  animation: bg-in-tp-lft 1.5s ease;
-  animation-fill-mode: forwards;
+  -webkit-animation: bg-in-tp-lft 1.5s ease;
+          animation: bg-in-tp-lft 1.5s ease;
+  -webkit-animation-fill-mode: forwards;
+          animation-fill-mode: forwards;
 }
+
+@-webkit-keyframes bg-in-tp-lft {
+  from {
+    background-position: 100% 100%;
+  }
+  to {
+    background-position: 0% 0%;
+  }
+}
+
 @keyframes bg-in-tp-lft {
   from {
     background-position: 100% 100%;
@@ -190,9 +295,21 @@ main > .form-wrapper > .signup-form > div:nth-of-type(2) {
 .bg-animation-4 {
   background: linear-gradient(135deg, #e35a01 0 7.5%, #4c7c71 7.5% 15%, #2e4769 15% 22.5%, #1f262e 22.5% 30%);
   background-size: 150% 150%;
-  animation: bg-out-tp-left 1s ease;
-  animation-fill-mode: forwards;
+  -webkit-animation: bg-out-tp-left 1s ease;
+          animation: bg-out-tp-left 1s ease;
+  -webkit-animation-fill-mode: forwards;
+          animation-fill-mode: forwards;
 }
+
+@-webkit-keyframes bg-out-tp-left {
+  from {
+    background-position: 0% 0%;
+  }
+  to {
+    background-position: 100% 100%;
+  }
+}
+
 @keyframes bg-out-tp-left {
   from {
     background-position: 0% 0%;
@@ -202,4 +319,46 @@ main > .form-wrapper > .signup-form > div:nth-of-type(2) {
   }
 }
 
+@media only screen and (max-width: 900px) {
+  main {
+    -webkit-box-pack: center;
+        -ms-flex-pack: center;
+            justify-content: center;
+  }
+  main > .form-wrapper {
+    -webkit-transform: none;
+            transform: none;
+    -webkit-transition: none;
+    transition: none;
+  }
+  .bg-animation-1 {
+    background: -webkit-gradient(linear, left bottom, left top, color-stop(0, #e35a01), color-stop(5%, #4c7c71), color-stop(10%, #2e4769), color-stop(15%, #1f262e));
+    background: linear-gradient(0deg, #e35a01 0 5%, #4c7c71 5% 10%, #2e4769 10% 15%, #1f262e 15% 20%);
+    background-size: 150% 150%;
+  }
+  .bg-animation-2 {
+    background: -webkit-gradient(linear, left bottom, left top, color-stop(0, #e35a01), color-stop(5%, #4c7c71), color-stop(10%, #2e4769), color-stop(15%, #1f262e));
+    background: linear-gradient(0deg, #e35a01 0 5%, #4c7c71 5% 10%, #2e4769 10% 15%, #1f262e 15% 20%);
+    background-size: 150% 150%;
+  }
+  .bg-animation-3 {
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(0, #e35a01), color-stop(5%, #4c7c71), color-stop(10%, #2e4769), color-stop(15%, #1f262e));
+    background: linear-gradient(180deg, #e35a01 0 5%, #4c7c71 5% 10%, #2e4769 10% 15%, #1f262e 15% 20%);
+    background-size: 150% 150%;
+  }
+  .bg-animation-4 {
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(0, #e35a01), color-stop(5%, #4c7c71), color-stop(10%, #2e4769), color-stop(15%, #1f262e));
+    background: linear-gradient(180deg, #e35a01 0 5%, #4c7c71 5% 10%, #2e4769 10% 15%, #1f262e 15% 20%);
+    background-size: 150% 150%;
+  }
+}
+
+.stop-transitions * {
+  -webkit-transition: none !important;
+  transition: none !important;
+}
+
+.show-pass-cta {
+  cursor: pointer;
+}
 /*# sourceMappingURL=style.css.map */
