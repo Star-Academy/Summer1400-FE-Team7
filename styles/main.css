@@ -13,6 +13,7 @@
           box-sizing: border-box;
   font-family: "Sahel", sans-serif;
   outline: none;
+  border: none;
 }
 
 :root {
@@ -30,6 +31,7 @@ body {
   width: 100vw;
   height: 100vh;
   font-size: 62.5%;
+  direction: rtl;
 }
 
 p,
