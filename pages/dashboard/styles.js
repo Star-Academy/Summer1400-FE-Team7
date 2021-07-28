@@ -1,6 +1,7 @@
 // //VARIABLES DECLARATIONS
 const menuButtons = document.querySelectorAll(".btn-wrapper");
-("menu--selected");
+const favIcon = document.querySelectorAll(".fav-icon");
+
 const menuClassOmmiter = () => {
   for (let m of menuButtons) {
     if (m.classList.contains("menu-selected")) {
@@ -10,12 +11,10 @@ const menuClassOmmiter = () => {
 };
 
 const handelmenuButtonsSelect = () => {
-  console.log(menuButtons);
   for (let m of menuButtons) {
     m.addEventListener("click", () => {
       menuClassOmmiter();
       m.classList.add("menu-selected");
-      console.log(m);
     });
   }
 };

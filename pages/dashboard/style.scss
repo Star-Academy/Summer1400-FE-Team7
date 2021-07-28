@@ -1,6 +1,15 @@
+$--clr-grayish: #7b7b7b;
+$--hover-bg-clr: rgba(138, 135, 135, 0.15);
+$--select-bg-clr: hsl(139, 182, 113);
+$--selected-bg-blue: rgb(29, 125, 215);
+
 main {
   width: 100%;
   height: 100%;
+  overflow: auto;
+
+  position: relative;
+  z-index: 10;
 
   display: flex;
   flex-direction: column;
@@ -11,9 +20,11 @@ main {
 
     & > .side-menu {
       width: 275px;
-      height: 100%;
+      height: 100vh;
       background: black;
+      opacity: 0.65;
       padding-top: 4rem;
+      position: fixed;
 
       display: flex;
       flex-direction: column;
@@ -26,10 +37,12 @@ main {
       }
 
       & > .search {
-        background: blanchedalmond;
+        background: rgb(27, 26, 26);
 
         height: 2.5rem;
         margin-bottom: 0.5rem;
+
+        border-radius: 999rem;
 
         flex-direction: row-reverse;
         padding-left: 0.5rem;
@@ -39,10 +52,12 @@ main {
 
         & > .search__icon {
           width: 40px;
-          height: 60%;
+          height: 50%;
           background: url(../../assets/images/search.svg) no-repeat;
           background-position: center;
           background-size: contain;
+
+          transform: rotate(90deg);
         }
 
         & > input {
@@ -50,6 +65,8 @@ main {
           height: 100%;
           padding-right: 0.5rem;
           background: transparent;
+
+          color: whitesmoke;
         }
       }
 
@@ -76,9 +93,6 @@ main {
           width: 100%;
         }
 
-        & > button:nth-of-type(1) {
-        }
-
         &:hover {
           background: rgba(255, 255, 255, 0.486);
         }
@@ -93,7 +107,7 @@ main {
       }
 
       & > .menu-selected {
-        border-right: 5px solid cornflowerblue;
+        border-right: 5px solid $--selected-bg-blue;
         // background: rgba(255, 255, 255, 0.486);
       }
 
@@ -129,9 +143,97 @@ main {
       }
     }
 
-    & > div:nth-of-type(2) {
+    & > .song-list {
       flex: 1;
-      background: gray;
+      padding: 5rem 3rem;
+
+      margin-right: 275px;
+
+      display: flex;
+      flex-direction: column;
+      gap: 0.25rem;
+
+      & > h2 {
+        font-size: 1.5rem;
+        color: white;
+        line-height: 2;
+      }
+
+      & p {
+        color: var(--clr-white);
+        user-select: none;
+      }
+
+      & > .song-wrapper {
+        width: 100%;
+        height: 3rem;
+
+        display: flex;
+        align-items: center;
+
+        & > .song-cover {
+          width: 3rem;
+          height: 3rem;
+          // background: black;
+
+          overflow: hidden;
+
+          & > img {
+            width: 100%;
+            height: 100%;
+
+            object-fit: cover;
+            user-select: none;
+          }
+        }
+
+        & > :is(.song-prop, .song-info) {
+          display: flex;
+          flex-direction: column;
+          height: 80%;
+          justify-content: space-evenly;
+          align-items: space-evenly;
+        }
+
+        & > .song-info {
+          margin-right: 0.5rem;
+
+          & > p:first-child {
+            font-size: 0.8rem;
+          }
+
+          & > p:last-child {
+            color: $--clr-grayish;
+            font-size: 0.7rem;
+          }
+
+          & > .author-name-selected {
+            color: var(--clr-white) !important;
+          }
+        }
+
+        & > .song-prop {
+          margin-right: auto;
+          margin-left: 0.5rem;
+          align-items: flex-end;
+
+          & > img {
+            width: 15px;
+          }
+        }
+
+        &:hover {
+          background: $--hover-bg-clr;
+        }
+      }
+
+      & > .song-wrapper-selected {
+        background-color: $--selected-bg-blue;
+
+        &:hover {
+          background: $--selected-bg-blue;
+        }
+      }
     }
   }
 
@@ -139,4 +241,24 @@ main {
     height: 90px;
     background: goldenrod;
   }
+}
+.dark-glass,
+.bg-cover {
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  z-index: 5;
+}
+
+.dark-glass {
+  background: rgba(0, 0, 0, 0.85);
+}
+
+.bg-cover {
+  transition: background 1s ease;
+
+  background: url(../../assets/images/default-song-cover.svg) center no-repeat;
+  background-size: cover;
 }
