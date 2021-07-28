@@ -25,6 +25,8 @@
   --lg-bg-2: #e73c7e;
   --lg-bg-3: #23a6d5;
   --lg-bg-4: #23d5ab;
+  --clr-gray-light: rgb(200, 200, 200);
+  --font-size-xl: 2.5rem;
 }
 
 body {
@@ -42,5 +44,20 @@ span,
 input,
 label {
   text-align: right;
+}
+
+*::-webkit-scrollbar {
+  width: 0.5rem;
+  height: 1rem;
+}
+
+*::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+*::-webkit-scrollbar-thumb {
+  background: #1d7dd7;
+  border: none;
+  border-radius: 1rem;
 }
 /*# sourceMappingURL=main.css.map */

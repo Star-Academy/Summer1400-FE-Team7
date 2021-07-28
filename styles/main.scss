@@ -5,6 +5,11 @@
   ///woof bezar
 }
 
+$--font-size-sm: 1rem;
+$--font-size-md: 1.5rem;
+$--font-size-lg: 2rem;
+$--font-size-xl: 2.5rem;
+
 *,
 *::before,
 *::after {
@@ -16,6 +21,8 @@
   border: none;
 }
 
+$--clr-scrollbar: rgb(29, 125, 215);
+
 :root {
   --clr-bg: hsl(323 21% 16%);
   --clr-blue: rgb(8, 192, 255);
@@ -25,6 +32,8 @@
   --lg-bg-2: #e73c7e;
   --lg-bg-3: #23a6d5;
   --lg-bg-4: #23d5ab;
+  --clr-gray-light: rgb(200, 200, 200);
+  --font-size-xl: 2.5rem;
 }
 
 body {
@@ -43,4 +52,20 @@ span,
 input,
 label {
   text-align: right;
+}
+
+*::-webkit-scrollbar {
+  width: 0.5rem;
+  height: 1rem;
+}
+
+*::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+*::-webkit-scrollbar-thumb {
+  background: $--clr-scrollbar;
+
+  border: none;
+  border-radius: 1rem;
 }
