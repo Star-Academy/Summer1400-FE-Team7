@@ -1,6 +1,6 @@
-Hi👋 this is Music Club (موزیک کلاب),<br>
-This project is a simple music player.<br>
-https://star-academy.github.io/Summer1400-FE-Team7/pages/landing/
+Hi👋 this is Music Club (موزیک کلاب),<br><br>
+This project is a simple music player.<br><br>
+checkout our [github pages](https://star-academy.github.io/Summer1400-FE-Team7/pages/landing/)
 
 # Landing Page
 
