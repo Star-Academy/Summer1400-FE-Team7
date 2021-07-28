@@ -1,6 +1,7 @@
 main {
   width: 100%;
   height: 100%;
+  max-height: 100vh;
   padding: 0 5vw;
   background: linear-gradient(-45deg, #e35a01 0 7.5%, #4c7c71 7.5% 15%, #2e4769 15% 22.5%, #1f262e 22.5% 30%);
   background-size: 150% 150%;
@@ -63,14 +64,12 @@ main > .form-wrapper > form {
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
-  padding-top: 5rem;
 }
 
 main > .form-wrapper > form > h2 {
   text-align: center;
   font-size: 2.5rem;
   letter-spacing: 1px;
-  margin-bottom: 2rem;
   color: #e3e6e0;
 }
 
@@ -107,6 +106,7 @@ main > .form-wrapper > form > .input-wrapper > input {
   color: white;
   padding-right: 1em;
   position: relative;
+  height: 3rem;
 }
 
 main > .form-wrapper > form > .input-wrapper > label {
@@ -132,7 +132,6 @@ main > .form-wrapper > form > button {
   font-size: 1.2rem;
   padding: 0.5em 0em;
   width: 85%;
-  margin-top: 3.5em;
   border-radius: 4px;
   border: none;
   cursor: pointer;
@@ -151,11 +150,6 @@ main > .form-wrapper > form > a {
   color: white;
   font-size: 1.1rem;
   width: 85%;
-  margin-top: 2em;
-}
-
-main > .form-wrapper > .login-form > .input-wrapper:nth-of-type(2) {
-  margin: 5em 0 3em 0;
 }
 
 main > .form-wrapper > .login-form > .input-wrapper:nth-of-type(2) > img:nth-of-type(2) {
@@ -200,6 +194,7 @@ main > .form-wrapper > .login-form > div:nth-of-type(3) .input-checkbox > label 
 
 main > .form-wrapper > .login-form > div:nth-of-type(3) .forgot-pass {
   margin-right: auto;
+  text-align: right;
 }
 
 main > .form-wrapper > .login-form > div:nth-of-type(3) .forgot-pass > a {
@@ -207,8 +202,10 @@ main > .form-wrapper > .login-form > div:nth-of-type(3) .forgot-pass > a {
   font-size: 1rem;
 }
 
-main > .form-wrapper > .signup-form > div:nth-of-type(2) {
-  margin: 5em 0;
+main > .form-wrapper > :is(.login-form, .signup-form) {
+  -webkit-box-pack: space-evenly;
+      -ms-flex-pack: space-evenly;
+          justify-content: space-evenly;
 }
 
 .display-none {
