@@ -1,6 +1,5 @@
 //this file uses for managing UI elements.
 
-
 //VARIABLES DECLARATIONS
 const loginForm = document.querySelector(".login-form");
 const signForm = document.querySelector(".signup-form");
@@ -11,12 +10,7 @@ const main = document.getElementsByTagName("main");
 const input = document.getElementsByTagName("input");
 const showPassCta = document.querySelectorAll(".show-pass-cta");
 
-
-
-
-
- //FUNCTIONS IMPLEMENTATION
- 
+//FUNCTIONS IMPLEMENTATION
 
 /**
  * Toggel position of login/sign-up form.
@@ -80,11 +74,19 @@ const HandelFloatingLabel = () => {
       if (i.value == "") {
         i.nextElementSibling.classList.toggle("full-label");
       }
+
+      if (main[0].offsetWidth < 900 && (i.id == "login-email-input" || i.id == "login-password-input")) {
+        main[0].className = "bg-animation-2";
+      }
     });
 
     i.addEventListener("blur", () => {
       if (i.value == "") {
         i.nextElementSibling.classList.toggle("full-label");
+      }
+
+      if (main[0].offsetWidth < 900 && (i.id == "login-email-input" || i.id == "login-password-input")) {
+        main[0].className = "bg-animation-1";
       }
     });
   }
@@ -109,7 +111,6 @@ const HandelShowPassword = () => {
     });
   }
 };
-
 
 ///FUNCTION CALLS
 
