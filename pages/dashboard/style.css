@@ -1,7 +1,175 @@
-* {
-  padding: 0;
-  margin: 0;
-  -webkit-box-sizing: border-box;
-          box-sizing: border-box;
+main {
+  width: 100%;
+  height: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+}
+
+main > section:nth-of-type(1) {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-flex: 1;
+      -ms-flex: 1;
+          flex: 1;
+}
+
+main > section:nth-of-type(1) > .side-menu {
+  width: 275px;
+  height: 100%;
+  background: black;
+  padding-top: 4rem;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+main > section:nth-of-type(1) > .side-menu > * {
+  width: 85%;
+  height: 3rem;
+}
+
+main > section:nth-of-type(1) > .side-menu > .search {
+  background: blanchedalmond;
+  height: 2.5rem;
+  margin-bottom: 0.5rem;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: reverse;
+      -ms-flex-direction: row-reverse;
+          flex-direction: row-reverse;
+  padding-left: 0.5rem;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+main > section:nth-of-type(1) > .side-menu > .search > .search__icon {
+  width: 40px;
+  height: 60%;
+  background: url(../../assets/images/search.svg) no-repeat;
+  background-position: center;
+  background-size: contain;
+}
+
+main > section:nth-of-type(1) > .side-menu > .search > input {
+  -webkit-box-flex: 1;
+      -ms-flex: 1;
+          flex: 1;
+  height: 100%;
+  padding-right: 0.5rem;
+  background: transparent;
+}
+
+main > section:nth-of-type(1) > .side-menu > .btn-wrapper {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  width: 100%;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  position: relative;
+  border-right: 5px solid transparent;
+}
+
+main > section:nth-of-type(1) > .side-menu > .btn-wrapper > img {
+  width: 40px;
+  height: 60%;
+  padding: 0 0.5rem;
+}
+
+main > section:nth-of-type(1) > .side-menu > .btn-wrapper > button {
+  height: 100%;
+  cursor: pointer;
+  background: none;
+  text-align: right;
+  color: var(--clr-white);
+  width: 100%;
+}
+
+main > section:nth-of-type(1) > .side-menu > .btn-wrapper:hover {
+  background: rgba(255, 255, 255, 0.486);
+}
+
+main > section:nth-of-type(1) > .side-menu > .btn-wrapper > .add-btn {
+  height: 3rem;
+  width: 3rem;
+  background: url(../../assets/images/add.svg) no-repeat;
+  background-position: center;
+  background-size: 50%;
+}
+
+main > section:nth-of-type(1) > .side-menu > .menu-selected {
+  border-right: 5px solid cornflowerblue;
+}
+
+main > section:nth-of-type(1) > .side-menu .profile-wrapper {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  width: 100%;
+  height: 3rem;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: reverse;
+      -ms-flex-direction: row-reverse;
+          flex-direction: row-reverse;
+  cursor: pointer;
+  font-size: 0.8rem;
+  margin-top: auto;
+  padding: 0 0.5rem;
+}
+
+main > section:nth-of-type(1) > .side-menu .profile-wrapper > p {
+  -webkit-box-flex: 1;
+      -ms-flex: 1;
+          flex: 1;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none;
+  color: var(--clr-white);
+  text-align: left;
+}
+
+main > section:nth-of-type(1) > .side-menu .profile-wrapper > button {
+  width: 3rem;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+main > section:nth-of-type(1) > .side-menu .profile-wrapper > button > img {
+  width: 40px;
+  height: 60%;
+}
+
+main > section:nth-of-type(1) > div:nth-of-type(2) {
+  -webkit-box-flex: 1;
+      -ms-flex: 1;
+          flex: 1;
+  background: gray;
+}
+
+main > section:nth-of-type(2) {
+  height: 90px;
+  background: goldenrod;
 }
 /*# sourceMappingURL=style.css.map */
