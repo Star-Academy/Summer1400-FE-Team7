@@ -143,9 +143,6 @@ body main section:nth-of-type(1) {
   -webkit-box-direction: normal;
       -ms-flex-direction: column;
           flex-direction: column;
-  -webkit-box-align: end;
-      -ms-flex-align: end;
-          align-items: flex-end;
   gap: 2rem;
 }
 
