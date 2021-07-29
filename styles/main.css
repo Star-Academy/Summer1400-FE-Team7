@@ -36,6 +36,12 @@ body {
   direction: rtl;
 }
 
+button {
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+
 p,
 a,
 h1,
@@ -59,5 +65,13 @@ label {
   background: #1d7dd7;
   border: none;
   border-radius: 1rem;
+}
+
+input[type="range"]::-webkit-slider-thumb {
+  visibility: hidden;
+}
+
+input[type="range"]:hover::-webkit-slider-thumb {
+  visibility: visible;
 }
 /*# sourceMappingURL=main.css.map */
