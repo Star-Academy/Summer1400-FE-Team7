@@ -43,7 +43,6 @@ body {
     position: relative;
 
     display: flex;
-    flex-direction: row-reverse;
     align-items: flex-end;
     padding-bottom: 1em;
 
@@ -119,7 +118,6 @@ body {
 
   main {
     display: flex;
-    flex-direction: row-reverse;
     justify-content: center;
     align-items: center;
 

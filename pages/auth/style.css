@@ -358,4 +358,8 @@ main > .form-wrapper > :is(.login-form, .signup-form) {
 .show-pass-cta {
   cursor: pointer;
 }
+
+body {
+  direction: ltr !important;
+}
 /*# sourceMappingURL=style.css.map */
