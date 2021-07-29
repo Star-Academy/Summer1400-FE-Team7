@@ -1,6 +1,8 @@
 const songList = document.querySelector(".song-list");
 const bgCover = document.querySelector(".bg-cover");
 
+const seekSlider = document.getElementById("seek-slider");
+
 fetch("./songs.json")
   .then((response) => response.json())
   .then((data) => {
@@ -8,6 +10,7 @@ fetch("./songs.json")
   })
   .catch((error) => console.log(error));
 
+//TODO add alt into images
 const songListFiller = ({ songs }) => {
   songs.forEach((song, index) => {
     // console.log(song);
@@ -137,3 +140,11 @@ const dblClickHandler = (elem) => {
     bgCover.style.backgroundSize = "cover";
   });
 };
+
+const showRangeProgress = (rangeInput) => {
+  audioPlayerContainer.style.setProperty("--seek-before-width", (rangeInput.value / rangeInput.max) * 100 + "%");
+};
+
+seekSlider.addEventListener("input", (e) => {
+  showRangeProgress(e.target);
+});
