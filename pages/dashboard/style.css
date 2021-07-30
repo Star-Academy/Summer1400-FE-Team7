@@ -20,6 +20,10 @@ main > section:nth-of-type(1) {
   -webkit-box-flex: 1;
       -ms-flex: 1;
           flex: 1;
+  -webkit-transition: -webkit-transform 1s ease;
+  transition: -webkit-transform 1s ease;
+  transition: transform 1s ease;
+  transition: transform 1s ease, -webkit-transform 1s ease;
 }
 
 main > section:nth-of-type(1) > .side-menu {
@@ -615,13 +619,104 @@ main > .music-controls > .volume-wrapper > button:nth-of-type(2) > img {
   height: 100%;
 }
 
+main > .music-controls > .volume-wrapper .lyric-btn-active {
+  -webkit-filter: invert(39%) sepia(96%) saturate(903%) hue-rotate(184deg) brightness(86%) contrast(97%);
+          filter: invert(39%) sepia(96%) saturate(903%) hue-rotate(184deg) brightness(86%) contrast(97%);
+}
+
 main .lyric-wrapper {
   width: 100%;
   height: 90vh;
   position: fixed;
+  overflow-y: scroll;
   top: 0;
   left: -100%;
-  background: rgba(100, 200, 255, 0.4);
+  -webkit-transition: -webkit-transform 1s ease;
+  transition: -webkit-transform 1s ease;
+  transition: transform 1s ease;
+  transition: transform 1s ease, -webkit-transform 1s ease;
+  padding: 5rem 3rem;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+main .lyric-wrapper > button:nth-of-type(1) {
+  position: absolute;
+  top: 2vh;
+  left: 0;
+  background: #1d7dd7;
+  z-index: 120;
+  border-radius: 0 200px 200px 0;
+  -webkit-transition: -webkit-transform 1s ease;
+  transition: -webkit-transform 1s ease;
+  transition: transform 1s ease;
+  transition: transform 1s ease, -webkit-transform 1s ease;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  padding: 0.5rem 1.25rem;
+}
+
+main .lyric-wrapper > button:nth-of-type(1) > img {
+  width: 15px;
+  height: 15px;
+}
+
+main .lyric-wrapper > .lyrics-music-cover {
+  width: 350px;
+  height: 100%;
+  position: fixed;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+main .lyric-wrapper > .lyrics-music-cover > img {
+  width: 80%;
+  height: auto;
+  background: rgba(0, 0, 0, 0.4);
+}
+
+main .lyric-wrapper > .lyrics-music-cover > .music-info {
+  width: 80%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: start;
+      -ms-flex-align: start;
+          align-items: flex-start;
+  margin-top: 0.5rem;
+  font-size: 1rem;
+  color: rgba(255, 255, 255, 0.678);
+}
+
+main .lyric-wrapper > .lyrics-text {
+  -webkit-box-flex: 1;
+      -ms-flex: 1;
+          flex: 1;
+  margin-right: 350px;
+  font-size: 1rem;
+  max-width: 100ch;
+  line-height: 2;
+  color: rgba(255, 255, 255, 0.678);
 }
 
 .dark-glass,
@@ -692,6 +787,10 @@ main .lyric-wrapper {
   background: #1d7dd7;
   z-index: 120;
   border-radius: 200px 0 0 200px;
+  -webkit-transition: -webkit-transform 1s ease;
+  transition: -webkit-transform 1s ease;
+  transition: transform 1s ease;
+  transition: transform 1s ease, -webkit-transform 1s ease;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -719,5 +818,16 @@ main .lyric-wrapper {
 
 .side-menu-opended {
   width: calc(100% - 275px) !important;
+}
+
+.section-close,
+.lyrics-wrapper-open {
+  -webkit-transform: translateX(100%);
+          transform: translateX(100%);
+}
+
+.side-menu-opener-closed {
+  -webkit-transform: translateX(100%);
+          transform: translateX(100%);
 }
 /*# sourceMappingURL=style.css.map */
