@@ -64,23 +64,23 @@
 
         <div class="controls-wrapper">
           <div>
-            <button class="size-1">
+            <button class="size-1 ctl-btn">
               <img src="../../assets/images/controls/shuffle.svg" alt="shuffle button">
             </button>
 
-            <button class="size-1">
+            <button class="size-1 ctl-btn">
               <img src="../../assets/images/controls/next.svg" alt="next music button" id="next-btn">
             </button>
 
-            <button class="size-2">
+            <button class="size-2 ctl-btn">
               <img src="../../assets/images/controls/play-button.svg" alt="play puase button">
             </button>
 
-            <button class="size-1">
+            <button class="size-1 ctl-btn">
               <img src="../../assets/images/controls/back.svg" alt="next music button" >
             </button>
 
-            <button class="size-1">
+            <button class="size-1 ctl-btn">
               <img src="../../assets/images/controls/replay.svg" alt="repeat mode button">
             </button>
           </div>
@@ -92,10 +92,14 @@
         </div>
 
         <div class="volume-wrapper">
-          <img src="../../assets/images/controls/speaker.svg" alt="volume button">
+          <button class="ctl-btn">
+            <img src="../../assets/images/controls/speaker.svg" alt="volume button">
+          </button>
           <input type="range" id="volume-slider" max="100" value="0" onchange="updateVolumeValue(this.value);">
           <p style="color: white;" id="volume-text">00</p>
-
+          <button class="ctl-btn">
+            <img src="../../assets/images/controls/lyric.svg" alt="lyrics button">
+          </button>
         </div>
 
       </section>

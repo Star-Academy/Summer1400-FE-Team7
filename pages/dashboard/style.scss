@@ -2,6 +2,7 @@ $--clr-grayish: #7b7b7b;
 $--hover-bg-clr: rgba(138, 135, 135, 0.15);
 $--select-bg-clr: hsl(139, 182, 113);
 $--selected-bg-blue: rgb(29, 125, 215);
+$--bg-glass: rgba(0, 0, 0, 0.85);
 
 main {
   width: 100%;
@@ -267,6 +268,15 @@ main {
       display: flex;
       gap: 0.7rem;
 
+      user-select: none;
+
+      padding-left: 2rem;
+
+      &:hover {
+        // background: darken($--bg-glass, 0);
+        background: rgba(0, 0, 0, 0.2);
+      }
+
       & > img {
         height: calc(100% - 2px);
       }
@@ -278,6 +288,8 @@ main {
 
         & > p {
           color: var(--clr-white);
+          width: 3ch;
+          text-align: left;
         }
 
         & > p:first-child {
@@ -296,13 +308,12 @@ main {
       display: flex;
       flex-direction: column;
       align-items: center;
-      justify-content: center;
+      justify-content: space-evenly;
 
       & > div:nth-of-type(1) {
         display: flex;
         justify-content: center;
         align-items: center;
-        padding-bottom: 0.5rem;
 
         & > button {
           display: flex;
@@ -314,10 +325,6 @@ main {
           & > img {
             width: 65%;
             height: 65%;
-
-            &:hover {
-              filter: invert(0%) sepia(0%) saturate(0%) hue-rotate(0deg) brightness(0%) contrast(0%);
-            }
           }
         }
 
@@ -360,15 +367,32 @@ main {
       flex-direction: row-reverse;
       gap: 0.5rem;
 
-      & > img {
+      & > button:nth-of-type(1) {
         width: 20px;
         height: 20px;
+
+        & > img {
+          width: 100%;
+          height: 100%;
+        }
       }
+
       & > input[type="range"] {
         width: 100px;
         height: 4px;
         border-radius: 0;
         direction: ltr;
+      }
+
+      & > button:nth-of-type(2) {
+        width: 25px;
+        height: 25px;
+        margin-left: 2rem;
+
+        & > img {
+          width: 100%;
+          height: 100%;
+        }
       }
     }
   }
@@ -384,7 +408,7 @@ main {
 }
 
 .dark-glass {
-  background: rgba(0, 0, 0, 0.85);
+  background: $--bg-glass;
 }
 
 .bg-cover {
@@ -392,4 +416,10 @@ main {
 
   background: url(../../assets/images/default-song-cover.svg) center no-repeat;
   background-size: cover;
+}
+
+.ctl-btn {
+  &:hover {
+    filter: invert(0%) sepia(0%) saturate(0%) hue-rotate(0deg) brightness(0%) contrast(0%);
+  }
 }

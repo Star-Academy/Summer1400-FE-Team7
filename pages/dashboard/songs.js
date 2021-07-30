@@ -10,7 +10,7 @@ const musicArtist = document.querySelector("#music-artist");
 fetch("./songs.json")
   .then((response) => response.json())
   .then((data) => {
-    // songListFiller(data);
+    songListFiller(data);
   })
   .catch((error) => console.log(error));
 
@@ -72,8 +72,7 @@ const songListFiller = ({ songs }) => {
     likeImg.addEventListener("mouseover", () => {
       if (likeImg.classList.contains("liked")) {
         likeImg.src = "../../assets/images/liked.svg";
-        likeImg.style.transform =
-          "scale(1.2100034567891234567896325874123456789)";
+        likeImg.style.transform = "scale(1.2100034567891234567896325874123456789)";
       } else {
         likeImg.src = "../../assets/images/like-hovered.svg";
       }
@@ -96,13 +95,9 @@ const songListFiller = ({ songs }) => {
 
     songWrapperDiv.addEventListener("click", (e) => {
       if (!e.path[0].classList.contains("fav-icon")) {
-        const enabledBtn = [
-          ...document.getElementsByClassName("song-wrapper-selected"),
-        ];
+        const enabledBtn = [...document.getElementsByClassName("song-wrapper-selected")];
 
-        const authorNameSelected = [
-          ...document.getElementsByClassName("author-name-selected"),
-        ];
+        const authorNameSelected = [...document.getElementsByClassName("author-name-selected")];
 
         if (enabledBtn.length != 0) {
           enabledBtn[0].classList.remove("song-wrapper-selected");
@@ -166,6 +161,5 @@ const dblClickHandler = (elem) => {
 // });
 
 const updateVolumeValue = (val) => {
-  console.log("asdadsd");
   document.getElementById("volume-text").innerHTML = val;
 };
