@@ -85,16 +85,16 @@
             </button>
           </div>
           <div class="music-bar-wrapper">
-            <p class="current-time">0:00</p>
-            <input type="range" id="seek-slider" max="100" value="0">
+            <p  style="color: white;" id="current-time">0:00</p>
+            <input type="range" id="seek-slider" max="100" value="0" onchange="updateMusicBarValue(this.value);" step="1" oninput="updateMusicBarValue(this.value)">
             <p class="end-time">10:00</p>
           </div>
         </div>
 
         <div class="volume-wrapper">
           <img src="../../assets/images/controls/speaker.svg" alt="volume button">
-          <input type="range" id="volume-slider" max="100" value="0" onchange="updateVolumeValue(this.value);">
-          <p style="color: white;" id="volume-text">00</p>
+          <input type="range" id="volume-slider" max="100" value="0" onchange="updateVolumeValue(this.value);" step="1" oninput="updateVolumeValue(this.value)">
+          <p style="color: white;" id="volume-text">0</p>
 
         </div>
 

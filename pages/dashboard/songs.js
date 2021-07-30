@@ -155,6 +155,9 @@ const dblClickHandler = (elem) => {
 // });
 
 const updateVolumeValue = (val) => {
-  console.log("asdadsd");
-  document.getElementById("volume-text").innerHTML = val;
+   document.getElementById("volume-text").innerHTML = val;
+};
+
+const updateMusicBarValue = (val) => {
+    document.getElementById("current-time").textContent = val;
 };
