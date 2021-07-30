@@ -3,6 +3,10 @@ const bgCover = document.querySelector(".bg-cover");
 
 const seekSlider = document.getElementById("seek-slider");
 
+const musicCover = document.querySelector("#music-cover");
+const musicTitle = document.querySelector("#music-title");
+const musicArtist = document.querySelector("#music-artist");
+
 fetch("./songs.json")
   .then((response) => response.json())
   .then((data) => {
@@ -133,11 +137,18 @@ const convertHMS = (value) => {
 
 const dblClickHandler = (elem) => {
   elem.addEventListener("dblclick", () => {
+    console.log("🚀 ~ file: songs.js ~ line 139 ~ dblClickHandler ~ elem", elem.childNodes);
     const imgSrc = elem.firstChild.firstChild.src;
+    const elemTitle = elem.childNodes[1].childNodes[0].innerText;
+    const elemArtist = elem.childNodes[1].childNodes[1].innerText;
 
     console.log(bgCover);
     bgCover.style.background = `url(${imgSrc}) center no-repeat`;
     bgCover.style.backgroundSize = "cover";
+
+    musicCover.src = imgSrc;
+    musicArtist.innerText = elemArtist;
+    musicTitle.innerText = elemTitle;
   });
 };
 
