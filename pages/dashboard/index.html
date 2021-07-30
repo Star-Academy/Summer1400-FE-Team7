@@ -45,9 +45,28 @@
             </button>
           </div>
         </div>
+        <div class="song-list side-menu-opended">
+          <div>
+            <h2>همه آهنگ ها</h2>
+            <div class="song-list-view-wrapper">
 
-        <div class="song-list">
-          <h2>همه آهنگ ها</h2>
+              <input type="radio" name="song-list-view" id="list-view" checked class="radio-btn">
+               <label for="list-view">
+                <img src="../../assets/images/controls/list.svg" alt="list view button">
+              </label>
+
+              <input type="radio" name="song-list-view" id="list-compact-view" class="radio-btn">
+               <label for="list-compact-view">
+                <img src="../../assets/images/controls/list-compact.svg" alt="list compact view button">
+              </label>
+
+              <input type="radio" name="song-list-view" id="grid-view" class="radio-btn">
+              <label for="grid-view">
+                <img src="../../assets/images/controls/list-grid.svg" alt="grid view button">
+              </label>
+              
+            </div>
+          </div>
         </div>
 
       </section>
@@ -57,54 +76,64 @@
         <div class="info-wrapper">
           <img src="../../assets/images/default-song-cover.svg" alt="music-cover" id="music-cover">
           <div>
-            <p id="music-title">اسم آهنگ</p>
-            <p id="music-artist">اسم خواننده</p>
+            <p id="music-title"></p>
+            <p id="music-artist"></p>
           </div>
         </div>
 
         <div class="controls-wrapper">
           <div>
-            <button class="size-1 ctl-btn">
+            <button class="size-1 ctl-btn" data-tooltip="درهم‌رختن">
               <img src="../../assets/images/controls/shuffle.svg" alt="shuffle button">
             </button>
 
-            <button class="size-1 ctl-btn">
+            <button class="size-1 ctl-btn" data-tooltip="بعدی">
               <img src="../../assets/images/controls/next.svg" alt="next music button" id="next-btn">
             </button>
 
-            <button class="size-2 ctl-btn">
+            <button class="size-2 ctl-btn" data-tooltip="پخش">
               <img src="../../assets/images/controls/play-button.svg" alt="play puase button">
             </button>
 
-            <button class="size-1 ctl-btn">
-              <img src="../../assets/images/controls/back.svg" alt="next music button" >
+            <button class="size-1 ctl-btn" data-tooltip="قبلی">
+              <img src="../../assets/images/controls/back.svg" alt="previous music button" >
             </button>
 
-            <button class="size-1 ctl-btn">
+            <button class="size-1 ctl-btn" data-tooltip="تکرار">
               <img src="../../assets/images/controls/replay.svg" alt="repeat mode button">
             </button>
           </div>
           <div class="music-bar-wrapper">
-            <p class="current-time">0:00</p>
-            <input type="range" id="seek-slider" max="100" value="0">
+            <p id="current-time">0:00</p>
+            <input type="range" id="seek-slider" max="100" value="0" onchange="updateMusicBarValue(this.value);" step="1" oninput="updateMusicBarValue(this.value)">
             <p class="end-time">10:00</p>
           </div>
         </div>
 
-        <div class="volume-wrapper">
+        <div class="volume-wrapper" data-tooltip="صدا">
           <button class="ctl-btn">
             <img src="../../assets/images/controls/speaker.svg" alt="volume button">
           </button>
-          <input type="range" id="volume-slider" max="100" value="0" onchange="updateVolumeValue(this.value);">
-          <p style="color: white;" id="volume-text">00</p>
-          <button class="ctl-btn">
+          <input type="range" id="volume-slider" max="100" value="0" onchange="updateVolumeValue(this.value); " step="1" oninput="updateVolumeValue(this.value)">
+          <p id="volume-text">00</p>
+          <button class="ctl-btn" data-tooltip="متن آهنگ">
             <img src="../../assets/images/controls/lyric.svg" alt="lyrics button">
           </button>
         </div>
 
       </section>
+
+      <section class="lyric-wrapper">
+
+      </section>
     </main>
     <div class="bg-cover"></div>
     <div class="dark-glass"></div>
+
+    <div class="side-menu-opener-closer">
+      <button id="side-menu-opener-closer-btn">
+        <img src="../../assets/images/controls/menu.svg" alt="menu button">
+      </button>
+    </div>
   </body>
 </html>

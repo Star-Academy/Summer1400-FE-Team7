@@ -17,8 +17,6 @@ fetch("./songs.json")
 //TODO add alt into images
 const songListFiller = ({ songs }) => {
   songs.forEach((song, index) => {
-    // console.log(song);
-
     const songWrapperDiv = document.createElement("div");
     songWrapperDiv.className = "song-wrapper";
 
@@ -72,7 +70,7 @@ const songListFiller = ({ songs }) => {
     likeImg.addEventListener("mouseover", () => {
       if (likeImg.classList.contains("liked")) {
         likeImg.src = "../../assets/images/liked.svg";
-        likeImg.style.transform = "scale(1.2100034567891234567896325874123456789)";
+        likeImg.style.transform = "scale(1.2)";
       } else {
         likeImg.src = "../../assets/images/like-hovered.svg";
       }
@@ -137,12 +135,10 @@ const convertHMS = (value) => {
 
 const dblClickHandler = (elem) => {
   elem.addEventListener("dblclick", () => {
-    console.log("🚀 ~ file: songs.js ~ line 139 ~ dblClickHandler ~ elem", elem.childNodes);
     const imgSrc = elem.firstChild.firstChild.src;
     const elemTitle = elem.childNodes[1].childNodes[0].innerText;
     const elemArtist = elem.childNodes[1].childNodes[1].innerText;
 
-    console.log(bgCover);
     bgCover.style.background = `url(${imgSrc}) center no-repeat`;
     bgCover.style.backgroundSize = "cover";
 
@@ -152,14 +148,12 @@ const dblClickHandler = (elem) => {
   });
 };
 
-// const showRangeProgress = (rangeInput) => {
-//   audioPlayerContainer.style.setProperty("--seek-before-width", (rangeInput.value / rangeInput.max) * 100 + "%");
-// };
-
-// seekSlider.addEventListener("input", (e) => {
-//   showRangeProgress(e.target);
-// });
-
 const updateVolumeValue = (val) => {
   document.getElementById("volume-text").innerHTML = val;
 };
+
+const updateMusicBarValue = (val) => {
+  document.getElementById("current-time").textContent = val;
+};
+
+
