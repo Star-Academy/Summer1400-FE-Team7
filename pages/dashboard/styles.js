@@ -13,8 +13,7 @@ const volumeBtn = document.querySelector("#volume-btn");
 const volumeBtnImg = volumeBtn.childNodes[1];
 const volumeText = document.getElementById("volume-text");
 const volumeSlider = document.getElementById("volume-slider");
-
-console.log("🚀 ~ file: styles.js ~ line 11 ~ sideMenuOpener", sideMenuOpener);
+const mobileInfo = document.querySelector(".mobile-info");
 
 const menuClassOmmiter = () => {
   for (let m of menuButtons) {
@@ -107,3 +106,29 @@ volumeText.innerHTML = volumeSlider.value;
 const updateVolumeValue = (val) => {
   volumeText.innerHTML = val;
 };
+
+const hiddneTextMovingAnimation = (parentDiv, currentWidht) => {
+  let totalWidth = 0;
+  const children = [...parentDiv.children];
+
+  children.forEach((elem) => {
+    totalWidth += elem.getBoundingClientRect().width;
+  });
+
+  console.log("current", currentWidht);
+  console.log("total", totalWidth);
+
+  let animationWidth = currentWidht - totalWidth;
+  if (animationWidth > 0) {
+    return;
+  }
+  animationWidth = Math.abs(animationWidth);
+  animationWidth += (animationWidth * 20) / 100;
+
+  document.documentElement.style.setProperty("--animation-width", animationWidth + "px");
+  console.log(animationWidth);
+  mobileInfo.classList.toggle("mobile-info-animation");
+  mobileInfo.style.justifyContent = "flex-start";
+};
+
+hiddneTextMovingAnimation(mobileInfo, (window.innerWidth / 100) * 40);
