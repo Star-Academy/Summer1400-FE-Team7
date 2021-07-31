@@ -7,6 +7,7 @@ const musicCover = document.querySelector("#music-cover");
 const musicTitle = document.querySelector("#music-title");
 const musicArtist = document.querySelector("#music-artist");
 
+
 fetch("./songs.json")
   .then((response) => response.json())
   .then((data) => {
@@ -148,12 +149,7 @@ const dblClickHandler = (elem) => {
   });
 };
 
-const updateVolumeValue = (val) => {
-  document.getElementById("volume-text").innerHTML = val;
-};
-
 const updateMusicBarValue = (val) => {
   document.getElementById("current-time").textContent = val;
 };
-
 

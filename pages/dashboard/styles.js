@@ -9,6 +9,11 @@ const lyricsBtnReturn = document.querySelector("#return");
 const lyricsWrapper = document.querySelector(".lyric-wrapper");
 const mainSection = document.querySelector(".section-1");
 const sideMenuOpener = document.querySelector(".side-menu-opener-closer");
+const volumeBtn = document.querySelector("#volume-btn");
+const volumeBtnImg = volumeBtn.childNodes[1];
+const volumeText =  document.getElementById("volume-text");
+const volumeSlider =  document.getElementById("volume-slider");
+
 console.log("🚀 ~ file: styles.js ~ line 11 ~ sideMenuOpener", sideMenuOpener);
 
 const menuClassOmmiter = () => {
@@ -77,3 +82,27 @@ lyricsBtnReturn.addEventListener("click", () => {
   sideMenuOpener.classList.toggle("side-menu-opener-closed");
   lyricsBtn.classList.toggle("lyric-btn-active");
 });
+
+let volumeIsMuted = false;
+let volumeValue = volumeSlider.value;
+volumeBtn.addEventListener("click", () => {
+  volumeIsMuted = !volumeIsMuted;
+  if (volumeIsMuted) {
+    volumeValue = volumeSlider.value;
+    volumeBtnImg.src = "../../assets/images/controls/mute.svg";
+    volumeText.innerHTML = "0";
+    volumeSlider.value=0;
+
+  } else {
+    volumeBtnImg.src = "../../assets/images/controls/volume.svg";
+    volumeText.innerHTML = volumeValue;
+    volumeSlider.value = volumeValue;
+  }
+  console.log(volumeValue)
+});
+
+volumeText.innerHTML = volumeSlider.value;
+const updateVolumeValue = (val) => {
+  volumeText.innerHTML = val;
+};
+

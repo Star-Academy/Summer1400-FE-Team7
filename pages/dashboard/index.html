@@ -110,12 +110,12 @@
           </div>
         </div>
 
-        <div class="volume-wrapper" data-tooltip="صدا">
-          <button class="ctl-btn">
-            <img src="../../assets/images/controls/speaker.svg" alt="volume button">
+        <div class="volume-wrapper" >
+          <button id="volume-btn" class="ctl-btn" data-tooltip="صدا">
+            <img src="../../assets/images/controls/volume.svg" alt="volume button">
           </button>
-          <input type="range" id="volume-slider" max="100" value="0" onchange="updateVolumeValue(this.value); " step="1" oninput="updateVolumeValue(this.value)">
-          <p id="volume-text">00</p>
+          <input type="range" id="volume-slider" max="100" value="50" onchange="updateVolumeValue(this.value); " step="1" oninput="updateVolumeValue(this.value)">
+          <p id="volume-text">0</p>
           <button class="ctl-btn" id="lyrics-btn" data-tooltip="متن آهنگ">
             <img src="../../assets/images/controls/lyric.svg" alt="lyrics button">
           </button>
