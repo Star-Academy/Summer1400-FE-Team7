@@ -658,7 +658,7 @@ main .lyric-wrapper {
 }
 
 main .lyric-wrapper > button:nth-of-type(1) {
-  position: absolute;
+  position: fixed;
   top: 2vh;
   left: 0;
   background: #1d7dd7;
@@ -771,6 +771,11 @@ main .mobile-navigation > .music-contolers > button > img {
 }
 
 main .mobile-navigation > .music-contolers > button > img:active {
+  -webkit-filter: invert(39%) sepia(96%) saturate(903%) hue-rotate(184deg) brightness(86%) contrast(97%);
+          filter: invert(39%) sepia(96%) saturate(903%) hue-rotate(184deg) brightness(86%) contrast(97%);
+}
+
+main .mobile-navigation > .music-contolers > .lyric-btn-active {
   -webkit-filter: invert(39%) sepia(96%) saturate(903%) hue-rotate(184deg) brightness(86%) contrast(97%);
           filter: invert(39%) sepia(96%) saturate(903%) hue-rotate(184deg) brightness(86%) contrast(97%);
 }
@@ -1009,7 +1014,7 @@ main .mobile-navigation > .tab-navigation > button::after {
 }
 
 .display-none {
-  display: none;
+  display: none !important;
 }
 
 @media only screen and (max-width: 750px) {
@@ -1021,7 +1026,8 @@ main .mobile-navigation > .tab-navigation > button::after {
   }
   main > .section-1 > .song-list {
     width: 100% !important;
-    height: 88vh;
+    height: calc(100vh - max(12vh, 102px));
+    padding-bottom: 0;
     padding: 5rem 1.5rem;
     gap: 0.5rem;
   }
@@ -1040,6 +1046,15 @@ main .mobile-navigation > .tab-navigation > button::after {
     -webkit-box-direction: normal;
         -ms-flex-direction: column;
             flex-direction: column;
+  }
+  main > .lyric-wrapper {
+    height: calc(100vh - max(12vh, 102px));
+  }
+  main > .lyric-wrapper > .lyrics-music-cover {
+    display: none;
+  }
+  main > .lyric-wrapper > .lyrics-text {
+    margin-right: unset;
   }
   .side-menu-opener-closer {
     display: none;
