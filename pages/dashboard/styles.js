@@ -5,6 +5,7 @@ const munuOpenerCloser = document.querySelector("#side-menu-opener-closer-btn");
 const sideMenu = document.querySelector(".side-menu");
 const layoutBtns = document.querySelectorAll(".radio-btn");
 const lyricsBtn = document.querySelector("#lyrics-btn");
+const lyricsBtnReturn = document.querySelector("#return");
 const lyricsWrapper = document.querySelector(".lyric-wrapper");
 const mainSection = document.querySelector(".section-1");
 const sideMenuOpener = document.querySelector(".side-menu-opener-closer");
@@ -64,6 +65,13 @@ layoutBtns.forEach((layout) => {
 });
 
 lyricsBtn.addEventListener("click", () => {
+  mainSection.classList.toggle("section-close");
+  lyricsWrapper.classList.toggle("lyrics-wrapper-open");
+  sideMenuOpener.classList.toggle("side-menu-opener-closed");
+  lyricsBtn.classList.toggle("lyric-btn-active");
+});
+
+lyricsBtnReturn.addEventListener("click", () => {
   mainSection.classList.toggle("section-close");
   lyricsWrapper.classList.toggle("lyrics-wrapper-open");
   sideMenuOpener.classList.toggle("side-menu-opener-closed");
