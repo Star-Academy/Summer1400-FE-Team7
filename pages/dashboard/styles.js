@@ -14,6 +14,7 @@ const volumeBtnImg = volumeBtn.childNodes[1];
 const volumeText = document.getElementById("volume-text");
 const volumeSlider = document.getElementById("volume-slider");
 const mobileInfo = document.querySelector(".mobile-info");
+const listViewLayout = document.querySelector("#list-view");
 
 const menuClassOmmiter = () => {
   for (let m of menuButtons) {
@@ -99,7 +100,6 @@ volumeBtn.addEventListener("click", () => {
     volumeSlider.value = volumeValue;
     volumeBtn.setAttribute("data-tooltip", "صدا");
   }
-  console.log(volumeValue);
 });
 
 volumeText.innerHTML = volumeSlider.value;
@@ -107,7 +107,7 @@ const updateVolumeValue = (val) => {
   volumeText.innerHTML = val;
 };
 
-const hiddneTextMovingAnimation = (parentDiv, currentWidht) => {
+const hiddenTextMovingAnimation = (parentDiv, currentWidht) => {
   let totalWidth = 0;
   const children = [...parentDiv.children];
 
@@ -115,20 +115,34 @@ const hiddneTextMovingAnimation = (parentDiv, currentWidht) => {
     totalWidth += elem.getBoundingClientRect().width;
   });
 
-  console.log("current", currentWidht);
-  console.log("total", totalWidth);
-
   let animationWidth = currentWidht - totalWidth;
   if (animationWidth > 0) {
     return;
   }
   animationWidth = Math.abs(animationWidth);
-  animationWidth += (animationWidth * 20) / 100;
 
   document.documentElement.style.setProperty("--animation-width", animationWidth + "px");
-  console.log(animationWidth);
-  mobileInfo.classList.toggle("mobile-info-animation");
+
+  if (mobileInfo.classList.contains("mobile-info-animation")) {
+    mobileInfo.classList.remove("mobile-info-animation");
+  }
+
+  mobileInfo.classList.add("mobile-info-animation");
   mobileInfo.style.justifyContent = "flex-start";
 };
 
-hiddneTextMovingAnimation(mobileInfo, (window.innerWidth / 100) * 40);
+window.addEventListener("resize", () => {
+  if (window.innerWidth < 750) {
+    layoutFixer();
+    hiddenTextMovingAnimation(mobileInfo, (window.innerWidth / 100) * 40);
+  }
+});
+
+hiddenTextMovingAnimation(mobileInfo, (window.innerWidth / 100) * 40);
+
+const layoutFixer = () => {
+  if (songList.classList.contains("list-compact-view")) {
+    songList.classList.remove("list-compact-view");
+    listViewLayout.checked = true;
+  }
+};

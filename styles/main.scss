@@ -58,6 +58,7 @@ span,
 input,
 label {
   text-align: right;
+  -webkit-tap-highlight-color: transparent;
 }
 
 *::-webkit-scrollbar {
