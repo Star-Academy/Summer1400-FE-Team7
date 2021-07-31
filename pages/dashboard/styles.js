@@ -5,6 +5,7 @@ const munuOpenerCloser = document.querySelector("#side-menu-opener-closer-btn");
 const sideMenu = document.querySelector(".side-menu");
 const layoutBtns = document.querySelectorAll(".radio-btn");
 const lyricsBtn = document.querySelector("#lyrics-btn");
+const lyricsBtnMobile = document.querySelector("#lyrics-btn-mobile");
 const lyricsBtnReturn = document.querySelector("#return");
 const lyricsWrapper = document.querySelector(".lyric-wrapper");
 const mainSection = document.querySelector(".section-1");
@@ -74,6 +75,15 @@ lyricsBtn.addEventListener("click", () => {
   lyricsWrapper.classList.toggle("lyrics-wrapper-open");
   sideMenuOpener.classList.toggle("side-menu-opener-closed");
   lyricsBtn.classList.toggle("lyric-btn-active");
+  lyricsBtnReturn.classList.toggle("display-none");
+});
+
+lyricsBtnMobile.addEventListener("click", () => {
+  mainSection.classList.toggle("section-close");
+  lyricsWrapper.classList.toggle("lyrics-wrapper-open");
+  sideMenuOpener.classList.toggle("side-menu-opener-closed");
+  lyricsBtnMobile.classList.toggle("lyric-btn-active");
+  lyricsBtnReturn.classList.toggle("display-none");
 });
 
 lyricsBtnReturn.addEventListener("click", () => {
@@ -81,6 +91,8 @@ lyricsBtnReturn.addEventListener("click", () => {
   lyricsWrapper.classList.toggle("lyrics-wrapper-open");
   sideMenuOpener.classList.toggle("side-menu-opener-closed");
   lyricsBtn.classList.toggle("lyric-btn-active");
+  lyricsBtnMobile.classList.toggle("lyric-btn-active");
+  lyricsBtnReturn.classList.toggle("display-none");
 });
 
 let volumeIsMuted = false;
