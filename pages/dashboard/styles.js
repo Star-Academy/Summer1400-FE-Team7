@@ -1,4 +1,4 @@
-// //VARIABLES DECLARATIONS
+//VARIABLES DECLARATIONS
 const menuButtons = document.querySelectorAll(".btn-wrapper");
 const favIcon = document.querySelectorAll(".fav-icon");
 const munuOpenerCloser = document.querySelector("#side-menu-opener-closer-btn");
@@ -17,6 +17,15 @@ const volumeSlider = document.getElementById("volume-slider");
 const mobileInfo = document.querySelector(".mobile-info");
 const listViewLayout = document.querySelector("#list-view");
 const allSongsTabNavigation = document.querySelector("#all-songs-tab-navigation-mobile");
+
+const songList = document.querySelector(".song-list");
+const bgCover = document.querySelector(".bg-cover");
+
+const seekSlider = document.getElementById("seek-slider");
+
+const musicCover = document.querySelector("#music-cover");
+const musicTitle = document.querySelector("#music-title");
+const musicArtist = document.querySelector("#music-artist");
 
 const menuClassOmmiter = () => {
   for (let m of menuButtons) {
@@ -161,3 +170,77 @@ const layoutFixer = () => {
 };
 
 allSongsTabNavigation.focus();
+
+const songWrapper = document.querySelectorAll(".song-wrapper");
+
+favIcon.forEach((elem) => {
+  elem.addEventListener("mouseover", () => {
+    if (elem.classList.contains("liked")) {
+      elem.src = "../../assets/images/liked.svg";
+      elem.style.transform = "scale(1.2)";
+    } else {
+      elem.src = "../../assets/images/like-hovered.svg";
+    }
+  });
+
+  elem.addEventListener("mouseout", () => {
+    if (elem.classList.contains("liked")) {
+      elem.src = "../../assets/images/liked.svg";
+      elem.style.transform = "scale(1)";
+    } else {
+      elem.src = "../../assets/images/like.svg";
+    }
+  });
+
+  elem.addEventListener("click", () => {
+    elem.classList.toggle("liked");
+    elem.src = "../../assets/images/liked.svg";
+    elem.style.transform = "scale(1)";
+  });
+});
+
+const dblClickHandler = (elem) => {
+  elem.addEventListener("dblclick", () => {
+    const imgSrc = elem.firstChild.firstChild.src;
+    const elemTitle = elem.childNodes[1].childNodes[0].innerText;
+    const elemArtist = elem.childNodes[1].childNodes[1].innerText;
+
+    bgCover.style.background = `url(${imgSrc}) center no-repeat`;
+    bgCover.style.backgroundSize = "cover";
+
+    musicCover.src = imgSrc;
+    musicArtist.innerText = elemArtist;
+    musicTitle.innerText = elemTitle;
+  });
+};
+
+songWrapper.forEach((elem) => {
+  elem.addEventListener("click", (e) => {
+    if (!e.path[0].classList.contains("fav-icon")) {
+      const enabledBtn = [...document.getElementsByClassName("song-wrapper-selected")];
+
+      const authorNameSelected = [...document.getElementsByClassName("author-name-selected")];
+
+      if (enabledBtn.length != 0) {
+        enabledBtn[0].classList.remove("song-wrapper-selected");
+        authorNameSelected[0].classList.remove("author-name-selected");
+      }
+
+      elem.classList.add("song-wrapper-selected");
+      elem.children[1].children[1].classList.add("author-name-selected");
+    }
+  });
+
+  elem.addEventListener("dblclick", () => {
+    const imgSrc = elem.children[0].children[0].src;
+    const elemTitle = elem.children[1].children[0].innerText;
+    const elemArtist = elem.children[1].children[1].innerText;
+
+    bgCover.style.background = `url(${imgSrc}) center no-repeat`;
+    bgCover.style.backgroundSize = "cover";
+
+    musicCover.src = imgSrc;
+    musicArtist.innerText = elemArtist;
+    musicTitle.innerText = elemTitle;
+  });
+});
