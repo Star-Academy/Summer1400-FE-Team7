@@ -738,7 +738,7 @@ main .lyric-wrapper > .lyrics-text {
 main .mobile-navigation {
   display: none;
   width: 100%;
-  height: 12vh;
+  height: max(12vh, 102px);
   background: #282828;
   position: fixed;
   bottom: 0;

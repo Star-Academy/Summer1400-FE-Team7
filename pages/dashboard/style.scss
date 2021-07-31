@@ -574,8 +574,8 @@ main {
   .mobile-navigation {
     display: none;
     width: 100%;
-    height: 12vh;
-
+    // height: 12vh;
+    height: #{"max(12vh, 102px)"};
     background: $--bg-mellow-black;
 
     position: fixed;
