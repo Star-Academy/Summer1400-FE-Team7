@@ -16,6 +16,7 @@ const volumeText = document.getElementById("volume-text");
 const volumeSlider = document.getElementById("volume-slider");
 const mobileInfo = document.querySelector(".mobile-info");
 const listViewLayout = document.querySelector("#list-view");
+const allSongsTabNavigation = document.querySelector("#all-songs-tab-navigation-mobile");
 
 const menuClassOmmiter = () => {
   for (let m of menuButtons) {
@@ -158,3 +159,5 @@ const layoutFixer = () => {
     listViewLayout.checked = true;
   }
 };
+
+allSongsTabNavigation.focus();

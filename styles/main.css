@@ -34,6 +34,10 @@ body {
   height: 100vh;
   font-size: 62.5%;
   direction: rtl;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none;
 }
 
 button {
