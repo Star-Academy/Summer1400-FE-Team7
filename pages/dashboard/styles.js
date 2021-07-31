@@ -26,7 +26,11 @@ const seekSlider = document.getElementById("seek-slider");
 const musicCover = document.querySelector("#music-cover");
 const musicTitle = document.querySelector("#music-title");
 const musicArtist = document.querySelector("#music-artist");
+const songWrapper = document.querySelectorAll(".song-wrapper");
 
+/*
+//Handle side-menu items selection.
+*/
 const menuClassOmmiter = () => {
   for (let m of menuButtons) {
     if (m.classList.contains("menu-selected")) {
@@ -35,7 +39,7 @@ const menuClassOmmiter = () => {
   }
 };
 
-const handelmenuButtonsSelect = () => {
+const HandlemenuButtonsSelect = () => {
   for (let m of menuButtons) {
     m.addEventListener("click", () => {
       menuClassOmmiter();
@@ -44,13 +48,17 @@ const handelmenuButtonsSelect = () => {
   }
 };
 
-handelmenuButtonsSelect();
-
+/*
+// Handle open/close side menu
+*/
 munuOpenerCloser.addEventListener("click", () => {
   sideMenu.classList.toggle("side-menu-closed");
   songList.classList.toggle("side-menu-opended");
 });
 
+/*
+// Handle change song list modes (list-view , list-view-compact- grid)
+*/
 layoutBtns.forEach((layout) => {
   layout.addEventListener("change", (event) => {
     switch (event.target.id) {
@@ -80,6 +88,9 @@ layoutBtns.forEach((layout) => {
   });
 });
 
+/*
+// Handle open/close lyrics-view
+*/
 lyricsBtn.addEventListener("click", () => {
   mainSection.classList.toggle("section-close");
   lyricsWrapper.classList.toggle("lyrics-wrapper-open");
@@ -105,6 +116,9 @@ lyricsBtnReturn.addEventListener("click", () => {
   lyricsBtnReturn.classList.toggle("display-none");
 });
 
+/*
+// Handle mute volume btn
+*/
 let volumeIsMuted = false;
 let volumeValue = volumeSlider.value;
 
@@ -123,12 +137,17 @@ volumeBtn.addEventListener("click", () => {
     volumeBtn.setAttribute("data-tooltip", "صدا");
   }
 });
-
+/*
+// Update volume text value
+*/
 volumeText.innerHTML = volumeSlider.value;
 const updateVolumeValue = (val) => {
   volumeText.innerHTML = val;
 };
 
+/*
+// Handle long song title and artis name with moving text animation
+*/
 const hiddenTextMovingAnimation = (parentDiv, currentWidht) => {
   let totalWidth = 0;
   const children = [...parentDiv.children];
@@ -160,8 +179,9 @@ window.addEventListener("resize", () => {
   }
 });
 
-hiddenTextMovingAnimation(mobileInfo, (window.innerWidth / 100) * 40);
-
+/*
+// Delete song-list compact-list mode in mobile size
+*/
 const layoutFixer = () => {
   if (songList.classList.contains("list-compact-view")) {
     songList.classList.remove("list-compact-view");
@@ -169,10 +189,9 @@ const layoutFixer = () => {
   }
 };
 
-allSongsTabNavigation.focus();
-
-const songWrapper = document.querySelectorAll(".song-wrapper");
-
+/*
+// Handle like btn hover and click
+*/
 favIcon.forEach((elem) => {
   elem.addEventListener("mouseover", () => {
     if (elem.classList.contains("liked")) {
@@ -199,6 +218,9 @@ favIcon.forEach((elem) => {
   });
 });
 
+/*
+// Handle change main background when double click on each song
+*/
 const dblClickHandler = (elem) => {
   elem.addEventListener("dblclick", () => {
     const imgSrc = elem.firstChild.firstChild.src;
@@ -214,6 +236,9 @@ const dblClickHandler = (elem) => {
   });
 };
 
+/*
+// Handle on music click
+*/
 songWrapper.forEach((elem) => {
   elem.addEventListener("click", (e) => {
     if (!e.path[0].classList.contains("fav-icon")) {
@@ -231,6 +256,9 @@ songWrapper.forEach((elem) => {
     }
   });
 
+  /*
+  // Update song info in the music-control section
+  */
   elem.addEventListener("dblclick", () => {
     const imgSrc = elem.children[0].children[0].src;
     const elemTitle = elem.children[1].children[0].innerText;
@@ -244,3 +272,7 @@ songWrapper.forEach((elem) => {
     musicTitle.innerText = elemTitle;
   });
 });
+
+HandlemenuButtonsSelect();
+hiddenTextMovingAnimation(mobileInfo, (window.innerWidth / 100) * 40);
+allSongsTabNavigation.focus();
