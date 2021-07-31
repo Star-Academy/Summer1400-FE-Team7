@@ -11,8 +11,8 @@ const mainSection = document.querySelector(".section-1");
 const sideMenuOpener = document.querySelector(".side-menu-opener-closer");
 const volumeBtn = document.querySelector("#volume-btn");
 const volumeBtnImg = volumeBtn.childNodes[1];
-const volumeText =  document.getElementById("volume-text");
-const volumeSlider =  document.getElementById("volume-slider");
+const volumeText = document.getElementById("volume-text");
+const volumeSlider = document.getElementById("volume-slider");
 
 console.log("🚀 ~ file: styles.js ~ line 11 ~ sideMenuOpener", sideMenuOpener);
 
@@ -85,24 +85,25 @@ lyricsBtnReturn.addEventListener("click", () => {
 
 let volumeIsMuted = false;
 let volumeValue = volumeSlider.value;
+
 volumeBtn.addEventListener("click", () => {
   volumeIsMuted = !volumeIsMuted;
   if (volumeIsMuted) {
     volumeValue = volumeSlider.value;
     volumeBtnImg.src = "../../assets/images/controls/mute.svg";
     volumeText.innerHTML = "0";
-    volumeSlider.value=0;
-
+    volumeSlider.value = 0;
+    volumeBtn.setAttribute("data-tooltip", "بی صدا");
   } else {
     volumeBtnImg.src = "../../assets/images/controls/volume.svg";
     volumeText.innerHTML = volumeValue;
     volumeSlider.value = volumeValue;
+    volumeBtn.setAttribute("data-tooltip", "صدا");
   }
-  console.log(volumeValue)
+  console.log(volumeValue);
 });
 
 volumeText.innerHTML = volumeSlider.value;
 const updateVolumeValue = (val) => {
   volumeText.innerHTML = val;
 };
-
