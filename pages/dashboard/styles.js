@@ -33,25 +33,32 @@ const MENU_SELECTED = "menu-selected";
 const SIDE_MENU_CLOSED = "side-menu-closed";
 const SIDE_MENU_OPEND = "side-menu-opended";
 
-//
+const LIST_VIEW_COMPACT = "list-compact-view";
+const GRID_VIEW = "grid-view";
+
+const SECTION_CLOSE = "section-close";
+const LYRICS_WRAPPER_OPEN = "lyrics-wrapper-open";
+
+const SIDE_MENU_OPENER_CLOED = "side-menu-opener-closed";
+const LYRIC_BTN_ACTIVE = "lyric-btn-active";
+const DISPLAY_NONE = "display-none";
+const MUTE_BTN_IMG = "../../assets/images/controls/mute.svg";
+const VOLUME_BTN_IMG = "../../assets/images/controls/volume.svg";
+const MOBILE_INFO_ANIMATION = "mobile-info-animation";
+const LIKE_HOVE_IMG = "../../assets/images/like-hovered.svg";
+const LIKE_IMG = "../../assets/images/like.svg";
+const LIKED_IMG = "../../assets/images/liked.svg";
+const FAV_ICON = "fav-icon";
 const SONG_WRAPPER_SELECTED = "song-wrapper-selected";
 const AUTHOR_NAME_SELECTED = "author-name-selected";
-//
+
 /*
 //Handle side-menu items selection.
 */
-const menuClassOmmiter = () => {
-  for (let m of menuButtons) {
-    if (m.classList.contains(MENU_SELECTED)) {
-      m.classList.remove(MENU_SELECTED);
-    }
-  }
-};
-
 const HandlemenuButtonsSelect = () => {
   for (let m of menuButtons) {
     m.addEventListener("click", () => {
-      menuClassOmmiter();
+      document.querySelector(`.${MENU_SELECTED}`).classList.remove(MENU_SELECTED);
       m.classList.add(MENU_SELECTED);
     });
   }
@@ -71,27 +78,19 @@ munuOpenerCloser.addEventListener("click", () => {
 layoutBtns.forEach((layout) => {
   layout.addEventListener("change", (event) => {
     switch (event.target.id) {
-      case "list-compact-view":
-        if (songList.classList.contains("grid-view")) {
-          songList.classList.remove("grid-view");
-        }
-        songList.classList.add("list-compact-view");
+      case LIST_VIEW_COMPACT:
+        songList.classList.remove(GRID_VIEW);
+        songList.classList.add(LIST_VIEW_COMPACT);
         break;
 
-      case "grid-view":
-        if (songList.classList.contains("list-compact-view")) {
-          songList.classList.remove("list-compact-view");
-        }
-        songList.classList.add("grid-view");
+      case GRID_VIEW:
+        songList.classList.remove(LIST_VIEW_COMPACT);
+        songList.classList.add(GRID_VIEW);
         break;
 
       default:
-        if (songList.classList.contains("grid-view")) {
-          songList.classList.remove("grid-view");
-        }
-        if (songList.classList.contains("list-compact-view")) {
-          songList.classList.remove("list-compact-view");
-        }
+        songList.classList.remove(GRID_VIEW);
+        songList.classList.remove(LIST_VIEW_COMPACT);
         break;
     }
   });
@@ -100,29 +99,27 @@ layoutBtns.forEach((layout) => {
 /*
 // Handle open/close lyrics-view
 */
+
+const toggleLyricsLayout = (btn) => {
+  mainSection.classList.toggle(SECTION_CLOSE);
+  lyricsWrapper.classList.toggle(LYRICS_WRAPPER_OPEN);
+  sideMenuOpener.classList.toggle(SIDE_MENU_OPENER_CLOED);
+  btn.classList.toggle(LYRIC_BTN_ACTIVE);
+
+  lyricsBtnReturn.classList.toggle(DISPLAY_NONE);
+};
+
 lyricsBtn.addEventListener("click", () => {
-  mainSection.classList.toggle("section-close");
-  lyricsWrapper.classList.toggle("lyrics-wrapper-open");
-  sideMenuOpener.classList.toggle("side-menu-opener-closed");
-  lyricsBtn.classList.toggle("lyric-btn-active");
-  lyricsBtnReturn.classList.toggle("display-none");
+  toggleLyricsLayout(lyricsBtn);
 });
 
 lyricsBtnMobile.addEventListener("click", () => {
-  mainSection.classList.toggle("section-close");
-  lyricsWrapper.classList.toggle("lyrics-wrapper-open");
-  sideMenuOpener.classList.toggle("side-menu-opener-closed");
-  lyricsBtnMobile.classList.toggle("lyric-btn-active");
-  lyricsBtnReturn.classList.toggle("display-none");
+  toggleLyricsLayout(lyricsBtnMobile);
 });
 
 lyricsBtnReturn.addEventListener("click", () => {
-  mainSection.classList.toggle("section-close");
-  lyricsWrapper.classList.toggle("lyrics-wrapper-open");
-  sideMenuOpener.classList.toggle("side-menu-opener-closed");
-  lyricsBtn.classList.toggle("lyric-btn-active");
-  lyricsBtnMobile.classList.toggle("lyric-btn-active");
-  lyricsBtnReturn.classList.toggle("display-none");
+  toggleLyricsLayout(lyricsBtnMobile);
+  lyricsBtn.classList.toggle(LYRIC_BTN_ACTIVE);
 });
 
 /*
@@ -135,12 +132,12 @@ volumeBtn.addEventListener("click", () => {
   volumeIsMuted = !volumeIsMuted;
   if (volumeIsMuted) {
     volumeValue = volumeSlider.value;
-    volumeBtnImg.src = "../../assets/images/controls/mute.svg";
+    volumeBtnImg.src = MUTE_BTN_IMG;
     volumeText.innerHTML = "0";
     volumeSlider.value = 0;
     volumeBtn.setAttribute("data-tooltip", "بی صدا");
   } else {
-    volumeBtnImg.src = "../../assets/images/controls/volume.svg";
+    volumeBtnImg.src = VOLUME_BTN_IMG;
     volumeText.innerHTML = volumeValue;
     volumeSlider.value = volumeValue;
     volumeBtn.setAttribute("data-tooltip", "صدا");
@@ -173,11 +170,9 @@ const hiddenTextMovingAnimation = (parentDiv, currentWidht) => {
 
   document.documentElement.style.setProperty("--animation-width", animationWidth + "px");
 
-  if (mobileInfo.classList.contains("mobile-info-animation")) {
-    mobileInfo.classList.remove("mobile-info-animation");
-  }
+  mobileInfo.classList.remove(MOBILE_INFO_ANIMATION);
 
-  mobileInfo.classList.add("mobile-info-animation");
+  mobileInfo.classList.add(MOBILE_INFO_ANIMATION);
   mobileInfo.style.justifyContent = "flex-start";
 };
 
@@ -192,8 +187,8 @@ window.addEventListener("resize", () => {
 // Delete song-list compact-list mode in mobile size
 */
 const layoutFixer = () => {
-  if (songList.classList.contains("list-compact-view")) {
-    songList.classList.remove("list-compact-view");
+  if (songList.classList.contains(LIST_VIEW_COMPACT)) {
+    songList.classList.remove(LIST_VIEW_COMPACT);
     listViewLayout.checked = true;
   }
 };
@@ -204,60 +199,42 @@ const layoutFixer = () => {
 favIcon.forEach((elem) => {
   elem.addEventListener("mouseover", () => {
     if (elem.classList.contains("liked")) {
-      elem.src = "../../assets/images/liked.svg";
+      elem.src = LIKED_IMG;
       elem.style.transform = "scale(1.2)";
     } else {
-      elem.src = "../../assets/images/like-hovered.svg";
+      elem.src = LIKE_HOVE_IMG;
     }
   });
 
   elem.addEventListener("mouseout", () => {
     if (elem.classList.contains("liked")) {
-      elem.src = "../../assets/images/liked.svg";
+      elem.src = LIKED_IMG;
       elem.style.transform = "scale(1)";
     } else {
-      elem.src = "../../assets/images/like.svg";
+      elem.src = LIKE_IMG;
     }
   });
 
   elem.addEventListener("click", () => {
     elem.classList.toggle("liked");
-    elem.src = "../../assets/images/liked.svg";
+    elem.src = LIKED_IMG;
     elem.style.transform = "scale(1)";
   });
 });
-
-/*
-// Handle change main background when double click on each song
-*/
-const dblClickHandler = (elem) => {
-  elem.addEventListener("dblclick", () => {
-    const imgSrc = elem.firstChild.firstChild.src;
-    const elemTitle = elem.childNodes[1].childNodes[0].innerText;
-    const elemArtist = elem.childNodes[1].childNodes[1].innerText;
-
-    bgCover.style.background = `url(${imgSrc}) center no-repeat`;
-    bgCover.style.backgroundSize = "cover";
-
-    musicCover.src = imgSrc;
-    musicArtist.innerText = elemArtist;
-    musicTitle.innerText = elemTitle;
-  });
-};
 
 /*
 // Handle on music click
 */
 songWrapper.forEach((elem) => {
   elem.addEventListener("click", (e) => {
-    if (!e.path[0].classList.contains("fav-icon")) {
+    if (!e.path[0].classList.contains(FAV_ICON)) {
       const enabledBtn = [...document.getElementsByClassName(SONG_WRAPPER_SELECTED)];
 
-      const authorNameSelected = [...document.getElementsByClassName("author-name-selected")];
+      const authorNameSelected = [...document.getElementsByClassName(AUTHOR_NAME_SELECTED)];
 
       if (enabledBtn.length != 0) {
         enabledBtn[0].classList.remove(SONG_WRAPPER_SELECTED);
-        authorNameSelected[0].classList.remove("author-name-selected");
+        authorNameSelected[0].classList.remove(AUTHOR_NAME_SELECTED);
       }
 
       elem.classList.add(SONG_WRAPPER_SELECTED);
