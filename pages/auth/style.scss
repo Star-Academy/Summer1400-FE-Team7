@@ -4,7 +4,7 @@ $--lg-bg-3: hsl(166, 24%, 39%);
 $--lg-bg-4: hsl(24, 99%, 45%);
 $--icon-size: 1.25rem;
 
-@mixin body-bg-animation($deg, $duration, $start, $end, $animationName) {
+@mixin _body-bg-animation($deg, $duration, $start, $end, $animationName) {
   background: linear-gradient($deg, $--lg-bg-4 0 7.5%, $--lg-bg-3 7.5% 15%, $--lg-bg-2 15% 22.5%, $--lg-bg-1 22.5% 30%);
   background-size: 150% 150%;
   animation: $animationName $duration ease;
@@ -20,7 +20,7 @@ $--icon-size: 1.25rem;
   }
 }
 
-@mixin mobile-body-bg-animation($deg) {
+@mixin _mobile-body-bg-animation($deg) {
   background: linear-gradient($deg, $--lg-bg-4 0 5%, $--lg-bg-3 5% 10%, $--lg-bg-2 10% 15%, $--lg-bg-1 15% 20%);
   background-size: 150% 150%;
 }
@@ -31,7 +31,7 @@ main {
   max-height: 100vh;
   padding: 0 5vw;
 
-  @include body-bg-animation(-45deg, 1.5s, 0%, 100%, bgAnimation1);
+  @include _body-bg-animation(-45deg, 1.5s, 0%, 100%, bgAnimation1);
 
   display: flex;
   align-items: center;
@@ -181,19 +181,19 @@ main {
 }
 
 .bg-animation-1 {
-  @include body-bg-animation(-45deg, 1.5s, 0%, 100%, bgAnimation1);
+  @include _body-bg-animation(-45deg, 1.5s, 0%, 100%, bgAnimation1);
 }
 
 .bg-animation-2 {
-  @include body-bg-animation(-45deg, 1s, 100%, 0%, bgAnimation2);
+  @include _body-bg-animation(-45deg, 1s, 100%, 0%, bgAnimation2);
 }
 
 .bg-animation-3 {
-  @include body-bg-animation(135deg, 1.5s, 100%, 0%, bgAnimation3);
+  @include _body-bg-animation(135deg, 1.5s, 100%, 0%, bgAnimation3);
 }
 
 .bg-animation-4 {
-  @include body-bg-animation(135deg, 1s, 0%, 100%, bgAnimation4);
+  @include _body-bg-animation(135deg, 1s, 0%, 100%, bgAnimation4);
 }
 
 @media only screen and (max-width: 900px) {
@@ -207,19 +207,19 @@ main {
   }
 
   .bg-animation-1 {
-    @include mobile-body-bg-animation(0deg);
+    @include _mobile-body-bg-animation(0deg);
   }
 
   .bg-animation-2 {
-    @include mobile-body-bg-animation(0deg);
+    @include _mobile-body-bg-animation(0deg);
   }
 
   .bg-animation-3 {
-    @include mobile-body-bg-animation(180deg);
+    @include _mobile-body-bg-animation(180deg);
   }
 
   .bg-animation-4 {
-    @include mobile-body-bg-animation(180deg);
+    @include _mobile-body-bg-animation(180deg);
   }
 }
 
