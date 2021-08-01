@@ -47,7 +47,7 @@ body {
 
 body header {
   width: 80%;
-  max-width: 1440px;
+  max-width: 90rem;
   height: 8vh;
   font-size: clamp(15px, 2.5vw, 18px);
   position: relative;

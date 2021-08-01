@@ -20,16 +20,16 @@ main {
   display: flex;
   flex-direction: column;
 
-  & > .section-1 {
+  > .section-1 {
     display: flex;
     flex: 1;
 
     transition: transform 1s ease;
 
-    & > .side-menu {
+    > .side-menu {
       width: 275px;
       height: 90vh;
-      background:hsla(0, 100%, 0%,20%);
+      background: hsla(0, 100%, 0%, 20%);
       padding-top: 4rem;
       position: fixed;
 
@@ -41,12 +41,12 @@ main {
       transform-origin: right;
       transform: translateX(0);
 
-      & > * {
+      > * {
         width: 85%;
         height: 3rem;
       }
 
-      & > .search {
+      > .search {
         background: rgb(27, 26, 26);
 
         height: 2.5rem;
@@ -60,7 +60,7 @@ main {
         display: flex;
         align-items: center;
 
-        & > .search__icon {
+        > .search__icon {
           width: 40px;
           height: 50%;
           background: url(../../assets/images/search.svg) no-repeat;
@@ -70,7 +70,7 @@ main {
           transform: rotate(90deg);
         }
 
-        & > input {
+        > input {
           flex: 1;
           height: 100%;
           padding-right: 0.5rem;
@@ -80,20 +80,20 @@ main {
         }
       }
 
-      & > .btn-wrapper {
+      > .btn-wrapper {
         display: flex;
         width: 100%;
         align-items: center;
         position: relative;
         border-right: 5px solid transparent;
 
-        & > img {
+        > img {
           width: 40px;
           height: 60%;
           padding: 0 0.5rem;
         }
 
-        & > button {
+        > button {
           height: 100%;
           cursor: pointer;
           background: none;
@@ -107,7 +107,7 @@ main {
           background: rgba(255, 255, 255, 0.486);
         }
 
-        & > .add-btn {
+        > .add-btn {
           height: 3rem;
           width: 3rem;
           background: url(../../assets/images/add.svg) no-repeat;
@@ -116,7 +116,7 @@ main {
         }
       }
 
-      & > .menu-selected {
+      > .menu-selected {
         border-right: 5px solid $--selected-bg-blue;
         // background: rgba(255, 255, 255, 0.486);
       }
@@ -132,20 +132,20 @@ main {
         margin-top: auto;
         padding: 0 0.5rem;
 
-        & > p {
+        > p {
           flex: 1;
           user-select: none;
           color: var(--clr-white);
           text-align: left;
         }
 
-        & > button {
+        > button {
           width: 3rem;
 
           display: flex;
           align-items: center;
 
-          & > img {
+          > img {
             width: 40px;
             height: 60%;
           }
@@ -153,7 +153,7 @@ main {
       }
     }
 
-    & > .song-list {
+    > .song-list {
       width: 100%;
       height: 90vh;
       overflow-y: scroll;
@@ -167,39 +167,39 @@ main {
       flex-direction: column;
       gap: 0.25rem;
 
-      & > div:nth-of-type(1) {
+      > div:nth-of-type(1) {
         display: flex;
         align-items: center;
 
-        & > h2 {
+        > h2 {
           font-size: 1.5rem;
           color: white;
           line-height: 2;
         }
 
-        & > .song-list-view-wrapper {
+        > .song-list-view-wrapper {
           margin-right: auto;
           display: flex;
           flex-direction: row-reverse;
           gap: 0.5rem;
           margin-left: 0.5rem;
 
-          & > label {
+          > label {
             display: flex;
             justify-content: center;
             align-items: center;
 
-            & > img {
+            > img {
               width: 17px;
               height: 17px;
               cursor: pointer;
             }
           }
 
-          & > input[type="radio"] {
+          > input[type="radio"] {
             display: none;
 
-            & + label > img {
+            + label > img {
               filter: invert(0%) sepia(0%) saturate(0%) hue-rotate(0deg) brightness(0%) contrast(0%);
             }
 
@@ -208,32 +208,32 @@ main {
             }
           }
 
-          & > label:nth-of-type(1) > img {
+          > label:nth-of-type(1) > img {
             transform: rotate(180deg);
           }
         }
       }
 
-      & p {
+      p {
         color: var(--clr-white);
         user-select: none;
       }
 
-      & > .song-wrapper {
+      > .song-wrapper {
         width: 100%;
         height: 3rem;
 
         display: flex;
         align-items: center;
 
-        & > .song-cover {
+        > .song-cover {
           width: 3rem;
           height: 3rem;
           // background: black;
 
           overflow: hidden;
 
-          & > img {
+          > img {
             width: 100%;
             height: 100%;
 
@@ -242,7 +242,7 @@ main {
           }
         }
 
-        & > :is(.song-prop, .song-info) {
+        > :is(.song-prop, .song-info) {
           display: flex;
           flex-direction: column;
           height: 80%;
@@ -250,29 +250,29 @@ main {
           align-items: space-evenly;
         }
 
-        & > .song-info {
+        > .song-info {
           margin-right: 0.5rem;
 
-          & > p:first-child {
+          > p:first-child {
             font-size: 0.8rem;
           }
 
-          & > p:last-child {
+          > p:last-child {
             color: $--clr-grayish;
             font-size: 0.7rem;
           }
 
-          & > .author-name-selected {
+          > .author-name-selected {
             color: var(--clr-white) !important;
           }
         }
 
-        & > .song-prop {
+        > .song-prop {
           margin-right: auto;
           margin-left: 0.5rem;
           align-items: flex-end;
 
-          & > img {
+          > img {
             width: 15px;
           }
         }
@@ -282,7 +282,7 @@ main {
         }
       }
 
-      & > .song-wrapper-selected {
+      > .song-wrapper-selected {
         background-color: $--selected-bg-blue;
 
         &:hover {
@@ -297,7 +297,7 @@ main {
       grid-column-gap: 1rem;
       grid-row-gap: 1rem;
 
-      & > div:nth-of-type(1) {
+      > div:nth-of-type(1) {
         grid-column: 1/-1;
         grid-row: 1 /1;
       }
@@ -309,27 +309,27 @@ main {
       grid-column-gap: 1rem;
       grid-row-gap: 1rem;
 
-      & > div:nth-of-type(1) {
+      > div:nth-of-type(1) {
         grid-column: 1/-1;
         grid-row: 1 /1;
       }
 
-      & > .song-wrapper {
+      > .song-wrapper {
         display: flex;
         flex-direction: column;
         height: auto;
 
-        & > .song-cover {
+        > .song-cover {
           width: 98%;
           height: auto;
           overflow: unset;
 
-          & > img {
+          > img {
             object-fit: contain;
           }
         }
 
-        & > .song-info {
+        > .song-info {
           justify-content: flex-start;
           width: 98%;
         }
@@ -337,7 +337,7 @@ main {
     }
   }
 
-  & > .music-controls {
+  > .music-controls {
     position: fixed;
     bottom: 0;
     left: 0;
@@ -350,7 +350,7 @@ main {
     display: flex;
     align-items: center;
 
-    & > div {
+    > div {
       height: 100%;
 
       display: flex;
@@ -358,7 +358,7 @@ main {
       align-items: center;
     }
 
-    & > .info-wrapper {
+    > .info-wrapper {
       position: absolute;
       right: 0rem;
       display: flex;
@@ -373,30 +373,30 @@ main {
         background: rgba(0, 0, 0, 0.2);
       }
 
-      & > img {
+      > img {
         height: calc(100% - 2px);
       }
 
-      & > div {
+      > div {
         display: flex;
         flex-direction: column;
         justify-content: center;
 
-        & > p {
+        > p {
           color: var(--clr-white);
         }
 
-        & > p:first-child {
+        > p:first-child {
           font-size: 1rem;
         }
 
-        & > p:last-child {
+        > p:last-child {
           font-size: 0.7rem;
         }
       }
     }
 
-    & > .controls-wrapper {
+    > .controls-wrapper {
       flex: 1;
 
       display: flex;
@@ -404,47 +404,47 @@ main {
       align-items: center;
       justify-content: space-evenly;
 
-      & > div:nth-of-type(1) {
+      > div:nth-of-type(1) {
         display: flex;
         justify-content: center;
         align-items: center;
 
-        & > button {
+        > button {
           display: flex;
           justify-content: center;
           align-items: center;
 
           margin: 0 0.4rem;
 
-          & > img {
+          > img {
             width: 65%;
             height: 65%;
           }
         }
 
-        & > .size-1 {
+        > .size-1 {
           width: 25px;
           height: 25px;
         }
 
-        & > .size-2 {
+        > .size-2 {
           width: 30px;
           height: 30px;
         }
       }
 
-      & > .music-bar-wrapper {
+      > .music-bar-wrapper {
         width: 45%;
         display: flex;
         flex-direction: row-reverse;
         align-items: center;
         gap: 0.5rem;
 
-        & > p {
+        > p {
           color: var(--clr-white);
         }
 
-        & > input[type="range"] {
+        > input[type="range"] {
           flex: 1;
           height: 4px;
           border-radius: 999rem;
@@ -453,7 +453,7 @@ main {
       }
     }
 
-    & > .volume-wrapper {
+    > .volume-wrapper {
       position: absolute;
       left: 1rem;
 
@@ -461,35 +461,35 @@ main {
       flex-direction: row-reverse;
       gap: 0.5rem;
 
-      & > p {
+      > p {
         color: var(--clr-white);
         width: 3ch;
         text-align: left;
       }
 
-      & > button:nth-of-type(1) {
+      > button:nth-of-type(1) {
         width: 20px;
         height: 20px;
 
-        & > img {
+        > img {
           width: 100%;
           height: 100%;
         }
       }
 
-      & > input[type="range"] {
+      > input[type="range"] {
         width: 100px;
         height: 4px;
         border-radius: 0;
         direction: ltr;
       }
 
-      & > button:nth-of-type(2) {
+      > button:nth-of-type(2) {
         width: 25px;
         height: 25px;
         margin-left: 2rem;
 
-        & > img {
+        > img {
           width: 100%;
           height: 100%;
         }
@@ -511,7 +511,7 @@ main {
     transition: transform 1s ease;
     padding: 5rem 3rem;
 
-    & > button:nth-of-type(1) {
+    > button:nth-of-type(1) {
       position: fixed;
       top: 2vh;
       left: 0;
@@ -524,7 +524,7 @@ main {
       align-items: center;
       padding: 0.5rem 1.25rem;
 
-      & > img {
+      > img {
         width: 15px;
         height: 15px;
       }
@@ -532,7 +532,7 @@ main {
 
     display: flex;
 
-    & > .lyrics-music-cover {
+    > .lyrics-music-cover {
       width: 350px;
       height: 100%;
       position: fixed;
@@ -541,13 +541,13 @@ main {
       flex-direction: column;
       align-items: center;
 
-      & > img {
+      > img {
         width: 80%;
         height: auto;
         background: rgba(0, 0, 0, 0.4);
       }
 
-      & > .music-info {
+      > .music-info {
         width: 80%;
         display: flex;
         flex-direction: column;
@@ -559,7 +559,7 @@ main {
       }
     }
 
-    & > .lyrics-text {
+    > .lyrics-text {
       flex: 1;
       // background: steelblue;
       margin-right: 350px;
@@ -580,7 +580,7 @@ main {
     bottom: 0;
     left: 0;
 
-    & > .music-contolers {
+    > .music-contolers {
       flex: 1;
       display: flex;
       flex-direction: row-reverse;
@@ -588,10 +588,10 @@ main {
 
       border-bottom: 2px solid #1d7dd77d;
 
-      & > button {
+      > button {
         width: 25px;
 
-        & > img {
+        > img {
           width: 100%;
           height: 100%;
 
@@ -601,11 +601,11 @@ main {
         }
       }
 
-      & > .lyric-btn-active {
+      > .lyric-btn-active {
         filter: invert(39%) sepia(96%) saturate(903%) hue-rotate(184deg) brightness(86%) contrast(97%);
       }
 
-      & > .mobile-info {
+      > .mobile-info {
         color: var(--clr-white);
         width: 40%;
         display: flex;
@@ -616,7 +616,7 @@ main {
         overflow: hidden;
         -webkit-mask: linear-gradient(to right, transparent 0%, rgb(0, 0, 0) 10px, rgb(0, 0, 0) calc(100% - 10px), transparent 100%);
 
-        & > p {
+        > p {
           font-size: 0.7rem;
           white-space: nowrap;
 
@@ -625,14 +625,14 @@ main {
 
           user-select: none;
 
-          & > span {
+          > span {
             font-size: 2rem;
           }
         }
       }
 
-      & > .mobile-info-animation {
-        & > * {
+      > .mobile-info-animation {
+        > * {
           animation: textAnimation 4s linear infinite 2s forwards;
           animation-direction: alternate;
 
@@ -649,7 +649,7 @@ main {
       }
     }
 
-    & > .tab-navigation {
+    > .tab-navigation {
       height: 7vh;
       background: $--bg-mellow-black;
 
@@ -657,7 +657,7 @@ main {
       align-items: center;
       justify-content: space-evenly;
 
-      & > button {
+      > button {
         display: flex;
         flex-direction: column;
         justify-content: center;
@@ -666,12 +666,12 @@ main {
 
         position: relative;
 
-        & > img {
+        > img {
           width: 25px;
           height: 100%;
         }
 
-        & > p {
+        > p {
           color: var(--clr-white);
           font-size: 0.8rem;
         }
@@ -718,7 +718,7 @@ main {
 .ctl-btn {
   position: relative;
 
-  & > img:hover {
+  > img:hover {
     filter: invert(39%) sepia(96%) saturate(903%) hue-rotate(184deg) brightness(86%) contrast(97%);
   }
 
@@ -762,11 +762,11 @@ main {
   justify-content: center;
   align-items: center;
 
-  & > button {
+  > button {
     width: 15px;
     height: 15px;
 
-    & > img {
+    > img {
       width: 100%;
       height: 100%;
       user-select: none;
@@ -793,32 +793,32 @@ main {
 
 @media only screen and (max-width: 750px) {
   main {
-    & > .music-controls {
+    > .music-controls {
       display: none;
     }
 
-    & > .section-1 {
-      & > .side-menu {
+    > .section-1 {
+      > .side-menu {
         display: none;
       }
 
-      & > .song-list {
+      > .song-list {
         width: 100% !important;
         height: calc(100vh - #{"max(12vh, 102px)"});
         padding-bottom: 0;
         padding: 5rem 1.5rem;
         gap: 0.5rem;
 
-        & > div:nth-of-type(1) {
-          & > div {
-            & > label:nth-of-type(2) {
+        > div:nth-of-type(1) {
+          > div {
+            > label:nth-of-type(2) {
               display: none;
             }
           }
         }
       }
 
-      & > .grid-view {
+      > .grid-view {
         grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
       }
     }
@@ -828,13 +828,13 @@ main {
       flex-direction: column;
     }
 
-    & > .lyric-wrapper {
+    > .lyric-wrapper {
       height: calc(100vh - #{"max(12vh, 102px)"});
-      & > .lyrics-music-cover {
+      > .lyrics-music-cover {
         display: none;
       }
 
-      & > .lyrics-text {
+      > .lyrics-text {
         margin-right: unset;
       }
     }

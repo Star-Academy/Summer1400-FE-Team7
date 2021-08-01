@@ -42,7 +42,7 @@ const backgroundAnimation = () => {
   createNewAccountCta.addEventListener("click", () => {
     formPosChanHandler();
 
-    main[0].className = BG_ANIMATION.TYPE1;
+    main[0].className = BG_ANIMATION.TYPE2;
 
     setTimeout(() => {
       main[0].className = BG_ANIMATION.TYPE3;
