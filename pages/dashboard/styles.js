@@ -28,13 +28,22 @@ const musicTitle = document.querySelector("#music-title");
 const musicArtist = document.querySelector("#music-artist");
 const songWrapper = document.querySelectorAll(".song-wrapper");
 
+const MENU_SELECTED = "menu-selected";
+
+const SIDE_MENU_CLOSED = "side-menu-closed";
+const SIDE_MENU_OPEND = "side-menu-opended";
+
+//
+const SONG_WRAPPER_SELECTED = "song-wrapper-selected";
+const AUTHOR_NAME_SELECTED = "author-name-selected";
+//
 /*
 //Handle side-menu items selection.
 */
 const menuClassOmmiter = () => {
   for (let m of menuButtons) {
-    if (m.classList.contains("menu-selected")) {
-      m.classList.remove("menu-selected");
+    if (m.classList.contains(MENU_SELECTED)) {
+      m.classList.remove(MENU_SELECTED);
     }
   }
 };
@@ -43,7 +52,7 @@ const HandlemenuButtonsSelect = () => {
   for (let m of menuButtons) {
     m.addEventListener("click", () => {
       menuClassOmmiter();
-      m.classList.add("menu-selected");
+      m.classList.add(MENU_SELECTED);
     });
   }
 };
@@ -52,8 +61,8 @@ const HandlemenuButtonsSelect = () => {
 // Handle open/close side menu
 */
 munuOpenerCloser.addEventListener("click", () => {
-  sideMenu.classList.toggle("side-menu-closed");
-  songList.classList.toggle("side-menu-opended");
+  sideMenu.classList.toggle(SIDE_MENU_CLOSED);
+  songList.classList.toggle(SIDE_MENU_OPEND);
 });
 
 /*
@@ -242,17 +251,17 @@ const dblClickHandler = (elem) => {
 songWrapper.forEach((elem) => {
   elem.addEventListener("click", (e) => {
     if (!e.path[0].classList.contains("fav-icon")) {
-      const enabledBtn = [...document.getElementsByClassName("song-wrapper-selected")];
+      const enabledBtn = [...document.getElementsByClassName(SONG_WRAPPER_SELECTED)];
 
       const authorNameSelected = [...document.getElementsByClassName("author-name-selected")];
 
       if (enabledBtn.length != 0) {
-        enabledBtn[0].classList.remove("song-wrapper-selected");
+        enabledBtn[0].classList.remove(SONG_WRAPPER_SELECTED);
         authorNameSelected[0].classList.remove("author-name-selected");
       }
 
-      elem.classList.add("song-wrapper-selected");
-      elem.children[1].children[1].classList.add("author-name-selected");
+      elem.classList.add(SONG_WRAPPER_SELECTED);
+      elem.children[1].children[1].classList.add(AUTHOR_NAME_SELECTED);
     }
   });
 

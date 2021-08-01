@@ -10,15 +10,30 @@ const main = document.getElementsByTagName("main");
 const input = document.getElementsByTagName("input");
 const showPassCta = document.querySelectorAll(".show-pass-cta");
 
+//
+
+const DISPLAY_NONE = "display-none";
+const SIGNUP_FORM_WRAPPER = "signup-form-wrapper";
+const BG_ANIMATION = {
+  TYPE1: "bg-animation-1",
+  TYPE2: "bg-animation-2",
+  TYPE3: "bg-animation-3",
+  TYPE4: "bg-animation-4",
+};
+const STOP_TRANSITION = "stop-transitions";
+const FULL_LABEL = "full-label";
+const UNSHOW_PASSWORD = "../../assets/images/unshow-password.svg";
+const SHOW_PASSWORD = "../../assets/images/show-password.svg";
+
 //FUNCTIONS IMPLEMENTATION
 
 /**
  * Toggel position of login/sign-up form.
  */
 const formPosChanHandler = () => {
-  loginForm.classList.toggle("display-none");
-  signForm.classList.toggle("display-none");
-  formWrapper.classList.toggle("signup-form-wrapper");
+  loginForm.classList.toggle(DISPLAY_NONE);
+  signForm.classList.toggle(DISPLAY_NONE);
+  formWrapper.classList.toggle(SIGNUP_FORM_WRAPPER);
 };
 /**
  * Change position of background and forms.
@@ -27,18 +42,18 @@ const backgroundAnimation = () => {
   createNewAccountCta.addEventListener("click", () => {
     formPosChanHandler();
 
-    main[0].className = "bg-animation-2";
+    main[0].className = BG_ANIMATION.TYPE1;
 
     setTimeout(() => {
-      main[0].className = "bg-animation-3";
+      main[0].className = BG_ANIMATION.TYPE3;
     }, 400);
   });
 
   alreadyHaveAnAccountCta.addEventListener("click", () => {
     formPosChanHandler();
-    main[0].className = "bg-animation-4";
+    main[0].className = BG_ANIMATION.TYPE4;
     setTimeout(() => {
-      main[0].className = "bg-animation-1";
+      main[0].className = BG_ANIMATION.TYPE1;
     }, 400);
   });
 };
@@ -55,10 +70,10 @@ const AvoidFormTransitionsOnPageResize = () => {
     if (timer) {
       clearTimeout(timer);
       timer = null;
-    } else classes.add("stop-transitions");
+    } else classes.add(STOP_TRANSITION);
 
     timer = setTimeout(() => {
-      classes.remove("stop-transitions");
+      classes.remove(STOP_TRANSITION);
       timer = null;
     }, 100);
   });
@@ -72,21 +87,21 @@ const HandelFloatingLabel = () => {
   for (let i of input) {
     i.addEventListener("focus", () => {
       if (i.value == "") {
-        i.nextElementSibling.classList.toggle("full-label");
+        i.nextElementSibling.classList.toggle(FULL_LABEL);
       }
 
       if (main[0].offsetWidth < 900 && (i.id == "login-email-input" || i.id == "login-password-input")) {
-        main[0].className = "bg-animation-2";
+        main[0].className = BG_ANIMATION.TYPE2;
       }
     });
 
     i.addEventListener("blur", () => {
       if (i.value == "") {
-        i.nextElementSibling.classList.toggle("full-label");
+        i.nextElementSibling.classList.toggle(FULL_LABEL);
       }
 
       if (main[0].offsetWidth < 900 && (i.id == "login-email-input" || i.id == "login-password-input")) {
-        main[0].className = "bg-animation-1";
+        main[0].className = BG_ANIMATION.TYPE1;
       }
     });
   }
@@ -100,11 +115,11 @@ const HandelShowPassword = () => {
     let see = false;
     cta.addEventListener("click", () => {
       if (!see) {
-        cta.src = "../../assets/images/unshow-password.svg";
+        cta.src = UNSHOW_PASSWORD;
         see = true;
         cta.previousElementSibling.previousElementSibling.type = "text";
       } else {
-        cta.src = "../../assets/images/show-password.svg";
+        cta.src = SHOW_PASSWORD;
         see = false;
         cta.previousElementSibling.previousElementSibling.type = "password";
       }

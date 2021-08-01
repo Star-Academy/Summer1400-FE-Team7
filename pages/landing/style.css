@@ -1,7 +1,7 @@
 p,
 a,
 h1 {
-  text-shadow: 0 0 0.125em rgba(255, 255, 255, 0.3), 0 0 0.45em white;
+  text-shadow: 0 0 0.125em rgba(255, 255, 255, 0.3), 0 0 0.45em var(--clr-white);
 }
 
 body {
@@ -15,7 +15,7 @@ body {
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
-  background: linear-gradient(-45deg, var(--lg-bg-1), var(--lg-bg-2), var(--lg-bg-3), var(--lg-bg-4));
+  background: linear-gradient(-45deg, #ee7753, #e73c7d, #23a7d7, #22d60a);
   background-size: 400% 400%;
   -webkit-animation: gradientBg 15s ease infinite;
           animation: gradientBg 15s ease infinite;
@@ -60,8 +60,9 @@ body header {
   padding-bottom: 1em;
 }
 
-body header :is(a, p) {
-  color: white;
+body header a,
+body header p {
+  color: var(--clr-white);
   text-shadow: 0 0 0.125em rgba(255, 255, 255, 0.3), 0 0 0.2em var(--clr-black);
   -webkit-user-select: none;
      -moz-user-select: none;
@@ -105,10 +106,10 @@ body header::after {
   bottom: 0;
   left: 0;
   width: 100%;
-  height: 4px;
-  border-radius: 100px;
-  -webkit-box-shadow: inset 0 0 0.5em white, 0 0 0.5em white;
-          box-shadow: inset 0 0 0.5em white, 0 0 0.5em white;
+  height: 0.25rem;
+  border-radius: 999rem;
+  -webkit-box-shadow: inset 0 0 0.5em var(--clr-white), 0 0 0.5em var(--clr-white);
+          box-shadow: inset 0 0 0.5em var(--clr-white), 0 0 0.5em var(--clr-white);
   z-index: -1;
 }
 
@@ -165,8 +166,8 @@ body main section:nth-of-type(2) {
 
 body main section:nth-of-type(2) > div {
   border-radius: 100%;
-  -webkit-box-shadow: inset 0 0 6.5em white, 0 0 0.5em white;
-          box-shadow: inset 0 0 6.5em white, 0 0 0.5em white;
+  -webkit-box-shadow: inset 0 0 6.5em var(--clr-white), 0 0 0.5em var(--clr-white);
+          box-shadow: inset 0 0 6.5em var(--clr-white), 0 0 0.5em var(--clr-white);
   width: 35vw;
   height: 35vw;
   position: relative;
@@ -184,12 +185,12 @@ body main section:nth-of-type(2) > div > div {
 }
 
 body main section:nth-of-type(2) > div > div span {
-  -webkit-box-shadow: inset 0 0 0.4em white, 0 0 0.4em white;
-          box-shadow: inset 0 0 0.4em white, 0 0 0.4em white;
+  -webkit-box-shadow: inset 0 0 0.4em var(--clr-white), 0 0 0.4em var(--clr-white);
+          box-shadow: inset 0 0 0.4em var(--clr-white), 0 0 0.4em var(--clr-white);
   width: 100%;
-  height: 8px;
+  height: 0.5rem;
   position: absolute;
-  border-radius: 100px;
+  border-radius: 999rem;
 }
 
 body main section:nth-of-type(2) > div > div span:nth-of-type(1) {
@@ -246,8 +247,8 @@ body main section:nth-of-type(2) > div > div span:nth-of-type(3) {
   body main > section:nth-of-type(2) > div {
     width: 70vw;
     height: 70vw;
-    max-width: 350px;
-    max-height: 350px;
+    max-width: 21.875rem;
+    max-height: 21.875rem;
   }
   body main > section:nth-of-type(1) {
     -webkit-box-align: center;

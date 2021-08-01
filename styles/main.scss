@@ -28,22 +28,13 @@ $--clr-scrollbar: rgb(29, 125, 215);
   --clr-blue: rgb(8, 192, 255);
   --clr-black: rgb(0, 0, 0);
   --clr-white: rgb(255, 255, 255);
-  --lg-bg-1: #ee7752;
-  --lg-bg-2: #e73c7e;
-  --lg-bg-3: #23a6d5;
-  --lg-bg-4: #23d5ab;
   --clr-gray-light: rgb(200, 200, 200);
-  --font-size-xl: 2.5rem;
 }
 
 body {
-  width: 100vw;
   height: 100vh;
 
   font-size: 62.5%;
-  direction: rtl;
-
-  user-select: none;
 }
 
 button {
@@ -51,16 +42,6 @@ button {
   border: none;
   cursor: pointer;
   -webkit-tap-highlight-color: transparent;
-}
-
-p,
-a,
-h1,
-h6,
-span,
-input,
-label {
-  text-align: right;
 }
 
 *::-webkit-scrollbar {
@@ -77,18 +58,4 @@ label {
 
   border: none;
   border-radius: 1rem;
-}
-
-input[type="range"] {
-  & {
-    // -webkit-appearance: none;
-  }
-
-  &::-webkit-slider-thumb {
-    // visibility: hidden;
-  }
-
-  &:hover::-webkit-slider-thumb {
-    // visibility: visible;
-  }
 }

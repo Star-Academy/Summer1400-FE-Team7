@@ -1,82 +1,28 @@
-$--lg-bg-1: #6b8490;
-$--lg-bg-2: #c0b3a0;
-$--lg-bg-3: #252930;
-$--lg-bg-4: #e3e6e0;
-$--lg-bg-5: #170b3b;
-$--lg-bg-6: #001951;
-$--lg-bg-7: #9b0dea;
-$--lg-bg-8: #4120a9;
-$--lg-bg-9: #7fafc0;
+$--lg-bg-1: hsl(212, 19%, 15%);
+$--lg-bg-2: hsl(215, 39%, 30%);
+$--lg-bg-3: hsl(166, 24%, 39%);
+$--lg-bg-4: hsl(24, 99%, 45%);
+$--icon-size: 1.25rem;
 
-$--lg-bg-11: #1f262e;
-$--lg-bg-12: #2e4769;
-$--lg-bg-13: #4c7c71;
-$--lg-bg-14: #e35a01;
-
-$--clr-white: hsl(0, 0, 100%);
-
-@mixin body-bg-bt-rgh-in($deg) {
-  background: linear-gradient($deg, $--lg-bg-14 0 7.5%, $--lg-bg-13 7.5% 15%, $--lg-bg-12 15% 22.5%, $--lg-bg-11 22.5% 30%);
+@mixin body-bg-animation($deg, $duration, $start, $end, $animationName) {
+  background: linear-gradient($deg, $--lg-bg-4 0 7.5%, $--lg-bg-3 7.5% 15%, $--lg-bg-2 15% 22.5%, $--lg-bg-1 22.5% 30%);
   background-size: 150% 150%;
-  animation: bg-in-bt-rgh 1.5s ease;
+  animation: $animationName $duration ease;
   animation-fill-mode: forwards;
 
-  @keyframes bg-in-bt-rgh {
+  @keyframes #{$animationName} {
     from {
-      background-position: 0% 0%;
+      background-position: $start $start;
     }
     to {
-      background-position: 100% 100%;
+      background-position: $end $end;
     }
   }
 }
 
-@mixin body-bg-bt-rgh-out($deg) {
-  background: linear-gradient($deg, $--lg-bg-14 0 7.5%, $--lg-bg-13 7.5% 15%, $--lg-bg-12 15% 22.5%, $--lg-bg-11 22.5% 30%);
+@mixin mobile-body-bg-animation($deg) {
+  background: linear-gradient($deg, $--lg-bg-4 0 5%, $--lg-bg-3 5% 10%, $--lg-bg-2 10% 15%, $--lg-bg-1 15% 20%);
   background-size: 150% 150%;
-  animation: body-bg-bt-rgh-out 1s ease;
-  animation-fill-mode: forwards;
-
-  @keyframes body-bg-bt-rgh-out {
-    from {
-      background-position: 100% 100%;
-    }
-    to {
-      background-position: 0% 0%;
-    }
-  }
-}
-
-@mixin body-bg-tp-lft-in($deg) {
-  background: linear-gradient($deg, $--lg-bg-14 0 7.5%, $--lg-bg-13 7.5% 15%, $--lg-bg-12 15% 22.5%, $--lg-bg-11 22.5% 30%);
-  background-size: 150% 150%;
-  animation: bg-in-tp-lft 1.5s ease;
-  animation-fill-mode: forwards;
-
-  @keyframes bg-in-tp-lft {
-    from {
-      background-position: 100% 100%;
-    }
-    to {
-      background-position: 0% 0%;
-    }
-  }
-}
-
-@mixin body-bg-tp-lft-out($deg) {
-  background: linear-gradient($deg, $--lg-bg-14 0 7.5%, $--lg-bg-13 7.5% 15%, $--lg-bg-12 15% 22.5%, $--lg-bg-11 22.5% 30%);
-  background-size: 150% 150%;
-  animation: bg-out-tp-left 1s ease;
-  animation-fill-mode: forwards;
-
-  @keyframes bg-out-tp-left {
-    from {
-      background-position: 0% 0%;
-    }
-    to {
-      background-position: 100% 100%;
-    }
-  }
 }
 
 main {
@@ -85,18 +31,18 @@ main {
   max-height: 100vh;
   padding: 0 5vw;
 
-  @include body-bg-bt-rgh-in(-45deg);
+  @include body-bg-animation(-45deg, 1.5s, 0%, 100%, bgAnimation1);
 
   display: flex;
   align-items: center;
-  justify-content: flex-start;
+  justify-content: flex-end;
 
   position: relative;
 
   & > .form-wrapper {
-    width: 450px;
+    width: 28.125rem;
     height: 70%;
-    box-shadow: inset 0 0 0.3em $--clr-white, 0 0 0.3em $--clr-white;
+    box-shadow: inset 0 0 0.3em var(--clr-white), 0 0 0.3em var(--clr-white);
 
     transition: transform 1s ease;
 
@@ -112,14 +58,13 @@ main {
       & > h2 {
         text-align: center;
         font-size: 2.5rem;
-        letter-spacing: 1px;
-        color: $--lg-bg-4;
+        letter-spacing: 0.0625rem;
+        color: var(--clr-white);
       }
 
       & > .input-wrapper {
         display: flex;
-        flex-direction: row-reverse;
-        box-shadow: inset 0 0 0.3em $--clr-white, 0 0 0.3em $--clr-white;
+        box-shadow: inset 0 0 0.3em var(--clr-white), 0 0 0.3em var(--clr-white);
         padding: 0 1.5em;
         width: 85%;
         height: 3rem;
@@ -128,8 +73,8 @@ main {
         position: relative;
 
         & > img {
-          width: 20px;
-          height: 20px;
+          width: $--icon-size;
+          height: $--icon-size;
         }
 
         & > input {
@@ -137,7 +82,7 @@ main {
 
           background: transparent;
           border: none;
-          color: $--clr-white;
+          color: var(--clr-white);
           padding-right: 1em;
           position: relative;
 
@@ -146,10 +91,10 @@ main {
 
         & > label {
           position: absolute;
-          right: calc(20px + 1.5rem);
+          right: calc(1.25rem + 1.5rem);
           top: 50%;
           transform: translateY(-50%);
-          color: $--clr-white;
+          color: var(--clr-white);
           font-size: 1.15rem;
         }
 
@@ -166,20 +111,20 @@ main {
         font-size: 1.2rem;
         padding: 0.5em 0em;
         width: 85%;
-        border-radius: 4px;
+        border-radius: 0.25rem;
         border: none;
         cursor: pointer;
         background: transparent;
-        box-shadow: inset 0 0 0.3em $--clr-white, 0 0 0.3em 0.125em $--clr-white;
-        color: $--clr-white;
+        box-shadow: inset 0 0 0.3em var(--clr-white), 0 0 0.3em 0.125em var(--clr-white);
+        color: var(--clr-white);
 
         &:hover {
-          box-shadow: inset 0 0 0.65em $--clr-white, 0 0 0.3em 0.125em $--clr-white;
+          box-shadow: inset 0 0 0.65em var(--clr-white), 0 0 0.3em 0.125em var(--clr-white);
         }
       }
 
       & > a {
-        color: $--clr-white;
+        color: var(--clr-white);
         font-size: 1.1rem;
         width: 85%;
       }
@@ -195,40 +140,31 @@ main {
       & > div:nth-of-type(3) {
         display: flex;
         justify-content: flex-start;
-        flex-direction: row-reverse;
         align-items: center;
 
         width: 85%;
 
         .input-checkbox {
           display: flex;
-          flex-direction: row-reverse;
           align-items: center;
 
           & > label {
             padding-right: 0.8em;
-            color: $--clr-white;
+            color: var(--clr-white);
             font-size: 0.9rem;
           }
         }
 
         .forgot-pass {
           margin-right: auto;
-          text-align: right;
 
           & > a {
-            color: $--clr-white;
+            color: var(--clr-white);
             font-size: 1rem;
           }
         }
       }
     }
-
-    // & > .signup-form {
-    //   & > div:nth-of-type(2) {
-    //     margin: 5em 0;
-    //   }
-    // }
 
     & > :is(.login-form, .signup-form) {
       justify-content: space-evenly;
@@ -245,19 +181,19 @@ main {
 }
 
 .bg-animation-1 {
-  @include body-bg-bt-rgh-in(-45deg);
+  @include body-bg-animation(-45deg, 1.5s, 0%, 100%, bgAnimation1);
 }
 
 .bg-animation-2 {
-  @include body-bg-bt-rgh-out(-45deg);
+  @include body-bg-animation(-45deg, 1s, 100%, 0%, bgAnimation2);
 }
 
 .bg-animation-3 {
-  @include body-bg-tp-lft-in(135deg);
+  @include body-bg-animation(135deg, 1.5s, 100%, 0%, bgAnimation3);
 }
 
 .bg-animation-4 {
-  @include body-bg-tp-lft-out(135deg);
+  @include body-bg-animation(135deg, 1s, 0%, 100%, bgAnimation4);
 }
 
 @media only screen and (max-width: 900px) {
@@ -271,23 +207,19 @@ main {
   }
 
   .bg-animation-1 {
-    background: linear-gradient(0deg, $--lg-bg-14 0 5%, $--lg-bg-13 5% 10%, $--lg-bg-12 10% 15%, $--lg-bg-11 15% 20%);
-    background-size: 150% 150%;
+    @include mobile-body-bg-animation(0deg);
   }
 
   .bg-animation-2 {
-    background: linear-gradient(0deg, $--lg-bg-14 0 5%, $--lg-bg-13 5% 10%, $--lg-bg-12 10% 15%, $--lg-bg-11 15% 20%);
-    background-size: 150% 150%;
+    @include mobile-body-bg-animation(0deg);
   }
 
   .bg-animation-3 {
-    background: linear-gradient(180deg, $--lg-bg-14 0 5%, $--lg-bg-13 5% 10%, $--lg-bg-12 10% 15%, $--lg-bg-11 15% 20%);
-    background-size: 150% 150%;
+    @include mobile-body-bg-animation(180deg);
   }
 
   .bg-animation-4 {
-    background: linear-gradient(180deg, $--lg-bg-14 0 5%, $--lg-bg-13 5% 10%, $--lg-bg-12 10% 15%, $--lg-bg-11 15% 20%);
-    background-size: 150% 150%;
+    @include mobile-body-bg-animation(180deg);
   }
 }
 
@@ -297,8 +229,4 @@ main {
 
 .show-pass-cta {
   cursor: pointer;
-}
-
-body {
-  direction: ltr !important;
 }

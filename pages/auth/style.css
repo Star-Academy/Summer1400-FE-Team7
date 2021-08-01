@@ -3,10 +3,10 @@ main {
   height: 100%;
   max-height: 100vh;
   padding: 0 5vw;
-  background: linear-gradient(-45deg, #e35a01 0 7.5%, #4c7c71 7.5% 15%, #2e4769 15% 22.5%, #1f262e 22.5% 30%);
+  background: linear-gradient(-45deg, #e45c01 0 7.5%, #4c7b70 7.5% 15%, #2f486a 15% 22.5%, #1f262e 22.5% 30%);
   background-size: 150% 150%;
-  -webkit-animation: bg-in-bt-rgh 1.5s ease;
-          animation: bg-in-bt-rgh 1.5s ease;
+  -webkit-animation: bgAnimation1 1.5s ease;
+          animation: bgAnimation1 1.5s ease;
   -webkit-animation-fill-mode: forwards;
           animation-fill-mode: forwards;
   display: -webkit-box;
@@ -15,13 +15,13 @@ main {
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
-  -webkit-box-pack: start;
-      -ms-flex-pack: start;
-          justify-content: flex-start;
+  -webkit-box-pack: end;
+      -ms-flex-pack: end;
+          justify-content: flex-end;
   position: relative;
 }
 
-@-webkit-keyframes bg-in-bt-rgh {
+@-webkit-keyframes bgAnimation1 {
   from {
     background-position: 0% 0%;
   }
@@ -30,7 +30,7 @@ main {
   }
 }
 
-@keyframes bg-in-bt-rgh {
+@keyframes bgAnimation1 {
   from {
     background-position: 0% 0%;
   }
@@ -40,10 +40,10 @@ main {
 }
 
 main > .form-wrapper {
-  width: 450px;
+  width: 28.125rem;
   height: 70%;
-  -webkit-box-shadow: inset 0 0 0.3em white, 0 0 0.3em white;
-          box-shadow: inset 0 0 0.3em white, 0 0 0.3em white;
+  -webkit-box-shadow: inset 0 0 0.3em var(--clr-white), 0 0 0.3em var(--clr-white);
+          box-shadow: inset 0 0 0.3em var(--clr-white), 0 0 0.3em var(--clr-white);
   -webkit-transition: -webkit-transform 1s ease;
   transition: -webkit-transform 1s ease;
   transition: transform 1s ease;
@@ -69,20 +69,16 @@ main > .form-wrapper > form {
 main > .form-wrapper > form > h2 {
   text-align: center;
   font-size: 2.5rem;
-  letter-spacing: 1px;
-  color: #e3e6e0;
+  letter-spacing: 0.0625rem;
+  color: var(--clr-white);
 }
 
 main > .form-wrapper > form > .input-wrapper {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  -webkit-box-orient: horizontal;
-  -webkit-box-direction: reverse;
-      -ms-flex-direction: row-reverse;
-          flex-direction: row-reverse;
-  -webkit-box-shadow: inset 0 0 0.3em white, 0 0 0.3em white;
-          box-shadow: inset 0 0 0.3em white, 0 0 0.3em white;
+  -webkit-box-shadow: inset 0 0 0.3em var(--clr-white), 0 0 0.3em var(--clr-white);
+          box-shadow: inset 0 0 0.3em var(--clr-white), 0 0 0.3em var(--clr-white);
   padding: 0 1.5em;
   width: 85%;
   height: 3rem;
@@ -93,8 +89,8 @@ main > .form-wrapper > form > .input-wrapper {
 }
 
 main > .form-wrapper > form > .input-wrapper > img {
-  width: 20px;
-  height: 20px;
+  width: 1.25rem;
+  height: 1.25rem;
 }
 
 main > .form-wrapper > form > .input-wrapper > input {
@@ -103,7 +99,7 @@ main > .form-wrapper > form > .input-wrapper > input {
           flex: 1;
   background: transparent;
   border: none;
-  color: white;
+  color: var(--clr-white);
   padding-right: 1em;
   position: relative;
   height: 3rem;
@@ -111,11 +107,11 @@ main > .form-wrapper > form > .input-wrapper > input {
 
 main > .form-wrapper > form > .input-wrapper > label {
   position: absolute;
-  right: calc(20px + 1.5rem);
+  right: calc(1.25rem + 1.5rem);
   top: 50%;
   -webkit-transform: translateY(-50%);
           transform: translateY(-50%);
-  color: white;
+  color: var(--clr-white);
   font-size: 1.15rem;
 }
 
@@ -132,22 +128,22 @@ main > .form-wrapper > form > button {
   font-size: 1.2rem;
   padding: 0.5em 0em;
   width: 85%;
-  border-radius: 4px;
+  border-radius: 0.25rem;
   border: none;
   cursor: pointer;
   background: transparent;
-  -webkit-box-shadow: inset 0 0 0.3em white, 0 0 0.3em 0.125em white;
-          box-shadow: inset 0 0 0.3em white, 0 0 0.3em 0.125em white;
-  color: white;
+  -webkit-box-shadow: inset 0 0 0.3em var(--clr-white), 0 0 0.3em 0.125em var(--clr-white);
+          box-shadow: inset 0 0 0.3em var(--clr-white), 0 0 0.3em 0.125em var(--clr-white);
+  color: var(--clr-white);
 }
 
 main > .form-wrapper > form > button:hover {
-  -webkit-box-shadow: inset 0 0 0.65em white, 0 0 0.3em 0.125em white;
-          box-shadow: inset 0 0 0.65em white, 0 0 0.3em 0.125em white;
+  -webkit-box-shadow: inset 0 0 0.65em var(--clr-white), 0 0 0.3em 0.125em var(--clr-white);
+          box-shadow: inset 0 0 0.65em var(--clr-white), 0 0 0.3em 0.125em var(--clr-white);
 }
 
 main > .form-wrapper > form > a {
-  color: white;
+  color: var(--clr-white);
   font-size: 1.1rem;
   width: 85%;
 }
@@ -163,10 +159,6 @@ main > .form-wrapper > .login-form > div:nth-of-type(3) {
   -webkit-box-pack: start;
       -ms-flex-pack: start;
           justify-content: flex-start;
-  -webkit-box-orient: horizontal;
-  -webkit-box-direction: reverse;
-      -ms-flex-direction: row-reverse;
-          flex-direction: row-reverse;
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
@@ -177,10 +169,6 @@ main > .form-wrapper > .login-form > div:nth-of-type(3) .input-checkbox {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  -webkit-box-orient: horizontal;
-  -webkit-box-direction: reverse;
-      -ms-flex-direction: row-reverse;
-          flex-direction: row-reverse;
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
@@ -188,17 +176,16 @@ main > .form-wrapper > .login-form > div:nth-of-type(3) .input-checkbox {
 
 main > .form-wrapper > .login-form > div:nth-of-type(3) .input-checkbox > label {
   padding-right: 0.8em;
-  color: white;
+  color: var(--clr-white);
   font-size: 0.9rem;
 }
 
 main > .form-wrapper > .login-form > div:nth-of-type(3) .forgot-pass {
   margin-right: auto;
-  text-align: right;
 }
 
 main > .form-wrapper > .login-form > div:nth-of-type(3) .forgot-pass > a {
-  color: white;
+  color: var(--clr-white);
   font-size: 1rem;
 }
 
@@ -218,15 +205,15 @@ main > .form-wrapper > :is(.login-form, .signup-form) {
 }
 
 .bg-animation-1 {
-  background: linear-gradient(-45deg, #e35a01 0 7.5%, #4c7c71 7.5% 15%, #2e4769 15% 22.5%, #1f262e 22.5% 30%);
+  background: linear-gradient(-45deg, #e45c01 0 7.5%, #4c7b70 7.5% 15%, #2f486a 15% 22.5%, #1f262e 22.5% 30%);
   background-size: 150% 150%;
-  -webkit-animation: bg-in-bt-rgh 1.5s ease;
-          animation: bg-in-bt-rgh 1.5s ease;
+  -webkit-animation: bgAnimation1 1.5s ease;
+          animation: bgAnimation1 1.5s ease;
   -webkit-animation-fill-mode: forwards;
           animation-fill-mode: forwards;
 }
 
-@keyframes bg-in-bt-rgh {
+@keyframes bgAnimation1 {
   from {
     background-position: 0% 0%;
   }
@@ -236,15 +223,15 @@ main > .form-wrapper > :is(.login-form, .signup-form) {
 }
 
 .bg-animation-2 {
-  background: linear-gradient(-45deg, #e35a01 0 7.5%, #4c7c71 7.5% 15%, #2e4769 15% 22.5%, #1f262e 22.5% 30%);
+  background: linear-gradient(-45deg, #e45c01 0 7.5%, #4c7b70 7.5% 15%, #2f486a 15% 22.5%, #1f262e 22.5% 30%);
   background-size: 150% 150%;
-  -webkit-animation: body-bg-bt-rgh-out 1s ease;
-          animation: body-bg-bt-rgh-out 1s ease;
+  -webkit-animation: bgAnimation2 1s ease;
+          animation: bgAnimation2 1s ease;
   -webkit-animation-fill-mode: forwards;
           animation-fill-mode: forwards;
 }
 
-@-webkit-keyframes body-bg-bt-rgh-out {
+@-webkit-keyframes bgAnimation2 {
   from {
     background-position: 100% 100%;
   }
@@ -253,7 +240,7 @@ main > .form-wrapper > :is(.login-form, .signup-form) {
   }
 }
 
-@keyframes body-bg-bt-rgh-out {
+@keyframes bgAnimation2 {
   from {
     background-position: 100% 100%;
   }
@@ -263,15 +250,15 @@ main > .form-wrapper > :is(.login-form, .signup-form) {
 }
 
 .bg-animation-3 {
-  background: linear-gradient(135deg, #e35a01 0 7.5%, #4c7c71 7.5% 15%, #2e4769 15% 22.5%, #1f262e 22.5% 30%);
+  background: linear-gradient(135deg, #e45c01 0 7.5%, #4c7b70 7.5% 15%, #2f486a 15% 22.5%, #1f262e 22.5% 30%);
   background-size: 150% 150%;
-  -webkit-animation: bg-in-tp-lft 1.5s ease;
-          animation: bg-in-tp-lft 1.5s ease;
+  -webkit-animation: bgAnimation3 1.5s ease;
+          animation: bgAnimation3 1.5s ease;
   -webkit-animation-fill-mode: forwards;
           animation-fill-mode: forwards;
 }
 
-@-webkit-keyframes bg-in-tp-lft {
+@-webkit-keyframes bgAnimation3 {
   from {
     background-position: 100% 100%;
   }
@@ -280,7 +267,7 @@ main > .form-wrapper > :is(.login-form, .signup-form) {
   }
 }
 
-@keyframes bg-in-tp-lft {
+@keyframes bgAnimation3 {
   from {
     background-position: 100% 100%;
   }
@@ -290,15 +277,15 @@ main > .form-wrapper > :is(.login-form, .signup-form) {
 }
 
 .bg-animation-4 {
-  background: linear-gradient(135deg, #e35a01 0 7.5%, #4c7c71 7.5% 15%, #2e4769 15% 22.5%, #1f262e 22.5% 30%);
+  background: linear-gradient(135deg, #e45c01 0 7.5%, #4c7b70 7.5% 15%, #2f486a 15% 22.5%, #1f262e 22.5% 30%);
   background-size: 150% 150%;
-  -webkit-animation: bg-out-tp-left 1s ease;
-          animation: bg-out-tp-left 1s ease;
+  -webkit-animation: bgAnimation4 1s ease;
+          animation: bgAnimation4 1s ease;
   -webkit-animation-fill-mode: forwards;
           animation-fill-mode: forwards;
 }
 
-@-webkit-keyframes bg-out-tp-left {
+@-webkit-keyframes bgAnimation4 {
   from {
     background-position: 0% 0%;
   }
@@ -307,7 +294,7 @@ main > .form-wrapper > :is(.login-form, .signup-form) {
   }
 }
 
-@keyframes bg-out-tp-left {
+@keyframes bgAnimation4 {
   from {
     background-position: 0% 0%;
   }
@@ -329,23 +316,23 @@ main > .form-wrapper > :is(.login-form, .signup-form) {
     transition: none;
   }
   .bg-animation-1 {
-    background: -webkit-gradient(linear, left bottom, left top, color-stop(0, #e35a01), color-stop(5%, #4c7c71), color-stop(10%, #2e4769), color-stop(15%, #1f262e));
-    background: linear-gradient(0deg, #e35a01 0 5%, #4c7c71 5% 10%, #2e4769 10% 15%, #1f262e 15% 20%);
+    background: -webkit-gradient(linear, left bottom, left top, color-stop(0, #e45c01), color-stop(5%, #4c7b70), color-stop(10%, #2f486a), color-stop(15%, #1f262e));
+    background: linear-gradient(0deg, #e45c01 0 5%, #4c7b70 5% 10%, #2f486a 10% 15%, #1f262e 15% 20%);
     background-size: 150% 150%;
   }
   .bg-animation-2 {
-    background: -webkit-gradient(linear, left bottom, left top, color-stop(0, #e35a01), color-stop(5%, #4c7c71), color-stop(10%, #2e4769), color-stop(15%, #1f262e));
-    background: linear-gradient(0deg, #e35a01 0 5%, #4c7c71 5% 10%, #2e4769 10% 15%, #1f262e 15% 20%);
+    background: -webkit-gradient(linear, left bottom, left top, color-stop(0, #e45c01), color-stop(5%, #4c7b70), color-stop(10%, #2f486a), color-stop(15%, #1f262e));
+    background: linear-gradient(0deg, #e45c01 0 5%, #4c7b70 5% 10%, #2f486a 10% 15%, #1f262e 15% 20%);
     background-size: 150% 150%;
   }
   .bg-animation-3 {
-    background: -webkit-gradient(linear, left top, left bottom, color-stop(0, #e35a01), color-stop(5%, #4c7c71), color-stop(10%, #2e4769), color-stop(15%, #1f262e));
-    background: linear-gradient(180deg, #e35a01 0 5%, #4c7c71 5% 10%, #2e4769 10% 15%, #1f262e 15% 20%);
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(0, #e45c01), color-stop(5%, #4c7b70), color-stop(10%, #2f486a), color-stop(15%, #1f262e));
+    background: linear-gradient(180deg, #e45c01 0 5%, #4c7b70 5% 10%, #2f486a 10% 15%, #1f262e 15% 20%);
     background-size: 150% 150%;
   }
   .bg-animation-4 {
-    background: -webkit-gradient(linear, left top, left bottom, color-stop(0, #e35a01), color-stop(5%, #4c7c71), color-stop(10%, #2e4769), color-stop(15%, #1f262e));
-    background: linear-gradient(180deg, #e35a01 0 5%, #4c7c71 5% 10%, #2e4769 10% 15%, #1f262e 15% 20%);
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(0, #e45c01), color-stop(5%, #4c7b70), color-stop(10%, #2f486a), color-stop(15%, #1f262e));
+    background: linear-gradient(180deg, #e45c01 0 5%, #4c7b70 5% 10%, #2f486a 10% 15%, #1f262e 15% 20%);
     background-size: 150% 150%;
   }
 }
@@ -357,9 +344,5 @@ main > .form-wrapper > :is(.login-form, .signup-form) {
 
 .show-pass-cta {
   cursor: pointer;
-}
-
-body {
-  direction: ltr !important;
 }
 /*# sourceMappingURL=style.css.map */
