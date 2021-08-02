@@ -751,10 +751,11 @@ main {
   position: absolute;
   top: 2vh;
   right: 0;
-  padding: 0.5rem 1.25rem;
+  padding: 0.5rem 1rem;
   background: $--selected-bg-blue;
   z-index: 120;
   border-radius: 200px 0 0 200px;
+  cursor: pointer;
 
   transition: transform 1s ease;
 

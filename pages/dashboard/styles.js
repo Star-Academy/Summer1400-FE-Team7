@@ -1,7 +1,6 @@
 //VARIABLES DECLARATIONS
 const menuButtons = document.querySelectorAll(".btn-wrapper");
 const favIcon = document.querySelectorAll(".fav-icon");
-const munuOpenerCloser = document.querySelector("#side-menu-opener-closer-btn");
 const sideMenu = document.querySelector(".side-menu");
 const layoutBtns = document.querySelectorAll(".radio-btn");
 const lyricsBtn = document.querySelector("#lyrics-btn");
@@ -67,7 +66,7 @@ const HandlemenuButtonsSelect = () => {
 /*
 // Handle open/close side menu
 */
-munuOpenerCloser.addEventListener("click", () => {
+sideMenuOpener.addEventListener("click", () => {
   sideMenu.classList.toggle(SIDE_MENU_CLOSED);
   songList.classList.toggle(SIDE_MENU_OPEND);
 });

@@ -964,10 +964,11 @@ main .mobile-navigation > .tab-navigation > button::after {
   position: absolute;
   top: 2vh;
   right: 0;
-  padding: 0.5rem 1.25rem;
+  padding: 0.5rem 1rem;
   background: #1d7dd7;
   z-index: 120;
   border-radius: 200px 0 0 200px;
+  cursor: pointer;
   -webkit-transition: -webkit-transform 1s ease;
   transition: -webkit-transform 1s ease;
   transition: transform 1s ease;
