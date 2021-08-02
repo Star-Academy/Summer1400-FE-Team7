@@ -6,14 +6,18 @@ const LIKED_CLASS = "liked";
 const LIKED = "../../assets/images/liked.svg";
 const LIKE_HOVERD = "../../assets/images/like-hovered.svg";
 
+let songs = [];
+let currentMusicID = 1;
+
 fetch("./songs.json")
   .then((response) => response.json())
   .then((data) => {
-    songListFiller(data);
+    songs = data.songs;
+    songListFiller();
   })
   .catch((error) => console.log(error));
 
-const songListFiller = ({ songs }) => {
+const songListFiller = () => {
   songs.forEach((song, index) => {
     const songWrapperDiv = document.createElement("div");
     songWrapperDiv.className = "song-wrapper";
@@ -105,11 +109,11 @@ const songListFiller = ({ songs }) => {
         authorName.classList.add(AUTHOR_NAME_SELECTED);
       }
     });
-    doubleClickHandler(songWrapperDiv, song.file);
+    doubleClickHandler(songWrapperDiv, song.id);
   });
 };
 
-const doubleClickHandler = (elem, url) => {
+const doubleClickHandler = (elem, id) => {
   elem.addEventListener("dblclick", () => {
     const imgSrc = elem.children[0].children[0].src;
     const elemTitle = elem.children[1].children[0].innerText;
@@ -121,8 +125,8 @@ const doubleClickHandler = (elem, url) => {
     musicCover.src = imgSrc;
     musicArtist.innerText = elemArtist;
     musicTitle.innerText = elemTitle;
-
-    play(url);
+    currentMusicID = id;
+    play();
   });
 };
 
@@ -144,20 +148,6 @@ const convertHMS = (value) => {
   if (hours > 0) {
     return hours + ":" + minutes + ":" + seconds; // Return is HH : MM : SS
   } else {
-    return minutes + ":" + seconds; // Return is HH : MM : SS
+    return minutes + ":" + seconds; // Return is  MM : SS
   }
-};
-
-const play = (url) => {
-  const currentMusic = new Audio(url);
-
-  // currentMusic.addEventListener("canplaythrough", (event) => {
-  // currentMusic.play();
-  // });
-
-  currentMusic.addEventListener("canplaythrough", (event) => {
-    /* the audio is now playable; play it if permissions allow */
-    currentMusic.play();
-    console.log("HERE");
-  });
 };

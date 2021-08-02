@@ -21,14 +21,24 @@ const register = async () => {
     confirmPasswordRegister.setCustomValidity("");
   }
 
-  let response = await fetch(`${BASE_URL}/user/register`, {
+  let response = await fetch(`${BASE_URL}/user/login`, {
     method: "POST",
-    body: {
-      username: user.email.split("@")[0],
-      email: user.email,
-      password: user.password,
-    },
-  });
+    body: JSON.stringify({ username: user.email.split("@")[0], email: user.email, password: user.password }),
+  })
+    .then((response) => response.json())
+    .then((responseJson) => {
+      console.log(responseJson);
+    });
+
+  console.log(user.email.split("@")[0]);
+  console.log(user.email);
+  console.log(user.password);
+
+  // await fetch(`${BASE_URL}/user/one/8`)
+  //   .then((response) => response.json())
+  //   .then((responseJson) => {
+  //     console.log(responseJson);
+  //   });
 
   // if (response.ok) {
   if (!response.error) {

@@ -43,6 +43,7 @@ const SHOW_PASSWORD = "../../assets/images/show-password.svg";
 // passwordLogin.oninvalid = function (event) {
 //   event.target.setCustomValidity("رمز عبور باید دارای حداقل ۸ کاراکتر،یک حرف و یک عدد باشد");
 // };
+
 /**
  * Toggel position of login/sign-up form.
  */
