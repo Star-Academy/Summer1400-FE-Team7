@@ -47,9 +47,6 @@ const MOBILE_INFO_ANIMATION = "mobile-info-animation";
 const LIKE_HOVE_IMG = "../../assets/images/like-hovered.svg";
 const LIKE_IMG = "../../assets/images/like.svg";
 const LIKED_IMG = "../../assets/images/liked.svg";
-const FAV_ICON = "fav-icon";
-const SONG_WRAPPER_SELECTED = "song-wrapper-selected";
-const AUTHOR_NAME_SELECTED = "author-name-selected";
 
 /*
 //Handle side-menu items selection.
@@ -218,43 +215,6 @@ favIcon.forEach((elem) => {
     elem.classList.toggle("liked");
     elem.src = LIKED_IMG;
     elem.style.transform = "scale(1)";
-  });
-});
-
-/*
-// Handle on music click
-*/
-songWrapper.forEach((elem) => {
-  elem.addEventListener("click", (e) => {
-    if (!e.path[0].classList.contains(FAV_ICON)) {
-      const enabledBtn = [...document.getElementsByClassName(SONG_WRAPPER_SELECTED)];
-
-      const authorNameSelected = [...document.getElementsByClassName(AUTHOR_NAME_SELECTED)];
-
-      if (enabledBtn.length != 0) {
-        enabledBtn[0].classList.remove(SONG_WRAPPER_SELECTED);
-        authorNameSelected[0].classList.remove(AUTHOR_NAME_SELECTED);
-      }
-
-      elem.classList.add(SONG_WRAPPER_SELECTED);
-      elem.children[1].children[1].classList.add(AUTHOR_NAME_SELECTED);
-    }
-  });
-
-  /*
-  // Update song info in the music-control section
-  */
-  elem.addEventListener("dblclick", () => {
-    const imgSrc = elem.children[0].children[0].src;
-    const elemTitle = elem.children[1].children[0].innerText;
-    const elemArtist = elem.children[1].children[1].innerText;
-
-    bgCover.style.background = `url(${imgSrc}) center no-repeat`;
-    bgCover.style.backgroundSize = "cover";
-
-    musicCover.src = imgSrc;
-    musicArtist.innerText = elemArtist;
-    musicTitle.innerText = elemTitle;
   });
 });
 
