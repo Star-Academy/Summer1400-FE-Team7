@@ -1,42 +1,879 @@
 <!DOCTYPE html>
-<html lang="fa-IR">
+<html lang="fa-IR" dir="rtl">
   <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="دسترسی به محبوب‌ترین آهنگ‌های جدید و قدیمی در دنیا و امکان انتخاب و ثبت آهنگ‌های مورد علاقه">
-    <meta name="author" content="parsa arvaneh, milad nafar">
-
-    <title>ورود</title>
-    <link rel="stylesheet" href="style.css">
-    <link rel="stylesheet" href="../../styles/main.css">
-    <script src="./app.js" defer></script>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" href="../../assets/images/logo.svg" />
+    <title>خانه</title>
+    <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="../../styles/main.css" />
+    <script src="./styles.js" defer></script>
   </head>
   <body>
-    <section class="side-menu">
+    <main>
+      <section class="section-1">
+        <div class="side-menu">
+          <div class="search">
+            <input type="search" placeholder="جست و جو..." />
+            <div class="search__icon"></div>
+          </div>
 
-      <ul>
-        <li>همه آهنگ ها</li>
-        <li>مورد علاقه</li>
-        <li>پلی‌لیست</li>
-        <li>خروج</li>
-      </ul>
-    </section>
+          <div class="btn-wrapper menu-selected">
+            <img src="../../assets/images/playlist.svg" alt="" />
+            <button>همه آهنگ ها</button>
+          </div>
 
-    <section class="play-list">
-      <ul>
-        <li>آهنگ1</li>
-        <li>آهنگ2</li>
-        <li>آهنگ3</li>
-        <li>آهنگ4</li>
-      </ul>
-    </section>
+          <div class="btn-wrapper">
+            <img src="../../assets/images/favourite.svg" alt="" />
+            <button>مورد علاقه</button>
+          </div>
 
-    <section class="play-control">
-      <button>قبلی</button>
-      <button>پخش</button>
-      <button>بعدی</button>
-    </section>
+          <div class="btn-wrapper">
+            <img src="../../assets/images/playlist-add.svg" alt="" />
+            <button>پلی لیست جدید</button>
+            <button class="add-btn"></button>
+          </div>
 
+          <div class="profile-wrapper btn-wrapper">
+            <p>parsa.arvaneh@gmail.com</p>
+            <button>
+              <img src="../../assets/images/logout.svg" alt="" />
+            </button>
+          </div>
+        </div>
+        <div class="song-list side-menu-opended">
+          <div>
+            <h2>همه آهنگ ها</h2>
+            <div class="song-list-view-wrapper">
+              <input type="radio" name="song-list-view" id="list-view" checked class="radio-btn" />
+              <label for="list-view">
+                <img src="../../assets/images/controls/list.svg" alt="list view button" />
+              </label>
+
+              <input type="radio" name="song-list-view" id="list-compact-view" class="radio-btn" />
+              <label for="list-compact-view">
+                <img src="../../assets/images/controls/list-compact.svg" alt="list compact view button" />
+              </label>
+
+              <input type="radio" name="song-list-view" id="grid-view" class="radio-btn" />
+              <label for="grid-view">
+                <img src="../../assets/images/controls/list-grid.svg" alt="grid view button" />
+              </label>
+            </div>
+          </div>
+          <div class="song-wrapper">
+            <div class="song-cover"><img src="https://loremflickr.com/g/600/600/music?img0" /></div>
+            <div class="song-info">
+              <p>I’ve Been Everywhere</p>
+              <p>Hank Snow</p>
+            </div>
+            <div class="song-prop">
+              <p>07:00</p>
+              <img class="fav-icon" src="../../assets/images/like.svg" />
+            </div>
+          </div>
+          <div class="song-wrapper">
+            <div class="song-cover"><img src="https://loremflickr.com/g/600/600/music?img1" /></div>
+            <div class="song-info">
+              <p>California Girls</p>
+              <p>The Beach Boys</p>
+            </div>
+            <div class="song-prop">
+              <p>06:50</p>
+              <img class="fav-icon" src="../../assets/images/like.svg" />
+            </div>
+          </div>
+          <div class="song-wrapper">
+            <div class="song-cover"><img src="https://loremflickr.com/g/600/600/music?img2" /></div>
+            <div class="song-info">
+              <p>50 Ways to Leave Your Lover</p>
+              <p>Paul Simon</p>
+            </div>
+            <div class="song-prop">
+              <p>06:23</p>
+              <img class="fav-icon" src="../../assets/images/like.svg" />
+            </div>
+          </div>
+          <div class="song-wrapper">
+            <div class="song-cover"><img src="https://loremflickr.com/g/600/600/music?img3" /></div>
+            <div class="song-info">
+              <p>Vogue</p>
+              <p>Madona</p>
+            </div>
+            <div class="song-prop">
+              <p>06:02</p>
+              <img class="fav-icon" src="../../assets/images/like.svg" />
+            </div>
+          </div>
+          <div class="song-wrapper">
+            <div class="song-cover"><img src="https://loremflickr.com/g/600/600/music ?img4" /></div>
+            <div class="song-info">
+              <p>Subterranean Homesick Blues</p>
+              <p>Bob Dylan</p>
+            </div>
+            <div class="song-prop">
+              <p>05:45</p>
+              <img class="fav-icon" src="../../assets/images/like.svg" />
+            </div>
+          </div>
+          <div class="song-wrapper">
+            <div class="song-cover"><img src="https://loremflickr.com/g/600/600/music?img5" /></div>
+            <div class="song-info">
+              <p>Dancing in the Streets</p>
+              <p>Martha</p>
+            </div>
+            <div class="song-prop">
+              <p>05:25</p>
+              <img class="fav-icon" src="../../assets/images/like.svg" />
+            </div>
+          </div>
+          <div class="song-wrapper">
+            <div class="song-cover"><img src="https://loremflickr.com/g/600/600/music ?img6" /></div>
+            <div class="song-info">
+              <p>بغض</p>
+              <p>مرتضی پاشایی</p>
+            </div>
+            <div class="song-prop">
+              <p>07:25</p>
+              <img class="fav-icon" src="../../assets/images/like.svg" />
+            </div>
+          </div>
+          <div class="song-wrapper">
+            <div class="song-cover"><img src="https://loremflickr.com/g/600/600/music ?img7" /></div>
+            <div class="song-info">
+              <p>تاوان</p>
+              <p>احسان خواجه&zwnj;امیری</p>
+            </div>
+            <div class="song-prop">
+              <p>05:45</p>
+              <img class="fav-icon" src="../../assets/images/like.svg" />
+            </div>
+          </div>
+          <div class="song-wrapper">
+            <div class="song-cover"><img src="../../assets/images/default-song-cover.svg" /></div>
+            <div class="song-info">
+              <p>ترکم نکن</p>
+              <p>معین</p>
+            </div>
+            <div class="song-prop">
+              <p>06:15</p>
+              <img class="fav-icon" src="../../assets/images/like.svg" />
+            </div>
+          </div>
+          <div class="song-wrapper">
+            <div class="song-cover"><img src="https://loremflickr.com/g/600/600/music?img9" /></div>
+            <div class="song-info">
+              <p>برف</p>
+              <p>بابک جهانبخش</p>
+            </div>
+            <div class="song-prop">
+              <p>05:47</p>
+              <img class="fav-icon" src="../../assets/images/like.svg" />
+            </div>
+          </div>
+          <div class="song-wrapper">
+            <div class="song-cover"><img src="https://loremflickr.com/g/600/600/music?img10" /></div>
+            <div class="song-info">
+              <p>رخنه</p>
+              <p>رضا صادقی</p>
+            </div>
+            <div class="song-prop">
+              <p>07:13</p>
+              <img class="fav-icon" src="../../assets/images/like.svg" />
+            </div>
+          </div>
+          <div class="song-wrapper">
+            <div class="song-cover"><img src="http://loremflickr.com/g/600/600/music?img11" /></div>
+            <div class="song-info">
+              <p>California Girls</p>
+              <p>The Beach Boys</p>
+            </div>
+            <div class="song-prop">
+              <p>06:50</p>
+              <img class="fav-icon" src="../../assets/images/like.svg" />
+            </div>
+          </div>
+          <div class="song-wrapper">
+            <div class="song-cover"><img src="http://loremflickr.com/g/600/600/music?img12" /></div>
+            <div class="song-info">
+              <p>50 Ways to Leave Your Lover</p>
+              <p>Paul Simon</p>
+            </div>
+            <div class="song-prop">
+              <p>06:23</p>
+              <img class="fav-icon" src="../../assets/images/like.svg" />
+            </div>
+          </div>
+          <div class="song-wrapper">
+            <div class="song-cover"><img src="https://loremflickr.com/g/600/600/music?img13" /></div>
+            <div class="song-info">
+              <p>Vogue</p>
+              <p>Madona</p>
+            </div>
+            <div class="song-prop">
+              <p>06:02</p>
+              <img class="fav-icon" src="../../assets/images/like.svg" />
+            </div>
+          </div>
+          <div class="song-wrapper">
+            <div class="song-cover"><img src="https://loremflickr.com/g/600/600/music ?img14" /></div>
+            <div class="song-info">
+              <p>Subterranean Homesick Blues</p>
+              <p>Bob Dylan</p>
+            </div>
+            <div class="song-prop">
+              <p>05:45</p>
+              <img class="fav-icon" src="../../assets/images/like.svg" />
+            </div>
+          </div>
+          <div class="song-wrapper">
+            <div class="song-cover"><img src="https://loremflickr.com/g/600/600/music?img15" /></div>
+            <div class="song-info">
+              <p>Dancing in the Streets</p>
+              <p>Martha</p>
+            </div>
+            <div class="song-prop">
+              <p>05:25</p>
+              <img class="fav-icon" src="../../assets/images/like.svg" />
+            </div>
+          </div>
+          <div class="song-wrapper">
+            <div class="song-cover"><img src="https://loremflickr.com/g/600/600/music ?img16" /></div>
+            <div class="song-info">
+              <p>بغض</p>
+              <p>مرتضی پاشایی</p>
+            </div>
+            <div class="song-prop">
+              <p>07:25</p>
+              <img class="fav-icon" src="../../assets/images/like.svg" />
+            </div>
+          </div>
+          <div class="song-wrapper">
+            <div class="song-cover"><img src="https://loremflickr.com/g/600/600/music ?img17" /></div>
+            <div class="song-info">
+              <p>تاوان</p>
+              <p>احسان خواجه&zwnj;امیری</p>
+            </div>
+            <div class="song-prop">
+              <p>05:45</p>
+              <img class="fav-icon" src="../../assets/images/like.svg" />
+            </div>
+          </div>
+          <div class="song-wrapper">
+            <div class="song-cover"><img src="../../assets/images/default-song-cover.svg" /></div>
+            <div class="song-info">
+              <p>ترکم نکن</p>
+              <p>معین</p>
+            </div>
+            <div class="song-prop">
+              <p>06:15</p>
+              <img class="fav-icon" src="../../assets/images/like.svg" />
+            </div>
+          </div>
+          <div class="song-wrapper">
+            <div class="song-cover"><img src="https://loremflickr.com/g/600/600/music?img19" /></div>
+            <div class="song-info">
+              <p>برف</p>
+              <p>بابک جهانبخش</p>
+            </div>
+            <div class="song-prop">
+              <p>05:47</p>
+              <img class="fav-icon" src="../../assets/images/like.svg" />
+            </div>
+          </div>
+          <div class="song-wrapper">
+            <div class="song-cover"><img src="https://loremflickr.com/g/600/600/music?img20" /></div>
+            <div class="song-info">
+              <p>رخنه</p>
+              <p>رضا صادقی</p>
+            </div>
+            <div class="song-prop">
+              <p>07:13</p>
+              <img class="fav-icon" src="../../assets/images/like.svg" />
+            </div>
+          </div>
+          <div class="song-wrapper">
+            <div class="song-cover"><img src="https://loremflickr.com/g/600/600/music?img21" /></div>
+            <div class="song-info">
+              <p>California Girls</p>
+              <p>The Beach Boys</p>
+            </div>
+            <div class="song-prop">
+              <p>06:50</p>
+              <img class="fav-icon" src="../../assets/images/like.svg" />
+            </div>
+          </div>
+          <div class="song-wrapper">
+            <div class="song-cover"><img src="https://loremflickr.com/g/600/600/music?img22" /></div>
+            <div class="song-info">
+              <p>50 Ways to Leave Your Lover</p>
+              <p>Paul Simon</p>
+            </div>
+            <div class="song-prop">
+              <p>06:23</p>
+              <img class="fav-icon" src="../../assets/images/like.svg" />
+            </div>
+          </div>
+          <div class="song-wrapper">
+            <div class="song-cover"><img src="http://loremflickr.com/g/600/600/music?img23" /></div>
+            <div class="song-info">
+              <p>Vogue</p>
+              <p>Madona</p>
+            </div>
+            <div class="song-prop">
+              <p>06:02</p>
+              <img class="fav-icon" src="../../assets/images/like.svg" />
+            </div>
+          </div>
+          <div class="song-wrapper">
+            <div class="song-cover"><img src="https://loremflickr.com/g/600/600/music ?img24" /></div>
+            <div class="song-info">
+              <p>Subterranean Homesick Blues</p>
+              <p>Bob Dylan</p>
+            </div>
+            <div class="song-prop">
+              <p>05:45</p>
+              <img class="fav-icon" src="../../assets/images/like.svg" />
+            </div>
+          </div>
+          <div class="song-wrapper">
+            <div class="song-cover"><img src="http://loremflickr.com/g/600/600/music?img25" /></div>
+            <div class="song-info">
+              <p>Dancing in the Streets</p>
+              <p>Martha</p>
+            </div>
+            <div class="song-prop">
+              <p>05:25</p>
+              <img class="fav-icon" src="../../assets/images/like.svg" />
+            </div>
+          </div>
+          <div class="song-wrapper">
+            <div class="song-cover"><img src="https://loremflickr.com/g/600/600/music ?img26" /></div>
+            <div class="song-info">
+              <p>بغض</p>
+              <p>مرتضی پاشایی</p>
+            </div>
+            <div class="song-prop">
+              <p>07:25</p>
+              <img class="fav-icon" src="../../assets/images/like.svg" />
+            </div>
+          </div>
+          <div class="song-wrapper">
+            <div class="song-cover"><img src="https://loremflickr.com/g/600/600/music ?img27" /></div>
+            <div class="song-info">
+              <p>تاوان</p>
+              <p>احسان خواجه&zwnj;امیری</p>
+            </div>
+            <div class="song-prop">
+              <p>05:45</p>
+              <img class="fav-icon" src="../../assets/images/like.svg" />
+            </div>
+          </div>
+          <div class="song-wrapper">
+            <div class="song-cover"><img src="../../assets/images/default-song-cover.svg" /></div>
+            <div class="song-info">
+              <p>ترکم نکن</p>
+              <p>معین</p>
+            </div>
+            <div class="song-prop">
+              <p>06:15</p>
+              <img class="fav-icon" src="../../assets/images/like.svg" />
+            </div>
+          </div>
+          <div class="song-wrapper">
+            <div class="song-cover"><img src="https://loremflickr.com/g/600/600/music?img29" /></div>
+            <div class="song-info">
+              <p>برف</p>
+              <p>بابک جهانبخش</p>
+            </div>
+            <div class="song-prop">
+              <p>05:47</p>
+              <img class="fav-icon" src="../../assets/images/like.svg" />
+            </div>
+          </div>
+          <div class="song-wrapper">
+            <div class="song-cover"><img src="https://loremflickr.com/g/600/600/music?img30" /></div>
+            <div class="song-info">
+              <p>رخنه</p>
+              <p>رضا صادقی</p>
+            </div>
+            <div class="song-prop">
+              <p>07:13</p>
+              <img class="fav-icon" src="../../assets/images/like.svg" />
+            </div>
+          </div>
+          <div class="song-wrapper">
+            <div class="song-cover"><img src="http://loremflickr.com/g/600/600/music?img31" /></div>
+            <div class="song-info">
+              <p>California Girls</p>
+              <p>The Beach Boys</p>
+            </div>
+            <div class="song-prop">
+              <p>06:50</p>
+              <img class="fav-icon" src="../../assets/images/like.svg" />
+            </div>
+          </div>
+          <div class="song-wrapper">
+            <div class="song-cover"><img src="http://loremflickr.com/g/600/600/music?img32" /></div>
+            <div class="song-info">
+              <p>50 Ways to Leave Your Lover</p>
+              <p>Paul Simon</p>
+            </div>
+            <div class="song-prop">
+              <p>06:23</p>
+              <img class="fav-icon" src="../../assets/images/like.svg" />
+            </div>
+          </div>
+          <div class="song-wrapper">
+            <div class="song-cover"><img src="http://loremflickr.com/g/600/600/music?img33" /></div>
+            <div class="song-info">
+              <p>Vogue</p>
+              <p>Madona</p>
+            </div>
+            <div class="song-prop">
+              <p>06:02</p>
+              <img class="fav-icon" src="../../assets/images/like.svg" />
+            </div>
+          </div>
+          <div class="song-wrapper">
+            <div class="song-cover"><img src="https://loremflickr.com/g/600/600/music ?img34" /></div>
+            <div class="song-info">
+              <p>Subterranean Homesick Blues</p>
+              <p>Bob Dylan</p>
+            </div>
+            <div class="song-prop">
+              <p>05:45</p>
+              <img class="fav-icon" src="../../assets/images/like.svg" />
+            </div>
+          </div>
+          <div class="song-wrapper">
+            <div class="song-cover"><img src="http://loremflickr.com/g/600/600/music?img35" /></div>
+            <div class="song-info">
+              <p>Dancing in the Streets</p>
+              <p>Martha</p>
+            </div>
+            <div class="song-prop">
+              <p>05:25</p>
+              <img class="fav-icon" src="../../assets/images/like.svg" />
+            </div>
+          </div>
+          <div class="song-wrapper">
+            <div class="song-cover"><img src="https://loremflickr.com/g/600/600/music ?img36" /></div>
+            <div class="song-info">
+              <p>بغض</p>
+              <p>مرتضی پاشایی</p>
+            </div>
+            <div class="song-prop">
+              <p>07:25</p>
+              <img class="fav-icon" src="../../assets/images/like.svg" />
+            </div>
+          </div>
+          <div class="song-wrapper">
+            <div class="song-cover"><img src="https://loremflickr.com/g/600/600/music ?img37" /></div>
+            <div class="song-info">
+              <p>تاوان</p>
+              <p>احسان خواجه&zwnj;امیری</p>
+            </div>
+            <div class="song-prop">
+              <p>05:45</p>
+              <img class="fav-icon" src="../../assets/images/like.svg" />
+            </div>
+          </div>
+          <div class="song-wrapper">
+            <div class="song-cover"><img src="../../assets/images/default-song-cover.svg" /></div>
+            <div class="song-info">
+              <p>ترکم نکن</p>
+              <p>معین</p>
+            </div>
+            <div class="song-prop">
+              <p>06:15</p>
+              <img class="fav-icon" src="../../assets/images/like.svg" />
+            </div>
+          </div>
+          <div class="song-wrapper">
+            <div class="song-cover"><img src="https://loremflickr.com/g/600/600/music?img39" /></div>
+            <div class="song-info">
+              <p>برف</p>
+              <p>بابک جهانبخش</p>
+            </div>
+            <div class="song-prop">
+              <p>05:47</p>
+              <img class="fav-icon" src="../../assets/images/like.svg" />
+            </div>
+          </div>
+          <div class="song-wrapper">
+            <div class="song-cover"><img src="https://loremflickr.com/g/600/600/music?img40" /></div>
+            <div class="song-info">
+              <p>رخنه</p>
+              <p>رضا صادقی</p>
+            </div>
+            <div class="song-prop">
+              <p>07:13</p>
+              <img class="fav-icon" src="../../assets/images/like.svg" />
+            </div>
+          </div>
+          <div class="song-wrapper">
+            <div class="song-cover"><img src="http://loremflickr.com/g/600/600/music?img41" /></div>
+            <div class="song-info">
+              <p>California Girls</p>
+              <p>The Beach Boys</p>
+            </div>
+            <div class="song-prop">
+              <p>06:50</p>
+              <img class="fav-icon" src="../../assets/images/like.svg" />
+            </div>
+          </div>
+          <div class="song-wrapper">
+            <div class="song-cover"><img src="http://loremflickr.com/g/600/600/music?img42" /></div>
+            <div class="song-info">
+              <p>50 Ways to Leave Your Lover</p>
+              <p>Paul Simon</p>
+            </div>
+            <div class="song-prop">
+              <p>06:23</p>
+              <img class="fav-icon" src="../../assets/images/like.svg" />
+            </div>
+          </div>
+          <div class="song-wrapper">
+            <div class="song-cover"><img src="http://loremflickr.com/g/600/600/music?img43" /></div>
+            <div class="song-info">
+              <p>Vogue</p>
+              <p>Madona</p>
+            </div>
+            <div class="song-prop">
+              <p>06:02</p>
+              <img class="fav-icon" src="../../assets/images/like.svg" />
+            </div>
+          </div>
+          <div class="song-wrapper">
+            <div class="song-cover"><img src="https://loremflickr.com/g/600/600/music ?img44" /></div>
+            <div class="song-info">
+              <p>Subterranean Homesick Blues</p>
+              <p>Bob Dylan</p>
+            </div>
+            <div class="song-prop">
+              <p>05:45</p>
+              <img class="fav-icon" src="../../assets/images/like.svg" />
+            </div>
+          </div>
+          <div class="song-wrapper">
+            <div class="song-cover"><img src="http://loremflickr.com/g/600/600/music?img45" /></div>
+            <div class="song-info">
+              <p>Dancing in the Streets</p>
+              <p>Martha</p>
+            </div>
+            <div class="song-prop">
+              <p>05:25</p>
+              <img class="fav-icon" src="../../assets/images/like.svg" />
+            </div>
+          </div>
+          <div class="song-wrapper">
+            <div class="song-cover"><img src="https://loremflickr.com/g/600/600/music ?img46" /></div>
+            <div class="song-info">
+              <p>بغض</p>
+              <p>مرتضی پاشایی</p>
+            </div>
+            <div class="song-prop">
+              <p>07:25</p>
+              <img class="fav-icon" src="../../assets/images/like.svg" />
+            </div>
+          </div>
+          <div class="song-wrapper">
+            <div class="song-cover"><img src="https://loremflickr.com/g/600/600/music ?img47" /></div>
+            <div class="song-info">
+              <p>تاوان</p>
+              <p>احسان خواجه&zwnj;امیری</p>
+            </div>
+            <div class="song-prop">
+              <p>05:45</p>
+              <img class="fav-icon" src="../../assets/images/like.svg" />
+            </div>
+          </div>
+          <div class="song-wrapper">
+            <div class="song-cover"><img src="../../assets/images/default-song-cover.svg" /></div>
+            <div class="song-info">
+              <p>ترکم نکن</p>
+              <p>معین</p>
+            </div>
+            <div class="song-prop">
+              <p>06:15</p>
+              <img class="fav-icon" src="../../assets/images/like.svg" />
+            </div>
+          </div>
+          <div class="song-wrapper">
+            <div class="song-cover"><img src="https://loremflickr.com/g/600/600/music?img49" /></div>
+            <div class="song-info">
+              <p>برف</p>
+              <p>بابک جهانبخش</p>
+            </div>
+            <div class="song-prop">
+              <p>05:47</p>
+              <img class="fav-icon" src="../../assets/images/like.svg" />
+            </div>
+          </div>
+          <div class="song-wrapper">
+            <div class="song-cover"><img src="https://loremflickr.com/g/600/600/music?img50" /></div>
+            <div class="song-info">
+              <p>رخنه</p>
+              <p>رضا صادقی</p>
+            </div>
+            <div class="song-prop">
+              <p>07:13</p>
+              <img class="fav-icon" src="../../assets/images/like.svg" />
+            </div>
+          </div>
+          <div class="song-wrapper">
+            <div class="song-cover"><img src="http://loremflickr.com/g/600/600/music?img51" /></div>
+            <div class="song-info">
+              <p>California Girls</p>
+              <p>The Beach Boys</p>
+            </div>
+            <div class="song-prop">
+              <p>06:50</p>
+              <img class="fav-icon" src="../../assets/images/like.svg" />
+            </div>
+          </div>
+          <div class="song-wrapper">
+            <div class="song-cover"><img src="http://loremflickr.com/g/600/600/music?img52" /></div>
+            <div class="song-info">
+              <p>50 Ways to Leave Your Lover</p>
+              <p>Paul Simon</p>
+            </div>
+            <div class="song-prop">
+              <p>06:23</p>
+              <img class="fav-icon" src="../../assets/images/like.svg" />
+            </div>
+          </div>
+          <div class="song-wrapper">
+            <div class="song-cover"><img src="http://loremflickr.com/g/600/600/music?img53" /></div>
+            <div class="song-info">
+              <p>Vogue</p>
+              <p>Madona</p>
+            </div>
+            <div class="song-prop">
+              <p>06:02</p>
+              <img class="fav-icon" src="../../assets/images/like.svg" />
+            </div>
+          </div>
+          <div class="song-wrapper">
+            <div class="song-cover"><img src="https://loremflickr.com/g/600/600/music ?img54" /></div>
+            <div class="song-info">
+              <p>Subterranean Homesick Blues</p>
+              <p>Bob Dylan</p>
+            </div>
+            <div class="song-prop">
+              <p>05:45</p>
+              <img class="fav-icon" src="../../assets/images/like.svg" />
+            </div>
+          </div>
+          <div class="song-wrapper">
+            <div class="song-cover"><img src="http://loremflickr.com/g/600/600/music?img55" /></div>
+            <div class="song-info">
+              <p>Dancing in the Streets</p>
+              <p>Martha</p>
+            </div>
+            <div class="song-prop">
+              <p>05:25</p>
+              <img class="fav-icon" src="../../assets/images/like.svg" />
+            </div>
+          </div>
+          <div class="song-wrapper">
+            <div class="song-cover"><img src="https://loremflickr.com/g/600/600/music ?img56" /></div>
+            <div class="song-info">
+              <p>بغض</p>
+              <p>مرتضی پاشایی</p>
+            </div>
+            <div class="song-prop">
+              <p>07:25</p>
+              <img class="fav-icon" src="../../assets/images/like.svg" />
+            </div>
+          </div>
+          <div class="song-wrapper">
+            <div class="song-cover"><img src="https://loremflickr.com/g/600/600/music ?img57" /></div>
+            <div class="song-info">
+              <p>تاوان</p>
+              <p>احسان خواجه&zwnj;امیری</p>
+            </div>
+            <div class="song-prop">
+              <p>05:45</p>
+              <img class="fav-icon" src="../../assets/images/like.svg" />
+            </div>
+          </div>
+          <div class="song-wrapper">
+            <div class="song-cover"><img src="../../assets/images/default-song-cover.svg" /></div>
+            <div class="song-info">
+              <p>ترکم نکن</p>
+              <p>معین</p>
+            </div>
+            <div class="song-prop">
+              <p>06:15</p>
+              <img class="fav-icon" src="../../assets/images/like.svg" />
+            </div>
+          </div>
+          <div class="song-wrapper">
+            <div class="song-cover"><img src="https://loremflickr.com/g/600/600/music?img59" /></div>
+            <div class="song-info">
+              <p>برف</p>
+              <p>بابک جهانبخش</p>
+            </div>
+            <div class="song-prop">
+              <p>05:47</p>
+              <img class="fav-icon" src="../../assets/images/like.svg" />
+            </div>
+          </div>
+          <div class="song-wrapper">
+            <div class="song-cover"><img src="https://loremflickr.com/g/600/600/music?img60" /></div>
+            <div class="song-info">
+              <p>رخنه</p>
+              <p>رضا صادقی</p>
+            </div>
+            <div class="song-prop">
+              <p>07:13</p>
+              <img class="fav-icon" src="../../assets/images/like.svg" />
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="music-controls">
+        <div class="info-wrapper">
+          <img src="../../assets/images/default-song-cover.svg" alt="music-cover" id="music-cover" />
+          <div>
+            <p id="music-title"></p>
+            <p id="music-artist"></p>
+          </div>
+        </div>
+
+        <div class="controls-wrapper">
+          <div>
+            <button class="size-1 ctl-btn" data-tooltip="درهم‌رختن">
+              <img src="../../assets/images/controls/shuffle.svg" alt="shuffle button" />
+            </button>
+
+            <button class="size-1 ctl-btn" data-tooltip="بعدی">
+              <img src="../../assets/images/controls/next.svg" alt="next music button" id="next-btn" />
+            </button>
+
+            <button class="size-2 ctl-btn" data-tooltip="پخش">
+              <img src="../../assets/images/controls/play-button.svg" alt="play puase button" />
+            </button>
+
+            <button class="size-1 ctl-btn" data-tooltip="قبلی">
+              <img src="../../assets/images/controls/back.svg" alt="previous music button" />
+            </button>
+
+            <button class="size-1 ctl-btn" data-tooltip="تکرار">
+              <img src="../../assets/images/controls/replay.svg" alt="repeat mode button" />
+            </button>
+          </div>
+          <div class="music-bar-wrapper">
+            <p id="current-time">0:00</p>
+            <input type="range" id="seek-slider" max="100" value="0" onchange="updateMusicBarValue(this.value);" step="1" oninput="updateMusicBarValue(this.value)" />
+            <p class="end-time">10:00</p>
+          </div>
+        </div>
+
+        <div class="volume-wrapper">
+          <button id="volume-btn" class="ctl-btn" data-tooltip="صدا">
+            <img src="../../assets/images/controls/volume.svg" alt="volume button" />
+          </button>
+          <input type="range" id="volume-slider" max="100" value="50" onchange="updateVolumeValue(this.value); " step="1" oninput="updateVolumeValue(this.value)" />
+          <p id="volume-text">0</p>
+          <button class="ctl-btn" id="lyrics-btn" data-tooltip="متن آهنگ">
+            <img src="../../assets/images/controls/lyric.svg" alt="lyrics button" />
+          </button>
+        </div>
+      </section>
+
+      <section class="lyric-wrapper">
+        <button id="return" class="display-none">
+          <img src="../../assets/images/controls/previous-1.svg" alt="" />
+        </button>
+
+        <div class="lyrics-music-cover">
+          <img src="../../assets/images/default-song-cover.svg" alt="song cover" />
+          <div class="music-info">
+            <p>music name</p>
+            <p>artist name</p>
+          </div>
+        </div>
+
+        <div class="lyrics-text">
+          <p>
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Quis nesciunt, fugit doloremque reprehenderit, veritatis nisi labore quaerat, ipsum nobis ea assumenda quasi!
+            Alias delectus laudantium corporis qui architecto harum repellat itaque consequuntur laborum. Dolore deserunt dignissimos eligendi maiores quasi tenetur eaque amet
+            totam unde error, sit adipisci veniam doloribus modi molestiae voluptate illum architecto earum repudiandae facere aliquam? Amet accusamus ullam vel eius quidem quae
+            voluptate, aspernatur tempora earum eligendi sit non ducimus, voluptatibus blanditiis dolor consequatur id voluptatem velit incidunt eveniet, magnam fugiat nostrum.
+            Dolorem reprehenderit, molestias quibusdam placeat a quam, dignissimos nihil animi ratione vitae optio accusamus nemo, eligendi perferendis. Eius ad rem voluptatum
+            velit reprehenderit! Velit sapiente fugiat, iste ducimus quas impedit, eum suscipit sunt dolor explicabo eius minima repellendus? Quisquam, qui. Consequatur, amet
+            cupiditate aut cum optio nobis repellat vitae earum harum. Voluptates mollitia quas ducimus, eius obcaecati veniam velit quo accusantium porro illo officia atque iusto
+            quae dolorem qui culpa architecto! Fugit non ut cupiditate amet, dolores, esse illo, nostrum quasi a voluptate doloribus corporis inventore quibusdam deleniti
+            repudiandae dignissimos nesciunt aut quod commodi rem reprehenderit incidunt? Quaerat exercitationem officia magni amet accusantium deleniti delectus, totam corporis
+            asperiores obcaecati quam minima a dolor quas vitae eligendi natus necessitatibus modi rem id illum? Libero praesentium, minus aliquam reprehenderit cum autem officia
+            cumque eveniet architecto, eius ab, expedita beatae ut maxime delectus natus doloremque! Fugiat commodi quidem, ex obcaecati consequatur repellat cupiditate a, omnis
+            voluptates rem possimus, eos eius. Ea impedit quis minima soluta ratione molestiae nobis sequi nisi, nemo delectus blanditiis harum atque iusto ut error quod, quisquam,
+            tempora temporibus? Eos necessitatibus magni omnis tempora deleniti quis labore optio ipsam molestiae ut dolor eaque aperiam quidem dicta, perferendis molestias quos,
+            rerum repellat mollitia ratione excepturi. Laborum veniam quasi ad numquam quibusdam. Soluta ipsa sunt consequuntur aliquid qui, provident reiciendis facere molestiae
+            dolor nobis dicta ab quia ad expedita tenetur a itaque at veritatis, ut consequatur doloremque magni est! Modi fugit veniam accusamus culpa tenetur minima, neque
+            temporibus assumenda ipsa deleniti, expedita laborum. Alias sunt saepe nisi, sed quia voluptatum dignissimos expedita impedit similique asperiores voluptatibus at
+            assumenda temporibus repudiandae aliquid unde. Molestiae aut modi quasi autem, rem quibusdam! Eaque laborum, perspiciatis repellat adipisci dolorem ipsam? Ab, fugit,
+            dicta aliquid ad sequi iusto dignissimos repellat perferendis cupiditate recusandae temporibus maiores earum accusamus obcaecati aliquam officiis facilis ut. Officiis
+            delectus beatae quisquam ab! Esse fuga minima, quaerat maiores vitae officia, fugiat corporis ex aliquid aliquam, eaque accusamus odit! Nesciunt eius ipsum molestiae
+            aliquam qui dolorum sequi nihil dolore doloremque perspiciatis eveniet atque architecto animi similique, cum, dolores accusantium rerum optio eaque eligendi ad sit
+            voluptate! Dolores expedita quasi quae consectetur soluta veritatis delectus eligendi dolorem quidem. Necessitatibus porro odio sunt facilis distinctio minus magnam
+            nisi doloremque doloribus voluptatum ullam sed dignissimos ea, dolore omnis vitae similique asperiores possimus vero. Tempora quasi, soluta quam ut libero assumenda
+            consequatur a veniam ducimus, accusantium dicta sequi cum in minus iusto pariatur aperiam vitae excepturi temporibus explicabo magni voluptatibus! Illo, officiis velit.
+          </p>
+        </div>
+      </section>
+
+      <section class="mobile-navigation">
+        <div class="music-contolers">
+          <button id="lyrics-btn-mobile">
+            <img src="../../assets/images/controls/lyric.svg" alt="lyrics button" />
+          </button>
+
+          <div class="mobile-info">
+            <p>Music name Music name <span>&nbsp;•&nbsp;</span> Artist name Artist name</p>
+          </div>
+
+          <button>
+            <img src="../../assets/images/controls/play-button.svg" alt="play button" />
+          </button>
+        </div>
+
+        <div class="tab-navigation">
+          <button id="all-songs-tab-navigation-mobile">
+            <img src="../../assets/images/playlist.svg" alt="all songs tab" />
+            <p>همه آهنگ ها</p>
+          </button>
+
+          <button>
+            <img src="../../assets/images/favourite.svg" alt="favourite songs tab" />
+            <p>مورد علاقه</p>
+          </button>
+
+          <button>
+            <img src="../../assets/images/playlist-add.svg" alt="playlist tab" />
+            <p>پلی لیست</p>
+          </button>
+
+          <button>
+            <img src="../../assets/images/logout.svg" alt="logout button" />
+            <p>خروج</p>
+          </button>
+        </div>
+      </section>
+    </main>
+    <div class="bg-cover"></div>
+    <div class="dark-glass"></div>
+
+    <div class="side-menu-opener-closer">
+      <button id="side-menu-opener-closer-btn">
+        <img src="../../assets/images/controls/menu.svg" alt="menu button" />
+      </button>
+    </div>
   </body>
 </html>
+

@@ -1,0 +1,25 @@
+{
+  "name": "summer1400-fe-team7",
+  "version": "1.0.0",
+  "description": "Hi 👋,<br> This project is a simple music player.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "sass --watch pages/auth:pages/auth"
+
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Star-Academy/Summer1400-FE-Team7.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Star-Academy/Summer1400-FE-Team7/issues"
+  },
+  "homepage": "https://github.com/Star-Academy/Summer1400-FE-Team7#readme",
+  "devDependencies": {
+    "sass": "^1.36.0"
+  }
+}
