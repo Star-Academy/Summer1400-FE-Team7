@@ -31,16 +31,12 @@ const register = async () => {
   });
 
   // if (response.ok) {
-  // if (!response.error) {
-  const currentUser = { id: response.body.id, email: user.email };
-  localStorage.setItem("user", JSON.stringify(currentUser));
-  console.log(localStorage.getItem("user"));
-  // }
+  if (!response.error) {
+    const currentUser = { id: response.body.id, email: user.email };
+    localStorage.setItem("user", JSON.stringify(currentUser));
+    console.log(localStorage.getItem("user"));
+  }
 };
-
-registerBtn.addEventListener("click", () => {
-  registerForm.submit();
-});
 
 registerForm.addEventListener("submit", () => {
   register();
