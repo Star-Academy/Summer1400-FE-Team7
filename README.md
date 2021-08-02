@@ -25,6 +25,7 @@ checkout our [github pages](https://star-academy.github.io/Summer1400-FE-Team7/p
 
 # playList
 
+
 - music cover
 - name
 - artist
@@ -32,6 +33,7 @@ checkout our [github pages](https://star-academy.github.io/Summer1400-FE-Team7/p
 - favourites
 - timestamp
 - play/pause btn
+
 
 # player
 
@@ -41,11 +43,13 @@ checkout our [github pages](https://star-academy.github.io/Summer1400-FE-Team7/p
 
 # optional
 
+
 - drag & drop files from pc
 - save to server
 - Playlist Title
 - Customized Playlist
 - album
+
 
 **_notes_**<br>
 album or not?<br>
