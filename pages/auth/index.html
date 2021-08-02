@@ -11,13 +11,16 @@
     <title>ورود</title>
     <link rel="stylesheet" href="style.css" />
     <link rel="stylesheet" href="../../styles/main.css" />
+    <script src="../../source/utils/env.js" defer></script>
+    <script src="../../source/auth/login.js" defer></script>
+    <script src="../../source/auth/register.js" defer></script>
     <script src="./style.js" defer></script>
   </head>
 
   <body>
     <main class="bg-animation-1">
       <div class="form-wrapper">
-        <form action="../dashboard/index.html" class="login-form">
+        <form action="" class="login-form">
           <h2 class="switch--up">ورود</h2>
           <div class="input-wrapper">
             <img src="../../assets/images/email.svg" alt="" />
@@ -47,11 +50,11 @@
           <a href="#" id="create-new-account">ساخت حساب جدید</a>
         </form>
 
-        <form action="../dashboard/index.html" class="signup-form display-none">
+        <form class="signup-form display-none">
           <h2>ثبت‌نام</h2>
           <div class="input-wrapper">
             <img src="../../assets/images/email.svg" alt="" />
-            <input type="text" id="signup-email-input" />
+            <input type="text" id="signup-email-input" required />
             <label for="signup-email-input"> ایمیل </label>
           </div>
 
@@ -75,11 +78,10 @@
             <img src="../../assets/images/show-password.svg" alt="" class="show-pass-cta" />
           </div>
 
-          <button type="submit">ثبت نام</button>
+          <button type="submit" class="register-btn">ثبت نام</button>
           <a href="#" id="already-have-account">قبلا عضو شده اید؟</a>
         </form>
       </div>
     </main>
   </body>
 </html>
-

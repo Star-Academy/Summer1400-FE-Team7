@@ -27,6 +27,22 @@ const SHOW_PASSWORD = "../../assets/images/show-password.svg";
 
 //FUNCTIONS IMPLEMENTATION
 
+// emailRegister.oninvalid = function (event) {
+//   event.target.setCustomValidity("لطفا ایمیل صحیح وارد کنید");
+// };
+// passwordRegister.oninvalid = function (event) {
+//   event.target.setCustomValidity("رمز عبور باید دارای حداقل ۸ کاراکتر،یک حرف و یک عدد باشد");
+// };
+// confirmPasswordRegister.oninvalid = function (event) {
+//   event.target.setCustomValidity("رمز عبور باید دارای حداقل ۸ کاراکتر،یک حرف و یک عدد باشد");
+// };
+
+// emailLogin.oninvalid = function (event) {
+//   event.target.setCustomValidity("لطفا ایمیل صحیح وارد کنید");
+// };
+// passwordLogin.oninvalid = function (event) {
+//   event.target.setCustomValidity("رمز عبور باید دارای حداقل ۸ کاراکتر،یک حرف و یک عدد باشد");
+// };
 /**
  * Toggel position of login/sign-up form.
  */
