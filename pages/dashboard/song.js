@@ -7,13 +7,17 @@ const LIKED = "../../assets/images/liked.svg";
 const LIKE_HOVERD = "../../assets/images/like-hovered.svg";
 
 let songs = [];
-let currentMusicID = 1;
+let currentMusicIndex = 0;
+
 
 fetch("./songs.json")
   .then((response) => response.json())
   .then((data) => {
     songs = data.songs;
+    //console.log(songs);
+    audio.src = songs[currentMusicIndex].file;
     songListFiller();
+    main();
   })
   .catch((error) => console.log(error));
 
@@ -60,7 +64,7 @@ const songListFiller = () => {
     songInfoDiv.appendChild(songName);
     songInfoDiv.appendChild(authorName);
 
-    songPropDiv.appendChild(songDuration);
+    //songPropDiv.appendChild(songDuration);
     songPropDiv.appendChild(likeImg);
 
     //TODO ADD LAZY
@@ -115,17 +119,17 @@ const songListFiller = () => {
 
 const doubleClickHandler = (elem, id) => {
   elem.addEventListener("dblclick", () => {
-    const imgSrc = elem.children[0].children[0].src;
-    const elemTitle = elem.children[1].children[0].innerText;
-    const elemArtist = elem.children[1].children[1].innerText;
-
+    const imgSrc = songs[id-1].cover;
+    const elemTitle =  songs[id-1].name;
+    const elemArtist =  songs[id-1].artist;
     bgCover.style.background = `url(${imgSrc}) center no-repeat`;
     bgCover.style.backgroundSize = "cover";
 
     musicCover.src = imgSrc;
     musicArtist.innerText = elemArtist;
     musicTitle.innerText = elemTitle;
-    currentMusicID = id;
+    currentMusicIndex = id-1;
+    audio.src = songs[currentMusicIndex].file;
     play();
   });
 };
@@ -151,3 +155,6 @@ const convertHMS = (value) => {
     return minutes + ":" + seconds; // Return is  MM : SS
   }
 };
+const main =() => {
+  console.log(audio.src);
+}
