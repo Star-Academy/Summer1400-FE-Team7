@@ -29,8 +29,8 @@ let shuffleIndex = 0;
 
 const loadMusic = () => {
   audio.src = songs[currentMusicIndex].file;
-  const songname = `name :${songs[currentMusicIndex].name}`;
-  console.log("🚀loadMusic", songname);
+  const songname = `name:${songs[currentMusicIndex].name}`;
+  console.log("🚀 loadMusic", songname);
 };
 
 const nextMusic = () => {
@@ -39,13 +39,11 @@ const nextMusic = () => {
     if (shuffleIndex > songs.length - 1) {
       shuffleIndex = 0;
     }
-    currentMusicIndex=shuffleArray[shuffleIndex];
-
+    currentMusicIndex = shuffleArray[shuffleIndex];
   } else {
     currentMusicIndex++;
-
   }
-  
+
   if (currentMusicIndex > songs.length - 1) {
     currentMusicIndex = 0;
     if (repeatMode == repeatTypes.NO_REPEAT && !shuffleMode) {
@@ -62,17 +60,15 @@ const nextMusic = () => {
 const previousMusic = () => {
   if (shuffleMode) {
     shuffleIndex--;
-    if (shuffleIndex <0) {
+    if (shuffleIndex < 0) {
       shuffleIndex = songs.length - 1;
     }
-    currentMusicIndex=shuffleArray[shuffleIndex];
-
+    currentMusicIndex = shuffleArray[shuffleIndex];
   } else {
     currentMusicIndex--;
-
   }
-  
-   if (currentMusicIndex < 0) {
+
+  if (currentMusicIndex < 0) {
     currentMusicIndex = songs.length - 1;
   }
   musicChangeHandler();
@@ -80,18 +76,24 @@ const previousMusic = () => {
   play();
 };
 
-playBtn.forEach((btn) => {
-  btn.addEventListener("click", () => {
-    if (status == statusTypes.PLAYING) {
-      pause();
-    } else if (status == statusTypes.PASUED || status == statusTypes.STOPED) {
-      resume();
-    }
+// play button ********************
+const handlePlayButton = () => {
+  playBtn.forEach((btn) => {
+    btn.addEventListener("click", () => {
+      if (status == statusTypes.PLAYING) {
+        pause();
+      } else if (status == statusTypes.PASUED) {
+        resume();
+      } else if (status == statusTypes.STOPED) {
+        play();
+      }
+    });
   });
-});
+};
+handlePlayButton();
 
 const play = () => {
-  console.log("🚀  play");
+  console.log("🚀 play");
   loadMusic();
 
   //TODO replace this with circular loading
@@ -113,6 +115,7 @@ const play = () => {
 };
 
 const resume = () => {
+  console.log("🚀 resume");
   audio.play();
   playBtn.forEach((btn) => {
     btn.children[0].src = pauseBtnImg;
@@ -143,6 +146,7 @@ audio.addEventListener("timeupdate", (event) => {
 });
 
 audio.addEventListener("ended", (event) => {
+  console.log("🚀 ended");
   switch (repeatMode) {
     case repeatTypes.NO_REPEAT:
       nextMusic();
@@ -176,6 +180,38 @@ const doubleClickHandler = (elem, id) => {
   });
 };
 
+//TODO DEPRECATED:
+function KeyPress(e) {
+  var evtobj = window.event ? event : e;
+  // ctrl + arrow key right
+  if (evtobj.keyCode == 39 && evtobj.ctrlKey) {
+    nextMusic();
+  }
+  // ctrl + arrow key left
+  else if (evtobj.keyCode == 37 && evtobj.ctrlKey) {
+    previousMusic();
+  
+  }
+  // ctrl + arrow key down
+  else if (evtobj.keyCode == 40 && evtobj.ctrlKey) {
+    switch (status) {
+      case statusTypes.STOPED:
+        play();
+        break;
+      case statusTypes.PLAYING:
+        pause();
+        break;
+      case statusTypes.PASUED:
+        resume();
+        break;
+
+      default:
+        break;
+    }
+  }
+
+}
+document.onkeydown = KeyPress;
 //press space button
 document.body.onkeyup = (e) => {
   if (e.keyCode == 32) {
@@ -213,17 +249,11 @@ repeatBtn.addEventListener("click", () => {
     default:
       break;
   }
-  console.log(
-    "🚀 ~ file: musicControllers.js ~ line 164 ~ repeatBtn.addEventListener ~ repeatMode",
-    repeatMode
-  );
+  console.log("🚀 repeatMode", repeatMode);
 });
 shuffleBtn.addEventListener("click", () => {
   shuffleMode = !shuffleMode;
-  console.log(
-    "🚀 ~ file: musicControllers.js ~ line 170 ~ shuffleBtn.addEventListener ~ shuffleMode",
-    shuffleMode
-  );
+  console.log("🚀 shuffleMode", shuffleMode);
   if (shuffleMode) {
     generateShuffleList();
   }
