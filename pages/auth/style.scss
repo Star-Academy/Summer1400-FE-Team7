@@ -3,7 +3,9 @@ $--lg-bg-2: hsl(215, 39%, 30%);
 $--lg-bg-3: hsl(166, 24%, 39%);
 $--lg-bg-4: hsl(24, 99%, 45%);
 $--icon-size: 1.25rem;
-$--clr-error: rgb(255, 0, 0);
+$--clr-error: rgb(255, 255, 255);
+$--clr-background-error: rgba(255, 0, 0, 0.431);
+$--clr-boarder-error: rgb(255, 0, 0);
 
 @mixin _body-bg-animation($deg, $duration, $start, $end, $animationName) {
   background: linear-gradient($deg, $--lg-bg-4 0 7.5%, $--lg-bg-3 7.5% 15%, $--lg-bg-2 15% 22.5%, $--lg-bg-1 22.5% 30%);
@@ -233,16 +235,18 @@ main {
 }
 
 .error {
-  box-shadow: inset 0 0 0.3em $--clr-error, 0 0 0.3em $--clr-error !important;
+  box-shadow: inset 0 0 0.3em $--clr-boarder-error, 0 0 0.3em $--clr-boarder-error !important;
   position: relative;
 
   &::after {
-    content: "این بخش مشکل دارد!!!!";
+    content: attr(data-error);
     color: $--clr-error;
     position: absolute;
-
+    background-color:$--clr-background-error;
     right: 0;
-    bottom: -2rem;
+    bottom: -1.5rem;
     font-size: 0.8rem;
+    padding: 0rem 1rem;
+    border-radius: 1000rem;
   }
 }
