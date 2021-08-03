@@ -27,7 +27,6 @@ const musicGrapper = async () => {
     .then((response) => response.json())
     .then((data) => {
       playList["همه آهنگ ها"] = data.songs;
-      playList["همه آهنگ ها"] = playList["همه آهنگ ها"];
       audio.src = playList["همه آهنگ ها"][currentMusicIndex].file;
       songListFiller(playList["همه آهنگ ها"], "همه آهنگ ها");
       placeholderOmmiter();
@@ -69,6 +68,7 @@ const songListFiller = (list, header) => {
 
     const optionsDiv = document.createElement("div");
     optionsDiv.className = "options";
+    optionsDiv.setAttribute("data-id", song.id);
 
     likeImg.className = FAV_ICON;
 
@@ -211,12 +211,14 @@ const musicChangeHandler = () => {
 };
 
 const optionFiller = () => {
-  console.log("asdads");
   const allOptions = document.querySelectorAll(".options");
 
   allOptions.forEach((option, index) => {
     const ul = document.createElement("ul");
     ul.className = "option-list";
+
+    const p = document.createElement("p");
+    p.innerText = "افزودن به پلی‌لیست";
 
     deleteChildrenNodes(option);
 
@@ -224,17 +226,24 @@ const optionFiller = () => {
       const li = document.createElement("li");
       li.innerText = list;
       ul.appendChild(li);
+      li.addEventListener("click", () => {
+        addToPlayList(li.innerText, option.getAttribute("data-id"));
+      });
     }
 
+    option.appendChild(p);
     option.appendChild(ul);
   });
-  console.log(allOptions);
-
-  document.querySelectorAll(".test").forEach((i) => console.log(i));
 };
 
 const deleteChildrenNodes = (parent) => {
   while (parent.firstChild) {
     parent.removeChild(parent.firstChild);
   }
+};
+
+const addToPlayList = (playListName, id) => {
+  console.log(playListName);
+  console.log(id);
+  newPlayList[playListName] = [...newPlayList[playListName], playList["همه آهنگ ها"][id - 1]];
 };

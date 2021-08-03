@@ -20,9 +20,11 @@ const search = () => {
   }
 
   if (searchBox.value == "پارسا و میلاد") {
-    songListFiller(songs.splice(0, 7), "جست و جو");
+    // const searchResult
+    songListFiller(playList["همه آهنگ ها"].slice(0, 7), "جست و جو");
     isLoading = false;
     placeholderOmmiter();
+    optionFiller();
   }
 
   if (searchBox.value == "") {

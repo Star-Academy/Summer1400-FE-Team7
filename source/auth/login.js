@@ -18,6 +18,7 @@ const performLogin = () => {
     }
     return false;
   });
+
   console.log(result);
   return false;
 };
