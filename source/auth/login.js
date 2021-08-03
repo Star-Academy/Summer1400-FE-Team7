@@ -3,28 +3,50 @@ const emailLoginInput = document.querySelector("#login-email-input");
 const passwordLoginInput = document.querySelector("#login-password-input");
 const loginBtn = document.querySelector(".login-btn");
 
-const loginInput = {
+const loginInputs = {
   email: "",
   password: "",
 };
 
 const performLogin = () => {
-  loginInput.email = emailLoginInput.value;
-  loginInput.password = passwordLoginInput.value;
+  loginInputs.email = emailLoginInput.value;
+  loginInputs.password = passwordLoginInput.value;
 
-  const result = testUsers.filter((user) => {
-    if (user.username == loginInput.email.split("@")[0]) {
-      return true;
-    }
+  if (loginInputs.email == "") {
+    console.log("email cant be empty");
     return false;
-  });
-  console.log(result);
-  return false;
+  }
+  if (loginInputs.password == "") {
+    console.log("password cant be empty");
+    return false;
+  }
+
+  let result = false;
+  for (const user of testUsers) {
+    if (
+      user.username == loginInputs.email.split("@")[0] &&
+      user.passowrd == loginInputs.password
+    ) {
+      console.log("login seccussed");
+      result = true;
+      break;
+    }
+  }
+  if (!result) {
+    console.log("login failed");
+  } else {
+    emailLoginInput.value = "";
+    passwordLoginInput.value = "";
+  }
+
+  return result;
 };
 
-const loginUser = (e) => {
+const loginUser = () => {
   if (performLogin()) {
-    window.location.replace("../../pages/dashboard/index.html");
+    localStorage.setItem("email", loginInputs.email);
+
+    window.location.href = "../../pages/dashboard/index.html";
   }
 };
 
