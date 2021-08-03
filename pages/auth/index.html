@@ -23,13 +23,13 @@
       <div class="form-wrapper">
         <form class="login-form">
           <h2 class="switch--up">ورود</h2>
-          <div class="input-wrapper" id="email-input-wrapper">
+          <div class="input-wrapper" id="email-login-input-wrapper" data-error="">
             <img src="../../assets/images/email.svg" alt="" />
             <input type="text" id="login-email-input" required />
             <label for="login-email-input"> ایمیل </label>
           </div>
 
-          <div class="input-wrapper">
+          <div class="input-wrapper" id="password-login-input-wrapper" data-error="">
             <img src="../../assets/images/password.svg" alt="" />
             <input  type="password" id="login-password-input" required autocomplete="on"/>
             <label for="login-password-input"> رمز عبور </label>
@@ -52,13 +52,13 @@
 
         <form class="signup-form display-none">
           <h2>ثبت‌نام</h2>
-          <div class="input-wrapper">
+          <div class="input-wrapper"id="email-register-input-wrapper" data-error="">
             <img src="../../assets/images/email.svg" alt="" />
             <input type="text" id="signup-email-input" required />
             <label for="signup-email-input"> ایمیل </label>
           </div>
 
-          <div class="input-wrapper">
+          <div class="input-wrapper" id="password-register-input-wrapper" data-error="">
             <img src="../../assets/images/password.svg" alt="" />
             <input type="password" title="رمز عبور باید دارای حداقل ۸ کاراکتر،یک حرف و یک عدد باشد" id="signup-password-input" required autocomplete="off"/>
 
@@ -66,7 +66,7 @@
             <img src="../../assets/images/show-password.svg" alt="" class="show-pass-cta" />
           </div>
 
-          <div class="input-wrapper">
+          <div class="input-wrapper" id="confirm-password-register-input-wrapper" data-error="">
             <img src="../../assets/images/confirm-password.svg" alt="" />
             <input
               type="password"
@@ -77,7 +77,7 @@
             <img src="../../assets/images/show-password.svg" alt="" class="show-pass-cta" />
           </div>
 
-          <button type="button" class="register-btn" onclick="registerUser();">ثبت نام</button>
+          <button type="button" class="register-btn" id="register-btn" onclick="registerUser();">ثبت نام</button>
           <a href="#" id="already-have-account">قبلا عضو شده اید؟</a>
         </form>
       </div>
