@@ -17,11 +17,7 @@ const validateEmail = (email) => {
   return emailPattern.test(String(email).toLowerCase());
 };
 
-const performLogin = () => {
-  loginInputs.email = emailLoginInput.value;
-  loginInputs.password = passwordLoginInput.value;
-  console.log(emailLoginInput);
-
+const checkLoginEmail = () => {
   if (loginInputs.email == "") {
     console.log("email cant be empty");
     emailInputWrapper.setAttribute("data-error", "ایمیل نمی‌تواند خالی باشد");
@@ -35,8 +31,11 @@ const performLogin = () => {
     return false;
   } else {
     emailInputWrapper.classList.remove("error");
+    return true;
   }
+};
 
+const checkLoginPasswords = () => {
   if (loginInputs.password == "") {
     console.log("password cant be empty");
     passwordInputWrapper.setAttribute(
@@ -49,7 +48,22 @@ const performLogin = () => {
     return false;
   } else {
     passwordInputWrapper.classList.remove("error");
+    return true;
   }
+};
+const resetLoginForm = () => {
+  loginBtn.classList.remove("error");
+  emailLoginInput.value = "";
+  passwordLoginInput.value = "";
+};
+
+const performLogin = () => {
+  loginInputs.email = emailLoginInput.value;
+  loginInputs.password = passwordLoginInput.value;
+  console.log(emailLoginInput);
+
+  if (!checkLoginEmail()) return false;
+  if (!checkLoginPasswords()) return false;
 
   let result = false;
   for (const user of testUsers) {
@@ -65,18 +79,16 @@ const performLogin = () => {
 
   if (!result) {
     console.log("login failed");
-    loginBtn.setAttribute("data-error", "ایمیل یا رمز عبور صحیح نمیباشد");
+    loginBtn.setAttribute("data-error", "ایمیل یا رمز عبور صحیح نمی باشد");
     loginBtn.classList.add("error");
   } else {
-    emailLoginInput.value = "";
-    passwordLoginInput.value = "";
+    resetLoginForm();
   }
 
   return result;
 };
 
 const loginUser = () => {
-  loginBtn.classList.remove("error");
   if (performLogin()) {
     localStorage.setItem("email", loginInputs.email);
 
