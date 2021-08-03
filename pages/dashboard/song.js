@@ -117,22 +117,7 @@ const songListFiller = () => {
   });
 };
 
-const doubleClickHandler = (elem, id) => {
-  elem.addEventListener("dblclick", () => {
-    const imgSrc = songs[id-1].cover;
-    const elemTitle =  songs[id-1].name;
-    const elemArtist =  songs[id-1].artist;
-    bgCover.style.background = `url(${imgSrc}) center no-repeat`;
-    bgCover.style.backgroundSize = "cover";
 
-    musicCover.src = imgSrc;
-    musicArtist.innerText = elemArtist;
-    musicTitle.innerText = elemTitle;
-    currentMusicIndex = id-1;
-    audio.src = songs[currentMusicIndex].file;
-    play();
-  });
-};
 
 const convertHMS = (value) => {
   const sec = parseInt(value, 10); // convert value to number if it's string
