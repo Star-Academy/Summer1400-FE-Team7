@@ -15,11 +15,17 @@ const lyricMusicArtist = document.querySelector("#lyric-music-artist");
 let songs = [];
 let currentMusicIndex = 0;
 
+let playList = {
+  "همه آهنگ ها": [],
+  "مورد علاقه": [],
+};
+
 const musicGrapper = async () => {
   await fetch("./songs.json")
     .then((response) => response.json())
     .then((data) => {
       songs = data.songs;
+      playList["همه آهنگ ها"] = songs;
       audio.src = songs[currentMusicIndex].file;
       songListFiller(songs, "همه آهنگ ها");
       placeholderOmmiter();
@@ -87,6 +93,11 @@ const songListFiller = (list, header) => {
 
     songList.appendChild(songWrapperDiv);
 
+    if (playList["مورد علاقه"].includes(song)) {
+      likeImg.classList.add(LIKED_CLASS);
+      likeImg.src = LIKED_IMG;
+    }
+
     likeImg.addEventListener("mouseover", () => {
       if (likeImg.classList.contains(LIKED_CLASS)) {
         likeImg.src = LIKED;
@@ -109,6 +120,14 @@ const songListFiller = (list, header) => {
       likeImg.classList.toggle(LIKED_CLASS);
       likeImg.src = LIKED;
       likeImg.style.transform = "scale(1)";
+
+      if (!playList["مورد علاقه"].includes(song)) {
+        playList["مورد علاقه"] = [...playList["مورد علاقه"], song];
+      } else {
+        playList["مورد علاقه"] = playList["مورد علاقه"].filter(function (item) {
+          return item !== song;
+        });
+      }
     });
 
     songWrapperDiv.addEventListener("click", (e) => {

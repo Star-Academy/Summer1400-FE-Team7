@@ -48,6 +48,7 @@ playBtn.forEach((btn) => {
       pause();
     } else if (status == statusTypes.PASUED || status == statusTypes.STOPED) {
       resume();
+      musicChangeHandler();
     }
   });
 });
@@ -55,6 +56,7 @@ playBtn.forEach((btn) => {
 const play = () => {
   console.log("🚀  play");
   loadMusic();
+  musicChangeHandler();
 
   //TODO replace this with circular loading
   playBtn.forEach((btn) => {

@@ -29,9 +29,8 @@ const musicCover = document.querySelector("#music-cover");
 const musicTitle = document.querySelector("#music-title");
 const musicArtist = document.querySelector("#music-artist");
 const songWrapper = document.querySelectorAll(".song-wrapper");
-const playlistContainer = document.querySelector(".playlist-container");
 
-const MENU_SELECTED = "menu-selected";
+// const MENU_SELECTED = "menu-selected";
 
 const SIDE_MENU_CLOSED = "side-menu-closed";
 const SIDE_MENU_OPEND = "side-menu-opended";
@@ -56,16 +55,16 @@ const LIKED_IMG = "../../assets/images/liked.svg";
 //Handle side-menu items selection.
 */
 const HandlemenuButtonsSelect = () => {
-  for (let m of menuButtons) {
-    m.addEventListener("click", () => {
-      document.querySelector(`.${MENU_SELECTED}`).classList.remove(MENU_SELECTED);
-      m.classList.add(MENU_SELECTED);
-    });
-  }
-  playlistContainer.addEventListener("click", () => {
-    document.querySelector(`.${MENU_SELECTED}`).classList.remove(MENU_SELECTED);
-    playlistContainer.classList.add(MENU_SELECTED);
-  });
+  // for (let m of menuButtons) {
+  //   m.addEventListener("click", () => {
+  //     document.querySelector(`.${MENU_SELECTED}`).classList.remove(MENU_SELECTED);
+  //     m.classList.add(MENU_SELECTED);
+  //   });
+  // }
+  // playlistContainer.addEventListener("click", () => {
+  //   document.querySelector(`.${MENU_SELECTED}`).classList.remove(MENU_SELECTED);
+  //   playlistContainer.classList.add(MENU_SELECTED);
+  // });
 };
 
 /*
@@ -125,8 +124,6 @@ lyricsBtnReturn.addEventListener("click", () => {
   toggleLyricsLayout(lyricsBtnMobile);
   lyricsBtn.classList.toggle(LYRIC_BTN_ACTIVE);
 });
-
-
 
 /*
 // Handle long song title and artis name with moving text animation
@@ -199,7 +196,7 @@ favIcon.forEach((elem) => {
   });
 });
 
-HandlemenuButtonsSelect();
+// HandlemenuButtonsSelect();
 hiddenTextMovingAnimation(mobileInfo, (window.innerWidth / 100) * 40);
 allSongsTabNavigation.focus();
 
