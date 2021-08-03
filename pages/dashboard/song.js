@@ -8,13 +8,14 @@ const LIKE_HOVERD = "../../assets/images/like-hovered.svg";
 const songListHeader = document.querySelector(".song-list-header");
 
 let songs = [];
-let currentMusicID = 1;
+let currentMusicIndex = 0;
 
 const musicGrapper = async () => {
   await fetch("./songs.json")
     .then((response) => response.json())
     .then((data) => {
       songs = data.songs;
+      audio.src = songs[currentMusicIndex].file;
       songListFiller(songs, "همه آهنگ ها");
       placeholderOmmiter();
     })
@@ -69,7 +70,7 @@ const songListFiller = (list, header) => {
     songInfoDiv.appendChild(songName);
     songInfoDiv.appendChild(authorName);
 
-    songPropDiv.appendChild(songDuration);
+    //songPropDiv.appendChild(songDuration);
     songPropDiv.appendChild(likeImg);
 
     //TODO ADD LAZY
@@ -119,23 +120,6 @@ const songListFiller = (list, header) => {
       }
     });
     doubleClickHandler(songWrapperDiv, song.id);
-  });
-};
-
-const doubleClickHandler = (elem, id) => {
-  elem.addEventListener("dblclick", () => {
-    const imgSrc = elem.children[0].children[0].src;
-    const elemTitle = elem.children[1].children[0].innerText;
-    const elemArtist = elem.children[1].children[1].innerText;
-
-    bgCover.style.background = `url(${imgSrc}) center no-repeat`;
-    bgCover.style.backgroundSize = "cover";
-
-    musicCover.src = imgSrc;
-    musicArtist.innerText = elemArtist;
-    musicTitle.innerText = elemTitle;
-    currentMusicID = id;
-    play();
   });
 };
 
