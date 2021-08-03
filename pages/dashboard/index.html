@@ -9,9 +9,9 @@
     <link rel="stylesheet" href="style.css" />
     <link rel="stylesheet" href="../../styles/main.css" />
     <script src="./styles.js" defer></script>
+    <script src="./song.js" defer></script>
     <script src="./musicControllers.js" defer></script>
 
-    <script src="./song.js" defer></script>
   </head>
   <body>
     <main>
@@ -84,15 +84,15 @@
               <img src="../../assets/images/controls/shuffle.svg" alt="shuffle button" />
             </button>
 
-            <button class="size-1 ctl-btn" data-tooltip="بعدی">
-              <img src="../../assets/images/controls/next.svg" alt="next music button" id="next-btn" />
+            <button class="size-1 ctl-btn" id="next-btn"  data-tooltip="بعدی">
+              <img src="../../assets/images/controls/next.svg" alt="next music button" />
             </button>
 
             <button class="size-2 ctl-btn play-music-btn" data-tooltip="پخش">
               <img src="../../assets/images/controls/play-button.svg" alt="play puase button" />
             </button>
 
-            <button class="size-1 ctl-btn" data-tooltip="قبلی">
+            <button class="size-1 ctl-btn"id="previous-btn"  data-tooltip="قبلی">
               <img src="../../assets/images/controls/back.svg" alt="previous music button" />
             </button>
 
@@ -101,9 +101,9 @@
             </button>
           </div>
           <div class="music-bar-wrapper">
-            <p id="current-time">0:00</p>
+            <p id="current-time"></p>
             <input type="range" id="seek-slider" max="100" value="0" onchange="updateMusicBarValue(this.value);" step="1" oninput="updateMusicBarValue(this.value)" />
-            <p class="end-time">10:00</p>
+            <p id="end-time"></p>
           </div>
         </div>
 
