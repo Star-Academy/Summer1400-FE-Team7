@@ -20,9 +20,6 @@ const loadMusic = () => {
   audio.src = songs[currentMusicIndex].file;
   const songname = `name :${songs[currentMusicIndex].name}`;
   console.log("🚀loadMusic", songname);
-  seekSlider.max = audio.duration;
-  console.log(audio.duration)
-  endTimeLabel.innerHTML=convertHMS( audio.duration)
 
 };
 
@@ -64,6 +61,9 @@ const play = () => {
   audio.addEventListener("canplaythrough", (event) => {
     status = statusTypes.PLAYING;
     audio.play();
+    seekSlider.max = audio.duration;
+    console.log(audio.duration)
+    endTimeLabel.innerHTML=convertHMS( audio.duration)
   });
 };
 
