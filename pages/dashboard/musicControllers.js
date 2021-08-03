@@ -124,6 +124,26 @@ const doubleClickHandler = (elem, id) => {
   });
 };
 
+//press space button
+document.body.onkeyup = (e) => {
+  if (e.keyCode == 32) {
+    switch (status) {
+      case statusTypes.STOPED:
+        play();
+        break;
+      case statusTypes.PLAYING:
+        pause();
+        break;
+      case statusTypes.PASUED:
+        resume();
+        break;
+
+      default:
+        break;
+    }
+  }
+};
+
 /*
 // Handle mute volume btn
 */
