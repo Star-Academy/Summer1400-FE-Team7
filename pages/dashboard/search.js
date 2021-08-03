@@ -19,9 +19,13 @@ const search = () => {
     isLoading = true;
   }
 
-  if (searchBox.value == "پارسا و میلاد") {
+  if (searchBox.value != "") {
     // const searchResult
-    songListFiller(playList["همه آهنگ ها"].slice(0, 7), "جست و جو");
+
+    songListFiller(
+      playList["همه آهنگ ها"].filter((song) => song.name.includes(searchBox.value )),
+      "جست و جو"
+    );
     isLoading = false;
     placeholderOmmiter();
     optionFiller();
