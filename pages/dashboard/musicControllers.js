@@ -53,14 +53,20 @@ playBtn.forEach((btn) => {
 const play = () => {
   console.log("🚀  play");
   loadMusic();
+
+  //TODO replace this with circular loading 
   playBtn.forEach((btn) => {
-    btn.children[0].src = pauseBtnImg;
+    btn.children[0].src = "../../assets/images/controls/cancel.svg";
     btn.setAttribute("data-tooltip", "توقف");
   });
 
   audio.addEventListener("canplaythrough", (event) => {
     status = statusTypes.PLAYING;
     audio.play();
+    playBtn.forEach((btn) => {
+      btn.children[0].src = pauseBtnImg;
+      btn.setAttribute("data-tooltip", "توقف");
+    });
     seekSlider.max = audio.duration;
     console.log(audio.duration)
     endTimeLabel.innerHTML=convertHMS( audio.duration)
