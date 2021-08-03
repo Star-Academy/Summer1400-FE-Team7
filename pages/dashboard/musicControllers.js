@@ -181,8 +181,7 @@ const doubleClickHandler = (elem, id) => {
   });
 };
 
-//TODO DEPRECATED:
-function KeyPress(e) {
+ function KeyPress(e) {
   var evtobj = window.event ? event : e;
   // ctrl + arrow key right
   if (evtobj.keyCode == 39 && evtobj.ctrlKey) {
@@ -211,25 +210,7 @@ function KeyPress(e) {
   }
 }
 document.onkeydown = KeyPress;
-//press space button
-// document.body.onkeyup = (e) => {
-//   if (e.keyCode == 32) {
-//     switch (status) {
-//       case statusTypes.STOPED:
-//         play();
-//         break;
-//       case statusTypes.PLAYING:
-//         pause();
-//         break;
-//       case statusTypes.PASUED:
-//         resume();
-//         break;
 
-//       default:
-//         break;
-//     }
-//   }
-// };
 
 repeatBtn.addEventListener("click", () => {
   switch (repeatMode) {
