@@ -249,6 +249,8 @@ main {
         display: flex;
         align-items: center;
 
+        position: relative;
+
         > .song-cover {
           width: 3rem;
           height: 3rem;
@@ -273,6 +275,49 @@ main {
           align-items: space-evenly;
         }
 
+        & > .more-options {
+          height: 35%;
+          width: 0.5rem;
+
+          position: absolute;
+          top: 50%;
+          transform: translateY(-50%);
+          left: 0.5rem;
+
+          background: url(../../assets/images/more.svg) no-repeat;
+          background-size: cover;
+          background-position: center;
+          display: none;
+
+          align-items: center;
+          justify-content: flex-start;
+        }
+
+        .more-options:hover {
+          & ~ .options {
+            display: flex;
+            justify-content: flex-start;
+          }
+        }
+
+        > .options {
+          position: absolute;
+          top: 30%;
+          left: 1rem;
+          width: 10rem;
+          // padding: 2rem;
+          height: 7rem;
+          background: $--bg-mellow-black;
+          border-radius: 10px;
+          display: none;
+          z-index: 400;
+
+          &:hover {
+            display: flex;
+            justify-content: flex-start;
+          }
+        }
+
         > .song-info {
           margin-right: 0.5rem;
 
@@ -292,7 +337,7 @@ main {
 
         > .song-prop {
           margin-right: auto;
-          margin-left: 0.5rem;
+          margin-left: 1.5rem;
           align-items: flex-end;
 
           > img {
@@ -302,6 +347,9 @@ main {
 
         &:hover {
           background: $--hover-bg-clr;
+          .more-options {
+            display: block;
+          }
         }
       }
 
@@ -1041,4 +1089,8 @@ main {
   .side-menu-opener-closer {
     display: none;
   }
+}
+
+.option-list {
+  color: whitesmoke;
 }

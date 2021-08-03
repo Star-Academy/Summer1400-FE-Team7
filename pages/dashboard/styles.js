@@ -209,11 +209,22 @@ addPlayListBtn.addEventListener("click", () => {
 
 const makePlayList = document.querySelector("#make-playlist");
 const cancleMakingPlayList = document.querySelector("#cancle-making-playlist");
+const makeNewPlaylistInput = document.querySelector("#make-new-playlist-input");
 
 makePlayList.addEventListener("click", () => {
-  // code
+  const title = makeNewPlaylistInput.value;
+  if (title == "") {
+    return false;
+  }
+
+  newPlayList[title] = [];
+  addNewPlaylist(title);
+
   bgGlass2.classList.add("display-none");
   addPlayListWrapper.classList.add("display-none");
+  console.log(newPlayList);
+  optionFiller();
+  makeNewPlaylistInput.value = "";
 });
 
 cancleMakingPlayList.addEventListener("click", () => {

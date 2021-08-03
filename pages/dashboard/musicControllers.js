@@ -5,6 +5,8 @@ const playBtnImg = "../../assets/images/controls/play-button.svg";
 const audio = document.querySelector("#audio");
 const nextBtn = document.querySelector("#next-btn");
 const previousBtn = document.querySelector("#previous-btn");
+const shuffleBtn = document.querySelector("#shuffle-btn");
+const repeatBtn = document.querySelector("#repeat-btn");
 const currentTimeLabel = document.querySelector("#current-time");
 const endTimeLabel = document.querySelector("#end-time");
 
@@ -14,47 +16,84 @@ const statusTypes = {
   STOPED: "stoped",
   MUTED: "muted",
 };
+const repeatTypes = {
+  NO_REPEAT: "no-repeat",
+  ONE_REPEAT: "one-repeat",
+  ALL_REPEAT: "all-repeat",
+};
 let status = statusTypes.STOPED;
+let repeatMode = repeatTypes.NO_REPEAT;
+let shuffleMode = false;
+let shuffleArray = [];
+let shuffleIndex = 0;
 
 const loadMusic = () => {
-  audio.src = songs[currentMusicIndex].file;
-  const songname = `name :${songs[currentMusicIndex].name}`;
-  console.log("🚀loadMusic", songname);
+  audio.src = playList["همه آهنگ ها"][currentMusicIndex].file;
+  const songname = `name:${playList["همه آهنگ ها"][currentMusicIndex].name}`;
+  console.log("🚀 loadMusic", songname);
 };
 
 const nextMusic = () => {
-  currentMusicIndex++;
-  if (currentMusicIndex > songs.length - 1) {
-    currentMusicIndex = 0;
+  if (shuffleMode) {
+    shuffleIndex++;
+    if (shuffleIndex > playList["همه آهنگ ها"].length - 1) {
+      shuffleIndex = 0;
+    }
+    currentMusicIndex = shuffleArray[shuffleIndex];
+  } else {
+    currentMusicIndex++;
   }
+
+  if (currentMusicIndex > playList["همه آهنگ ها"].length - 1) {
+    currentMusicIndex = 0;
+    if (repeatMode == repeatTypes.NO_REPEAT && !shuffleMode) {
+      pause();
+      return;
+    }
+  }
+
   musicChangeHandler();
   loadMusic();
   play();
 };
 
 const previousMusic = () => {
-  currentMusicIndex--;
+  if (shuffleMode) {
+    shuffleIndex--;
+    if (shuffleIndex < 0) {
+      shuffleIndex = playList["همه آهنگ ها"].length - 1;
+    }
+    currentMusicIndex = shuffleArray[shuffleIndex];
+  } else {
+    currentMusicIndex--;
+  }
+
   if (currentMusicIndex < 0) {
-    currentMusicIndex = songs.length - 1;
+    currentMusicIndex = playList["همه آهنگ ها"].length - 1;
   }
   musicChangeHandler();
   loadMusic();
   play();
 };
 
-playBtn.forEach((btn) => {
-  btn.addEventListener("click", () => {
-    if (status == statusTypes.PLAYING) {
-      pause();
-    } else if (status == statusTypes.PASUED || status == statusTypes.STOPED) {
-      resume();
-      musicChangeHandler();
-    }
+// play button ********************
+const handlePlayButton = () => {
+  playBtn.forEach((btn) => {
+    btn.addEventListener("click", () => {
+      if (status == statusTypes.PLAYING) {
+        pause();
+      } else if (status == statusTypes.PASUED) {
+        resume();
+      } else if (status == statusTypes.STOPED) {
+        play();
+      }
+    });
   });
-});
+};
+handlePlayButton();
 
 const play = () => {
-  console.log("🚀  play");
+  console.log("🚀 play");
   loadMusic();
   musicChangeHandler();
 
@@ -72,12 +111,12 @@ const play = () => {
       btn.setAttribute("data-tooltip", "توقف");
     });
     seekSlider.max = audio.duration;
-    console.log(audio.duration);
     endTimeLabel.innerHTML = convertHMS(audio.duration);
   });
 };
 
 const resume = () => {
+  console.log("🚀 resume");
   audio.play();
   playBtn.forEach((btn) => {
     btn.children[0].src = pauseBtnImg;
@@ -108,7 +147,23 @@ audio.addEventListener("timeupdate", (event) => {
 });
 
 audio.addEventListener("ended", (event) => {
-  nextMusic();
+  console.log("🚀 ended");
+  switch (repeatMode) {
+    case repeatTypes.NO_REPEAT:
+      nextMusic();
+
+      break;
+    case repeatTypes.ONE_REPEAT:
+      resume();
+
+      break;
+    case repeatTypes.ALL_REPEAT:
+      nextMusic();
+      break;
+
+    default:
+      break;
+  }
 });
 
 nextBtn.addEventListener("click", (event) => {
@@ -124,6 +179,100 @@ const doubleClickHandler = (elem, id) => {
     musicChangeHandler();
     play();
   });
+};
+
+//TODO DEPRECATED:
+function KeyPress(e) {
+  var evtobj = window.event ? event : e;
+  // ctrl + arrow key right
+  if (evtobj.keyCode == 39 && evtobj.ctrlKey) {
+    nextMusic();
+  }
+  // ctrl + arrow key left
+  else if (evtobj.keyCode == 37 && evtobj.ctrlKey) {
+    previousMusic();
+  }
+  // ctrl + arrow key down
+  else if (evtobj.keyCode == 40 && evtobj.ctrlKey) {
+    switch (status) {
+      case statusTypes.STOPED:
+        play();
+        break;
+      case statusTypes.PLAYING:
+        pause();
+        break;
+      case statusTypes.PASUED:
+        resume();
+        break;
+
+      default:
+        break;
+    }
+  }
+}
+document.onkeydown = KeyPress;
+//press space button
+// document.body.onkeyup = (e) => {
+//   if (e.keyCode == 32) {
+//     switch (status) {
+//       case statusTypes.STOPED:
+//         play();
+//         break;
+//       case statusTypes.PLAYING:
+//         pause();
+//         break;
+//       case statusTypes.PASUED:
+//         resume();
+//         break;
+
+//       default:
+//         break;
+//     }
+//   }
+// };
+
+repeatBtn.addEventListener("click", () => {
+  switch (repeatMode) {
+    case repeatTypes.NO_REPEAT:
+      repeatMode = repeatTypes.ONE_REPEAT;
+
+      break;
+    case repeatTypes.ONE_REPEAT:
+      repeatMode = repeatTypes.ALL_REPEAT;
+
+      break;
+    case repeatTypes.ALL_REPEAT:
+      repeatMode = repeatTypes.NO_REPEAT;
+      break;
+
+    default:
+      break;
+  }
+  console.log("🚀 repeatMode", repeatMode);
+});
+shuffleBtn.addEventListener("click", () => {
+  shuffleMode = !shuffleMode;
+  console.log("🚀 shuffleMode", shuffleMode);
+  if (shuffleMode) {
+    generateShuffleList();
+  }
+});
+const shuffle = (array) => {
+  var tmp,
+    current,
+    top = array.length;
+  if (top)
+    while (--top) {
+      current = Math.floor(Math.random() * (top + 1));
+      tmp = array[current];
+      array[current] = array[top];
+      array[top] = tmp;
+    }
+  return array;
+};
+const generateShuffleList = () => {
+  for (i = 0; i < playList["همه آهنگ ها"].length; i++) shuffleArray[i] = i;
+  shuffleArray = shuffle(shuffleArray);
 };
 
 /*

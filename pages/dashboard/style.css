@@ -308,6 +308,7 @@ main > .section-1 > .song-list > .song-wrapper {
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
+  position: relative;
 }
 
 main > .section-1 > .song-list > .song-wrapper > .song-cover {
@@ -344,6 +345,56 @@ main > .section-1 > .song-list > .song-wrapper > :is(.song-prop, .song-info) {
           align-items: space-evenly;
 }
 
+main > .section-1 > .song-list > .song-wrapper > .more-options {
+  height: 35%;
+  width: 0.5rem;
+  position: absolute;
+  top: 50%;
+  -webkit-transform: translateY(-50%);
+          transform: translateY(-50%);
+  left: 0.5rem;
+  background: url(../../assets/images/more.svg) no-repeat;
+  background-size: cover;
+  background-position: center;
+  display: none;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: start;
+      -ms-flex-pack: start;
+          justify-content: flex-start;
+}
+
+main > .section-1 > .song-list > .song-wrapper .more-options:hover ~ .options {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: start;
+      -ms-flex-pack: start;
+          justify-content: flex-start;
+}
+
+main > .section-1 > .song-list > .song-wrapper > .options {
+  position: absolute;
+  top: 30%;
+  left: 1rem;
+  width: 10rem;
+  height: 7rem;
+  background: #282828;
+  border-radius: 10px;
+  display: none;
+  z-index: 400;
+}
+
+main > .section-1 > .song-list > .song-wrapper > .options:hover {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: start;
+      -ms-flex-pack: start;
+          justify-content: flex-start;
+}
+
 main > .section-1 > .song-list > .song-wrapper > .song-info {
   margin-right: 0.5rem;
 }
@@ -363,7 +414,7 @@ main > .section-1 > .song-list > .song-wrapper > .song-info > .author-name-selec
 
 main > .section-1 > .song-list > .song-wrapper > .song-prop {
   margin-right: auto;
-  margin-left: 0.5rem;
+  margin-left: 1.5rem;
   -webkit-box-align: end;
       -ms-flex-align: end;
           align-items: flex-end;
@@ -375,6 +426,10 @@ main > .section-1 > .song-list > .song-wrapper > .song-prop > img {
 
 main > .section-1 > .song-list > .song-wrapper:hover {
   background: rgba(138, 135, 135, 0.15);
+}
+
+main > .section-1 > .song-list > .song-wrapper:hover .more-options {
+  display: block;
 }
 
 main > .section-1 > .song-list > .is-playing * {
@@ -1309,5 +1364,9 @@ main .mobile-navigation > .tab-navigation > button::after {
   .side-menu-opener-closer {
     display: none;
   }
+}
+
+.option-list {
+  color: whitesmoke;
 }
 /*# sourceMappingURL=style.css.map */

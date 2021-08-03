@@ -4,6 +4,7 @@ const SONG_WRAPPER_SELECTED = "song-wrapper-selected";
 const AUTHOR_NAME_SELECTED = "author-name-selected";
 const LIKED_CLASS = "liked";
 const LIKED = "../../assets/images/liked.svg";
+const LIKE = "../../assets/images/like.svg";
 const LIKE_HOVERD = "../../assets/images/like-hovered.svg";
 const songListHeader = document.querySelector(".song-list-header");
 const lyricText = document.querySelector(".lyric-text");
@@ -12,7 +13,6 @@ const lyricMusicCover = document.querySelector("#lyric-music-cover");
 const lyricMusicName = document.querySelector("#lyric-music-name");
 const lyricMusicArtist = document.querySelector("#lyric-music-artist");
 
-let songs = [];
 let currentMusicIndex = 0;
 
 let playList = {
@@ -20,15 +20,18 @@ let playList = {
   "مورد علاقه": [],
 };
 
+let newPlayList = {};
+
 const musicGrapper = async () => {
   await fetch("./songs.json")
     .then((response) => response.json())
     .then((data) => {
-      songs = data.songs;
-      playList["همه آهنگ ها"] = songs;
-      audio.src = songs[currentMusicIndex].file;
-      songListFiller(songs, "همه آهنگ ها");
+      playList["همه آهنگ ها"] = data.songs;
+      playList["همه آهنگ ها"] = playList["همه آهنگ ها"];
+      audio.src = playList["همه آهنگ ها"][currentMusicIndex].file;
+      songListFiller(playList["همه آهنگ ها"], "همه آهنگ ها");
       placeholderOmmiter();
+      optionFiller();
     })
     .catch((error) => console.log(error));
 };
@@ -61,6 +64,12 @@ const songListFiller = (list, header) => {
     const songDuration = document.createElement("p");
 
     const likeImg = document.createElement("img");
+    const moreOptions = document.createElement("button");
+    moreOptions.className = "more-options";
+
+    const optionsDiv = document.createElement("div");
+    optionsDiv.className = "options";
+
     likeImg.className = FAV_ICON;
 
     if (song.cover !== undefined) {
@@ -75,21 +84,24 @@ const songListFiller = (list, header) => {
 
     lyricText.innerText = song.lyrics;
 
-    songDuration.innerText = convertHMS(song.duration);
-    likeImg.src = "../../assets/images/like.svg";
+    // songDuration.innerText = convertHMS(song.duration);
+    songDuration.innerText = convertHMS(Math.random() * (400 - 180) + 180);
+    likeImg.src = LIKE;
 
     songCoverDiv.appendChild(songCoverImg);
 
     songInfoDiv.appendChild(songName);
     songInfoDiv.appendChild(authorName);
 
-    //songPropDiv.appendChild(songDuration);
+    songPropDiv.appendChild(songDuration);
     songPropDiv.appendChild(likeImg);
 
     //TODO ADD LAZY
     songWrapperDiv.appendChild(songCoverDiv);
     songWrapperDiv.appendChild(songInfoDiv);
     songWrapperDiv.appendChild(songPropDiv);
+    songWrapperDiv.appendChild(moreOptions);
+    songWrapperDiv.appendChild(optionsDiv);
 
     songList.appendChild(songWrapperDiv);
 
@@ -109,10 +121,10 @@ const songListFiller = (list, header) => {
 
     likeImg.addEventListener("mouseout", () => {
       if (likeImg.classList.contains(LIKED_CLASS)) {
-        likeImg.src = "../../assets/images/liked.svg";
+        likeImg.src = LIKED;
         likeImg.style.transform = "scale(1)";
       } else {
-        likeImg.src = "../../assets/images/like.svg";
+        likeImg.src = LIKE;
       }
     });
 
@@ -174,9 +186,9 @@ const convertHMS = (value) => {
 musicGrapper();
 
 const musicChangeHandler = () => {
-  const imgSrc = songs[currentMusicIndex].cover;
-  const elemTitle = songs[currentMusicIndex].name;
-  const elemArtist = songs[currentMusicIndex].artist;
+  const imgSrc = playList["همه آهنگ ها"][currentMusicIndex].cover;
+  const elemTitle = playList["همه آهنگ ها"][currentMusicIndex].name;
+  const elemArtist = playList["همه آهنگ ها"][currentMusicIndex].artist;
   bgCover.style.background = `url(${imgSrc}) center no-repeat`;
   bgCover.style.backgroundSize = "cover";
 
@@ -189,11 +201,40 @@ const musicChangeHandler = () => {
   lyricMusicName.innerText = elemTitle;
   lyricMusicArtist.innerText = elemArtist;
 
-  lyricText.innerText = songs[currentMusicIndex].lyrics;
+  lyricText.innerText = playList["همه آهنگ ها"][currentMusicIndex].lyrics;
 
   const currentlyPlaying = document.querySelector(".is-playing");
   if (currentlyPlaying != null) {
     currentlyPlaying.classList.remove("is-playing");
   }
   songWrapper[currentMusicIndex].classList.add("is-playing");
+};
+
+const optionFiller = () => {
+  console.log("asdads");
+  const allOptions = document.querySelectorAll(".options");
+
+  allOptions.forEach((option, index) => {
+    const ul = document.createElement("ul");
+    ul.className = "option-list";
+
+    deleteChildrenNodes(option);
+
+    for (let list in newPlayList) {
+      const li = document.createElement("li");
+      li.innerText = list;
+      ul.appendChild(li);
+    }
+
+    option.appendChild(ul);
+  });
+  console.log(allOptions);
+
+  document.querySelectorAll(".test").forEach((i) => console.log(i));
+};
+
+const deleteChildrenNodes = (parent) => {
+  while (parent.firstChild) {
+    parent.removeChild(parent.firstChild);
+  }
 };
