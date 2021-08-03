@@ -181,7 +181,7 @@ const doubleClickHandler = (elem, id) => {
   });
 };
 
- function KeyPress(e) {
+function KeyPress(e) {
   var evtobj = window.event ? event : e;
   // ctrl + arrow key right
   if (evtobj.keyCode == 39 && evtobj.ctrlKey) {
@@ -210,7 +210,6 @@ const doubleClickHandler = (elem, id) => {
   }
 }
 document.onkeydown = KeyPress;
-
 
 repeatBtn.addEventListener("click", () => {
   switch (repeatMode) {

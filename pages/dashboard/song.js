@@ -243,8 +243,6 @@ const deleteChildrenNodes = (parent) => {
 };
 
 const addToPlayList = (playListName, id) => {
-  console.log(playListName);
-  console.log(id);
   if (!newPlayList[playListName].includes(playList["همه آهنگ ها"][id - 1])) {
     newPlayList[playListName] = [...newPlayList[playListName], playList["همه آهنگ ها"][id - 1]];
   } else {

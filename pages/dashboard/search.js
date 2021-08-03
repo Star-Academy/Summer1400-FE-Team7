@@ -23,7 +23,7 @@ const search = () => {
     // const searchResult
 
     songListFiller(
-      playList["همه آهنگ ها"].filter((song) => song.name.includes(searchBox.value )),
+      playList["همه آهنگ ها"].filter((song) => song.name.includes(searchBox.value)),
       "جست و جو"
     );
     isLoading = false;

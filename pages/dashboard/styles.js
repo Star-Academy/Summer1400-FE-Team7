@@ -16,6 +16,8 @@ const volumeSlider = document.getElementById("volume-slider");
 const mobileInfo = document.querySelector(".mobile-info");
 const listViewLayout = document.querySelector("#list-view");
 const allSongsTabNavigation = document.querySelector("#all-songs-tab-navigation-mobile");
+const userEmail = document.querySelector("#user-email");
+const pofileWrapper = document.querySelector(".profile-wrapper");
 
 const songList = document.querySelector(".song-list");
 const bgCover = document.querySelector(".bg-cover");
@@ -201,8 +203,6 @@ hiddenTextMovingAnimation(mobileInfo, (window.innerWidth / 100) * 40);
 allSongsTabNavigation.focus();
 
 addPlayListBtn.addEventListener("click", () => {
-  console.log("hiiiiiii");
-  console.log(bgGlass2);
   bgGlass2.classList.remove("display-none");
   addPlayListWrapper.classList.remove("display-none");
 });
@@ -222,7 +222,6 @@ makePlayList.addEventListener("click", () => {
 
   bgGlass2.classList.add("display-none");
   addPlayListWrapper.classList.add("display-none");
-  console.log(newPlayList);
   optionFiller();
   makeNewPlaylistInput.value = "";
 });
@@ -230,4 +229,10 @@ makePlayList.addEventListener("click", () => {
 cancleMakingPlayList.addEventListener("click", () => {
   bgGlass2.classList.add("display-none");
   addPlayListWrapper.classList.add("display-none");
+});
+
+userEmail.innerText = localStorage.getItem("email");
+
+pofileWrapper.addEventListener("click", () => {
+  logoutUser();
 });
