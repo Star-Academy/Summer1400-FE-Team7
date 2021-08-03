@@ -9,8 +9,9 @@
     <link rel="stylesheet" href="style.css" />
     <link rel="stylesheet" href="../../styles/main.css" />
     <script src="./styles.js" defer></script>
-    <script src="./song.js" defer></script>
     <script src="./musicControllers.js" defer></script>
+
+    <script src="./song.js" defer></script>
   </head>
   <body>
     <main>
@@ -68,6 +69,7 @@
       </section>
 
       <section class="music-controls">
+        <audio  id="audio"></audio>
         <div class="info-wrapper">
           <img src="../../assets/images/default-song-cover.svg" alt="music-cover" id="music-cover" />
           <div>
@@ -169,8 +171,8 @@
             <p>Music name Music name <span>&nbsp;•&nbsp;</span> Artist name Artist name</p>
           </div>
 
-          <button>
-            <img src="../../assets/images/controls/play-button.svg" alt="play button" />
+          <button  class="play-music-btn">
+            <img src="../../assets/images/controls/play-button.svg" alt="play puase button" />
           </button>
         </div>
 
