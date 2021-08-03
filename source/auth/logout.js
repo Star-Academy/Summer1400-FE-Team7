@@ -1,3 +1,3 @@
-const logout = () => {
-  localStorage.clear("user");
+const logoutUser = () => {
+  localStorage.removeItem("email");
 };
