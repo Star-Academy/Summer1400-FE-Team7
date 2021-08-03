@@ -1,58 +1,82 @@
 const registerForm = document.querySelector(".signup-form");
-const registerBtn = document.querySelector(".register-btn");
 const emailRegister = document.querySelector("#signup-email-input");
 const passwordRegister = document.querySelector("#signup-password-input");
-const confirmPasswordRegister = document.querySelector("#signup-confirm-password-input");
+const confirmPasswordRegister = document.querySelector(
+  "#signup-confirm-password-input"
+);
 
-const user = {
+const registerInputs = {
   email: "",
   password: "",
   confirmPassword: "",
 };
-
-const register = () => {
-  user.email = emailRegister.value;
-  user.password = passwordRegister.value;
-  user.confirmPassword = confirmPasswordRegister.value;
-
-  if (user.password != user.confirmPassword) {
-    return confirmPasswordRegister.setCustomValidity("پسورد ها یکسان نمیباشند");
-  } else {
-    confirmPasswordRegister.setCustomValidity("");
-  }
-
-  window.location.href = "../dashboard/index.html";
-  window.location.href = "../dashboardasasdasd/";
-  // console.log(window.location);
-  // document.location.href = ("Your url", true);
-
-  // let response = await fetch(`${BASE_URL}/user/login`, {
-  //   method: "POST",
-  //   body: JSON.stringify({ username: user.email.split("@")[0], email: user.email, password: user.password }),
-  // })
-  //   .then((response) => response.json())
-  //   .then((responseJson) => {
-  //     console.log(responseJson);
-  //   });
-
-  // await fetch(`${BASE_URL}/user/one/8`)
-  //   .then((response) => response.json())
-  //   .then((responseJson) => {
-  //     console.log(responseJson);
-  //   });
-
-  // if (response.ok) {
-  //   const currentUser = { id: response.body.id, email: user.email };
-  //   localStorage.setItem("user", JSON.stringify(currentUser));
-  //   console.log(localStorage.getItem("user"));
-  // }
+const validateEmail = (email) => {
+  const emailPattern =
+    /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+  return emailPattern.test(String(email).toLowerCase());
 };
 
-// registerBtn.addEventListener("click", () => {
-//   console.log("here");
-//   registerForm.submit();
-// });
+const validPassword = (password) => {
+  const passwordPattern = /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/;
+  return passwordPattern.test(String(password).toLowerCase());
+};
 
-registerForm.addEventListener("submit", () => {
-  register();
-});
+const performRegister = () => {
+  registerInputs.email = emailRegister.value;
+  registerInputs.password = passwordRegister.value;
+  registerInputs.confirmPassword = confirmPasswordRegister.value;
+
+  let result = true;
+
+  if (registerInputs.email == "") {
+    console.log("email cant be empty");
+    return false;
+  }
+  if (registerInputs.password == "") {
+    console.log("password cant be empty");
+    return false;
+  }
+  if (registerInputs.confirmPassword == "") {
+    console.log("confirmPassword cant be empty");
+    return false;
+  }
+  if (!validateEmail(registerInputs.email)) {
+    console.log("email is not a valid ");
+    return false;
+  }
+  if (!validPassword(registerInputs.password)) {
+    console.log("passwoed is not a valid ");
+    return false;
+  }
+
+  if (registerInputs.password != registerInputs.confirmPassword) {
+    result = false;
+    console.log("passwords not match");
+  }
+
+  for (const user of testUsers) {
+    if (user.username === registerInputs.email.split("@")[0]) {
+      console.log("this email is allready registered");
+      result = false;
+      break;
+    }
+  }
+  if (!result) {
+    console.log("register failed");
+  } else {
+    console.log("register seccussed");
+    emailRegister.value = "";
+    passwordRegister.value = "";
+    confirmPasswordRegister.value = "";
+  }
+
+  return result;
+};
+
+const registerUser = () => {
+  if (performRegister()) {
+    localStorage.setItem("email", registerInputs.email);
+
+    window.location.href = "../../pages/dashboard/index.html";
+  }
+};
