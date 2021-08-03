@@ -118,34 +118,7 @@ lyricsBtnReturn.addEventListener("click", () => {
   lyricsBtn.classList.toggle(LYRIC_BTN_ACTIVE);
 });
 
-/*
-// Handle mute volume btn
-*/
-let volumeIsMuted = false;
-let volumeValue = volumeSlider.value;
 
-volumeBtn.addEventListener("click", () => {
-  volumeIsMuted = !volumeIsMuted;
-  if (volumeIsMuted) {
-    volumeValue = volumeSlider.value;
-    volumeBtnImg.src = MUTE_BTN_IMG;
-    volumeText.innerHTML = "0";
-    volumeSlider.value = 0;
-    volumeBtn.setAttribute("data-tooltip", "بی صدا");
-  } else {
-    volumeBtnImg.src = VOLUME_BTN_IMG;
-    volumeText.innerHTML = volumeValue;
-    volumeSlider.value = volumeValue;
-    volumeBtn.setAttribute("data-tooltip", "صدا");
-  }
-});
-/*
-// Update volume text value
-*/
-volumeText.innerHTML = volumeSlider.value;
-const updateVolumeValue = (val) => {
-  volumeText.innerHTML = val;
-};
 
 /*
 // Handle long song title and artis name with moving text animation
