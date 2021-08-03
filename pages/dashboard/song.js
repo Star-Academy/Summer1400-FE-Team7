@@ -245,5 +245,16 @@ const deleteChildrenNodes = (parent) => {
 const addToPlayList = (playListName, id) => {
   console.log(playListName);
   console.log(id);
-  newPlayList[playListName] = [...newPlayList[playListName], playList["همه آهنگ ها"][id - 1]];
+  if (!newPlayList[playListName].includes(playList["همه آهنگ ها"][id - 1])) {
+    newPlayList[playListName] = [...newPlayList[playListName], playList["همه آهنگ ها"][id - 1]];
+  } else {
+    console.log("already exists");
+    deleteFromPlaylist(playListName, id);
+  }
+};
+
+const deleteFromPlaylist = (playListName, id) => {
+  newPlayList[playListName] = newPlayList[playListName].filter(function (item) {
+    return item !== playList["همه آهنگ ها"][id - 1];
+  });
 };
