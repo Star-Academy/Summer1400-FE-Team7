@@ -5,20 +5,29 @@ const AUTHOR_NAME_SELECTED = "author-name-selected";
 const LIKED_CLASS = "liked";
 const LIKED = "../../assets/images/liked.svg";
 const LIKE_HOVERD = "../../assets/images/like-hovered.svg";
+const songListHeader = document.querySelector(".song-list-header");
 
 let songs = [];
 let currentMusicID = 1;
 
-fetch("./songs.json")
-  .then((response) => response.json())
-  .then((data) => {
-    songs = data.songs;
-    songListFiller();
-  })
-  .catch((error) => console.log(error));
+const musicGrapper = async () => {
+  await fetch("./songs.json")
+    .then((response) => response.json())
+    .then((data) => {
+      songs = data.songs;
+      songListFiller(songs, "همه آهنگ ها");
+      placeholderOmmiter();
+    })
+    .catch((error) => console.log(error));
+};
 
-const songListFiller = () => {
-  songs.forEach((song, index) => {
+const songListFiller = (list, header) => {
+  songListHeader.innerText = header;
+  document.querySelectorAll(".song-wrapper").forEach((i) => {
+    i.remove();
+  });
+
+  list.forEach((song, index) => {
     const songWrapperDiv = document.createElement("div");
     songWrapperDiv.className = "song-wrapper";
 
@@ -151,3 +160,5 @@ const convertHMS = (value) => {
     return minutes + ":" + seconds; // Return is  MM : SS
   }
 };
+
+musicGrapper();

@@ -8,7 +8,9 @@
     <title>خانه</title>
     <link rel="stylesheet" href="style.css" />
     <link rel="stylesheet" href="../../styles/main.css" />
+    <script src="./placeholders.js" defer></script>
     <script src="./styles.js" defer></script>
+    <script src="./search.js" defer></script>
     <script src="./song.js" defer></script>
     <script src="./musicControllers.js" defer></script>
   </head>
@@ -17,7 +19,7 @@
       <section class="section-1">
         <div class="side-menu">
           <div class="search">
-            <input type="search" placeholder="جست و جو..." />
+            <input type="search" placeholder="جست و جو..." class="search-box" />
             <div class="search__icon"></div>
           </div>
 
@@ -31,10 +33,14 @@
             <button>مورد علاقه</button>
           </div>
 
-          <div class="btn-wrapper">
-            <img src="../../assets/images/playlist-add.svg" alt="" />
-            <button>پلی لیست جدید</button>
-            <button class="add-btn"></button>
+          <div class="playlist-container">
+            <div class="btn-wrapper">
+              <img src="../../assets/images/playlist-add.svg" alt="" />
+              <button>پلی لیست جدید</button>
+            </div>
+            <button class="add-btn">
+              <img src="../../assets/images/add.svg" alt="add svg" />
+            </button>
           </div>
 
           <div class="profile-wrapper btn-wrapper">
@@ -46,7 +52,7 @@
         </div>
         <div class="song-list side-menu-opended">
           <div>
-            <h2>همه آهنگ ها</h2>
+            <h2 class="song-list-header"></h2>
             <div class="song-list-view-wrapper">
               <input type="radio" name="song-list-view" id="list-view" checked class="radio-btn" />
               <label for="list-view">
@@ -64,6 +70,8 @@
               </label>
             </div>
           </div>
+
+          <div class="placeholders-wrapper"></div>
         </div>
       </section>
 
@@ -159,6 +167,8 @@
         </div>
       </section>
 
+      <section></section>
+
       <section class="mobile-navigation">
         <div class="music-contolers">
           <button id="lyrics-btn-mobile">
@@ -199,6 +209,16 @@
     </main>
     <div class="bg-cover"></div>
     <div class="dark-glass"></div>
+    <div class="dark-glass2 display-none"></div>
+
+    <div class="add-playlist-wrapper display-none">
+      <div>
+        <img src="../../assets/images/playlist-add.svg" alt="add play list" />
+      </div>
+      <input type="text" placeholder="نام پلی‌لیست جدید" />
+      <button id="make-playlist">ساخت پلی لیست</button>
+      <button id="cancle-making-playlist">انصراف</button>
+    </div>
 
     <div class="side-menu-opener-closer">
       <button id="side-menu-opener-closer-btn">

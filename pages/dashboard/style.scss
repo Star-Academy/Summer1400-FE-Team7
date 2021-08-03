@@ -7,6 +7,7 @@ $--bg-mellow-black: rgb(40, 40, 40);
 
 :root {
   --animation-width: 0px;
+  --placeholder-rotation: 150deg;
 }
 
 main {
@@ -80,12 +81,13 @@ main {
         }
       }
 
-      > .btn-wrapper {
+      .btn-wrapper {
         display: flex;
         width: 100%;
         align-items: center;
         position: relative;
         border-right: 5px solid transparent;
+        cursor: pointer;
 
         > img {
           width: 40px;
@@ -106,19 +108,38 @@ main {
         &:hover {
           background: rgba(255, 255, 255, 0.486);
         }
+      }
 
-        > .add-btn {
-          height: 3rem;
-          width: 3rem;
-          background: url(../../assets/images/add.svg) no-repeat;
-          background-position: center;
-          background-size: 50%;
+      .playlist-container {
+        display: flex;
+        justify-self: flex-start;
+        align-self: baseline;
+        width: 100%;
+        // margin-right: 5px;
+
+        & > .btn-wrapper {
+          margin-right: 0;
+        }
+      }
+
+      .add-btn {
+        height: 3rem;
+        width: 3rem;
+        // background-position: center;
+        // background-size: 50%;
+
+        &:hover {
+          background: rgba(255, 255, 255, 0.486);
+        }
+
+        & > img {
+          width: 50%;
+          height: 100%;
         }
       }
 
       > .menu-selected {
         border-right: 5px solid $--selected-bg-blue;
-        // background: rgba(255, 255, 255, 0.486);
       }
 
       .profile-wrapper {
@@ -162,6 +183,8 @@ main {
       transition: width 0.1s linear;
 
       margin-right: auto;
+
+      position: relative;
 
       display: flex;
       flex-direction: column;
@@ -287,6 +310,85 @@ main {
 
         &:hover {
           background: $--selected-bg-blue;
+        }
+      }
+
+      > .placeholders-wrapper {
+        position: absolute;
+        top: calc(5rem + 3rem + 0.25rem);
+        left: 3rem;
+        width: calc(100% - 6rem);
+
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 0.25rem;
+
+        * {
+          background: linear-gradient(var(--placeholder-rotation), $--bg-mellow-black, $--selected-bg-blue);
+        }
+
+        > .place-holders {
+          width: 100%;
+          height: 3rem;
+          background: transparent !important;
+
+          display: flex;
+
+          .img-placeholder {
+            width: 3rem;
+            height: 3rem;
+            border-radius: 100%;
+          }
+
+          .right-info-placeholder {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            gap: 0.2rem;
+            background: none;
+            margin-right: 0.3rem;
+
+            > div {
+              border-radius: 999rem;
+              height: 35%;
+            }
+
+            .title-placeholder {
+              width: 60px;
+            }
+
+            .artist-placeholder {
+              width: 100px;
+            }
+          }
+
+          .left-info-placeholder {
+            width: 3rem;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: flex-end;
+            gap: 0.2rem;
+            margin-left: 0.5rem;
+            background: none;
+
+            > div {
+              height: 35%;
+              border-radius: 999rem;
+            }
+
+            > .duration-placeholder {
+              width: 3rem;
+            }
+
+            > .like-btn-placeholder {
+              width: 2rem;
+            }
+          }
         }
       }
     }
@@ -695,6 +797,7 @@ main {
 }
 
 .dark-glass,
+.dark-glass2,
 .bg-cover {
   position: absolute;
   top: 0;
@@ -704,7 +807,20 @@ main {
   z-index: 5;
 }
 
-.dark-glass {
+.dark-glass2 {
+  animation: opacityAnimation 0.35s ease;
+  @keyframes opacityAnimation {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+}
+
+.dark-glass,
+.dark-glass2 {
   background: $--bg-glass;
 }
 
@@ -773,6 +889,77 @@ main {
       user-select: none;
     }
   }
+}
+
+.add-playlist-wrapper {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 29.375rem;
+  height: 32.125rem;
+  background: $--bg-mellow-black;
+  z-index: 999;
+  padding: 4rem;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+
+  > div {
+    width: 11rem;
+    height: 11rem;
+    background: $--selected-bg-blue;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    > img {
+      width: 50%;
+      height: auto;
+    }
+  }
+
+  > input {
+    height: 3rem;
+    width: 80%;
+    padding-right: 1rem;
+  }
+
+  & > button {
+    color: var(--clr-white);
+    font-size: 1rem;
+    // padding: 1rem 3rem;
+    width: 12rem;
+    height: 4rem;
+  }
+
+  > button:nth-of-type(1) {
+    background: $--selected-bg-blue;
+
+    &:hover {
+      background: darken($--selected-bg-blue, 10);
+    }
+
+    &:active {
+      background: darken($--selected-bg-blue, 20);
+    }
+  }
+
+  > button:nth-of-type(2) {
+    &:hover {
+      background: darken($--bg-mellow-black, 3);
+    }
+
+    &:active {
+      background: darken($--bg-mellow-black, 6);
+    }
+  }
+}
+
+.dark-glass2 {
+  z-index: 998;
 }
 
 .side-menu-opended {

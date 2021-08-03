@@ -19,6 +19,9 @@ const allSongsTabNavigation = document.querySelector("#all-songs-tab-navigation-
 
 const songList = document.querySelector(".song-list");
 const bgCover = document.querySelector(".bg-cover");
+const bgGlass2 = document.querySelector(".dark-glass2");
+const addPlayListBtn = document.querySelector(".add-btn");
+const addPlayListWrapper = document.querySelector(".add-playlist-wrapper");
 
 const seekSlider = document.getElementById("seek-slider");
 
@@ -26,6 +29,7 @@ const musicCover = document.querySelector("#music-cover");
 const musicTitle = document.querySelector("#music-title");
 const musicArtist = document.querySelector("#music-artist");
 const songWrapper = document.querySelectorAll(".song-wrapper");
+const playlistContainer = document.querySelector(".playlist-container");
 
 const MENU_SELECTED = "menu-selected";
 
@@ -58,6 +62,10 @@ const HandlemenuButtonsSelect = () => {
       m.classList.add(MENU_SELECTED);
     });
   }
+  playlistContainer.addEventListener("click", () => {
+    document.querySelector(`.${MENU_SELECTED}`).classList.remove(MENU_SELECTED);
+    playlistContainer.classList.add(MENU_SELECTED);
+  });
 };
 
 /*
@@ -221,3 +229,24 @@ favIcon.forEach((elem) => {
 HandlemenuButtonsSelect();
 hiddenTextMovingAnimation(mobileInfo, (window.innerWidth / 100) * 40);
 allSongsTabNavigation.focus();
+
+addPlayListBtn.addEventListener("click", () => {
+  console.log("hiiiiiii");
+  console.log(bgGlass2);
+  bgGlass2.classList.remove("display-none");
+  addPlayListWrapper.classList.remove("display-none");
+});
+
+const makePlayList = document.querySelector("#make-playlist");
+const cancleMakingPlayList = document.querySelector("#cancle-making-playlist");
+
+makePlayList.addEventListener("click", () => {
+  // code
+  bgGlass2.classList.add("display-none");
+  addPlayListWrapper.classList.add("display-none");
+});
+
+cancleMakingPlayList.addEventListener("click", () => {
+  bgGlass2.classList.add("display-none");
+  addPlayListWrapper.classList.add("display-none");
+});
