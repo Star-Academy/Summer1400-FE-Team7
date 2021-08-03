@@ -1,8 +1,7 @@
 const playBtn = document.querySelectorAll(".play-music-btn");
 const pauseBtnImg = "../../assets/images/controls/pause.svg";
 const playBtnImg = "../../assets/images/controls/play-button.svg";
-
-const music = new Audio();
+const audio = document.querySelector("#audio");
 
 const statusTypes = {
   PLAYING: "playing",
@@ -23,15 +22,15 @@ playBtn.forEach((btn) => {
 });
 
 const play = () => {
-  music.src = songs[currentMusicID].file;
-
+  console.log("🚀 ~ file: musicControllers.js ~ line 33 ~ play ~ play");
   playBtn.forEach((btn) => {
     btn.children[0].src = pauseBtnImg;
+    btn.setAttribute("data-tooltip", "توقف");
   });
 
-  music.addEventListener("canplaythrough", (event) => {
-    status = statusTypes.PLAYING;
-    music.play();
+    audio.addEventListener("canplaythrough", (event) => {
+      status = statusTypes.PLAYING;
+    audio.play();
   });
 };
 
@@ -40,9 +39,27 @@ const resume = () => {
 };
 
 const pause = () => {
-  music.pause();
+  console.log("🚀 ~ file: musicControllers.js ~ line 46 ~ pause ~ pause");
+  audio.pause();
   status = statusTypes.PASUED;
   playBtn.forEach((btn) => {
     btn.children[0].src = playBtnImg;
+    btn.setAttribute("data-tooltip", "پخش");
+
   });
 };
+
+const updateMusicBarValue = (value) => {
+  audio.currentTime=value;
+}
+audio.addEventListener("timeupdate",(event) => {
+
+  console.log(audio.currentTime)
+  seekSlider.max=audio.duration
+  seekSlider.value=audio.currentTime
+});
+
+audio.addEventListener("ended",(event) => {
+
+})
+
