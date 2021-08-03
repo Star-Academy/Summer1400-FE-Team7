@@ -3,7 +3,9 @@ const emailLoginInput = document.querySelector("#login-email-input");
 const passwordLoginInput = document.querySelector("#login-password-input");
 const loginBtn = document.querySelector(".login-btn");
 const emailInputWrapper = document.querySelector("#email-login-input-wrapper");
-const passwordInputWrapper = document.querySelector("#password-login-input-wrapper");
+const passwordInputWrapper = document.querySelector(
+  "#password-login-input-wrapper"
+);
 
 const loginInputs = {
   email: "",
@@ -25,25 +27,7 @@ const performLogin = () => {
     emailInputWrapper.setAttribute("data-error", "ایمیل نمی‌تواند خالی باشد");
     emailInputWrapper.classList.add("error");
     return false;
-  }
-  else {
-    emailInputWrapper.classList.remove("error");
-  }
-
-  if (loginInputs.password == "") {
-    console.log("password cant be empty");
-    passwordInputWrapper.setAttribute("data-error", "رمزعبور نمی‌تواند خالی باشد");
-
-    passwordInputWrapper.classList.add("error");
-
-
-    return false;
-  } else{
-    passwordInputWrapper.classList.remove("error");
-
-  }
-
-  if (!validateEmail(loginInputs.email)) {
+  } else if (!validateEmail(loginInputs.email)) {
     console.log("email is not valis");
     emailInputWrapper.setAttribute("data-error", "ایمیل وارد شده معتبر نیست!");
     emailInputWrapper.classList.add("error");
@@ -51,6 +35,20 @@ const performLogin = () => {
     return false;
   } else {
     emailInputWrapper.classList.remove("error");
+  }
+
+  if (loginInputs.password == "") {
+    console.log("password cant be empty");
+    passwordInputWrapper.setAttribute(
+      "data-error",
+      "رمزعبور نمی‌تواند خالی باشد"
+    );
+
+    passwordInputWrapper.classList.add("error");
+
+    return false;
+  } else {
+    passwordInputWrapper.classList.remove("error");
   }
 
   let result = false;
@@ -67,6 +65,8 @@ const performLogin = () => {
 
   if (!result) {
     console.log("login failed");
+    loginBtn.setAttribute("data-error", "ایمیل یا رمز عبور صحیح نمیباشد");
+    loginBtn.classList.add("error");
   } else {
     emailLoginInput.value = "";
     passwordLoginInput.value = "";
@@ -76,6 +76,7 @@ const performLogin = () => {
 };
 
 const loginUser = () => {
+  loginBtn.classList.remove("error");
   if (performLogin()) {
     localStorage.setItem("email", loginInputs.email);
 
