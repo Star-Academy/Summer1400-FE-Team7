@@ -377,8 +377,16 @@ main > .section-1 > .song-list > .song-wrapper:hover {
   background: rgba(138, 135, 135, 0.15);
 }
 
+main > .section-1 > .song-list > .is-playing * {
+  color: #1d7dd7 !important;
+}
+
 main > .section-1 > .song-list > .song-wrapper-selected {
   background-color: #1d7dd7;
+}
+
+main > .section-1 > .song-list > .song-wrapper-selected * {
+  color: var(--clr-white) !important;
 }
 
 main > .section-1 > .song-list > .song-wrapper-selected:hover {
@@ -862,6 +870,10 @@ main .lyric-wrapper > .lyrics-text {
   max-width: 100ch;
   line-height: 2;
   color: rgba(255, 255, 255, 0.678);
+}
+
+main .lyric-wrapper > .lyrics-text > .lyric-text {
+  padding-bottom: 5rem;
 }
 
 main .mobile-navigation {

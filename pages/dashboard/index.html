@@ -13,7 +13,6 @@
     <script src="./search.js" defer></script>
     <script src="./song.js" defer></script>
     <script src="./musicControllers.js" defer></script>
-
   </head>
   <body>
     <main>
@@ -77,7 +76,7 @@
       </section>
 
       <section class="music-controls">
-        <audio  id="audio"></audio>
+        <audio id="audio"></audio>
         <div class="info-wrapper">
           <img src="../../assets/images/default-song-cover.svg" alt="music-cover" id="music-cover" />
           <div>
@@ -92,7 +91,7 @@
               <img src="../../assets/images/controls/shuffle.svg" alt="shuffle button" />
             </button>
 
-            <button class="size-1 ctl-btn" id="next-btn"  data-tooltip="بعدی">
+            <button class="size-1 ctl-btn" id="next-btn" data-tooltip="بعدی">
               <img src="../../assets/images/controls/next.svg" alt="next music button" />
             </button>
 
@@ -100,7 +99,7 @@
               <img src="../../assets/images/controls/play-button.svg" alt="play puase button" />
             </button>
 
-            <button class="size-1 ctl-btn"id="previous-btn"  data-tooltip="قبلی">
+            <button class="size-1 ctl-btn" id="previous-btn" data-tooltip="قبلی">
               <img src="../../assets/images/controls/back.svg" alt="previous music button" />
             </button>
 
@@ -133,39 +132,15 @@
         </button>
 
         <div class="lyrics-music-cover">
-          <img src="../../assets/images/default-song-cover.svg" alt="song cover" />
+          <img src="../../assets/images/default-song-cover.svg" alt="song cover" id="lyric-music-cover" />
           <div class="music-info">
-            <p>music name</p>
-            <p>artist name</p>
+            <p id="lyric-music-name">music name</p>
+            <p id="lyric-music-artist">artist name</p>
           </div>
         </div>
 
         <div class="lyrics-text">
-          <p>
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Quis nesciunt, fugit doloremque reprehenderit, veritatis nisi labore quaerat, ipsum nobis ea assumenda quasi!
-            Alias delectus laudantium corporis qui architecto harum repellat itaque consequuntur laborum. Dolore deserunt dignissimos eligendi maiores quasi tenetur eaque amet
-            totam unde error, sit adipisci veniam doloribus modi molestiae voluptate illum architecto earum repudiandae facere aliquam? Amet accusamus ullam vel eius quidem quae
-            voluptate, aspernatur tempora earum eligendi sit non ducimus, voluptatibus blanditiis dolor consequatur id voluptatem velit incidunt eveniet, magnam fugiat nostrum.
-            Dolorem reprehenderit, molestias quibusdam placeat a quam, dignissimos nihil animi ratione vitae optio accusamus nemo, eligendi perferendis. Eius ad rem voluptatum
-            velit reprehenderit! Velit sapiente fugiat, iste ducimus quas impedit, eum suscipit sunt dolor explicabo eius minima repellendus? Quisquam, qui. Consequatur, amet
-            cupiditate aut cum optio nobis repellat vitae earum harum. Voluptates mollitia quas ducimus, eius obcaecati veniam velit quo accusantium porro illo officia atque iusto
-            quae dolorem qui culpa architecto! Fugit non ut cupiditate amet, dolores, esse illo, nostrum quasi a voluptate doloribus corporis inventore quibusdam deleniti
-            repudiandae dignissimos nesciunt aut quod commodi rem reprehenderit incidunt? Quaerat exercitationem officia magni amet accusantium deleniti delectus, totam corporis
-            asperiores obcaecati quam minima a dolor quas vitae eligendi natus necessitatibus modi rem id illum? Libero praesentium, minus aliquam reprehenderit cum autem officia
-            cumque eveniet architecto, eius ab, expedita beatae ut maxime delectus natus doloremque! Fugiat commodi quidem, ex obcaecati consequatur repellat cupiditate a, omnis
-            voluptates rem possimus, eos eius. Ea impedit quis minima soluta ratione molestiae nobis sequi nisi, nemo delectus blanditiis harum atque iusto ut error quod, quisquam,
-            tempora temporibus? Eos necessitatibus magni omnis tempora deleniti quis labore optio ipsam molestiae ut dolor eaque aperiam quidem dicta, perferendis molestias quos,
-            rerum repellat mollitia ratione excepturi. Laborum veniam quasi ad numquam quibusdam. Soluta ipsa sunt consequuntur aliquid qui, provident reiciendis facere molestiae
-            dolor nobis dicta ab quia ad expedita tenetur a itaque at veritatis, ut consequatur doloremque magni est! Modi fugit veniam accusamus culpa tenetur minima, neque
-            temporibus assumenda ipsa deleniti, expedita laborum. Alias sunt saepe nisi, sed quia voluptatum dignissimos expedita impedit similique asperiores voluptatibus at
-            assumenda temporibus repudiandae aliquid unde. Molestiae aut modi quasi autem, rem quibusdam! Eaque laborum, perspiciatis repellat adipisci dolorem ipsam? Ab, fugit,
-            dicta aliquid ad sequi iusto dignissimos repellat perferendis cupiditate recusandae temporibus maiores earum accusamus obcaecati aliquam officiis facilis ut. Officiis
-            delectus beatae quisquam ab! Esse fuga minima, quaerat maiores vitae officia, fugiat corporis ex aliquid aliquam, eaque accusamus odit! Nesciunt eius ipsum molestiae
-            aliquam qui dolorum sequi nihil dolore doloremque perspiciatis eveniet atque architecto animi similique, cum, dolores accusantium rerum optio eaque eligendi ad sit
-            voluptate! Dolores expedita quasi quae consectetur soluta veritatis delectus eligendi dolorem quidem. Necessitatibus porro odio sunt facilis distinctio minus magnam
-            nisi doloremque doloribus voluptatum ullam sed dignissimos ea, dolore omnis vitae similique asperiores possimus vero. Tempora quasi, soluta quam ut libero assumenda
-            consequatur a veniam ducimus, accusantium dicta sequi cum in minus iusto pariatur aperiam vitae excepturi temporibus explicabo magni voluptatibus! Illo, officiis velit.
-          </p>
+          <p class="lyric-text"></p>
         </div>
       </section>
 
@@ -181,7 +156,7 @@
             <p>Music name Music name <span>&nbsp;•&nbsp;</span> Artist name Artist name</p>
           </div>
 
-          <button  class="play-music-btn">
+          <button class="play-music-btn">
             <img src="../../assets/images/controls/play-button.svg" alt="play puase button" />
           </button>
         </div>

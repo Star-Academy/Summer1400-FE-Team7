@@ -305,8 +305,15 @@ main {
         }
       }
 
+      > .is-playing * {
+        color: $--selected-bg-blue !important;
+      }
+
       > .song-wrapper-selected {
         background-color: $--selected-bg-blue;
+        * {
+          color: var(--clr-white) !important;
+        }
 
         &:hover {
           background: $--selected-bg-blue;
@@ -660,7 +667,6 @@ main {
         color: rgba(255, 255, 255, 0.678);
       }
     }
-
     > .lyrics-text {
       flex: 1;
       // background: steelblue;
@@ -669,6 +675,10 @@ main {
       max-width: 100ch;
       line-height: 2;
       color: rgba(255, 255, 255, 0.678);
+
+      > .lyric-text {
+        padding-bottom: 5rem;
+      }
     }
   }
 

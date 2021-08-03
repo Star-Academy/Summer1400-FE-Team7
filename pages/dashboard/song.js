@@ -6,6 +6,11 @@ const LIKED_CLASS = "liked";
 const LIKED = "../../assets/images/liked.svg";
 const LIKE_HOVERD = "../../assets/images/like-hovered.svg";
 const songListHeader = document.querySelector(".song-list-header");
+const lyricText = document.querySelector(".lyric-text");
+
+const lyricMusicCover = document.querySelector("#lyric-music-cover");
+const lyricMusicName = document.querySelector("#lyric-music-name");
+const lyricMusicArtist = document.querySelector("#lyric-music-artist");
 
 let songs = [];
 let currentMusicIndex = 0;
@@ -61,6 +66,8 @@ const songListFiller = (list, header) => {
 
     songName.innerText = song.name;
     authorName.innerText = song.artist;
+
+    lyricText.innerText = song.lyrics;
 
     songDuration.innerText = convertHMS(song.duration);
     likeImg.src = "../../assets/images/like.svg";
@@ -146,3 +153,28 @@ const convertHMS = (value) => {
 };
 
 musicGrapper();
+
+const musicChangeHandler = () => {
+  const imgSrc = songs[currentMusicIndex].cover;
+  const elemTitle = songs[currentMusicIndex].name;
+  const elemArtist = songs[currentMusicIndex].artist;
+  bgCover.style.background = `url(${imgSrc}) center no-repeat`;
+  bgCover.style.backgroundSize = "cover";
+
+  musicCover.src = imgSrc;
+  musicArtist.innerText = elemArtist;
+  musicTitle.innerText = elemTitle;
+  const songWrapper = document.querySelectorAll(".song-wrapper");
+
+  lyricMusicCover.src = imgSrc;
+  lyricMusicName.innerText = elemTitle;
+  lyricMusicArtist.innerText = elemArtist;
+
+  lyricText.innerText = songs[currentMusicIndex].lyrics;
+
+  const currentlyPlaying = document.querySelector(".is-playing");
+  if (currentlyPlaying != null) {
+    currentlyPlaying.classList.remove("is-playing");
+  }
+  songWrapper[currentMusicIndex].classList.add("is-playing");
+};

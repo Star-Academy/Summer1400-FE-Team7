@@ -20,7 +20,6 @@ const loadMusic = () => {
   audio.src = songs[currentMusicIndex].file;
   const songname = `name :${songs[currentMusicIndex].name}`;
   console.log("🚀loadMusic", songname);
-
 };
 
 const nextMusic = () => {
@@ -28,14 +27,17 @@ const nextMusic = () => {
   if (currentMusicIndex > songs.length - 1) {
     currentMusicIndex = 0;
   }
+  musicChangeHandler();
   loadMusic();
   play();
 };
+
 const previousMusic = () => {
   currentMusicIndex--;
   if (currentMusicIndex < 0) {
     currentMusicIndex = songs.length - 1;
   }
+  musicChangeHandler();
   loadMusic();
   play();
 };
@@ -54,7 +56,7 @@ const play = () => {
   console.log("🚀  play");
   loadMusic();
 
-  //TODO replace this with circular loading 
+  //TODO replace this with circular loading
   playBtn.forEach((btn) => {
     btn.children[0].src = "../../assets/images/controls/cancel.svg";
     btn.setAttribute("data-tooltip", "توقف");
@@ -68,8 +70,8 @@ const play = () => {
       btn.setAttribute("data-tooltip", "توقف");
     });
     seekSlider.max = audio.duration;
-    console.log(audio.duration)
-    endTimeLabel.innerHTML=convertHMS( audio.duration)
+    console.log(audio.duration);
+    endTimeLabel.innerHTML = convertHMS(audio.duration);
   });
 };
 
@@ -80,12 +82,9 @@ const resume = () => {
     btn.setAttribute("data-tooltip", "توقف");
   });
   status = statusTypes.PLAYING;
-
 };
 
-const playBtnState=()=>{
-
-}
+const playBtnState = () => {};
 
 const pause = () => {
   console.log("🚀 pause");
@@ -100,11 +99,10 @@ const pause = () => {
 const updateMusicBarValue = (value) => {
   audio.currentTime = value;
   resume();
-  
 };
 audio.addEventListener("timeupdate", (event) => {
   seekSlider.value = audio.currentTime;
-  currentTimeLabel.innerHTML=convertHMS( seekSlider.value )
+  currentTimeLabel.innerHTML = convertHMS(seekSlider.value);
 });
 
 audio.addEventListener("ended", (event) => {
@@ -120,17 +118,8 @@ previousBtn.addEventListener("click", (event) => {
 
 const doubleClickHandler = (elem, id) => {
   elem.addEventListener("dblclick", () => {
-    const imgSrc = songs[id - 1].cover;
-    const elemTitle = songs[id - 1].name;
-    const elemArtist = songs[id - 1].artist;
-    bgCover.style.background = `url(${imgSrc}) center no-repeat`;
-    bgCover.style.backgroundSize = "cover";
-
-    musicCover.src = imgSrc;
-    musicArtist.innerText = elemArtist;
-    musicTitle.innerText = elemTitle;
     currentMusicIndex = id - 1;
-
+    musicChangeHandler();
     play();
   });
 };
@@ -155,10 +144,8 @@ volumeBtn.addEventListener("click", () => {
     volumeText.innerHTML = volumeValue;
     volumeSlider.value = volumeValue;
     volumeBtn.setAttribute("data-tooltip", "صدا");
-    audio.volume = volumeValue/100;
-
+    audio.volume = volumeValue / 100;
   }
-
 });
 /*
 // Update volume text value
