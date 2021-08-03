@@ -21,17 +21,17 @@
   <body>
     <main class="bg-animation-1">
       <div class="form-wrapper">
-        <form action="" class="login-form">
+        <form class="login-form">
           <h2 class="switch--up">ورود</h2>
           <div class="input-wrapper">
             <img src="../../assets/images/email.svg" alt="" />
-            <input type="email" id="login-email-input" />
+            <input type="email" id="login-email-input" required />
             <label for="login-email-input"> ایمیل </label>
           </div>
 
           <div class="input-wrapper">
             <img src="../../assets/images/password.svg" alt="" />
-            <input type="password" pattern="^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$" id="login-password-input" title="رمز عبور باید دارای حداقل ۸ کاراکتر،یک حرف و یک عدد باشد" />
+            <input type="password" id="login-password-input" required/>
             <label for="login-password-input"> رمز عبور </label>
             <img src="../../assets/images/show-password.svg" alt="" class="show-pass-cta" />
           </div>
@@ -47,7 +47,7 @@
             </div>
           </div>
 
-          <button type="submit" class="login-btn">ورود</button>
+          <button type="button" class="login-btn" onclick="loginUser();">ورود</button>
           <a href="#" id="create-new-account">ساخت حساب جدید</a>
         </form>
 
