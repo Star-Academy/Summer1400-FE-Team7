@@ -134,3 +134,37 @@ const doubleClickHandler = (elem, id) => {
     play();
   });
 };
+
+/*
+// Handle mute volume btn
+*/
+let volumeIsMuted = false;
+let volumeValue = volumeSlider.value;
+audio.volume = volumeValue / 100;
+volumeBtn.addEventListener("click", () => {
+  volumeIsMuted = !volumeIsMuted;
+  if (volumeIsMuted) {
+    volumeValue = volumeSlider.value;
+    volumeBtnImg.src = MUTE_BTN_IMG;
+    volumeText.innerHTML = "0";
+    volumeSlider.value = 0;
+    volumeBtn.setAttribute("data-tooltip", "بی صدا");
+    audio.volume = 0;
+  } else {
+    volumeBtnImg.src = VOLUME_BTN_IMG;
+    volumeText.innerHTML = volumeValue;
+    volumeSlider.value = volumeValue;
+    volumeBtn.setAttribute("data-tooltip", "صدا");
+    audio.volume = volumeValue/100;
+
+  }
+
+});
+/*
+// Update volume text value
+*/
+volumeText.innerHTML = volumeSlider.value;
+const updateVolumeValue = (val) => {
+  volumeText.innerHTML = val;
+  audio.volume = val / 100;
+};
