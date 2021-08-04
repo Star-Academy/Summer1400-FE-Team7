@@ -16,9 +16,14 @@ const volumeSlider = document.getElementById("volume-slider");
 const mobileInfo = document.querySelector(".mobile-info");
 const listViewLayout = document.querySelector("#list-view");
 const allSongsTabNavigation = document.querySelector("#all-songs-tab-navigation-mobile");
+const userEmail = document.querySelector("#user-email");
+const pofileWrapper = document.querySelector(".profile-wrapper");
 
 const songList = document.querySelector(".song-list");
 const bgCover = document.querySelector(".bg-cover");
+const bgGlass2 = document.querySelector(".dark-glass2");
+const addPlayListBtn = document.querySelector(".add-btn");
+const addPlayListWrapper = document.querySelector(".add-playlist-wrapper");
 
 const seekSlider = document.getElementById("seek-slider");
 
@@ -26,8 +31,6 @@ const musicCover = document.querySelector("#music-cover");
 const musicTitle = document.querySelector("#music-title");
 const musicArtist = document.querySelector("#music-artist");
 const songWrapper = document.querySelectorAll(".song-wrapper");
-
-const MENU_SELECTED = "menu-selected";
 
 const SIDE_MENU_CLOSED = "side-menu-closed";
 const SIDE_MENU_OPEND = "side-menu-opended";
@@ -47,21 +50,6 @@ const MOBILE_INFO_ANIMATION = "mobile-info-animation";
 const LIKE_HOVE_IMG = "../../assets/images/like-hovered.svg";
 const LIKE_IMG = "../../assets/images/like.svg";
 const LIKED_IMG = "../../assets/images/liked.svg";
-const FAV_ICON = "fav-icon";
-const SONG_WRAPPER_SELECTED = "song-wrapper-selected";
-const AUTHOR_NAME_SELECTED = "author-name-selected";
-
-/*
-//Handle side-menu items selection.
-*/
-const HandlemenuButtonsSelect = () => {
-  for (let m of menuButtons) {
-    m.addEventListener("click", () => {
-      document.querySelector(`.${MENU_SELECTED}`).classList.remove(MENU_SELECTED);
-      m.classList.add(MENU_SELECTED);
-    });
-  }
-};
 
 /*
 // Handle open/close side menu
@@ -120,35 +108,6 @@ lyricsBtnReturn.addEventListener("click", () => {
   toggleLyricsLayout(lyricsBtnMobile);
   lyricsBtn.classList.toggle(LYRIC_BTN_ACTIVE);
 });
-
-/*
-// Handle mute volume btn
-*/
-let volumeIsMuted = false;
-let volumeValue = volumeSlider.value;
-
-volumeBtn.addEventListener("click", () => {
-  volumeIsMuted = !volumeIsMuted;
-  if (volumeIsMuted) {
-    volumeValue = volumeSlider.value;
-    volumeBtnImg.src = MUTE_BTN_IMG;
-    volumeText.innerHTML = "0";
-    volumeSlider.value = 0;
-    volumeBtn.setAttribute("data-tooltip", "بی صدا");
-  } else {
-    volumeBtnImg.src = VOLUME_BTN_IMG;
-    volumeText.innerHTML = volumeValue;
-    volumeSlider.value = volumeValue;
-    volumeBtn.setAttribute("data-tooltip", "صدا");
-  }
-});
-/*
-// Update volume text value
-*/
-volumeText.innerHTML = volumeSlider.value;
-const updateVolumeValue = (val) => {
-  volumeText.innerHTML = val;
-};
 
 /*
 // Handle long song title and artis name with moving text animation
@@ -221,43 +180,40 @@ favIcon.forEach((elem) => {
   });
 });
 
-/*
-// Handle on music click
-*/
-songWrapper.forEach((elem) => {
-  elem.addEventListener("click", (e) => {
-    if (!e.path[0].classList.contains(FAV_ICON)) {
-      const enabledBtn = [...document.getElementsByClassName(SONG_WRAPPER_SELECTED)];
-
-      const authorNameSelected = [...document.getElementsByClassName(AUTHOR_NAME_SELECTED)];
-
-      if (enabledBtn.length != 0) {
-        enabledBtn[0].classList.remove(SONG_WRAPPER_SELECTED);
-        authorNameSelected[0].classList.remove(AUTHOR_NAME_SELECTED);
-      }
-
-      elem.classList.add(SONG_WRAPPER_SELECTED);
-      elem.children[1].children[1].classList.add(AUTHOR_NAME_SELECTED);
-    }
-  });
-
-  /*
-  // Update song info in the music-control section
-  */
-  elem.addEventListener("dblclick", () => {
-    const imgSrc = elem.children[0].children[0].src;
-    const elemTitle = elem.children[1].children[0].innerText;
-    const elemArtist = elem.children[1].children[1].innerText;
-
-    bgCover.style.background = `url(${imgSrc}) center no-repeat`;
-    bgCover.style.backgroundSize = "cover";
-
-    musicCover.src = imgSrc;
-    musicArtist.innerText = elemArtist;
-    musicTitle.innerText = elemTitle;
-  });
-});
-
-HandlemenuButtonsSelect();
 hiddenTextMovingAnimation(mobileInfo, (window.innerWidth / 100) * 40);
 allSongsTabNavigation.focus();
+
+addPlayListBtn.addEventListener("click", () => {
+  bgGlass2.classList.remove("display-none");
+  addPlayListWrapper.classList.remove("display-none");
+});
+
+const makePlayList = document.querySelector("#make-playlist");
+const cancleMakingPlayList = document.querySelector("#cancle-making-playlist");
+const makeNewPlaylistInput = document.querySelector("#make-new-playlist-input");
+
+makePlayList.addEventListener("click", () => {
+  const title = makeNewPlaylistInput.value;
+  if (title == "") {
+    return false;
+  }
+
+  newPlayList[title] = [];
+  addNewPlaylist(title);
+
+  bgGlass2.classList.add("display-none");
+  addPlayListWrapper.classList.add("display-none");
+  optionFiller();
+  makeNewPlaylistInput.value = "";
+});
+
+cancleMakingPlayList.addEventListener("click", () => {
+  bgGlass2.classList.add("display-none");
+  addPlayListWrapper.classList.add("display-none");
+});
+
+userEmail.innerText = localStorage.getItem("email");
+
+pofileWrapper.addEventListener("click", () => {
+  logoutUser();
+});

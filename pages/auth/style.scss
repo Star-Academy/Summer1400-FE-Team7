@@ -3,9 +3,20 @@ $--lg-bg-2: hsl(215, 39%, 30%);
 $--lg-bg-3: hsl(166, 24%, 39%);
 $--lg-bg-4: hsl(24, 99%, 45%);
 $--icon-size: 1.25rem;
+$--clr-error: rgb(255, 255, 255);
+$--clr-background-warning: rgba(255, 251, 0, 0.431);
+$--clr-background-error: rgba(255, 0, 0, 0.431);
+$--clr-boarder-error: rgb(255, 0, 0);
+$--clr-boarder-warning: rgb(255, 238, 0);
 
 @mixin _body-bg-animation($deg, $duration, $start, $end, $animationName) {
-  background: linear-gradient($deg, $--lg-bg-4 0 7.5%, $--lg-bg-3 7.5% 15%, $--lg-bg-2 15% 22.5%, $--lg-bg-1 22.5% 30%);
+  background: linear-gradient(
+    $deg,
+    $--lg-bg-4 0 7.5%,
+    $--lg-bg-3 7.5% 15%,
+    $--lg-bg-2 15% 22.5%,
+    $--lg-bg-1 22.5% 30%
+  );
   background-size: 150% 150%;
   animation: $animationName $duration ease;
   animation-fill-mode: forwards;
@@ -21,7 +32,13 @@ $--icon-size: 1.25rem;
 }
 
 @mixin _mobile-body-bg-animation($deg) {
-  background: linear-gradient($deg, $--lg-bg-4 0 5%, $--lg-bg-3 5% 10%, $--lg-bg-2 10% 15%, $--lg-bg-1 15% 20%);
+  background: linear-gradient(
+    $deg,
+    $--lg-bg-4 0 5%,
+    $--lg-bg-3 5% 10%,
+    $--lg-bg-2 10% 15%,
+    $--lg-bg-1 15% 20%
+  );
   background-size: 150% 150%;
 }
 
@@ -115,11 +132,13 @@ main {
         border: none;
         cursor: pointer;
         background: transparent;
-        box-shadow: inset 0 0 0.3em var(--clr-white), 0 0 0.3em 0.125em var(--clr-white);
+        box-shadow: inset 0 0 0.3em var(--clr-white),
+          0 0 0.3em 0.125em var(--clr-white);
         color: var(--clr-white);
 
         &:hover {
-          box-shadow: inset 0 0 0.65em var(--clr-white), 0 0 0.3em 0.125em var(--clr-white);
+          box-shadow: inset 0 0 0.65em var(--clr-white),
+            0 0 0.3em 0.125em var(--clr-white);
         }
       }
 
@@ -229,4 +248,40 @@ main {
 
 .show-pass-cta {
   cursor: pointer;
+}
+
+.error {
+  box-shadow: inset 0 0 0.3em $--clr-boarder-error,
+    0 0 0.3em $--clr-boarder-error !important;
+  position: relative;
+
+  &::after {
+    content: attr(data-error);
+    color: $--clr-error;
+    position: absolute;
+    background-color: $--clr-background-error;
+    right: 0;
+    bottom: -1.5rem;
+    font-size: 0.8rem;
+    padding: 0 1rem;
+    border-radius: 1000rem;
+  }
+}
+
+.warning {
+  box-shadow: inset 0 0 0.3em $--clr-boarder-warning,
+    0 0 0.3em $--clr-boarder-warning !important;
+  position: relative;
+
+  &::after {
+    content: attr(data-error);
+    color: $--clr-error;
+    position: absolute;
+    background-color: $--clr-background-warning;
+    right: 0;
+    bottom: -1.5rem;
+    font-size: 0.8rem;
+    padding: 0 1rem;
+    border-radius: 1000rem;
+  }
 }

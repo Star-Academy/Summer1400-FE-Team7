@@ -11,27 +11,30 @@
     <title>ورود</title>
     <link rel="stylesheet" href="style.css" />
     <link rel="stylesheet" href="../../styles/main.css" />
+    <script src="../../source/utils/env.js" defer></script>
+    <script src="../../source/auth/test.js" defer></script>
+    <script src="../../source/auth/register.js" defer></script>
+    <script src="../../source/auth/login.js" defer></script>
     <script src="./style.js" defer></script>
   </head>
 
   <body>
     <main class="bg-animation-1">
       <div class="form-wrapper">
-        <form action="../dashboard/index.html" class="login-form">
+        <form class="login-form">
           <h2 class="switch--up">ورود</h2>
-          <div class="input-wrapper">
+          <div class="input-wrapper" id="email-login-input-wrapper" data-error="">
             <img src="../../assets/images/email.svg" alt="" />
-            <input type="email" id="login-email-input" />
+            <input type="email" id="login-email-input" required />
             <label for="login-email-input"> ایمیل </label>
           </div>
 
-          <div class="input-wrapper">
+          <div class="input-wrapper" id="password-login-input-wrapper" data-error="">
             <img src="../../assets/images/password.svg" alt="" />
-            <input type="password" pattern="^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$" id="login-password-input" title="رمز عبور باید دارای حداقل ۸ کاراکتر،یک حرف و یک عدد باشد" />
+            <input type="password" id="login-password-input" required autocomplete="on" />
             <label for="login-password-input"> رمز عبور </label>
             <img src="../../assets/images/show-password.svg" alt="" class="show-pass-cta" />
           </div>
-
           <div>
             <div class="input-checkbox">
               <input type="checkbox" id="checkbox-input" />
@@ -43,43 +46,38 @@
             </div>
           </div>
 
-          <button type="submit">ورود</button>
+          <button type="submit" class="login-btn" id="login-submit-btn">ورود</button>
           <a href="#" id="create-new-account">ساخت حساب جدید</a>
         </form>
 
-        <form action="../dashboard/index.html" class="signup-form display-none">
+        <form class="signup-form display-none">
           <h2>ثبت‌نام</h2>
-          <div class="input-wrapper">
+          <div class="input-wrapper" id="email-register-input-wrapper" data-error="">
             <img src="../../assets/images/email.svg" alt="" />
-            <input type="text" id="signup-email-input" />
+            <input type="email" id="signup-email-input" required />
             <label for="signup-email-input"> ایمیل </label>
           </div>
 
-          <div class="input-wrapper">
+          <div class="input-wrapper" id="password-register-input-wrapper" data-error="">
             <img src="../../assets/images/password.svg" alt="" />
-            <input type="password" pattern="^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$" title="رمز عبور باید دارای حداقل ۸ کاراکتر،یک حرف و یک عدد باشد" id="signup-password-input" />
+            <input type="password" title="رمز عبور باید دارای حداقل ۸ کاراکتر،یک حرف و یک عدد باشد" id="signup-password-input" required autocomplete="off" />
 
             <label for="signup-password-input"> رمز عبور </label>
             <img src="../../assets/images/show-password.svg" alt="" class="show-pass-cta" />
           </div>
 
-          <div class="input-wrapper">
+          <div class="input-wrapper" id="confirm-password-register-input-wrapper" data-error="">
             <img src="../../assets/images/confirm-password.svg" alt="" />
-            <input
-              type="password"
-              pattern="^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$"
-              title="رمز عبور باید دارای حداقل ۸ کاراکتر،یک حرف و یک عدد باشد"
-              id="signup-confirm-password-input"
+            <input type="password" title="رمز عبور باید دارای حداقل ۸ کاراکتر،یک حرف و یک عدد باشد" id="signup-confirm-password-input" required autocomplete="off" />
             />
             <label for="signup-confirm-password-input"> تکرار رمز عبور </label>
             <img src="../../assets/images/show-password.svg" alt="" class="show-pass-cta" />
           </div>
 
-          <button type="submit">ثبت نام</button>
+          <button type="button" class="register-btn" id="register-btn">ثبت نام</button>
           <a href="#" id="already-have-account">قبلا عضو شده اید؟</a>
         </form>
       </div>
     </main>
   </body>
 </html>
-

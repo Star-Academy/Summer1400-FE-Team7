@@ -1,7 +1,6 @@
 //this file uses for managing UI elements.
 
 //VARIABLES DECLARATIONS
-const loginForm = document.querySelector(".login-form");
 const signForm = document.querySelector(".signup-form");
 const formWrapper = document.querySelector(".form-wrapper");
 const alreadyHaveAnAccountCta = document.querySelector("#already-have-account");
