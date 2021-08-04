@@ -19,7 +19,6 @@ const FAV_SONGS = "مورد علاقه";
 let currentMusicIndex = 0;
 
 let playList = {
-  "مورد علاقه": [],
   allSongs: [],
   favSongs: [],
 };

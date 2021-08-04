@@ -240,7 +240,7 @@ const shuffle = (array) => {
 };
 
 const generateShuffleList = () => {
-  for (i = 0; i < playList["همه آهنگ ها"].length; i++) shuffleArray[i] = i;
+  for (i = 0; i < playList.allSongs.length; i++) shuffleArray[i] = i;
   shuffleArray = shuffle(shuffleArray);
 };
 

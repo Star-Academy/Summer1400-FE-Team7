@@ -180,7 +180,6 @@ favIcon.forEach((elem) => {
   });
 });
 
-// HandlemenuButtonsSelect();
 hiddenTextMovingAnimation(mobileInfo, (window.innerWidth / 100) * 40);
 allSongsTabNavigation.focus();
 
