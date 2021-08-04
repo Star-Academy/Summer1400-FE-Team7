@@ -51,8 +51,7 @@ const checkRegisterEmail = () => {
   }
 };
 emailRegister.addEventListener("input", () => {
-  console.log("adasdasd")
-  if (emailRegister.value== "") {
+  if (emailRegister.value == "") {
     emailRegisterInputWrapper.setAttribute(
       "data-error",
       "ایمیل نمی‌تواند خالی باشد"
@@ -170,7 +169,5 @@ registerBtn.addEventListener("click", (e) => {
     localStorage.setItem("email", loginInputs.email);
     registerForm.submit();
     window.location.href = "../../pages/dashboard/index.html";
-  } else {
-    console.log("failed");
   }
 });

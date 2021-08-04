@@ -39,7 +39,6 @@ const checkLoginEmail = () => {
 };
 
 emailLoginInput.addEventListener("input", () => {
-  if (!isFirstLoginSubmit) {
     if (emailLoginInput.value == "") {
       emailInputWrapper.setAttribute("data-error", "ایمیل نمی‌تواند خالی باشد");
       emailInputWrapper.classList.add("error");
@@ -49,14 +48,15 @@ emailLoginInput.addEventListener("input", () => {
         "data-error",
         "ایمیل وارد شده معتبر نیست!"
       );
-      emailInputWrapper.classList.add("error");
+      emailInputWrapper.classList.add("warning");
 
       isEmailLoginValid = false;
     } else {
       emailInputWrapper.classList.remove("error");
+      emailInputWrapper.classList.remove("warning");
       isEmailLoginValid = true;
     }
-  }
+  
 });
 
 const checkLoginPasswords = () => {
@@ -74,7 +74,6 @@ const checkLoginPasswords = () => {
   }
 };
 passwordLoginInput.addEventListener("input", () => {
-  if (!isFirstLoginSubmit) {
     if (passwordLoginInput.value == "") {
       passwordInputWrapper.setAttribute(
         "data-error",
@@ -87,7 +86,7 @@ passwordLoginInput.addEventListener("input", () => {
       passwordInputWrapper.classList.remove("error");
       isPasswordLoginValid = true;
     }
-  }
+  
 });
 
 const resetLoginForm = () => {
@@ -100,16 +99,14 @@ const performLogin = () => {
   loginInputs.email = emailLoginInput.value;
   loginInputs.password = passwordLoginInput.value;
 
-  if (!isFirstLoginSubmit) {
-    if (!isEmailLoginValid) return false;
-    if (!isPasswordLoginValid) return false;
-  } else {
-    isFirstLoginSubmit = false;
-
+ 
+  
     if (!checkLoginEmail()) return false;
     if (!checkLoginPasswords()) return false;
-  }
-
+ 
+    if (!isEmailLoginValid) return false;
+    if (!isPasswordLoginValid) return false;
+  
   let result = false;
   for (const user of testUsers) {
     if (
@@ -137,7 +134,5 @@ loginBtn.addEventListener("click", (e) => {
     localStorage.setItem("email", loginInputs.email);
     loginForm.submit();
     window.location.href = "../../pages/dashboard/index.html";
-  } else {
-    console.log("failed");
-  }
+  } 
 });
