@@ -8,21 +8,14 @@ const LIKE = "../../assets/images/like.svg";
 const LIKE_HOVERD = "../../assets/images/like-hovered.svg";
 const songListHeader = document.querySelector(".song-list-header");
 const lyricText = document.querySelector(".lyric-text");
-
 const lyricMusicCover = document.querySelector("#lyric-music-cover");
 const lyricMusicName = document.querySelector("#lyric-music-name");
 const lyricMusicArtist = document.querySelector("#lyric-music-artist");
-
 const ALL_SONGS = "همه آهنگ ها";
 const FAV_SONGS = "مورد علاقه";
 
 let currentMusicIndex = 0;
-
-let playList = {
-  allSongs: [],
-  favSongs: [],
-};
-
+let playList = { allSongs: [], favSongs: [] };
 let newPlayList = {};
 
 const musicGrapper = async () => {
@@ -55,9 +48,7 @@ const songListFiller = (list, header) => {
       const duration = clone.querySelector("#duration");
       const favIcon = clone.querySelector(".fav-icon");
       const songWrapper = clone.querySelector(".song-wrapper");
-
       options.setAttribute("data-id", song.id);
-
       if (song.cover != undefined) {
         songCoverImage.src = song.cover;
       } else {
@@ -99,34 +90,25 @@ const songListFiller = (list, header) => {
         favIcon.classList.toggle(LIKED_CLASS);
         favIcon.src = LIKED;
         favIcon.style.transform = "scale(1)";
-
         if (!playList.favSongs.includes(song)) {
           playList.favSongs = [...playList.favSongs, song];
         } else {
           playList.favSongs = playList.favSongs.filter(function (item) {
-            return item !== song;
-          });
-        }
-      });
-
+            return item !== song;});
+        }});
       songWrapper.addEventListener("click", (e) => {
         if (!e.path[0].classList.contains(FAV_ICON)) {
-          const enabledBtn = [...document.getElementsByClassName(SONG_WRAPPER_SELECTED)];
-
-          const authorNameSelected = [...document.getElementsByClassName(AUTHOR_NAME_SELECTED)];
-
+          const enabledBtn = [...document.getElementsByClassName(SONG_WRAPPER_SELECTED),];
+          const authorNameSelected = [...document.getElementsByClassName(AUTHOR_NAME_SELECTED),];
           if (enabledBtn.length != 0) {
             enabledBtn[0].classList.remove(SONG_WRAPPER_SELECTED);
             authorNameSelected[0].classList.remove(AUTHOR_NAME_SELECTED);
           }
-
           songWrapper.classList.add(SONG_WRAPPER_SELECTED);
           artistName.classList.add(AUTHOR_NAME_SELECTED);
         }
       });
-
       doubleClickHandler(songWrapper, song.id);
-
       console.log(clone);
     }
   });
@@ -137,43 +119,26 @@ const convertHMS = (value) => {
   let hours = Math.floor(sec / 3600); // get hours
   let minutes = Math.floor((sec - hours * 3600) / 60); // get minutes
   let seconds = sec - hours * 3600 - minutes * 60; //  get seconds
-  // add 0 if value < 10; Example: 2 => 02
-  if (hours < 10) {
-    hours = "0" + hours;
-  }
-  if (minutes < 10) {
-    minutes = "0" + minutes;
-  }
-  if (seconds < 10) {
-    seconds = "0" + seconds;
-  }
-  if (hours > 0) {
-    return hours + ":" + minutes + ":" + seconds; // Return is HH : MM : SS
-  } else {
-    return minutes + ":" + seconds; // Return is  MM : SS
-  }
+  if (hours < 10) hours = "0" + hours;
+  if (minutes < 10) minutes = "0" + minutes;
+  if (seconds < 10) seconds = "0" + seconds;
+  if (hours > 0) return hours + ":" + minutes + ":" + seconds; // Return is HH : MM : SS
+  else return minutes + ":" + seconds; // Return is  MM : SS
 };
-
-musicGrapper();
-
 const musicChangeHandler = () => {
   const imgSrc = playList.allSongs[currentMusicIndex].cover;
   const elemTitle = playList.allSongs[currentMusicIndex].name;
   const elemArtist = playList.allSongs[currentMusicIndex].artist;
   bgCover.style.background = `url(${imgSrc}) center no-repeat`;
   bgCover.style.backgroundSize = "cover";
-
   musicCover.src = imgSrc;
   musicArtist.innerText = elemArtist;
   musicTitle.innerText = elemTitle;
   const songWrapper = document.querySelectorAll(".song-wrapper");
-
   lyricMusicCover.src = imgSrc;
   lyricMusicName.innerText = elemTitle;
   lyricMusicArtist.innerText = elemArtist;
-
   lyricText.innerText = playList.allSongs[currentMusicIndex].lyrics;
-
   const currentlyPlaying = document.querySelector(".is-playing");
   if (currentlyPlaying != null) {
     currentlyPlaying.classList.remove("is-playing");
@@ -201,7 +166,6 @@ const optionFiller = () => {
         addToPlayList(li.innerText, option.getAttribute("data-id"));
       });
     }
-
     option.appendChild(p);
     option.appendChild(ul);
   });
@@ -215,7 +179,10 @@ const deleteChildrenNodes = (parent) => {
 
 const addToPlayList = (playListName, id) => {
   if (!newPlayList[playListName].includes(playList.allSongs[id - 1])) {
-    newPlayList[playListName] = [...newPlayList[playListName], playList.allSongs[id - 1]];
+    newPlayList[playListName] = [
+      ...newPlayList[playListName],
+      playList.allSongs[id - 1],
+    ];
   } else {
     deleteFromPlaylist(playListName, id);
   }
@@ -226,3 +193,4 @@ const deleteFromPlaylist = (playListName, id) => {
     return item !== playList.allSongs[id - 1];
   });
 };
+musicGrapper();
