@@ -30,14 +30,14 @@ let shuffleArray = [];
 let shuffleIndex = 0;
 
 const loadMusic = () => {
-  audio.src = playList["همه آهنگ ها"][currentMusicIndex].file;
-  const songname = `name:${playList["همه آهنگ ها"][currentMusicIndex].name}`;
+  audio.src = playList.allSongs[currentMusicIndex].file;
+  const songname = `name:${playList.allSongs[currentMusicIndex].name}`;
 };
 
 const nextMusic = () => {
   if (shuffleMode) {
     shuffleIndex++;
-    if (shuffleIndex > playList["همه آهنگ ها"].length - 1) {
+    if (shuffleIndex > playList.allSongs.length - 1) {
       shuffleIndex = 0;
     }
     currentMusicIndex = shuffleArray[shuffleIndex];
@@ -45,7 +45,7 @@ const nextMusic = () => {
     currentMusicIndex++;
   }
 
-  if (currentMusicIndex > playList["همه آهنگ ها"].length - 1) {
+  if (currentMusicIndex > playList.allSongs.length - 1) {
     currentMusicIndex = 0;
     if (repeatMode == repeatTypes.NO_REPEAT && !shuffleMode) {
       pause();
@@ -62,7 +62,7 @@ const previousMusic = () => {
   if (shuffleMode) {
     shuffleIndex--;
     if (shuffleIndex < 0) {
-      shuffleIndex = playList["همه آهنگ ها"].length - 1;
+      shuffleIndex = playList.allSongs.length - 1;
     }
     currentMusicIndex = shuffleArray[shuffleIndex];
   } else {
@@ -70,7 +70,7 @@ const previousMusic = () => {
   }
 
   if (currentMusicIndex < 0) {
-    currentMusicIndex = playList["همه آهنگ ها"].length - 1;
+    currentMusicIndex = playList.allSongs.length - 1;
   }
   musicChangeHandler();
   loadMusic();

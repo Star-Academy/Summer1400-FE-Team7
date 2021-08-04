@@ -1051,6 +1051,7 @@ main .mobile-navigation > .music-contolers > .mobile-info {
 main .mobile-navigation > .music-contolers > .mobile-info > p {
   font-size: 0.7rem;
   white-space: nowrap;
+  gap: 3rem;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -1063,7 +1064,11 @@ main .mobile-navigation > .music-contolers > .mobile-info > p {
           user-select: none;
 }
 
-main .mobile-navigation > .music-contolers > .mobile-info > p > span {
+main .mobile-navigation > .music-contolers > .mobile-info > p span {
+  font-size: 0.9rem;
+}
+
+main .mobile-navigation > .music-contolers > .mobile-info > p > span:nth-of-type(2) {
   font-size: 2rem;
 }
 

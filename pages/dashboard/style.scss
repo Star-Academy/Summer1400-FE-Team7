@@ -812,7 +812,7 @@ main {
         display: flex;
         align-items: center;
         justify-content: center;
-        // gap: 1rem;
+        // gap: 2rem;
 
         overflow: hidden;
         -webkit-mask: linear-gradient(to right, transparent 0%, rgb(0, 0, 0) 10px, rgb(0, 0, 0) calc(100% - 10px), transparent 100%);
@@ -820,13 +820,17 @@ main {
         > p {
           font-size: 0.7rem;
           white-space: nowrap;
+          gap: 3rem;
 
           display: flex;
           align-items: center;
 
           user-select: none;
+          span {
+            font-size: 0.9rem;
+          }
 
-          > span {
+          > span:nth-of-type(2) {
             font-size: 2rem;
           }
         }
