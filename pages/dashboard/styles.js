@@ -13,7 +13,7 @@ const volumeBtn = document.querySelector("#volume-btn");
 const volumeBtnImg = volumeBtn.childNodes[1];
 const volumeText = document.getElementById("volume-text");
 const volumeSlider = document.getElementById("volume-slider");
-const mobileInfo = document.querySelector(".mobile-info");
+const mobileInfo = document.querySelectorAll(".mobile-info");
 const listViewLayout = document.querySelector("#list-view");
 const allSongsTabNavigation = document.querySelector("#all-songs-tab-navigation-mobile");
 const userEmail = document.querySelector("#user-email");
@@ -115,6 +115,8 @@ lyricsBtnReturn.addEventListener("click", () => {
 const hiddenTextMovingAnimation = (parentDiv, currentWidht) => {
   let totalWidth = 0;
   const children = [...parentDiv.children];
+  console.log(children);
+  console.log(mobileInfo);
 
   children.forEach((elem) => {
     totalWidth += elem.getBoundingClientRect().width;
@@ -128,16 +130,19 @@ const hiddenTextMovingAnimation = (parentDiv, currentWidht) => {
 
   document.documentElement.style.setProperty("--animation-width", animationWidth + "px");
 
-  mobileInfo.classList.remove(MOBILE_INFO_ANIMATION);
-
-  mobileInfo.classList.add(MOBILE_INFO_ANIMATION);
-  mobileInfo.style.justifyContent = "flex-start";
+  mobileInfo[0].classList.remove(MOBILE_INFO_ANIMATION);
+  mobileInfo[0].classList.remove(MOBILE_INFO_ANIMATION);
+  mobileInfo[0].classList.add(MOBILE_INFO_ANIMATION);
+  mobileInfo[1].classList.add(MOBILE_INFO_ANIMATION);
+  mobileInfo[1].style.justifyContent = "flex-start";
+  mobileInfo[1].style.justifyContent = "flex-start";
 };
 
 window.addEventListener("resize", () => {
   if (window.innerWidth < 750) {
     layoutFixer();
-    hiddenTextMovingAnimation(mobileInfo, (window.innerWidth / 100) * 40);
+    hiddenTextMovingAnimation(mobileInfo[0], (window.innerWidth / 100) * 40);
+    hiddenTextMovingAnimation(mobileInfo[1], (window.innerWidth / 100) * 40);
   }
 });
 
@@ -180,7 +185,8 @@ favIcon.forEach((elem) => {
   });
 });
 
-hiddenTextMovingAnimation(mobileInfo, (window.innerWidth / 100) * 40);
+hiddenTextMovingAnimation(mobileInfo[0], (window.innerWidth / 100) * 40);
+hiddenTextMovingAnimation(mobileInfo[1], (window.innerWidth / 100) * 40);
 allSongsTabNavigation.focus();
 
 addPlayListBtn.addEventListener("click", () => {
@@ -216,4 +222,18 @@ userEmail.innerText = localStorage.getItem("email");
 
 pofileWrapper.addEventListener("click", () => {
   logoutUser();
+});
+
+const darkGlassMobilePreview = document.querySelector(".dark-glass3");
+const mobileSongPreview = document.querySelector(".mobile-song-preview");
+const mobileSongPreviewBackBtn = document.querySelector(".mobile-song-preview-return");
+
+mobileInfo[0].addEventListener("click", () => {
+  darkGlassMobilePreview.classList.remove("display-none");
+  mobileSongPreview.classList.remove("display-none");
+});
+
+mobileSongPreviewBackBtn.addEventListener("click", () => {
+  darkGlassMobilePreview.classList.add("display-none");
+  mobileSongPreview.classList.add("display-none");
 });

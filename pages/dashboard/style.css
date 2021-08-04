@@ -1160,6 +1160,7 @@ main .mobile-navigation > .tab-navigation > button::after {
 
 .dark-glass,
 .dark-glass2,
+.dark-glass3,
 .bg-cover {
   position: absolute;
   top: 0;
@@ -1195,6 +1196,12 @@ main .mobile-navigation > .tab-navigation > button::after {
 .dark-glass,
 .dark-glass2 {
   background: rgba(0, 0, 0, 0.85);
+}
+
+.dark-glass3 {
+  background: -webkit-gradient(linear, left top, left bottom, from(#282828), to(black));
+  background: linear-gradient(to bottom, #282828, black);
+  z-index: 1999;
 }
 
 .bg-cover {
@@ -1361,7 +1368,7 @@ main .mobile-navigation > .tab-navigation > button::after {
 }
 
 .dark-glass2 {
-  z-index: 998;
+  z-index: 1999;
 }
 
 .side-menu-opended {
@@ -1429,5 +1436,173 @@ main .mobile-navigation > .tab-navigation > button::after {
 
 .option-list {
   color: whitesmoke;
+}
+
+.remove-options {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal !important;
+  -webkit-box-direction: reverse !important;
+      -ms-flex-direction: row-reverse !important;
+          flex-direction: row-reverse !important;
+  gap: 0.5rem !important;
+  width: unset !important;
+  padding: 1rem !important;
+}
+
+.remove-options > button {
+  color: var(--clr-white);
+}
+
+.remove-options > img {
+  width: 1rem;
+}
+
+.mobile-song-preview {
+  width: 100%;
+  height: 100vh;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 2000;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: space-evenly;
+      -ms-flex-pack: space-evenly;
+          justify-content: space-evenly;
+  padding: 3.5rem 0 3.5rem 0;
+}
+
+.mobile-song-preview > input {
+  width: 80%;
+}
+
+.mobile-song-preview .mobile-song-preview-return {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 4rem;
+  height: 2rem;
+  background: #1d7dd7;
+  border-radius: 0 999rem 999rem 0;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.mobile-song-preview .mobile-song-preview-return > img {
+  width: 25%;
+  height: 100%;
+}
+
+.mobile-song-preview .mobile-preview-controls {
+  width: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: space-evenly;
+      -ms-flex-pack: space-evenly;
+          justify-content: space-evenly;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.mobile-song-preview .mobile-preview-controls > button {
+  width: 2rem;
+  height: 2rem;
+}
+
+.mobile-song-preview .mobile-preview-song-cover {
+  width: 70%;
+  height: auto;
+}
+
+.mobile-song-preview .mobile-info {
+  color: var(--clr-white);
+  width: 40%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  overflow: hidden;
+  -webkit-mask: linear-gradient(to right, transparent 0%, black 10px, black calc(100% - 10px), transparent 100%);
+}
+
+.mobile-song-preview .mobile-info > p {
+  font-size: 0.7rem;
+  white-space: nowrap;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none;
+}
+
+.mobile-song-preview .mobile-info > p span {
+  font-size: 1.5rem;
+}
+
+.mobile-song-preview .mobile-info > p > span:nth-of-type(2) {
+  font-size: 2rem;
+}
+
+.mobile-song-preview > .mobile-info-animation > * {
+  -webkit-animation: textAnimation 4s linear infinite 2s forwards;
+          animation: textAnimation 4s linear infinite 2s forwards;
+  -webkit-animation-direction: alternate;
+          animation-direction: alternate;
+}
+
+@keyframes textAnimation {
+  0% {
+    -webkit-transform: translateX(-10%);
+            transform: translateX(-10%);
+  }
+  100% {
+    -webkit-transform: translateX(calc(var(--animation-width) + 10%));
+            transform: translateX(calc(var(--animation-width) + 10%));
+  }
+}
+
+.mobile-song-preview .mobile-preview-like,
+.mobile-song-preview .mobile-preview-add-playlist {
+  position: absolute;
+  bottom: 1rem;
+  width: 2rem;
+  height: 2rem;
+}
+
+.mobile-song-preview .mobile-preview-like {
+  left: 1rem;
+}
+
+.mobile-song-preview .mobile-preview-add-playlist {
+  right: 1rem;
 }
 /*# sourceMappingURL=style.css.map */

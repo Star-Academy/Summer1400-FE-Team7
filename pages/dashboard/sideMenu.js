@@ -52,6 +52,7 @@ const addNewPlaylist = (title) => {
     if (!bWrapper.classList.contains(MENU_SELECTED)) {
       const sectionHeader = bWrapper.children[1].innerText;
       songListFiller(newPlayList[sectionHeader], sectionHeader);
+      removeFromPlaylist(sectionHeader);
     }
 
     document.querySelector(`.${MENU_SELECTED}`).classList.remove(MENU_SELECTED);

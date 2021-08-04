@@ -13,8 +13,9 @@ const lyricMusicName = document.querySelector("#lyric-music-name");
 const lyricMusicArtist = document.querySelector("#lyric-music-artist");
 const ALL_SONGS = "همه آهنگ ها";
 const FAV_SONGS = "مورد علاقه";
-const mobileMusicName = document.querySelector(".mobile-music-name");
-const mobileArtistName = document.querySelector(".mobile-artist-name");
+const mobileMusicName = document.querySelectorAll(".mobile-music-name");
+const mobileArtistName = document.querySelectorAll(".mobile-artist-name");
+const mobilePreviewCover = document.querySelector(".mobile-preview-song-cover");
 
 let currentMusicIndex = 0;
 let playList = { allSongs: [], favSongs: [] };
@@ -155,9 +156,15 @@ const musicChangeHandler = () => {
   }
   songWrapper[currentMusicIndex].classList.add("is-playing");
 
-  mobileMusicName.innerText = elemTitle;
-  mobileArtistName.innerText = elemArtist;
-  hiddenTextMovingAnimation(mobileInfo, (window.innerWidth / 100) * 40);
+  mobileMusicName[0].innerText = elemTitle;
+  mobileArtistName[0].innerText = elemArtist;
+  mobileMusicName[1].innerText = elemTitle;
+  mobileArtistName[1].innerText = elemArtist;
+
+  mobilePreviewCover.src = imgSrc;
+
+  hiddenTextMovingAnimation(mobileInfo[0], (window.innerWidth / 100) * 40);
+  hiddenTextMovingAnimation(mobileInfo[1], (window.innerWidth / 100) * 40);
 };
 
 const optionFiller = () => {
@@ -182,6 +189,32 @@ const optionFiller = () => {
     }
     option.appendChild(p);
     option.appendChild(ul);
+  });
+};
+
+const removeFromPlaylist = (playlistName) => {
+  console.log("HERE!");
+  const allOptions = document.querySelectorAll(".options");
+
+  allOptions.forEach((option, index) => {
+    option.classList.add("remove-options");
+    const dltBtn = document.createElement("button");
+    dltBtn.innerText = "حذف کردن از پلی لیست";
+    dltBtn.className = "dlt-btn-playlist";
+
+    const removeImg = document.createElement("img");
+    removeImg.className = "remove-img";
+    removeImg.src = "../../assets/images/trash.svg";
+
+    deleteChildrenNodes(option);
+    option.appendChild(dltBtn);
+    option.appendChild(removeImg);
+    const songId = option.getAttribute("data-id");
+
+    dltBtn.addEventListener("click", () => {
+      deleteFromPlaylist(playlistName, songId);
+      songListFiller(newPlayList[playlistName], playlistName);
+    });
   });
 };
 
