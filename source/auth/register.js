@@ -67,6 +67,7 @@ emailRegister.addEventListener("input", () => {
     isEmailRegisterValid = false;
   } else {
     emailRegisterInputWrapper.classList.remove("warning");
+    emailRegisterInputWrapper.classList.remove("error");
     isEmailRegisterValid = true;
   }
 });
@@ -88,10 +89,30 @@ passwordRegister.addEventListener("input", () => {
     isPasswordRegisterValid = false;
   } else {
     passwordRegisterInputWrapper.classList.remove("warning");
+    passwordRegisterInputWrapper.classList.remove("error");
     isPasswordRegisterValid = true;
   }
 });
-const checkRegisterPassword = () => {};
+const checkRegisterPassword = () => {
+  if (passwordRegister.value == "") {
+    passwordRegisterInputWrapper.setAttribute(
+      "data-error",
+      "رمزعبور نمی‌تواند خالی باشد"
+    );
+    passwordRegisterInputWrapper.classList.add("error");
+    return false;
+  } else if (!validPassword(passwordRegister.value)) {
+    passwordRegisterInputWrapper.setAttribute(
+      "data-error",
+      "رمز عبور باید دارای حداقل ۸ کاراکتر،یک حرف و یک عدد باشد"
+    );
+    passwordRegisterInputWrapper.classList.add("eroor");
+    return false;
+  } else {
+    passwordRegisterInputWrapper.classList.remove("eroor");
+    return true;
+  }
+};
 
 const checkRegisterConfirmPassword = () => {
   if (registerInputs.confirmPassword == "") {
@@ -137,11 +158,14 @@ const performRegister = () => {
 
   let result = true;
 
-  if (!isEmailRegisterValid) return false;
-  if (!isPasswordRegisterValid) return false;
+
+  if (!checkRegisterEmail()) return false;
+  if (!checkRegisterPassword()) return false;
   if (!checkRegisterConfirmPassword()) return false;
   if (!checkMatchPasswordAndConfirmPassword()) return false;
 
+  if (!isEmailRegisterValid) return false;
+  if (!isPasswordRegisterValid) return false;
   for (const user of testUsers) {
     if (user.username === registerInputs.email.split("@")[0]) {
       emailRegisterInputWrapper.setAttribute(
