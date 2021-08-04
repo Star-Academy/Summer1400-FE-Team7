@@ -13,13 +13,16 @@ const lyricMusicName = document.querySelector("#lyric-music-name");
 const lyricMusicArtist = document.querySelector("#lyric-music-artist");
 const ALL_SONGS = "همه آهنگ ها";
 const FAV_SONGS = "مورد علاقه";
+const ALL_PLAYlISTS = "پلی لیست ها";
 const mobileMusicName = document.querySelectorAll(".mobile-music-name");
 const mobileArtistName = document.querySelectorAll(".mobile-artist-name");
 const mobilePreviewCover = document.querySelector(".mobile-preview-song-cover");
 const mobileFavBtn = document.querySelector(".mobile-preview-like");
+
 let currentMusicIndex = 0;
 let playList = { allSongs: [], favSongs: [] };
 let newPlayList = {};
+newPlayList[ALL_PLAYlISTS] = [];
 
 const musicGrapper = async () => {
   await fetch("./songs.json")
@@ -36,13 +39,18 @@ const musicGrapper = async () => {
 
 const songListFiller = (list, header) => {
   songListHeader.innerText = header;
+
   document.querySelectorAll(".song-wrapper").forEach((i) => {
     i.remove();
   });
 
+  document.querySelectorAll(".playlist-wrapper").forEach((i) => {
+    i.remove();
+  });
+
   const template = document.querySelector("#song-wrapper-template");
-  list.forEach((song, index) => {
-    if ("content" in document.createElement("template")) {
+  if ("content" in document.createElement("template")) {
+    list.forEach((song, index) => {
       const clone = template.content.cloneNode(true);
       const options = clone.querySelector(".options");
       const songCoverImage = clone.querySelector(".song-cover-img");
@@ -51,6 +59,7 @@ const songListFiller = (list, header) => {
       const duration = clone.querySelector("#duration");
       const favIcon = clone.querySelector(".fav-icon");
       const songWrapper = clone.querySelector(".song-wrapper");
+      songWrapper.setAttribute("song-id", song.id);
       options.setAttribute("data-id", song.id);
       if (song.cover != undefined) {
         songCoverImage.src = song.cover;
@@ -104,12 +113,8 @@ const songListFiller = (list, header) => {
 
       songWrapper.addEventListener("click", (e) => {
         if (!e.path[0].classList.contains(FAV_ICON)) {
-          const enabledBtn = [
-            ...document.getElementsByClassName(SONG_WRAPPER_SELECTED),
-          ];
-          const authorNameSelected = [
-            ...document.getElementsByClassName(AUTHOR_NAME_SELECTED),
-          ];
+          const enabledBtn = [...document.getElementsByClassName(SONG_WRAPPER_SELECTED)];
+          const authorNameSelected = [...document.getElementsByClassName(AUTHOR_NAME_SELECTED)];
           if (enabledBtn.length != 0) {
             enabledBtn[0].classList.remove(SONG_WRAPPER_SELECTED);
             authorNameSelected[0].classList.remove(AUTHOR_NAME_SELECTED);
@@ -119,19 +124,25 @@ const songListFiller = (list, header) => {
         }
       });
       doubleClickHandler(songWrapper, song.id);
-    }
-  });
+    });
+  }
 };
+
 mobileFavBtn.addEventListener("click", () => {
   const favIcon = mobileFavBtn.children[0];
+  const currentMusicFavIconInMainMenu = document.querySelector(`[song-id = "${currentMusicIndex + 1}"]`).children[2].children[1];
   favIcon.classList.toggle(LIKED_CLASS);
+  currentMusicFavIconInMainMenu.classList.toggle(LIKED_CLASS);
   const song = playList.allSongs[currentMusicIndex];
+  console.log("🚀 ~ file: song.js ~ line 128 ~ mobileFavBtn.addEventListener ~ currentMusicFavIconInMainMenu", currentMusicFavIconInMainMenu);
 
   if (favIcon.classList.contains(LIKED_CLASS)) {
     favIcon.src = LIKED;
     favIcon.style.transform = "scale(1)";
+    currentMusicFavIconInMainMenu.src = LIKED;
   } else {
     favIcon.src = LIKE;
+    currentMusicFavIconInMainMenu.src = LIKE;
   }
 
   if (!playList.favSongs.includes(song)) {
@@ -142,6 +153,20 @@ mobileFavBtn.addEventListener("click", () => {
     });
   }
 });
+
+const mobilePreviewStartHandler = () => {
+  const favIcon = mobileFavBtn.children[0];
+  const song = playList.allSongs[currentMusicIndex];
+
+  if (playList.favSongs.includes(song)) {
+    favIcon.classList.add(LIKED_CLASS);
+    favIcon.src = LIKED_IMG;
+  } else {
+    favIcon.classList.remove(LIKED_CLASS);
+    favIcon.src = LIKE;
+  }
+};
+
 const convertHMS = (value) => {
   const sec = parseInt(value, 10); // convert value to number if it's string
   let hours = Math.floor(sec / 3600); // get hours
@@ -186,6 +211,8 @@ const musicChangeHandler = () => {
 
   mobilePreviewCover.src = imgSrc;
 
+  mobilePreviewStartHandler();
+
   hiddenTextMovingAnimation(mobileInfo[0], (window.innerWidth / 100) * 40);
   hiddenTextMovingAnimation(mobileInfo[1], (window.innerWidth / 100) * 40);
 };
@@ -216,7 +243,6 @@ const optionFiller = () => {
 };
 
 const removeFromPlaylist = (playlistName) => {
-  console.log("HERE!");
   const allOptions = document.querySelectorAll(".options");
 
   allOptions.forEach((option, index) => {
@@ -249,10 +275,7 @@ const deleteChildrenNodes = (parent) => {
 
 const addToPlayList = (playListName, id) => {
   if (!newPlayList[playListName].includes(playList.allSongs[id - 1])) {
-    newPlayList[playListName] = [
-      ...newPlayList[playListName],
-      playList.allSongs[id - 1],
-    ];
+    newPlayList[playListName] = [...newPlayList[playListName], playList.allSongs[id - 1]];
   } else {
     deleteFromPlaylist(playListName, id);
   }
@@ -265,3 +288,21 @@ const deleteFromPlaylist = (playListName, id) => {
 };
 
 musicGrapper();
+
+const allPlaylistFiller = (list, header) => {
+  document.querySelectorAll(".song-wrapper").forEach((i) => {
+    i.remove();
+  });
+
+  if ("content" in document.createElement("template")) {
+    list.forEach((playlist) => {
+      const template = document.querySelector("#all-playlist-list");
+      const clone = template.content.cloneNode(true);
+      const playListWrapper = clone.querySelector(".playlist-wrapper");
+      const playListCover = clone.querySelector(".platlist-cover-img");
+      const playListName = clone.querySelector("#playlist-name");
+
+      songList.append(clone);
+    });
+  }
+};

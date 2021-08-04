@@ -19,6 +19,10 @@ const allSongsTabNavigation = document.querySelector("#all-songs-tab-navigation-
 const userEmail = document.querySelector("#user-email");
 const pofileWrapper = document.querySelector(".profile-wrapper");
 
+const darkGlassMobilePreview = document.querySelector(".dark-glass3");
+const mobileSongPreview = document.querySelector(".mobile-song-preview");
+const mobileSongPreviewBackBtn = document.querySelector(".mobile-song-preview-return");
+
 const songList = document.querySelector(".song-list");
 const bgCover = document.querySelector(".bg-cover");
 const bgGlass2 = document.querySelector(".dark-glass2");
@@ -116,7 +120,6 @@ const hiddenTextMovingAnimation = (parentDiv, currentWidht) => {
   let totalWidth = 0;
   const children = [...parentDiv.children];
 
-
   children.forEach((elem) => {
     totalWidth += elem.getBoundingClientRect().width;
   });
@@ -130,10 +133,10 @@ const hiddenTextMovingAnimation = (parentDiv, currentWidht) => {
   document.documentElement.style.setProperty("--animation-width", animationWidth + "px");
 
   mobileInfo[0].classList.remove(MOBILE_INFO_ANIMATION);
-  mobileInfo[0].classList.remove(MOBILE_INFO_ANIMATION);
+  mobileInfo[1].classList.remove(MOBILE_INFO_ANIMATION);
   mobileInfo[0].classList.add(MOBILE_INFO_ANIMATION);
   mobileInfo[1].classList.add(MOBILE_INFO_ANIMATION);
-  mobileInfo[1].style.justifyContent = "flex-start";
+  mobileInfo[0].style.justifyContent = "flex-start";
   mobileInfo[1].style.justifyContent = "flex-start";
 };
 
@@ -142,6 +145,9 @@ window.addEventListener("resize", () => {
     layoutFixer();
     hiddenTextMovingAnimation(mobileInfo[0], (window.innerWidth / 100) * 40);
     hiddenTextMovingAnimation(mobileInfo[1], (window.innerWidth / 100) * 40);
+  } else {
+    darkGlassMobilePreview.classList.add("display-none");
+    mobileSongPreview.classList.add("display-none");
   }
 });
 
@@ -223,13 +229,10 @@ pofileWrapper.addEventListener("click", () => {
   logoutUser();
 });
 
-const darkGlassMobilePreview = document.querySelector(".dark-glass3");
-const mobileSongPreview = document.querySelector(".mobile-song-preview");
-const mobileSongPreviewBackBtn = document.querySelector(".mobile-song-preview-return");
-
 mobileInfo[0].addEventListener("click", () => {
   darkGlassMobilePreview.classList.remove("display-none");
   mobileSongPreview.classList.remove("display-none");
+  mobilePreviewStartHandler();
 });
 
 mobileSongPreviewBackBtn.addEventListener("click", () => {

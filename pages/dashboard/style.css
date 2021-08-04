@@ -611,6 +611,10 @@ main > .section-1 > .song-list > .placeholders-wrapper > .place-holders .left-in
   width: 2rem;
 }
 
+main > .section-1 > .song-list .playlist-wrapper {
+  background: teal;
+}
+
 main > .section-1 .list-compact-view {
   display: -ms-grid;
   display: grid;
@@ -1367,10 +1371,6 @@ main .mobile-navigation > .tab-navigation > button::after {
   background: #191919;
 }
 
-.dark-glass2 {
-  z-index: 1999;
-}
-
 .side-menu-opended {
   width: calc(100% - 275px) !important;
 }
@@ -1508,6 +1508,23 @@ main .mobile-navigation > .tab-navigation > button::after {
 .mobile-song-preview .mobile-song-preview-return > img {
   width: 25%;
   height: 100%;
+}
+
+.mobile-song-preview .music-bar-wrapper {
+  direction: ltr;
+  color: white;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  width: 100%;
+  gap: 1rem;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+.mobile-song-preview .music-bar-wrapper > input {
+  width: 60%;
 }
 
 .mobile-song-preview .mobile-preview-controls {

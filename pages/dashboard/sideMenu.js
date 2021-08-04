@@ -1,29 +1,47 @@
 const sideMenuBtns = document.querySelectorAll(".btn-wrapper");
 const MENU_SELECTED = "menu-selected";
+const PLAYLIST_CONTAINER = "playlist-container";
 const playlistContainer = document.querySelector(".playlist-container");
 
 sideMenuBtns.forEach((menu) => {
-  menu.addEventListener("click", () => {
-    if (!menu.classList.contains(MENU_SELECTED)) {
-      let sectionHeader = menu.children[1].innerText;
-      let sectionHeader2 = menu.children[1].innerText;
-      if (sectionHeader == ALL_SONGS) {
-        sectionHeader = "allSongs";
-      } else if (sectionHeader == FAV_SONGS) {
-        sectionHeader = "favSongs";
+  if (menu.classList.contains("exception")) {
+    menu.addEventListener("click", () => {
+      if (!menu.classList.contains(MENU_SELECTED)) {
+        let sectionHeader = menu.children[1].innerText;
+        // songListFiller(newPlayList[sectionHeader], sectionHeader);
+        allPlaylistFiller(newPlayList[sectionHeader], sectionHeader);
+        // optionFiller();
       }
-      songListFiller(playList[sectionHeader], sectionHeader2);
-      optionFiller();
-    }
 
-    document.querySelector(`.${MENU_SELECTED}`).classList.remove(MENU_SELECTED);
-    menu.classList.add(MENU_SELECTED);
-  });
+      document.querySelector(`.${MENU_SELECTED}`).classList.remove(MENU_SELECTED);
+      menu.classList.add(MENU_SELECTED);
+    });
+  } else {
+    menu.addEventListener("click", () => {
+      if (!menu.classList.contains(MENU_SELECTED)) {
+        let sectionHeader = menu.children[1].innerText;
+        let sectionHeader2 = menu.children[1].innerText;
+
+        if (sectionHeader == ALL_SONGS) {
+          sectionHeader = "allSongs";
+        } else if (sectionHeader == FAV_SONGS) {
+          sectionHeader = "favSongs";
+        }
+
+        songListFiller(playList[sectionHeader], sectionHeader2);
+        optionFiller();
+      }
+
+      document.querySelector(`.${MENU_SELECTED}`).classList.remove(MENU_SELECTED);
+      menu.classList.add(MENU_SELECTED);
+    });
+  }
 });
 
 playlistContainer.addEventListener("click", () => {
   if (!playlistContainer.classList.contains(MENU_SELECTED)) {
   }
+  console.log("here");
   document.querySelector(`.${MENU_SELECTED}`).classList.remove(MENU_SELECTED);
   playlistContainer.classList.add(MENU_SELECTED);
 });
@@ -64,6 +82,9 @@ const addNewPlaylist = (title) => {
   });
 
   sideMenu.insertBefore(div, playlistContainer);
+
+  newPlayList[ALL_PLAYlISTS] = [...newPlayList[ALL_PLAYlISTS], title];
+  console.log(newPlayList);
 };
 
 const removePlaylist = (title) => {

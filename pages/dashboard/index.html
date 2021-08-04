@@ -36,9 +36,9 @@
           </div>
 
           <div class="playlist-container">
-            <div class="btn-wrapper">
+            <div class="btn-wrapper exception">
               <img src="../../assets/images/playlist-add.svg" alt="" />
-              <button>پلی لیست جدید</button>
+              <button>پلی لیست ها</button>
             </div>
             <button class="add-btn">
               <img src="../../assets/images/add.svg" alt="add svg" />
@@ -89,11 +89,11 @@
 
         <div class="controls-wrapper">
           <div>
-            <button class="size-1 ctl-btn shuffle-btn"  data-tooltip="درهم‌رختن">
+            <button class="size-1 ctl-btn shuffle-btn" data-tooltip="درهم‌رختن">
               <img src="../../assets/images/controls/shuffle.svg" alt="shuffle button" />
             </button>
 
-            <button class="size-1 ctl-btn next-btn"  data-tooltip="بعدی">
+            <button class="size-1 ctl-btn next-btn" data-tooltip="بعدی">
               <img src="../../assets/images/controls/next.svg" alt="next music button" />
             </button>
 
@@ -101,11 +101,11 @@
               <img src="../../assets/images/controls/play-button.svg" alt="play puase button" />
             </button>
 
-            <button class="size-1 ctl-btn previous-btn"  data-tooltip="قبلی">
+            <button class="size-1 ctl-btn previous-btn" data-tooltip="قبلی">
               <img src="../../assets/images/controls/back.svg" alt="previous music button" />
             </button>
 
-            <button class="size-1 ctl-btn repeat-btn"  data-tooltip=" تکرار">
+            <button class="size-1 ctl-btn repeat-btn" data-tooltip=" تکرار">
               <img src="../../assets/images/controls/replay.svg" alt="repeat mode button" />
             </button>
           </div>
@@ -208,11 +208,11 @@
         <p class="end-time"></p>
       </div>
       <div class="mobile-preview-controls">
-        <button class="size-1 ctl-btn shuffle-btn"  data-tooltip="درهم‌رختن">
+        <button class="size-1 ctl-btn shuffle-btn" data-tooltip="درهم‌رختن">
           <img src="../../assets/images/controls/shuffle.svg" alt="shuffle button" />
         </button>
 
-        <button class="size-1 ctl-btn next-btn"  data-tooltip="بعدی">
+        <button class="size-1 ctl-btn next-btn" data-tooltip="بعدی">
           <img src="../../assets/images/controls/next.svg" alt="next music button" />
         </button>
 
@@ -220,7 +220,7 @@
           <img src="../../assets/images/controls/play-button.svg" alt="play puase button" />
         </button>
 
-        <button class="size-1 ctl-btn previous-btn"  data-tooltip="قبلی">
+        <button class="size-1 ctl-btn previous-btn" data-tooltip="قبلی">
           <img src="../../assets/images/controls/back.svg" alt="previous music button" />
         </button>
 
@@ -271,6 +271,20 @@
           <p></p>
           <ul class="option-list"></ul>
         </div>
+      </div>
+    </template>
+
+    <template id="all-playlist-list">
+      <div class="playlist-wrapper">
+        <div class="playlist-cover">
+          <img class="platlist-cover-img" loading="lazy" />
+        </div>
+        <div class="playlist-info">
+          <p id="playlist-name"></p>
+        </div>
+        <button class="playlist-options">
+          <img src="../../assets/images/trash.svg" alt="delete playlist" />
+        </button>
       </div>
     </template>
   </body>
