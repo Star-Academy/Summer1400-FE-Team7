@@ -12,9 +12,9 @@ const loginInputs = {
   password: "",
 };
 
-let isEmailValid = false;
-let isPasswordValid = false;
-let isFirstSubmit = true;
+let isEmailLoginValid = false;
+let isPasswordLoginValid = false;
+let isFirstLoginSubmit = true;
 const validateEmail = (email) => {
   const emailPattern =
     /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
@@ -22,6 +22,7 @@ const validateEmail = (email) => {
 };
 
 const checkLoginEmail = () => {
+
   if (emailLoginInput.value == "") {
     emailInputWrapper.setAttribute("data-error", "ایمیل نمی‌تواند خالی باشد");
     emailInputWrapper.classList.add("error");
@@ -38,11 +39,11 @@ const checkLoginEmail = () => {
 };
 
 emailLoginInput.addEventListener("input", () => {
-  if (!isFirstSubmit) {
+  if (!isFirstLoginSubmit) {
     if (emailLoginInput.value == "") {
       emailInputWrapper.setAttribute("data-error", "ایمیل نمی‌تواند خالی باشد");
       emailInputWrapper.classList.add("error");
-      isEmailValid = false;
+      isEmailLoginValid = false;
     } else if (!validateEmail(emailLoginInput.value)) {
       emailInputWrapper.setAttribute(
         "data-error",
@@ -50,16 +51,16 @@ emailLoginInput.addEventListener("input", () => {
       );
       emailInputWrapper.classList.add("error");
 
-      isEmailValid = false;
+      isEmailLoginValid = false;
     } else {
       emailInputWrapper.classList.remove("error");
-      isEmailValid = true;
+      isEmailLoginValid = true;
     }
   }
 });
 
 const checkLoginPasswords = () => {
-  if (loginInputs.password == "") {
+  if (passwordLoginInput.value == "") {
     passwordInputWrapper.setAttribute(
       "data-error",
       "رمزعبور نمی‌تواند خالی باشد"
@@ -73,7 +74,7 @@ const checkLoginPasswords = () => {
   }
 };
 passwordLoginInput.addEventListener("input", () => {
-  if (!isFirstSubmit) {
+  if (!isFirstLoginSubmit) {
     if (passwordLoginInput.value == "") {
       passwordInputWrapper.setAttribute(
         "data-error",
@@ -81,10 +82,10 @@ passwordLoginInput.addEventListener("input", () => {
       );
 
       passwordInputWrapper.classList.add("error");
-      isPasswordValid = false;
+      isPasswordLoginValid = false;
     } else {
       passwordInputWrapper.classList.remove("error");
-      isPasswordValid = true;
+      isPasswordLoginValid = true;
     }
   }
 });
@@ -99,11 +100,11 @@ const performLogin = () => {
   loginInputs.email = emailLoginInput.value;
   loginInputs.password = passwordLoginInput.value;
 
-  if (!isFirstSubmit) {
-    if (!isEmailValid) return false;
-    if (!isPasswordValid) return false;
+  if (!isFirstLoginSubmit) {
+    if (!isEmailLoginValid) return false;
+    if (!isPasswordLoginValid) return false;
   } else {
-    isFirstSubmit = false;
+    isFirstLoginSubmit = false;
 
     if (!checkLoginEmail()) return false;
     if (!checkLoginPasswords()) return false;

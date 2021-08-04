@@ -221,10 +221,6 @@ shuffleBtn.addEventListener("click", () => {
   }
 });
 
-document.addEventListener("keyup", (e) => {
-  console.log(e);
-});
-
 const shuffle = (array) => {
   var tmp,
     current,
