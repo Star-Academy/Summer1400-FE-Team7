@@ -25,7 +25,7 @@ const bgGlass2 = document.querySelector(".dark-glass2");
 const addPlayListBtn = document.querySelector(".add-btn");
 const addPlayListWrapper = document.querySelector(".add-playlist-wrapper");
 
-const seekSlider = document.getElementById("seek-slider");
+const seekSlider = document.querySelectorAll(".seek-slider");
 
 const musicCover = document.querySelector("#music-cover");
 const musicTitle = document.querySelector("#music-title");
@@ -115,8 +115,7 @@ lyricsBtnReturn.addEventListener("click", () => {
 const hiddenTextMovingAnimation = (parentDiv, currentWidht) => {
   let totalWidth = 0;
   const children = [...parentDiv.children];
-  console.log(children);
-  console.log(mobileInfo);
+
 
   children.forEach((elem) => {
     totalWidth += elem.getBoundingClientRect().width;

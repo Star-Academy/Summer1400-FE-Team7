@@ -3,12 +3,12 @@ const pauseBtnImg = "../../assets/images/controls/pause.svg";
 const playBtnImg = "../../assets/images/controls/play-button.svg";
 
 const audio = document.querySelector("#audio");
-const nextBtn = document.querySelector("#next-btn");
-const previousBtn = document.querySelector("#previous-btn");
-const shuffleBtn = document.querySelector("#shuffle-btn");
-const repeatBtn = document.querySelector("#repeat-btn");
-const currentTimeLabel = document.querySelector("#current-time");
-const endTimeLabel = document.querySelector("#end-time");
+const nextBtn = document.querySelectorAll(".next-btn");
+const previousBtn = document.querySelectorAll(".previous-btn");
+const shuffleBtn = document.querySelectorAll(".shuffle-btn");
+const repeatBtn = document.querySelectorAll(".repeat-btn");
+const currentTimeLabel = document.querySelectorAll(".current-time");
+const endTimeLabel = document.querySelectorAll(".end-time");
 
 const statusTypes = {
   PLAYING: "playing",
@@ -110,8 +110,13 @@ const play = () => {
       btn.children[0].src = pauseBtnImg;
       btn.setAttribute("data-tooltip", "توقف");
     });
-    seekSlider.max = audio.duration;
-    endTimeLabel.innerHTML = convertHMS(audio.duration);
+    seekSlider.forEach((slider) => {
+      slider.max = audio.duration;
+    });
+
+    endTimeLabel.forEach((label) => {
+      label.innerHTML = convertHMS(audio.duration);
+    });
   });
 };
 
@@ -139,10 +144,20 @@ const updateMusicBarValue = (value) => {
   audio.currentTime = value;
   resume();
 };
+const updateMobileMusicBarValue = (value) => {
+  audio.currentTime = value;
+  resume();
+};
 
 audio.addEventListener("timeupdate", (event) => {
-  seekSlider.value = audio.currentTime;
-  currentTimeLabel.innerHTML = convertHMS(seekSlider.value);
+  let seekbarValue=0;
+  seekSlider.forEach((slider) => {
+    slider.value = audio.currentTime;
+    seekbarValue= slider.value;
+  });
+  currentTimeLabel.forEach((label) => {
+    label.innerHTML = convertHMS(seekbarValue);
+  });
 });
 
 audio.addEventListener("ended", (event) => {
@@ -158,12 +173,16 @@ audio.addEventListener("ended", (event) => {
   }
 });
 
-nextBtn.addEventListener("click", (event) => {
-  nextMusic();
+nextBtn.forEach((btn) => {
+  btn.addEventListener("click", (event) => {
+    nextMusic();
+  });
 });
 
-previousBtn.addEventListener("click", (event) => {
-  previousMusic();
+previousBtn.forEach((btn) => {
+  btn.addEventListener("click", (event) => {
+    previousMusic();
+  });
 });
 
 const doubleClickHandler = (elem, id) => {
@@ -198,29 +217,32 @@ function KeyPress(e) {
 
 document.onkeydown = KeyPress;
 
-repeatBtn.addEventListener("click", () => {
-  switch (repeatMode) {
-    case repeatTypes.NO_REPEAT:
-      repeatMode = repeatTypes.ONE_REPEAT;
-      break;
+repeatBtn.forEach((btn) => {
+  btn.addEventListener("click", () => {
+    switch (repeatMode) {
+      case repeatTypes.NO_REPEAT:
+        repeatMode = repeatTypes.ONE_REPEAT;
+        break;
 
-    case repeatTypes.ONE_REPEAT:
-      repeatMode = repeatTypes.ALL_REPEAT;
-      break;
+      case repeatTypes.ONE_REPEAT:
+        repeatMode = repeatTypes.ALL_REPEAT;
+        break;
 
-    case repeatTypes.ALL_REPEAT:
-      repeatMode = repeatTypes.NO_REPEAT;
-      break;
-  }
+      case repeatTypes.ALL_REPEAT:
+        repeatMode = repeatTypes.NO_REPEAT;
+        break;
+    }
+  });
 });
 
-shuffleBtn.addEventListener("click", () => {
-  shuffleMode = !shuffleMode;
-  if (shuffleMode) {
-    generateShuffleList();
-  }
+shuffleBtn.forEach((btn) => {
+  btn.addEventListener("click", () => {
+    shuffleMode = !shuffleMode;
+    if (shuffleMode) {
+      generateShuffleList();
+    }
+  });
 });
-
 const shuffle = (array) => {
   var tmp,
     current,

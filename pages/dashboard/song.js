@@ -16,7 +16,7 @@ const FAV_SONGS = "مورد علاقه";
 const mobileMusicName = document.querySelectorAll(".mobile-music-name");
 const mobileArtistName = document.querySelectorAll(".mobile-artist-name");
 const mobilePreviewCover = document.querySelector(".mobile-preview-song-cover");
-
+const mobileFavBtn = document.querySelector(".mobile-preview-like");
 let currentMusicIndex = 0;
 let playList = { allSongs: [], favSongs: [] };
 let newPlayList = {};
@@ -104,8 +104,12 @@ const songListFiller = (list, header) => {
 
       songWrapper.addEventListener("click", (e) => {
         if (!e.path[0].classList.contains(FAV_ICON)) {
-          const enabledBtn = [...document.getElementsByClassName(SONG_WRAPPER_SELECTED)];
-          const authorNameSelected = [...document.getElementsByClassName(AUTHOR_NAME_SELECTED)];
+          const enabledBtn = [
+            ...document.getElementsByClassName(SONG_WRAPPER_SELECTED),
+          ];
+          const authorNameSelected = [
+            ...document.getElementsByClassName(AUTHOR_NAME_SELECTED),
+          ];
           if (enabledBtn.length != 0) {
             enabledBtn[0].classList.remove(SONG_WRAPPER_SELECTED);
             authorNameSelected[0].classList.remove(AUTHOR_NAME_SELECTED);
@@ -118,7 +122,26 @@ const songListFiller = (list, header) => {
     }
   });
 };
+mobileFavBtn.addEventListener("click", () => {
+  const favIcon = mobileFavBtn.children[0];
+  favIcon.classList.toggle(LIKED_CLASS);
+  const song = playList.allSongs[currentMusicIndex];
 
+  if (favIcon.classList.contains(LIKED_CLASS)) {
+    favIcon.src = LIKED;
+    favIcon.style.transform = "scale(1)";
+  } else {
+    favIcon.src = LIKE;
+  }
+
+  if (!playList.favSongs.includes(song)) {
+    playList.favSongs = [...playList.favSongs, song];
+  } else {
+    playList.favSongs = playList.favSongs.filter(function (item) {
+      return item !== song;
+    });
+  }
+});
 const convertHMS = (value) => {
   const sec = parseInt(value, 10); // convert value to number if it's string
   let hours = Math.floor(sec / 3600); // get hours
@@ -226,7 +249,10 @@ const deleteChildrenNodes = (parent) => {
 
 const addToPlayList = (playListName, id) => {
   if (!newPlayList[playListName].includes(playList.allSongs[id - 1])) {
-    newPlayList[playListName] = [...newPlayList[playListName], playList.allSongs[id - 1]];
+    newPlayList[playListName] = [
+      ...newPlayList[playListName],
+      playList.allSongs[id - 1],
+    ];
   } else {
     deleteFromPlaylist(playListName, id);
   }
