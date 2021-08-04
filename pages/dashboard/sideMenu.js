@@ -7,8 +7,6 @@ sideMenuBtns.forEach((menu) => {
     if (!menu.classList.contains(MENU_SELECTED)) {
       let sectionHeader = menu.children[1].innerText;
       let sectionHeader2 = menu.children[1].innerText;
-      console.log(playList);
-      console.log(sectionHeader);
       if (sectionHeader == ALL_SONGS) {
         sectionHeader = "allSongs";
       } else if (sectionHeader == FAV_SONGS) {

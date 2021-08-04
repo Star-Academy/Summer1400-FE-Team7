@@ -109,7 +109,6 @@ const songListFiller = (list, header) => {
         }
       });
       doubleClickHandler(songWrapper, song.id);
-      console.log(clone);
     }
   });
 };
