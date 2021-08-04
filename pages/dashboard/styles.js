@@ -32,8 +32,6 @@ const musicTitle = document.querySelector("#music-title");
 const musicArtist = document.querySelector("#music-artist");
 const songWrapper = document.querySelectorAll(".song-wrapper");
 
-// const MENU_SELECTED = "menu-selected";
-
 const SIDE_MENU_CLOSED = "side-menu-closed";
 const SIDE_MENU_OPEND = "side-menu-opended";
 
@@ -52,22 +50,6 @@ const MOBILE_INFO_ANIMATION = "mobile-info-animation";
 const LIKE_HOVE_IMG = "../../assets/images/like-hovered.svg";
 const LIKE_IMG = "../../assets/images/like.svg";
 const LIKED_IMG = "../../assets/images/liked.svg";
-
-/*
-//Handle side-menu items selection.
-*/
-const HandlemenuButtonsSelect = () => {
-  // for (let m of menuButtons) {
-  //   m.addEventListener("click", () => {
-  //     document.querySelector(`.${MENU_SELECTED}`).classList.remove(MENU_SELECTED);
-  //     m.classList.add(MENU_SELECTED);
-  //   });
-  // }
-  // playlistContainer.addEventListener("click", () => {
-  //   document.querySelector(`.${MENU_SELECTED}`).classList.remove(MENU_SELECTED);
-  //   playlistContainer.classList.add(MENU_SELECTED);
-  // });
-};
 
 /*
 // Handle open/close side menu

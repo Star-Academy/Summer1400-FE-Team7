@@ -16,11 +16,13 @@ const statusTypes = {
   STOPED: "stoped",
   MUTED: "muted",
 };
+
 const repeatTypes = {
   NO_REPEAT: "no-repeat",
   ONE_REPEAT: "one-repeat",
   ALL_REPEAT: "all-repeat",
 };
+
 let status = statusTypes.STOPED;
 let repeatMode = repeatTypes.NO_REPEAT;
 let shuffleMode = false;
@@ -30,7 +32,6 @@ let shuffleIndex = 0;
 const loadMusic = () => {
   audio.src = playList["همه آهنگ ها"][currentMusicIndex].file;
   const songname = `name:${playList["همه آهنگ ها"][currentMusicIndex].name}`;
-  console.log("🚀 loadMusic", songname);
 };
 
 const nextMusic = () => {
@@ -93,7 +94,6 @@ const handlePlayButton = () => {
 handlePlayButton();
 
 const play = () => {
-  console.log("🚀 play");
   loadMusic();
   musicChangeHandler();
 
@@ -116,7 +116,6 @@ const play = () => {
 };
 
 const resume = () => {
-  console.log("🚀 resume");
   audio.play();
   playBtn.forEach((btn) => {
     btn.children[0].src = pauseBtnImg;
@@ -128,7 +127,6 @@ const resume = () => {
 const playBtnState = () => {};
 
 const pause = () => {
-  console.log("🚀 pause");
   audio.pause();
   status = statusTypes.PASUED;
   playBtn.forEach((btn) => {
@@ -141,27 +139,21 @@ const updateMusicBarValue = (value) => {
   audio.currentTime = value;
   resume();
 };
+
 audio.addEventListener("timeupdate", (event) => {
   seekSlider.value = audio.currentTime;
   currentTimeLabel.innerHTML = convertHMS(seekSlider.value);
 });
 
 audio.addEventListener("ended", (event) => {
-  console.log("🚀 ended");
   switch (repeatMode) {
     case repeatTypes.NO_REPEAT:
-      nextMusic();
-
-      break;
-    case repeatTypes.ONE_REPEAT:
-      resume();
-
-      break;
     case repeatTypes.ALL_REPEAT:
       nextMusic();
       break;
 
-    default:
+    case repeatTypes.ONE_REPEAT:
+      resume();
       break;
   }
 });
@@ -169,6 +161,7 @@ audio.addEventListener("ended", (event) => {
 nextBtn.addEventListener("click", (event) => {
   nextMusic();
 });
+
 previousBtn.addEventListener("click", (event) => {
   previousMusic();
 });
@@ -183,16 +176,12 @@ const doubleClickHandler = (elem, id) => {
 
 function KeyPress(e) {
   var evtobj = window.event ? event : e;
-  // ctrl + arrow key right
-  if (evtobj.keyCode == 39 && evtobj.ctrlKey) {
+
+  if (evtobj.key == "ArrowRight" && evtobj.ctrlKey) {
     nextMusic();
-  }
-  // ctrl + arrow key left
-  else if (evtobj.keyCode == 37 && evtobj.ctrlKey) {
+  } else if (evtobj.key == "ArrowLeft" && evtobj.ctrlKey) {
     previousMusic();
-  }
-  // ctrl + arrow key down
-  else if (evtobj.keyCode == 40 && evtobj.ctrlKey) {
+  } else if (evtobj.key == "ArrowDown" && evtobj.ctrlKey) {
     switch (status) {
       case statusTypes.STOPED:
         play();
@@ -203,40 +192,39 @@ function KeyPress(e) {
       case statusTypes.PASUED:
         resume();
         break;
-
-      default:
-        break;
     }
   }
 }
+
 document.onkeydown = KeyPress;
 
 repeatBtn.addEventListener("click", () => {
   switch (repeatMode) {
     case repeatTypes.NO_REPEAT:
       repeatMode = repeatTypes.ONE_REPEAT;
-
       break;
+
     case repeatTypes.ONE_REPEAT:
       repeatMode = repeatTypes.ALL_REPEAT;
-
       break;
+
     case repeatTypes.ALL_REPEAT:
       repeatMode = repeatTypes.NO_REPEAT;
       break;
-
-    default:
-      break;
   }
-  console.log("🚀 repeatMode", repeatMode);
 });
+
 shuffleBtn.addEventListener("click", () => {
   shuffleMode = !shuffleMode;
-  console.log("🚀 shuffleMode", shuffleMode);
   if (shuffleMode) {
     generateShuffleList();
   }
 });
+
+document.addEventListener("keyup", (e) => {
+  console.log(e);
+});
+
 const shuffle = (array) => {
   var tmp,
     current,
@@ -250,6 +238,7 @@ const shuffle = (array) => {
     }
   return array;
 };
+
 const generateShuffleList = () => {
   for (i = 0; i < playList["همه آهنگ ها"].length; i++) shuffleArray[i] = i;
   shuffleArray = shuffle(shuffleArray);
@@ -261,6 +250,7 @@ const generateShuffleList = () => {
 let volumeIsMuted = false;
 let volumeValue = volumeSlider.value;
 audio.volume = volumeValue / 100;
+
 volumeBtn.addEventListener("click", () => {
   volumeIsMuted = !volumeIsMuted;
   if (volumeIsMuted) {
@@ -278,6 +268,7 @@ volumeBtn.addEventListener("click", () => {
     audio.volume = volumeValue / 100;
   }
 });
+
 /*
 // Update volume text value
 */

@@ -2,19 +2,11 @@ const registerForm = document.querySelector(".signup-form");
 const registerBtn = document.querySelector("#register-btn");
 const emailRegister = document.querySelector("#signup-email-input");
 const passwordRegister = document.querySelector("#signup-password-input");
-const emailRegisterInputWrapper = document.querySelector(
-  "#email-register-input-wrapper"
-);
-const passwordRegisterInputWrapper = document.querySelector(
-  "#password-register-input-wrapper"
-);
-const confirmPasswordRegisterInputWrapper = document.querySelector(
-  "#confirm-password-register-input-wrapper"
-);
+const emailRegisterInputWrapper = document.querySelector("#email-register-input-wrapper");
+const passwordRegisterInputWrapper = document.querySelector("#password-register-input-wrapper");
+const confirmPasswordRegisterInputWrapper = document.querySelector("#confirm-password-register-input-wrapper");
 
-const confirmPasswordRegister = document.querySelector(
-  "#signup-confirm-password-input"
-);
+const confirmPasswordRegister = document.querySelector("#signup-confirm-password-input");
 
 const registerInputs = {
   email: "",
@@ -29,19 +21,11 @@ const validPassword = (password) => {
 
 const checkRegisterEmail = () => {
   if (registerInputs.email == "") {
-    console.log("email cant be empty");
-    emailRegisterInputWrapper.setAttribute(
-      "data-error",
-      "ایمیل نمی‌تواند خالی باشد"
-    );
+    emailRegisterInputWrapper.setAttribute("data-error", "ایمیل نمی‌تواند خالی باشد");
     emailRegisterInputWrapper.classList.add("error");
     return false;
   } else if (!validateEmail(registerInputs.email)) {
-    console.log("email is not a valid ");
-    emailRegisterInputWrapper.setAttribute(
-      "data-error",
-      "ایمیل وارد شده معتبر نیست"
-    );
+    emailRegisterInputWrapper.setAttribute("data-error", "ایمیل وارد شده معتبر نیست");
     emailRegisterInputWrapper.classList.add("error");
     return false;
   } else {
@@ -52,19 +36,11 @@ const checkRegisterEmail = () => {
 
 const checkRegisterPassword = () => {
   if (registerInputs.password == "") {
-    console.log("password cant be empty");
-    passwordRegisterInputWrapper.setAttribute(
-      "data-error",
-      "رمزعبور نمی‌تواند خالی باشد"
-    );
+    passwordRegisterInputWrapper.setAttribute("data-error", "رمزعبور نمی‌تواند خالی باشد");
     passwordRegisterInputWrapper.classList.add("error");
     return false;
   } else if (!validPassword(registerInputs.password)) {
-    console.log("passwoed is not a valid ");
-    passwordRegisterInputWrapper.setAttribute(
-      "data-error",
-      "رمز عبور باید دارای حداقل ۸ کاراکتر،یک حرف و یک عدد باشد"
-    );
+    passwordRegisterInputWrapper.setAttribute("data-error", "رمز عبور باید دارای حداقل ۸ کاراکتر،یک حرف و یک عدد باشد");
     passwordRegisterInputWrapper.classList.add("error");
     return false;
   } else {
@@ -72,13 +48,10 @@ const checkRegisterPassword = () => {
     return true;
   }
 };
+
 const checkRegisterConfirlPassword = () => {
   if (registerInputs.confirmPassword == "") {
-    console.log("confirmPassword cant be empty");
-    confirmPasswordRegisterInputWrapper.setAttribute(
-      "data-error",
-      "تکرار رمزعبور نمی‌تواند خالی باشد"
-    );
+    confirmPasswordRegisterInputWrapper.setAttribute("data-error", "تکرار رمزعبور نمی‌تواند خالی باشد");
     confirmPasswordRegisterInputWrapper.classList.add("error");
     return false;
   } else {
@@ -86,14 +59,11 @@ const checkRegisterConfirlPassword = () => {
     return true;
   }
 };
+
 const checkMatchPasswordAndConfirlPassword = () => {
   if (registerInputs.password != registerInputs.confirmPassword) {
     result = false;
-    console.log("passwords not match");
-    confirmPasswordRegisterInputWrapper.setAttribute(
-      "data-error",
-      "رمزعبور و تکرارش باید برابر باشند"
-    );
+    confirmPasswordRegisterInputWrapper.setAttribute("data-error", "رمزعبور و تکرارش باید برابر باشند");
     confirmPasswordRegisterInputWrapper.classList.add("error");
     return false;
   } else {
@@ -124,22 +94,16 @@ const performRegister = () => {
 
   for (const user of testUsers) {
     if (user.username === registerInputs.email.split("@")[0]) {
-      console.log("this email is allready registered");
-      emailRegisterInputWrapper.setAttribute(
-        "data-error",
-        "کاربر دیگری با این ایمیل موجود می‌باشد"
-      );
+      emailRegisterInputWrapper.setAttribute("data-error", "کاربر دیگری با این ایمیل موجود می‌باشد");
       emailRegisterInputWrapper.classList.add("error");
       result = false;
       break;
     }
   }
   if (!result) {
-    console.log("register failed");
     registerBtn.setAttribute("data-error", "ثبت‌نام ناموفق ");
     registerBtn.classList.add("error");
   } else {
-    console.log("register seccussed");
     resetRegisterForm();
   }
 
@@ -148,7 +112,7 @@ const performRegister = () => {
 
 const registerUser = () => {
   if (performRegister()) {
-    localStorage.setItem("email", registerInputs.email);  
+    localStorage.setItem("email", registerInputs.email);
     window.location.href = "../../pages/dashboard/index.html";
   }
 };

@@ -20,10 +20,8 @@ const search = () => {
   }
 
   if (searchBox.value != "") {
-    // const searchResult
-
     songListFiller(
-      playList["همه آهنگ ها"].filter((song) => song.name.includes(searchBox.value)),
+      playList.allSongs.filter((song) => song.name.includes(searchBox.value)),
       "جست و جو"
     );
     isLoading = false;

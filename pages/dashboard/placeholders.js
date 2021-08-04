@@ -1,4 +1,5 @@
 const placeholdersWrapper = document.querySelector(".placeholders-wrapper");
+const PLACEHOLDER_COUNT = 13;
 
 let placeholderRotatorID = 0;
 
@@ -9,9 +10,7 @@ const placeholderCreator = (parent) => {
     i.remove();
   });
 
-  const count = 13;
-
-  for (let i = 0; i < count; i++) {
+  for (let i = 0; i < PLACEHOLDER_COUNT; i++) {
     const newDiv = document.createElement("div");
     newDiv.className = "place-holders";
 

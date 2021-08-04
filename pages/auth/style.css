@@ -360,7 +360,7 @@ main > .form-wrapper > :is(.login-form, .signup-form) {
   right: 0;
   bottom: -1.5rem;
   font-size: 0.8rem;
-  padding: 0rem 1rem;
+  padding: 0 1rem;
   border-radius: 1000rem;
 }
 /*# sourceMappingURL=style.css.map */
