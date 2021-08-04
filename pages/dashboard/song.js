@@ -100,6 +100,7 @@ const songListFiller = (list, header) => {
           });
         }
       });
+
       songWrapper.addEventListener("click", (e) => {
         if (!e.path[0].classList.contains(FAV_ICON)) {
           const enabledBtn = [...document.getElementsByClassName(SONG_WRAPPER_SELECTED)];
@@ -129,6 +130,7 @@ const convertHMS = (value) => {
   // Return is HH : MM : SS
   else return minutes + ":" + seconds; // Return is  MM : SS
 };
+
 const musicChangeHandler = () => {
   const imgSrc = playList.allSongs[currentMusicIndex].cover;
   const elemTitle = playList.allSongs[currentMusicIndex].name;
@@ -202,4 +204,5 @@ const deleteFromPlaylist = (playListName, id) => {
     return item !== playList.allSongs[id - 1];
   });
 };
+
 musicGrapper();
