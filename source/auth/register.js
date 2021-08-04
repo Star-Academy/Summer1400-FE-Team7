@@ -8,6 +8,23 @@ const confirmPasswordRegisterInputWrapper = document.querySelector("#confirm-pas
 
 const confirmPasswordRegister = document.querySelector("#signup-confirm-password-input");
 
+const ERROR_MSG = {
+  MSG_1: "ایمیل نمی‌تواند خالی باشد",
+  MSG_2: "ایمیل وارد شده معتبر نیست",
+  MSG_3: "رمزعبور نمی‌تواند خالی باشد",
+  MSG_4: "رمز عبور باید دارای حداقل ۸ کاراکتر،یک حرف و یک عدد باشد",
+  MSG_5: "تکرار رمزعبور نمی‌تواند خالی باشد",
+  MSG_6: "رمزعبور و تکرارش باید برابر باشند",
+  MSG_7: "کاربر دیگری با این ایمیل موجود می‌باشد",
+  MSG_8: "ثبت‌نام ناموفق ",
+  MSG_9: "ایمیل یا رمز عبور صحیح نمی باشد",
+};
+
+const ERROR_TYPES = {
+  TYPE_1: "error",
+  TYPE_2: "warning",
+};
+
 const registerInputs = {
   email: "",
   password: "",
@@ -15,7 +32,6 @@ const registerInputs = {
 };
 let isEmailRegisterValid = false;
 let isPasswordRegisterValid = false;
-let isFirstRegisterSubmit = true;
 
 const validPassword = (password) => {
   const passwordPattern = /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/;
@@ -24,71 +40,64 @@ const validPassword = (password) => {
 
 const checkRegisterEmail = () => {
   if (registerInputs.email == "") {
-    emailRegisterInputWrapper.setAttribute("data-error", "ایمیل نمی‌تواند خالی باشد");
-    emailRegisterInputWrapper.classList.add("error");
+    errorGenerator(emailRegisterInputWrapper, ERROR_MSG.MSG_1, ERROR_TYPES.TYPE_1);
     return false;
   } else if (!validateEmail(registerInputs.email)) {
-    emailRegisterInputWrapper.setAttribute("data-error", "ایمیل وارد شده معتبر نیست");
-    emailRegisterInputWrapper.classList.add("error");
+    errorGenerator(emailRegisterInputWrapper, ERROR_MSG.MSG_2, ERROR_TYPES.TYPE_1);
     return false;
   } else {
-    emailRegisterInputWrapper.classList.remove("error");
+    classRemover(emailRegisterInputWrapper, ERROR_TYPES.TYPE_1);
     return true;
   }
 };
+
 emailRegister.addEventListener("input", () => {
   if (emailRegister.value == "") {
-    emailRegisterInputWrapper.setAttribute("data-error", "ایمیل نمی‌تواند خالی باشد");
-    emailRegisterInputWrapper.classList.add("warning");
+    errorGenerator(emailRegisterInputWrapper, ERROR_MSG.MSG_1, ERROR_TYPES.TYPE_2);
     isEmailRegisterValid = false;
   } else if (!validateEmail(emailRegister.value)) {
-    emailRegisterInputWrapper.setAttribute("data-error", "لطفا ایمیل معتبر وارد کنید");
-    emailRegisterInputWrapper.classList.add("warning");
+    errorGenerator(emailRegisterInputWrapper, ERROR_MSG.MSG_2, ERROR_TYPES.TYPE_2);
     isEmailRegisterValid = false;
   } else {
-    emailRegisterInputWrapper.classList.remove("warning");
-    emailRegisterInputWrapper.classList.remove("error");
+    classRemover(emailRegisterInputWrapper, ERROR_TYPES.TYPE_1);
+    classRemover(emailRegisterInputWrapper, ERROR_TYPES.TYPE_2);
     isEmailRegisterValid = true;
   }
 });
 
 passwordRegister.addEventListener("input", () => {
   if (passwordRegister.value == "") {
-    passwordRegisterInputWrapper.setAttribute("data-error", "رمزعبور نمی‌تواند خالی باشد");
-    passwordRegisterInputWrapper.classList.add("warning");
+    errorGenerator(passwordRegisterInputWrapper, ERROR_MSG.MSG_3, ERROR_TYPES.TYPE_2);
     isPasswordRegisterValid = false;
   } else if (!validPassword(passwordRegister.value)) {
-    passwordRegisterInputWrapper.setAttribute("data-error", "رمز عبور باید دارای حداقل ۸ کاراکتر،یک حرف و یک عدد باشد");
-    passwordRegisterInputWrapper.classList.add("warning");
+    errorGenerator(passwordRegisterInputWrapper, ERROR_MSG.MSG_4, ERROR_TYPES.TYPE_2);
     isPasswordRegisterValid = false;
   } else {
-    passwordRegisterInputWrapper.classList.remove("warning");
-    passwordRegisterInputWrapper.classList.remove("error");
+    classRemover(passwordRegisterInputWrapper, ERROR_TYPES.TYPE_1);
+    classRemover(passwordRegisterInputWrapper, ERROR_TYPES.TYPE_2);
     isPasswordRegisterValid = true;
   }
 });
+
 const checkRegisterPassword = () => {
   if (passwordRegister.value == "") {
-    passwordRegisterInputWrapper.setAttribute("data-error", "رمزعبور نمی‌تواند خالی باشد");
-    passwordRegisterInputWrapper.classList.add("error");
+    errorGenerator(passwordRegisterInputWrapper, ERROR_MSG.MSG_3, ERROR_TYPES.TYPE_1);
     return false;
   } else if (!validPassword(passwordRegister.value)) {
-    passwordRegisterInputWrapper.setAttribute("data-error", "رمز عبور باید دارای حداقل ۸ کاراکتر،یک حرف و یک عدد باشد");
-    passwordRegisterInputWrapper.classList.add("eroor");
+    errorGenerator(passwordRegisterInputWrapper, ERROR_MSG.MSG_4, ERROR_TYPES.TYPE_1);
     return false;
   } else {
-    passwordRegisterInputWrapper.classList.remove("eroor");
+    classRemover(passwordRegisterInputWrapper, ERROR_TYPES.TYPE_1);
     return true;
   }
 };
 
 const checkRegisterConfirmPassword = () => {
   if (registerInputs.confirmPassword == "") {
-    confirmPasswordRegisterInputWrapper.setAttribute("data-error", "تکرار رمزعبور نمی‌تواند خالی باشد");
-    confirmPasswordRegisterInputWrapper.classList.add("error");
+    errorGenerator(confirmPasswordRegisterInputWrapper, ERROR_MSG.MSG_5, ERROR_TYPES.TYPE_1);
     return false;
   } else {
-    confirmPasswordRegisterInputWrapper.classList.remove("error");
+    classRemover(confirmPasswordRegisterInputWrapper, ERROR_TYPES.TYPE_1);
     return true;
   }
 };
@@ -96,18 +105,17 @@ const checkRegisterConfirmPassword = () => {
 const checkMatchPasswordAndConfirmPassword = () => {
   if (registerInputs.password != registerInputs.confirmPassword) {
     result = false;
-    confirmPasswordRegisterInputWrapper.setAttribute("data-error", "رمزعبور و تکرارش باید برابر باشند");
-    confirmPasswordRegisterInputWrapper.classList.add("error");
+    errorGenerator(confirmPasswordRegisterInputWrapper, ERROR_MSG.MSG_6, ERROR_TYPES.TYPE_1);
     return false;
   } else {
-    confirmPasswordRegisterInputWrapper.classList.remove("error");
+    classRemover(confirmPasswordRegisterInputWrapper, ERROR_TYPES.TYPE_1);
     return true;
   }
 };
 
 const resetRegisterForm = () => {
-  registerBtn.classList.remove("error");
-  emailRegisterInputWrapper.classList.remove("error");
+  classRemover(registerBtn, ERROR_TYPES.TYPE_1);
+  classRemover(emailRegisterInputWrapper, ERROR_TYPES.TYPE_1);
   emailRegister.value = "";
   passwordRegister.value = "";
   confirmPasswordRegister.value = "";
@@ -129,15 +137,13 @@ const performRegister = () => {
   if (!isPasswordRegisterValid) return false;
   for (const user of testUsers) {
     if (user.username === registerInputs.email.split("@")[0]) {
-      emailRegisterInputWrapper.setAttribute("data-error", "کاربر دیگری با این ایمیل موجود می‌باشد");
-      emailRegisterInputWrapper.classList.add("error");
+      errorGenerator(emailRegisterInputWrapper, ERROR_MSG.MSG_7, ERROR_TYPES.TYPE_1);
       result = false;
       break;
     }
   }
   if (!result) {
-    registerBtn.setAttribute("data-error", "ثبت‌نام ناموفق ");
-    registerBtn.classList.add("error");
+    errorGenerator(registerBtn, ERROR_MSG.MSG_8, ERROR_TYPES.TYPE_1);
   } else {
     resetRegisterForm();
   }
@@ -153,3 +159,12 @@ registerBtn.addEventListener("click", (e) => {
     window.location.href = "../../pages/dashboard/index.html";
   }
 });
+
+const errorGenerator = (element, erorText, errotType) => {
+  element.setAttribute("data-error", erorText);
+  element.classList.add(errotType);
+};
+
+const classRemover = (parent, className) => {
+  parent.classList.remove(className);
+};

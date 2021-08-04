@@ -3,9 +3,7 @@ const emailLoginInput = document.querySelector("#login-email-input");
 const passwordLoginInput = document.querySelector("#login-password-input");
 const loginBtn = document.querySelector("#login-submit-btn");
 const emailInputWrapper = document.querySelector("#email-login-input-wrapper");
-const passwordInputWrapper = document.querySelector(
-  "#password-login-input-wrapper"
-);
+const passwordInputWrapper = document.querySelector("#password-login-input-wrapper");
 
 const loginInputs = {
   email: "",
@@ -16,81 +14,60 @@ let isEmailLoginValid = false;
 let isPasswordLoginValid = false;
 let isFirstLoginSubmit = true;
 const validateEmail = (email) => {
-  const emailPattern =
-    /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+  const emailPattern = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
   return emailPattern.test(String(email).toLowerCase());
 };
 
 const checkLoginEmail = () => {
-
   if (emailLoginInput.value == "") {
-    emailInputWrapper.setAttribute("data-error", "ایمیل نمی‌تواند خالی باشد");
-    emailInputWrapper.classList.add("error");
+    errorGenerator(emailInputWrapper, ERROR_MSG.MSG_1, ERROR_TYPES.TYPE_1);
     return false;
   } else if (!validateEmail(emailLoginInput.value)) {
-    emailInputWrapper.setAttribute("data-error", "ایمیل وارد شده معتبر نیست!");
-    emailInputWrapper.classList.add("error");
+    errorGenerator(emailInputWrapper, ERROR_MSG.MSG_2, ERROR_TYPES.TYPE_1);
 
     return false;
   } else {
-    emailInputWrapper.classList.remove("error");
+    classRemover(emailInputWrapper, ERROR_TYPES.TYPE_1);
     return true;
   }
 };
 
 emailLoginInput.addEventListener("input", () => {
-    if (emailLoginInput.value == "") {
-      emailInputWrapper.setAttribute("data-error", "ایمیل نمی‌تواند خالی باشد");
-      emailInputWrapper.classList.add("error");
-      isEmailLoginValid = false;
-    } else if (!validateEmail(emailLoginInput.value)) {
-      emailInputWrapper.setAttribute(
-        "data-error",
-        "ایمیل وارد شده معتبر نیست!"
-      );
-      emailInputWrapper.classList.add("warning");
-
-      isEmailLoginValid = false;
-    } else {
-      emailInputWrapper.classList.remove("error");
-      emailInputWrapper.classList.remove("warning");
-      isEmailLoginValid = true;
-    }
-  
+  if (emailLoginInput.value == "") {
+    isEmailLoginValid = false;
+    errorGenerator(emailInputWrapper, ERROR_MSG.MSG_1, ERROR_TYPES.TYPE_2);
+  } else if (!validateEmail(emailLoginInput.value)) {
+    errorGenerator(emailInputWrapper, ERROR_MSG.MSG_2, ERROR_TYPES.TYPE_2);
+    isEmailLoginValid = false;
+  } else {
+    classRemover(emailInputWrapper, ERROR_TYPES.TYPE_1);
+    classRemover(emailInputWrapper, ERROR_TYPES.TYPE_2);
+    isEmailLoginValid = true;
+  }
 });
 
 const checkLoginPasswords = () => {
   if (passwordLoginInput.value == "") {
-    passwordInputWrapper.setAttribute(
-      "data-error",
-      "رمزعبور نمی‌تواند خالی باشد"
-    );
-
-    passwordInputWrapper.classList.add("error");
+    errorGenerator(passwordInputWrapper, ERROR_MSG.MSG_3, ERROR_TYPES.TYPE_1);
     return false;
   } else {
-    passwordInputWrapper.classList.remove("error");
+    classRemover(passwordInputWrapper, ERROR_TYPES.TYPE_1);
     return true;
   }
 };
-passwordLoginInput.addEventListener("input", () => {
-    if (passwordLoginInput.value == "") {
-      passwordInputWrapper.setAttribute(
-        "data-error",
-        "رمزعبور نمی‌تواند خالی باشد"
-      );
 
-      passwordInputWrapper.classList.add("error");
-      isPasswordLoginValid = false;
-    } else {
-      passwordInputWrapper.classList.remove("error");
-      isPasswordLoginValid = true;
-    }
-  
+passwordLoginInput.addEventListener("input", () => {
+  if (passwordLoginInput.value == "") {
+    errorGenerator(passwordInputWrapper, ERROR_MSG.MSG_3, ERROR_TYPES.TYPE_2);
+    isPasswordLoginValid = false;
+  } else {
+    classRemover(passwordInputWrapper, ERROR_TYPES.TYPE_2);
+    isPasswordLoginValid = true;
+  }
 });
 
 const resetLoginForm = () => {
-  loginBtn.classList.remove("error");
+  classRemover(loginBtn, ERROR_TYPES.TYPE_1);
   emailLoginInput.value = "";
   passwordLoginInput.value = "";
 };
@@ -99,28 +76,22 @@ const performLogin = () => {
   loginInputs.email = emailLoginInput.value;
   loginInputs.password = passwordLoginInput.value;
 
- 
-  
-    if (!checkLoginEmail()) return false;
-    if (!checkLoginPasswords()) return false;
- 
-    if (!isEmailLoginValid) return false;
-    if (!isPasswordLoginValid) return false;
-  
+  if (!checkLoginEmail()) return false;
+  if (!checkLoginPasswords()) return false;
+
+  if (!isEmailLoginValid) return false;
+  if (!isPasswordLoginValid) return false;
+
   let result = false;
   for (const user of testUsers) {
-    if (
-      user.username == loginInputs.email.split("@")[0] &&
-      user.passowrd == loginInputs.password
-    ) {
+    if (user.username == loginInputs.email.split("@")[0] && user.passowrd == loginInputs.password) {
       result = true;
       break;
     }
   }
 
   if (!result) {
-    loginBtn.setAttribute("data-error", "ایمیل یا رمز عبور صحیح نمی باشد");
-    loginBtn.classList.add("error");
+    errorGenerator(loginBtn, ERROR_MSG.MSG_9, ERROR_TYPES.TYPE_1);
   } else {
     resetLoginForm();
   }
@@ -134,5 +105,5 @@ loginBtn.addEventListener("click", (e) => {
     localStorage.setItem("email", loginInputs.email);
     loginForm.submit();
     window.location.href = "../../pages/dashboard/index.html";
-  } 
+  }
 });
