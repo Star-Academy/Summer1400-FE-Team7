@@ -12,12 +12,14 @@ sideMenuBtns.forEach((menu) => {
         allPlaylistFiller(newPlayList[sectionHeader], sectionHeader);
         // optionFiller();
       }
-
+      playListSectionLayoutFixer();
       document.querySelector(`.${MENU_SELECTED}`).classList.remove(MENU_SELECTED);
       menu.classList.add(MENU_SELECTED);
     });
   } else {
+    console.log("here1");
     menu.addEventListener("click", () => {
+      playListSectionLayoutReverser();
       if (!menu.classList.contains(MENU_SELECTED)) {
         let sectionHeader = menu.children[1].innerText;
         let sectionHeader2 = menu.children[1].innerText;
@@ -41,7 +43,6 @@ sideMenuBtns.forEach((menu) => {
 playlistContainer.addEventListener("click", () => {
   if (!playlistContainer.classList.contains(MENU_SELECTED)) {
   }
-  console.log("here");
   document.querySelector(`.${MENU_SELECTED}`).classList.remove(MENU_SELECTED);
   playlistContainer.classList.add(MENU_SELECTED);
 });
@@ -84,7 +85,10 @@ const addNewPlaylist = (title) => {
   sideMenu.insertBefore(div, playlistContainer);
 
   newPlayList[ALL_PLAYlISTS] = [...newPlayList[ALL_PLAYlISTS], title];
-  console.log(newPlayList);
+
+  if (songListHeader.innerText == ALL_PLAYlISTS) {
+    allPlaylistFiller(newPlayList[ALL_PLAYlISTS], ALL_PLAYlISTS);
+  }
 };
 
 const removePlaylist = (title) => {

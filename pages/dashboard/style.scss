@@ -488,7 +488,48 @@ main {
         }
       }
       .playlist-wrapper {
-        background: teal;
+        display: flex;
+        flex-direction: column;
+        height: auto;
+        align-items: center;
+
+        > * {
+          width: 98%;
+        }
+
+        > .playlist-options {
+          > img {
+            width: 2rem;
+          }
+        }
+
+        > .playlist-cover {
+          width: 98%;
+          height: auto;
+          overflow: unset;
+          align-self: center;
+
+          img {
+            object-fit: contain;
+            width: 100%;
+            height: 100%;
+          }
+        }
+
+        > .playlist-info {
+          > p {
+            font-size: 0.8rem;
+          }
+        }
+
+        > .playlist-options {
+          display: flex;
+          justify-content: flex-end;
+        }
+
+        &:hover {
+          background: $--hover-bg-clr;
+        }
       }
     }
 
@@ -501,6 +542,8 @@ main {
       > div:nth-of-type(1) {
         grid-column: 1/-1;
         grid-row: 1 /1;
+
+        align-self: baseline;
       }
     }
 
@@ -513,6 +556,8 @@ main {
       > div:nth-of-type(1) {
         grid-column: 1/-1;
         grid-row: 1 /1;
+
+        align-self: baseline;
       }
 
       > .song-wrapper {
@@ -533,6 +578,21 @@ main {
         > .song-info {
           justify-content: flex-start;
           width: 98%;
+        }
+
+        > .song-prop {
+          margin-left: 0.5rem;
+        }
+
+        > .more-options {
+          height: 5%;
+          bottom: 10%;
+          top: unset;
+        }
+
+        > .options {
+          bottom: 13%;
+          top: unset;
         }
       }
     }
@@ -1067,6 +1127,17 @@ main {
     &:active {
       background: darken($--bg-mellow-black, 6);
     }
+  }
+}
+
+.song-wrapper-selected {
+  background-color: $--selected-bg-blue;
+  * {
+    color: var(--clr-white) !important;
+  }
+
+  &:hover {
+    background: $--selected-bg-blue !important;
   }
 }
 

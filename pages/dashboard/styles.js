@@ -15,9 +15,13 @@ const volumeText = document.getElementById("volume-text");
 const volumeSlider = document.getElementById("volume-slider");
 const mobileInfo = document.querySelectorAll(".mobile-info");
 const listViewLayout = document.querySelector("#list-view");
+const gridViewLayout = document.querySelector("#grid-view");
+const listCompactViewLayout = document.querySelector("#list-compact-view");
 const allSongsTabNavigation = document.querySelector("#all-songs-tab-navigation-mobile");
 const userEmail = document.querySelector("#user-email");
 const pofileWrapper = document.querySelector(".profile-wrapper");
+const listLabel = document.querySelector(".list-view-label");
+const listCompactLabel = document.querySelector(".list-compact-view-label");
 
 const darkGlassMobilePreview = document.querySelector(".dark-glass3");
 const mobileSongPreview = document.querySelector(".mobile-song-preview");
@@ -239,3 +243,17 @@ mobileSongPreviewBackBtn.addEventListener("click", () => {
   darkGlassMobilePreview.classList.add("display-none");
   mobileSongPreview.classList.add("display-none");
 });
+
+const playListSectionLayoutFixer = () => {
+  gridViewLayout.checked = true;
+  songList.classList.remove("list-compact-view");
+  songList.classList.add("grid-view");
+  listLabel.classList.add("display-none");
+  listCompactLabel.classList.add("display-none");
+};
+
+const playListSectionLayoutReverser = () => {
+  console.log("hirrr");
+  listLabel.classList.remove("display-none");
+  listCompactLabel.classList.remove("display-none");
+};

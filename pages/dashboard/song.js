@@ -230,15 +230,17 @@ const optionFiller = () => {
     deleteChildrenNodes(option);
 
     for (let list in newPlayList) {
-      const li = document.createElement("li");
-      li.innerText = list;
-      ul.appendChild(li);
-      li.addEventListener("click", () => {
-        addToPlayList(li.innerText, option.getAttribute("data-id"));
-      });
+      if (list != ALL_PLAYlISTS) {
+        const li = document.createElement("li");
+        li.innerText = list;
+        ul.appendChild(li);
+        li.addEventListener("click", () => {
+          addToPlayList(li.innerText, option.getAttribute("data-id"));
+        });
+      }
+      option.appendChild(p);
+      option.appendChild(ul);
     }
-    option.appendChild(p);
-    option.appendChild(ul);
   });
 };
 
@@ -290,17 +292,41 @@ const deleteFromPlaylist = (playListName, id) => {
 musicGrapper();
 
 const allPlaylistFiller = (list, header) => {
+  console.log(list);
+  console.log(header);
+  songListHeader.innerText = header;
+
   document.querySelectorAll(".song-wrapper").forEach((i) => {
+    i.remove();
+  });
+
+  document.querySelectorAll(".playlist-wrapper").forEach((i) => {
     i.remove();
   });
 
   if ("content" in document.createElement("template")) {
     list.forEach((playlist) => {
+      console.log(playlist);
+      console.log(header);
       const template = document.querySelector("#all-playlist-list");
       const clone = template.content.cloneNode(true);
       const playListWrapper = clone.querySelector(".playlist-wrapper");
       const playListCover = clone.querySelector(".platlist-cover-img");
       const playListName = clone.querySelector("#playlist-name");
+
+      playListName.innerText = playlist;
+      if (newPlayList[playlist].length != 0) {
+        playListCover.src = newPlayList[playlist][0].cover;
+      } else {
+        playListCover.src = DEFUALT_SONG_COVER;
+      }
+
+      playListWrapper.addEventListener("click", () => {
+        if (document.querySelector(".song-wrapper-selected") != undefined) {
+          document.querySelector(".song-wrapper-selected").classList.remove("song-wrapper-selected");
+        }
+        playListWrapper.classList.add("song-wrapper-selected");
+      });
 
       songList.append(clone);
     });

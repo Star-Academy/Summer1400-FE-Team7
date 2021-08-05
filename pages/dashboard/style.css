@@ -612,7 +612,58 @@ main > .section-1 > .song-list > .placeholders-wrapper > .place-holders .left-in
 }
 
 main > .section-1 > .song-list .playlist-wrapper {
-  background: teal;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  height: auto;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+main > .section-1 > .song-list .playlist-wrapper > * {
+  width: 98%;
+}
+
+main > .section-1 > .song-list .playlist-wrapper > .playlist-options > img {
+  width: 2rem;
+}
+
+main > .section-1 > .song-list .playlist-wrapper > .playlist-cover {
+  width: 98%;
+  height: auto;
+  overflow: unset;
+  -ms-flex-item-align: center;
+      -ms-grid-row-align: center;
+      align-self: center;
+}
+
+main > .section-1 > .song-list .playlist-wrapper > .playlist-cover img {
+  -o-object-fit: contain;
+     object-fit: contain;
+  width: 100%;
+  height: 100%;
+}
+
+main > .section-1 > .song-list .playlist-wrapper > .playlist-info > p {
+  font-size: 0.8rem;
+}
+
+main > .section-1 > .song-list .playlist-wrapper > .playlist-options {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: end;
+      -ms-flex-pack: end;
+          justify-content: flex-end;
+}
+
+main > .section-1 > .song-list .playlist-wrapper:hover {
+  background: rgba(138, 135, 135, 0.15);
 }
 
 main > .section-1 .list-compact-view {
@@ -628,6 +679,8 @@ main > .section-1 .list-compact-view > div:nth-of-type(1) {
   grid-column: 1/-1;
   -ms-grid-row: 1;
   grid-row: 1 /1;
+  -ms-flex-item-align: baseline;
+      align-self: baseline;
 }
 
 main > .section-1 .grid-view {
@@ -643,6 +696,8 @@ main > .section-1 .grid-view > div:nth-of-type(1) {
   grid-column: 1/-1;
   -ms-grid-row: 1;
   grid-row: 1 /1;
+  -ms-flex-item-align: baseline;
+      align-self: baseline;
 }
 
 main > .section-1 .grid-view > .song-wrapper {
@@ -672,6 +727,21 @@ main > .section-1 .grid-view > .song-wrapper > .song-info {
       -ms-flex-pack: start;
           justify-content: flex-start;
   width: 98%;
+}
+
+main > .section-1 .grid-view > .song-wrapper > .song-prop {
+  margin-left: 0.5rem;
+}
+
+main > .section-1 .grid-view > .song-wrapper > .more-options {
+  height: 5%;
+  bottom: 10%;
+  top: unset;
+}
+
+main > .section-1 .grid-view > .song-wrapper > .options {
+  bottom: 13%;
+  top: unset;
 }
 
 main > .music-controls {
@@ -1369,6 +1439,18 @@ main .mobile-navigation > .tab-navigation > button::after {
 
 .add-playlist-wrapper > button:nth-of-type(2):active {
   background: #191919;
+}
+
+.song-wrapper-selected {
+  background-color: #1d7dd7;
+}
+
+.song-wrapper-selected * {
+  color: var(--clr-white) !important;
+}
+
+.song-wrapper-selected:hover {
+  background: #1d7dd7 !important;
 }
 
 .side-menu-opended {
