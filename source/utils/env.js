@@ -6,3 +6,4 @@ const USER_LOGIN_URI = "user/login";
 const SONG_PAGE_URI = "song/page";
 const CREATE_PLAYLIST_URI = "​playlist​/create";
 const RETRIEVE_PLAYLIST_URI = "playlist/all";
+const ADD_SONG_PLAYLIST_URI = "playlist/add-song";

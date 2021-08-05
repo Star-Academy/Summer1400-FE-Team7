@@ -6,6 +6,7 @@ const playlistContainer = document.querySelector(".playlist-container");
 sideMenuBtns.forEach((menu) => {
   if (menu.classList.contains("exception")) {
     menu.addEventListener("click", () => {
+      console.log("uqweiryweiuyui");
       if (!menu.classList.contains(MENU_SELECTED)) {
         let sectionHeader = menu.children[1].innerText;
         // songListFiller(newPlayList[sectionHeader], sectionHeader);
@@ -17,7 +18,6 @@ sideMenuBtns.forEach((menu) => {
       menu.classList.add(MENU_SELECTED);
     });
   } else {
-    console.log("here1");
     menu.addEventListener("click", () => {
       playListSectionLayoutReverser();
       if (!menu.classList.contains(MENU_SELECTED)) {
@@ -67,10 +67,18 @@ const addNewPlaylist = (title) => {
   div.appendChild(bWrapper);
   div.appendChild(deleteBtn);
 
+  const playListID = newPlayList[title].id;
+
+  div.setAttribute("data-playlist-id", playListID);
+
   bWrapper.addEventListener("click", () => {
     if (!bWrapper.classList.contains(MENU_SELECTED)) {
       const sectionHeader = bWrapper.children[1].innerText;
-      songListFiller(newPlayList[sectionHeader], sectionHeader, true);
+      let newArray = [];
+      for (index in newPlayList[sectionHeader].songs) {
+        newArray = [...newArray, newPlayList[sectionHeader].songs[index].rest];
+      }
+      songListFiller(newArray, sectionHeader, true);
       removeFromPlaylist(sectionHeader);
     }
 
@@ -101,4 +109,8 @@ const removePlaylist = (title) => {
       return;
     }
   });
+};
+
+const playListCatcher = () => {
+  fetchInterceptor();
 };
