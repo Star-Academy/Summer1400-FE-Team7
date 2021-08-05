@@ -22,7 +22,8 @@ const search = () => {
   if (searchBox.value != "") {
     songListFiller(
       playList.allSongs.filter((song) => song.name.includes(searchBox.value)),
-      "جست و جو"
+      "جست و جو",
+      true
     );
     isLoading = false;
     placeholderOmmiter();

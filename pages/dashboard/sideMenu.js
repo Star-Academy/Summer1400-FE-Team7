@@ -9,7 +9,7 @@ sideMenuBtns.forEach((menu) => {
       if (!menu.classList.contains(MENU_SELECTED)) {
         let sectionHeader = menu.children[1].innerText;
         // songListFiller(newPlayList[sectionHeader], sectionHeader);
-        allPlaylistFiller(newPlayList[sectionHeader], sectionHeader);
+        allPlaylistFiller(newPlayList[sectionHeader], sectionHeader, true);
         // optionFiller();
       }
       playListSectionLayoutFixer();
@@ -30,7 +30,7 @@ sideMenuBtns.forEach((menu) => {
           sectionHeader = "favSongs";
         }
 
-        songListFiller(playList[sectionHeader], sectionHeader2);
+        songListFiller(playList[sectionHeader], sectionHeader2, true);
         optionFiller();
       }
 
@@ -70,7 +70,7 @@ const addNewPlaylist = (title) => {
   bWrapper.addEventListener("click", () => {
     if (!bWrapper.classList.contains(MENU_SELECTED)) {
       const sectionHeader = bWrapper.children[1].innerText;
-      songListFiller(newPlayList[sectionHeader], sectionHeader);
+      songListFiller(newPlayList[sectionHeader], sectionHeader, true);
       removeFromPlaylist(sectionHeader);
     }
 

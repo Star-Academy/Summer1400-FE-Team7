@@ -24,29 +24,41 @@ let playList = { allSongs: [], favSongs: [] };
 let newPlayList = {};
 newPlayList[ALL_PLAYlISTS] = [];
 
+let pageIndex = 1;
+
 const musicGrapper = async () => {
-  await fetch("./songs.json")
-    .then((response) => response.json())
-    .then((data) => {
-      playList.allSongs = data.songs;
-      audio.src = playList.allSongs[currentMusicIndex].file;
-      songListFiller(playList.allSongs, ALL_SONGS);
-      placeholderOmmiter();
-      optionFiller();
+  let response = await fetchInterceptor(
+    SONG_PAGE_URI,
+    METHOD_POST,
+    JSON.stringify({
+      size: 50,
+      current: pageIndex,
+      sorter: "name",
+      desc: false,
     })
-    .catch((error) => console.log(error));
+  );
+
+  let data = await response.json();
+
+  playList.allSongs = data.songs;
+  audio.src = playList.allSongs[currentMusicIndex].file;
+  songListFiller(playList.allSongs, ALL_SONGS, true);
+  placeholderOmmiter();
+  optionFiller();
 };
 
-const songListFiller = (list, header) => {
+const songListFiller = (list, header, remove) => {
   songListHeader.innerText = header;
 
-  document.querySelectorAll(".song-wrapper").forEach((i) => {
-    i.remove();
-  });
+  if (remove) {
+    document.querySelectorAll(".song-wrapper").forEach((i) => {
+      i.remove();
+    });
 
-  document.querySelectorAll(".playlist-wrapper").forEach((i) => {
-    i.remove();
-  });
+    document.querySelectorAll(".playlist-wrapper").forEach((i) => {
+      i.remove();
+    });
+  }
 
   const template = document.querySelector("#song-wrapper-template");
   if ("content" in document.createElement("template")) {
@@ -264,7 +276,7 @@ const removeFromPlaylist = (playlistName) => {
 
     dltBtn.addEventListener("click", () => {
       deleteFromPlaylist(playlistName, songId);
-      songListFiller(newPlayList[playlistName], playlistName);
+      songListFiller(newPlayList[playlistName], playlistName, true);
     });
   });
 };
@@ -276,8 +288,20 @@ const deleteChildrenNodes = (parent) => {
 };
 
 const addToPlayList = (playListName, id) => {
-  if (!newPlayList[playListName].includes(playList.allSongs[id - 1])) {
-    newPlayList[playListName] = [...newPlayList[playListName], playList.allSongs[id - 1]];
+  console.log(newPlayList);
+  console.log(id);
+
+  let newID = 0;
+
+  playList.allSongs.forEach((song, index) => {
+    if (song.id == id) {
+      newID = index;
+      return;
+    }
+  });
+
+  if (!newPlayList[playListName].includes(playList.allSongs[newID])) {
+    newPlayList[playListName] = [...newPlayList[playListName], playList.allSongs[newID]];
   } else {
     deleteFromPlaylist(playListName, id);
   }
@@ -331,4 +355,38 @@ const allPlaylistFiller = (list, header) => {
       songList.append(clone);
     });
   }
+};
+
+songList.addEventListener("scroll", () => {
+  if (songList.scrollTop >= songList.scrollHeight - songList.offsetHeight) {
+    songList.scrollTop = songList.scrollHeight;
+    console.log("here");
+    fillListOnScroll();
+  }
+});
+
+const fillListOnScroll = async () => {
+  pageIndex++;
+
+  let response = await fetchInterceptor(
+    SONG_PAGE_URI,
+    METHOD_POST,
+    JSON.stringify({
+      size: 50,
+      current: pageIndex,
+      sorter: "name",
+      desc: false,
+    })
+  );
+
+  let data = await response.json();
+  console.log(playList.allSongs);
+
+  data.songs.forEach((song) => {
+    playList.allSongs = [...playList.allSongs, song];
+  });
+
+  songListFiller(data.songs, ALL_SONGS, false);
+  placeholderOmmiter();
+  optionFiller();
 };

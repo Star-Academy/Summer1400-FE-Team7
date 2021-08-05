@@ -150,10 +150,10 @@ const updateMobileMusicBarValue = (value) => {
 };
 
 audio.addEventListener("timeupdate", (event) => {
-  let seekbarValue=0;
+  let seekbarValue = 0;
   seekSlider.forEach((slider) => {
     slider.value = audio.currentTime;
-    seekbarValue= slider.value;
+    seekbarValue = slider.value;
   });
   currentTimeLabel.forEach((label) => {
     label.innerHTML = convertHMS(seekbarValue);
@@ -187,7 +187,18 @@ previousBtn.forEach((btn) => {
 
 const doubleClickHandler = (elem, id) => {
   elem.addEventListener("dblclick", () => {
-    currentMusicIndex = id - 1;
+    console.log(id);
+    console.log(playList.allSongs.length);
+
+    playList.allSongs.forEach((song, index) => {
+      if (song.id == id) {
+        currentMusicIndex = index;
+        return;
+      }
+    });
+
+    console.log(currentMusicIndex);
+
     musicChangeHandler();
     play();
   });
