@@ -26,6 +26,8 @@ newPlayList[ALL_PLAYlISTS] = [];
 
 let pageIndex = 1;
 
+const userToken = localStorage.getItem("token");
+
 const musicGrapper = async () => {
   let response = await fetchInterceptor(
     SONG_PAGE_URI,
@@ -390,3 +392,23 @@ const fillListOnScroll = async () => {
   placeholderOmmiter();
   optionFiller();
 };
+
+const playListInitializer = async () => {
+  console.log(userToken);
+  const body = JSON.stringify({ token: userToken });
+  const response = await fetchInterceptor(RETRIEVE_PLAYLIST_URI, METHOD_POST, body);
+  console.log(await response.json());
+};
+
+const createFavouritePlayList = async () => {
+  const body = {
+    token: userToken,
+    name: "مورد علاقه",
+  };
+
+  const response = await fetchInterceptor("​playlist​/create", METHOD_POST, JSON.stringify(body));
+  console.log(await response.json());
+};
+
+playListInitializer();
+createFavouritePlayList();

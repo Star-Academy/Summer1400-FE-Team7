@@ -113,6 +113,8 @@ const checkRegisterConfirmPassword = () => {
 };
 
 const checkMatchPasswordAndConfirmPassword = () => {
+  console.log(registerInputs.password);
+  console.log(registerInputs.confirmPassword);
   if (registerInputs.password != registerInputs.confirmPassword) {
     result = false;
     errorGenerator(confirmPasswordRegisterInputWrapper, ERROR_MSG.MSG_6, ERROR_TYPES.TYPE_1);

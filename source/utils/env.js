@@ -4,3 +4,5 @@ const METHOD_POST = "POST";
 const USER_REGISTER_URI = "user/register";
 const USER_LOGIN_URI = "user/login";
 const SONG_PAGE_URI = "song/page";
+const CREATE_PLAYLIST_URI = "​playlist​/create";
+const RETRIEVE_PLAYLIST_URI = "playlist/all";

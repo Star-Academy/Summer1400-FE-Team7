@@ -4,6 +4,7 @@ const fetchInterceptor = async (endpoint, method, body) => {
     body,
     headers: {
       "Content-type": "application/json; charset=UTF-8",
+      Accept: "application/json",
     },
   });
 

@@ -1,12 +1,13 @@
 const registerInputs = {
   email: "",
   password: "",
-  // confirmPassword: "",
+  confirmPassword: "",
 };
 
 const performRegister = async () => {
   registerInputs.email = emailRegister.value;
   registerInputs.password = passwordRegister.value;
+  registerInputs.confirmPassword = confirmPasswordRegister.value;
 
   if (!checkRegisterEmail()) return false;
   if (!checkRegisterPassword()) return false;
@@ -24,10 +25,11 @@ const performRegister = async () => {
 
   if (response.ok) {
     const responseBody = await response.json();
-    localStorage.setItem("email", registerInputs.email);
-    localStorage.setItem("id", responseBody.id);
-    localStorage.setItem("token", responseBody.token);
+
+    initializeNewUser(registerInputs.email, responseBody.id, responseBody.token);
     resetRegisterForm();
+    await createFavouritePlayList(responseBody.token);
+
     window.location.href = "../../pages/dashboard/index.html";
   } else {
     if (response.status == 400) {
@@ -42,3 +44,19 @@ registerBtn.addEventListener("click", (e) => {
   e.preventDefault();
   performRegister();
 });
+
+const createFavouritePlayList = async (token) => {
+  const body = JSON.stringify({
+    token: token,
+    name: "مورد علاقه",
+  });
+
+  const response = await fetchInterceptor("​playlist​/create", METHOD_POST, body);
+  console.log(await response.json());
+};
+
+const initializeNewUser = (email, token, id) => {
+  localStorage.setItem("email", email);
+  localStorage.setItem("id", token);
+  localStorage.setItem("token", id);
+};
