@@ -18,6 +18,7 @@ const mobileMusicName = document.querySelectorAll(".mobile-music-name");
 const mobileArtistName = document.querySelectorAll(".mobile-artist-name");
 const mobilePreviewCover = document.querySelector(".mobile-preview-song-cover");
 const mobileFavBtn = document.querySelector(".mobile-preview-like");
+const realFavList = document.querySelector(".real-fav-list");
 
 let currentMusicIndex = 0;
 let playList = { allSongs: [], favSongs: [] };
@@ -26,6 +27,9 @@ let newPlayList = {};
 newPlayList[ALL_PLAYlISTS] = [];
 
 let pageIndex = 1;
+
+let currentPlaylistID = 0;
+let favPlaylistID = 0;
 
 const userToken = localStorage.getItem("token");
 
@@ -89,8 +93,7 @@ const songListFiller = (list, header, remove) => {
 
       favIcon.src = LIKE;
       songList.appendChild(clone);
-
-      if (playList.favSongs.includes(song)) {
+      if (playList.favSongs.includes(song.id)) {
         favIcon.classList.add(LIKED_CLASS);
         favIcon.src = LIKED_IMG;
       }
@@ -117,10 +120,13 @@ const songListFiller = (list, header, remove) => {
         favIcon.classList.toggle(LIKED_CLASS);
         favIcon.src = LIKED;
         favIcon.style.transform = "scale(1)";
-        if (!playList.favSongs.includes(song)) {
+        if (!playList.favSongs.includes(song.id)) {
           playList.favSongs = [...playList.favSongs, song];
+          addToPlayListServer(favPlaylistID, song.id);
+          console.log(newPlayList);
         } else {
           playList.favSongs = playList.favSongs.filter(function (item) {
+            removeFromPlayListServer(song.id, newPlayList.FAV_SONGS);
             return item !== song;
           });
         }
@@ -149,7 +155,6 @@ mobileFavBtn.addEventListener("click", () => {
   favIcon.classList.toggle(LIKED_CLASS);
   currentMusicFavIconInMainMenu.classList.toggle(LIKED_CLASS);
   const song = playList.allSongs[currentMusicIndex];
-  console.log("🚀 ~ file: song.js ~ line 128 ~ mobileFavBtn.addEventListener ~ currentMusicFavIconInMainMenu", currentMusicFavIconInMainMenu);
 
   if (favIcon.classList.contains(LIKED_CLASS)) {
     favIcon.src = LIKED;
@@ -279,8 +284,9 @@ const removeFromPlaylist = (playlistName) => {
     const songId = option.getAttribute("data-id");
 
     dltBtn.addEventListener("click", () => {
-      deleteFromPlaylist(playlistName, songId);
-      songListFiller(newPlayList[playlistName], playlistName, true);
+      // deleteFromPlaylist(playlistName, songId);
+      removeFromPlayListServer(songId, currentPlaylistID);
+      // songListFiller(newPlayList[playlistName], playlistName, true);
     });
   });
 };
@@ -292,9 +298,6 @@ const deleteChildrenNodes = (parent) => {
 };
 
 const addToPlayList = (playListName, id) => {
-  console.log(newPlayList);
-  console.log(id);
-
   // let newID = 0;
 
   // playList.allSongs.forEach((song, index) => {
@@ -304,16 +307,9 @@ const addToPlayList = (playListName, id) => {
   //   }
   // });
 
-  // console.log(newID);
-  // console.log(playList.allSongs[newID]);
-
   addToPlayListServer(newPlayList[playListName].id, id);
 
-  // console.log(newID);
-
   // newPlayList[playListName].songs = [...newPlayList[playListName].songs, playList.allSongs[newID]];
-  console.log(newPlayList[playListName]);
-  console.log(newPlayList);
 
   // if (!newPlayList[playListName].includes(playList.allSongs[newID])) {
   //   newPlayList[playListName] = [...newPlayList[playListName], playList.allSongs[newID]];
@@ -336,17 +332,27 @@ const addToPlayListServer = (playlistId, songId) => {
   fetchInterceptor(ADD_SONG_PLAYLIST_URI, METHOD_POST, body);
 };
 
+const removeFromPlayListServer = async (songId, playlistId) => {
+  const body = JSON.stringify({
+    token: userToken,
+    playlistId: currentPlaylistID,
+    songId,
+  });
+
+  document.querySelector(`[song-id = "${songId}"]`).remove();
+
+  fetchInterceptor(REMOVE_SONG_PLAYLIST_URI, METHOD_POST, body);
+};
+
 const deleteFromPlaylist = (playListName, id) => {
+  console.log(playListName);
+  console.log(id);
   newPlayList[playListName] = newPlayList[playListName].filter(function (item) {
     return item !== playList.allSongs[id - 1];
   });
 };
 
-musicGrapper();
-
 const allPlaylistFiller = (list, header) => {
-  console.log(list);
-  console.log(header);
   songListHeader.innerText = header;
 
   document.querySelectorAll(".song-wrapper").forEach((i) => {
@@ -359,8 +365,6 @@ const allPlaylistFiller = (list, header) => {
 
   if ("content" in document.createElement("template")) {
     list.forEach((playlist) => {
-      console.log(playlist);
-      console.log(header);
       const template = document.querySelector("#all-playlist-list");
       const clone = template.content.cloneNode(true);
       const playListWrapper = clone.querySelector(".playlist-wrapper");
@@ -389,7 +393,6 @@ const allPlaylistFiller = (list, header) => {
 songList.addEventListener("scroll", () => {
   if (songList.scrollTop >= songList.scrollHeight - songList.offsetHeight) {
     songList.scrollTop = songList.scrollHeight;
-    console.log("here");
     fillListOnScroll();
   }
 });
@@ -409,7 +412,6 @@ const fillListOnScroll = async () => {
   );
 
   let data = await response.json();
-  console.log(playList.allSongs);
 
   data.songs.forEach((song) => {
     playList.allSongs = [...playList.allSongs, song];
@@ -421,31 +423,63 @@ const fillListOnScroll = async () => {
 };
 
 const playListInitializer = async () => {
-  console.log(userToken);
+  document.querySelectorAll(".playlist-container").forEach((l) => {
+    if (!l.classList.contains("exception")) {
+      l.remove();
+    }
+  });
+
   const body = JSON.stringify({ token: userToken });
   const response = await fetchInterceptor(RETRIEVE_PLAYLIST_URI, METHOD_POST, body);
 
   const listArray = await response.json();
-  console.log("🚀 ~ file: song.js ~ line 419 ~ playListInitializer ~ listArray", listArray);
 
   listArray.forEach((list) => {
+    if (list.name == FAV_SONGS) {
+      favPlaylistID = list.id;
+      newPlayList[list.name] = list;
+      for (index in newPlayList[list.name].songs) {
+        playList.favSongs = [...playList.favSongs, newPlayList[list.name].songs[index].rest.id];
+      }
+      return;
+    }
+
     newPlayList[list.name] = list;
+
     addNewPlaylist(list.name);
   });
 
   optionFiller();
-  console.log(newPlayList);
 };
 
-const createFavouritePlayList = async () => {
+const createPlayListServer = async (name) => {
+  let alreadyExists = false;
   const body = {
     token: userToken,
-    name: "مورد علاقه",
+    name,
   };
 
-  const response = await fetchInterceptor("​playlist​/create", METHOD_POST, JSON.stringify(body));
-  console.log(await response.json());
+  for (listName in newPlayList) {
+    if (name == listName) {
+      alreadyExists = true;
+      return;
+    }
+  }
+
+  if (!alreadyExists) {
+    let response = await fetchInterceptor(CREATE_PLAYLIST_URI, METHOD_POST, JSON.stringify(body));
+  }
+};
+
+const removePlayListServer = async (id) => {
+  const body = {
+    token: userToken,
+    id: id,
+  };
+
+  await fetchInterceptor(REMOVE_PLAYLIST_URI, METHOD_POST, JSON.stringify(body));
+  playListInitializer();
 };
 
 playListInitializer();
-// createFavouritePlayList();
+musicGrapper();

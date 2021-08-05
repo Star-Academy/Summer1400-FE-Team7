@@ -207,19 +207,22 @@ const makePlayList = document.querySelector("#make-playlist");
 const cancleMakingPlayList = document.querySelector("#cancle-making-playlist");
 const makeNewPlaylistInput = document.querySelector("#make-new-playlist-input");
 
-makePlayList.addEventListener("click", () => {
+makePlayList.addEventListener("click", async () => {
   const title = makeNewPlaylistInput.value;
   if (title == "") {
     return false;
   }
 
-  newPlayList[title] = [];
-  addNewPlaylist(title);
+  // newPlayList[title] = [];
+  // addNewPlaylist(title);
 
   bgGlass2.classList.add("display-none");
   addPlayListWrapper.classList.add("display-none");
   optionFiller();
   makeNewPlaylistInput.value = "";
+
+  await createPlayListServer(title);
+  playListInitializer();
 });
 
 cancleMakingPlayList.addEventListener("click", () => {

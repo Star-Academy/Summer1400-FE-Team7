@@ -6,7 +6,6 @@ const playlistContainer = document.querySelector(".playlist-container");
 sideMenuBtns.forEach((menu) => {
   if (menu.classList.contains("exception")) {
     menu.addEventListener("click", () => {
-      console.log("uqweiryweiuyui");
       if (!menu.classList.contains(MENU_SELECTED)) {
         let sectionHeader = menu.children[1].innerText;
         // songListFiller(newPlayList[sectionHeader], sectionHeader);
@@ -24,11 +23,16 @@ sideMenuBtns.forEach((menu) => {
         let sectionHeader = menu.children[1].innerText;
         let sectionHeader2 = menu.children[1].innerText;
 
+        let array = [];
+
         if (sectionHeader == ALL_SONGS) {
           sectionHeader = "allSongs";
+          array = playList[sectionHeader];
         } else if (sectionHeader == FAV_SONGS) {
           sectionHeader = "favSongs";
         }
+
+        console.log(playList[sectionHeader]);
 
         songListFiller(playList[sectionHeader], sectionHeader2, true);
         optionFiller();
@@ -71,14 +75,20 @@ const addNewPlaylist = (title) => {
 
   div.setAttribute("data-playlist-id", playListID);
 
-  bWrapper.addEventListener("click", () => {
+  bWrapper.addEventListener("click", async () => {
+    currentPlaylistID = playListID;
     if (!bWrapper.classList.contains(MENU_SELECTED)) {
       const sectionHeader = bWrapper.children[1].innerText;
-      let newArray = [];
-      for (index in newPlayList[sectionHeader].songs) {
-        newArray = [...newArray, newPlayList[sectionHeader].songs[index].rest];
-      }
-      songListFiller(newArray, sectionHeader, true);
+
+      let array = await fetchInterceptor(`${GET_ONE_PLAYLIST_URI}/${currentPlaylistID}`, METHOD_GET);
+      array = await array.json();
+      console.log("🚀 ~ file: sideMenu.js ~ line 81 ~ bWrapper.addEventListener ~ array", array);
+
+      // for (index in newPlayList[sectionHeader].songs) {
+      //   newArray = [...newArray, newPlayList[sectionHeader].songs[index].rest];
+      // }
+
+      songListFiller(array.songs, sectionHeader, true);
       removeFromPlaylist(sectionHeader);
     }
 
@@ -87,29 +97,30 @@ const addNewPlaylist = (title) => {
   });
 
   deleteBtn.addEventListener("click", () => {
-    removePlaylist(title);
+    removePlayListServer(playListID);
   });
+  const profileBtn = document.querySelector(".profile-wrapper");
 
-  sideMenu.insertBefore(div, playlistContainer);
+  sideMenu.insertBefore(div, profileBtn);
 
-  newPlayList[ALL_PLAYlISTS] = [...newPlayList[ALL_PLAYlISTS], title];
+  // newPlayList[ALL_PLAYlISTS] = [...newPlayList[ALL_PLAYlISTS], title];
 
   if (songListHeader.innerText == ALL_PLAYlISTS) {
     allPlaylistFiller(newPlayList[ALL_PLAYlISTS], ALL_PLAYlISTS);
   }
 };
 
-const removePlaylist = (title) => {
-  delete newPlayList[title];
-  const playlistContainer2 = document.querySelectorAll(".playlist-container");
+// const removePlaylist = (title) => {
+//   delete newPlayList[title];
+//   const playlistContainer2 = document.querySelectorAll(".playlist-container");
 
-  playlistContainer2.forEach((item) => {
-    if (item.children[0].children[1].innerText == title) {
-      item.remove();
-      return;
-    }
-  });
-};
+//   playlistContainer2.forEach((item) => {
+//     if (item.children[0].children[1].innerText == title) {
+//       item.remove();
+//       return;
+//     }
+//   });
+// };
 
 const playListCatcher = () => {
   fetchInterceptor();

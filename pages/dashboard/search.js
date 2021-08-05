@@ -12,7 +12,7 @@ const debouncer = (func, timeout = 600) => {
   };
 };
 
-const search = () => {
+const search = async () => {
   if (!isLoading) {
     placeholderCreator(placeholdersWrapper);
     placeHolderRotator();
@@ -20,11 +20,18 @@ const search = () => {
   }
 
   if (searchBox.value != "") {
-    songListFiller(
-      playList.allSongs.filter((song) => song.name.includes(searchBox.value)),
-      "جست و جو",
-      true
-    );
+    const body = {
+      phrase: searchBox.value,
+      count: 20,
+      sorter: "name",
+      desc: true,
+    };
+
+    let respones = await fetchInterceptor(SEARCH_URI, METHOD_POST, JSON.stringify(body));
+    const { songs } = await respones.json();
+    console.log(songs);
+
+    songListFiller(songs, "جست و جو", true);
     isLoading = false;
     placeholderOmmiter();
     optionFiller();

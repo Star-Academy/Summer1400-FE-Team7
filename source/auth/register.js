@@ -51,7 +51,7 @@ const createFavouritePlayList = async (token) => {
     name: "مورد علاقه",
   });
 
-  const response = await fetchInterceptor("​playlist​/create", METHOD_POST, body);
+  const response = await fetchInterceptor(CREATE_PLAYLIST_URI, METHOD_POST, body);
   console.log(await response.json());
 };
 
