@@ -249,7 +249,10 @@ shuffleBtn.forEach((btn) => {
   btn.addEventListener("click", () => {
     shuffleMode = !shuffleMode;
     if (shuffleMode) {
+      btn.classList.add("active-btn");
       generateShuffleList();
+    }else{
+      btn.classList.remove("active-btn");
     }
   });
 });

@@ -182,8 +182,10 @@ favIcon.forEach((elem) => {
 });
 
 addPlayListBtn.addEventListener("click", () => {
-  bgDarkForAddPlaylistModal.classList.remove("display-none");
-  addPlayListWrapper.classList.remove("display-none");
+
+  showNotification("aaaaaa",notificationType.SUCCESS)
+  // bgDarkForAddPlaylistModal.classList.remove("display-none");
+  // addPlayListWrapper.classList.remove("display-none");
 });
 
 const makePlayList = document.querySelector("#make-playlist");

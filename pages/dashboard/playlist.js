@@ -1,4 +1,4 @@
-
+//TODO: This darkGlass2
 const deleteChildrenNodes = (parent) => {
     while (parent.firstChild) {
       parent.removeChild(parent.firstChild);
@@ -83,14 +83,22 @@ const addToPlayList = (playListName, id) => {
   
   };
   
-  const addToPlayListServer = (playlistId, songId) => {
+  const addToPlayListServer =async (playlistId, songId) => {
     const body = JSON.stringify({
       token: userToken,
       playlistId,
       songId,
     });
   
-    fetchInterceptor(ADD_SONG_PLAYLIST_URI, METHOD_POST, body);
+    const response = await fetchInterceptor(ADD_SONG_PLAYLIST_URI, METHOD_POST, body);
+    const  responseBody=  response.json();
+    if (response.ok) {
+        showNotification("به پلی لیست اضافه شد",notificationType.SUCCESS)
+
+    }else{
+
+        showNotification(responseBody.message)
+    }
   };
 
 
