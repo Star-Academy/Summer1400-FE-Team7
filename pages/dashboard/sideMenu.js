@@ -6,23 +6,19 @@ const playlistContainer = document.querySelector(".playlist-container");
 sideMenuBtns.forEach((menu) => {
   if (menu.classList.contains("exception")) {
     menu.addEventListener("click", () => {
-      console.log("here1");
       if (!menu.classList.contains(MENU_SELECTED)) {
         let sectionHeader = menu.children[1].innerText;
         currentHeader = sectionHeader;
         let array = [];
+        
 
         for (let item in newPlayList) {
           if (item != FAV_SONGS && item != ALL_PLAYlISTS) {
             array = [...array, newPlayList[item]];
           }
         }
-        console.log(newPlayList);
-
-        // console.log(newPlayList);
-        // songListFiller(newPlayList[sectionHeader], sectionHeader);
+ 
         allPlaylistFiller(array, sectionHeader, true);
-        // optionFiller();
       }
       playListSectionLayoutFixer();
       document.querySelector(`.${MENU_SELECTED}`).classList.remove(MENU_SELECTED);
@@ -30,7 +26,6 @@ sideMenuBtns.forEach((menu) => {
     });
   } else {
     menu.addEventListener("click", async () => {
-      console.log("here2");
       playListSectionLayoutReverser();
       if (!menu.classList.contains(MENU_SELECTED)) {
         let sectionHeader = menu.children[1].innerText;
@@ -93,7 +88,6 @@ const addNewPlaylist = (title) => {
   div.setAttribute("data-playlist-id", playListID);
 
   bWrapper.addEventListener("click", async () => {
-    console.log("here3");
     currentPlaylistID = playListID;
 
     if (!bWrapper.classList.contains(MENU_SELECTED)) {
@@ -160,7 +154,6 @@ mobileNav.forEach((tab) => {
 
     switch (sectionName) {
       case ALL_SONGS:
-        console.log(playList);
         songListFiller(playList.allSongs, sectionName, true);
         break;
 
@@ -168,12 +161,10 @@ mobileNav.forEach((tab) => {
         array = await fetchInterceptor(`${GET_ONE_PLAYLIST_URI}/${favPlaylistID}`, METHOD_GET);
         array = await array.json();
         array = array.songs;
-        console.log(playList);
         songListFiller(array, sectionName, true);
         break;
 
       case ALL_PLAYlISTS:
-        console.log(newPlayList);
         let array = [];
 
         for (let item in newPlayList) {
@@ -182,7 +173,6 @@ mobileNav.forEach((tab) => {
           }
         }
 
-        console.log(array);
 
         allPlaylistFiller(array, sectionName, true);
         break;

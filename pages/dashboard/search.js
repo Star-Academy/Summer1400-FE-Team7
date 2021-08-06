@@ -27,18 +27,20 @@ const search = async () => {
       desc: true,
     };
 
-    let respones = await fetchInterceptor(SEARCH_URI, METHOD_POST, JSON.stringify(body));
+    let respones = await fetchInterceptor(
+      SEARCH_URI,
+      METHOD_POST,
+      JSON.stringify(body)
+    );
     const { songs } = await respones.json();
-    console.log(songs);
-
-    songListFiller(songs, "جست و جو", true);
+    playList.searchSongs = songs;
+    songListFiller(songs, SEARCH_SONGS, true);
     isLoading = false;
     placeholderOmmiter();
     optionFiller();
-  }
-
-  if (searchBox.value == "") {
+  } else {
     musicGrapper();
+    playList.searchSongs = [];
     isLoading = false;
   }
 };

@@ -238,11 +238,13 @@ main {
             display: none;
 
             + label > img {
-              filter: invert(0%) sepia(0%) saturate(0%) hue-rotate(0deg) brightness(0%) contrast(0%);
+              filter: invert(0%) sepia(0%) saturate(0%) hue-rotate(0deg)
+                brightness(0%) contrast(0%);
             }
 
             &:checked + label > img {
-              filter: invert(39%) sepia(96%) saturate(903%) hue-rotate(184deg) brightness(86%) contrast(97%);
+              filter: invert(39%) sepia(96%) saturate(903%) hue-rotate(184deg)
+                brightness(86%) contrast(97%);
             }
           }
 
@@ -422,7 +424,11 @@ main {
         gap: 0.25rem;
 
         * {
-          background: linear-gradient(var(--placeholder-rotation), $--bg-mellow-black, $--selected-bg-blue);
+          background: linear-gradient(
+            var(--placeholder-rotation),
+            $--bg-mellow-black,
+            $--selected-bg-blue
+          );
         }
 
         > .place-holders {
@@ -757,7 +763,8 @@ main {
       }
 
       .lyric-btn-active {
-        filter: invert(39%) sepia(96%) saturate(903%) hue-rotate(184deg) brightness(86%) contrast(97%);
+        filter: invert(39%) sepia(96%) saturate(903%) hue-rotate(184deg)
+          brightness(86%) contrast(97%);
       }
     }
   }
@@ -860,13 +867,15 @@ main {
           height: 100%;
 
           &:active {
-            filter: invert(39%) sepia(96%) saturate(903%) hue-rotate(184deg) brightness(86%) contrast(97%);
+            filter: invert(39%) sepia(96%) saturate(903%) hue-rotate(184deg)
+              brightness(86%) contrast(97%);
           }
         }
       }
 
       > .lyric-btn-active {
-        filter: invert(39%) sepia(96%) saturate(903%) hue-rotate(184deg) brightness(86%) contrast(97%);
+        filter: invert(39%) sepia(96%) saturate(903%) hue-rotate(184deg)
+          brightness(86%) contrast(97%);
       }
 
       > .mobile-info {
@@ -878,7 +887,13 @@ main {
         // gap: 2rem;
 
         overflow: hidden;
-        -webkit-mask: linear-gradient(to right, transparent 0%, rgb(0, 0, 0) 10px, rgb(0, 0, 0) calc(100% - 10px), transparent 100%);
+        -webkit-mask: linear-gradient(
+          to right,
+          transparent 0%,
+          rgb(0, 0, 0) 10px,
+          rgb(0, 0, 0) calc(100% - 10px),
+          transparent 100%
+        );
 
         > p {
           font-size: 0.7rem;
@@ -1007,7 +1022,8 @@ main {
   position: relative;
 
   > img:hover {
-    filter: invert(39%) sepia(96%) saturate(903%) hue-rotate(184deg) brightness(86%) contrast(97%);
+    filter: invert(39%) sepia(96%) saturate(903%) hue-rotate(184deg)
+      brightness(86%) contrast(97%);
   }
 
   &:hover::after {
@@ -1310,7 +1326,13 @@ main {
     // gap: 2rem;
 
     overflow: hidden;
-    -webkit-mask: linear-gradient(to right, transparent 0%, rgb(0, 0, 0) 10px, rgb(0, 0, 0) calc(100% - 10px), transparent 100%);
+    -webkit-mask: linear-gradient(
+      to right,
+      transparent 0%,
+      rgb(0, 0, 0) 10px,
+      rgb(0, 0, 0) calc(100% - 10px),
+      transparent 100%
+    );
 
     > p {
       font-size: 0.7rem;
@@ -1362,4 +1384,79 @@ main {
   .mobile-preview-add-playlist {
     right: 1rem;
   }
+}
+
+.alert {
+  background: #5c1111;
+  padding: 20px 40px;
+  min-width: 420px;
+  position: absolute;
+  z-index: 100;
+  direction: ltr;
+  bottom: 12vh;
+  border-radius: 4px;
+  border-left: 8px solid #ff0000;
+  overflow: hidden;
+  opacity: 0;
+  pointer-events: none;
+}
+.alert.showAlert {
+  opacity: 1;
+  pointer-events: auto;
+}
+.alert.show {
+  animation: show_slide 1s ease forwards;
+}
+@keyframes show_slide {
+  0% {
+    transform: translateY(-100%);
+  }
+  40% {
+    transform: translateX(-10%);
+  }
+  80% {
+    transform: translateX(0%);
+  }
+  100% {
+    transform: translateX(-10px);
+  }
+}
+.alert.hide {
+  animation: hide_slide 1s ease forwards;
+}
+@keyframes hide_slide {
+  0% {
+    transform: translateX(-10px);
+  }
+  40% {
+    transform: translateX(0%);
+  }
+  80% {
+    transform: translateX(-10%);
+  }
+  100% {
+    transform: translateX(100%);
+  }
+}
+
+.alert .msg {
+  font-size: 18px;
+  color: #ffffff;
+  text-shadow: 2px 2px 0px #353535;
+}
+.alert .close-btn {
+  position: absolute;
+  right: 0px;
+  top: 50%;
+  transform: translateY(-50%);
+  background: #f72828;
+  padding: 1rem 1.5rem;
+  cursor: pointer;
+}
+.alert .close-btn:hover {
+  background: #ff0000;
+}
+.alert .close-btn img {
+  margin-top: .6rem;
+  width: 24px;
 }

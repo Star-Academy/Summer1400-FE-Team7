@@ -14,6 +14,7 @@ const lyricMusicArtist = document.querySelector("#lyric-music-artist");
 const ALL_SONGS = "همه آهنگ ها";
 const FAV_SONGS = "مورد علاقه";
 const ALL_PLAYlISTS = "پلی لیست ها";
+const SEARCH_SONGS = "جست و جو";
 const mobileMusicName = document.querySelectorAll(".mobile-music-name");
 const mobileArtistName = document.querySelectorAll(".mobile-artist-name");
 const mobilePreviewCover = document.querySelector(".mobile-preview-song-cover");
@@ -21,9 +22,10 @@ const mobileFavBtn = document.querySelector(".mobile-preview-like");
 const realFavList = document.querySelector(".real-fav-list");
 
 let currentMusicIndex = 0;
-let playList = { allSongs: [], favSongs: [] };
+let playList = { allSongs: [], favSongs: [], searchSongs: [] };
 let newPlayList = {};
-// let allPlayLists = [];
+let currentPlaylist = playList.allSongs;
+
 newPlayList[ALL_PLAYlISTS] = [];
 
 let pageIndex = 1;
@@ -49,7 +51,7 @@ const musicGrapper = async () => {
   let data = await response.json();
 
   playList.allSongs = data.songs;
-  audio.src = playList.allSongs[currentMusicIndex].file;
+  // audio.src = playList.allSongs[currentMusicIndex].file;
   songListFiller(playList.allSongs, ALL_SONGS, true);
   placeholderOmmiter();
   optionFiller();
@@ -57,6 +59,8 @@ const musicGrapper = async () => {
 
 const songListFiller = (list, header, remove) => {
   songListHeader.innerText = header;
+  currentHeader = header;
+  currentPlaylist=list;
 
   if (remove) {
     document.querySelectorAll(".song-wrapper").forEach((i) => {
@@ -80,6 +84,7 @@ const songListFiller = (list, header, remove) => {
       const favIcon = clone.querySelector(".fav-icon");
       const songWrapper = clone.querySelector(".song-wrapper");
       songWrapper.setAttribute("song-id", song.id);
+      songWrapper.setAttribute("song-index", index);
       options.setAttribute("data-id", song.id);
       if (song.cover != undefined) {
         songCoverImage.src = song.cover;
@@ -135,8 +140,12 @@ const songListFiller = (list, header, remove) => {
 
       songWrapper.addEventListener("click", (e) => {
         if (!e.path[0].classList.contains(FAV_ICON)) {
-          const enabledBtn = [...document.getElementsByClassName(SONG_WRAPPER_SELECTED)];
-          const authorNameSelected = [...document.getElementsByClassName(AUTHOR_NAME_SELECTED)];
+          const enabledBtn = [
+            ...document.getElementsByClassName(SONG_WRAPPER_SELECTED),
+          ];
+          const authorNameSelected = [
+            ...document.getElementsByClassName(AUTHOR_NAME_SELECTED),
+          ];
           if (enabledBtn.length != 0) {
             enabledBtn[0].classList.remove(SONG_WRAPPER_SELECTED);
             authorNameSelected[0].classList.remove(AUTHOR_NAME_SELECTED);
@@ -152,7 +161,9 @@ const songListFiller = (list, header, remove) => {
 
 mobileFavBtn.addEventListener("click", () => {
   const favIcon = mobileFavBtn.children[0];
-  const currentMusicFavIconInMainMenu = document.querySelector(`[song-id = "${currentMusicIndex + 1}"]`).children[2].children[1];
+  const currentMusicFavIconInMainMenu = document.querySelector(
+    `[song-id = "${currentMusicIndex + 1}"]`
+  ).children[2].children[1];
   favIcon.classList.toggle(LIKED_CLASS);
   currentMusicFavIconInMainMenu.classList.toggle(LIKED_CLASS);
   const song = playList.allSongs[currentMusicIndex];
@@ -202,9 +213,11 @@ const convertHMS = (value) => {
 };
 
 const musicChangeHandler = () => {
-  const imgSrc = playList.allSongs[currentMusicIndex].cover;
-  const elemTitle = playList.allSongs[currentMusicIndex].name;
-  const elemArtist = playList.allSongs[currentMusicIndex].artist;
+  
+  const imgSrc = currentPlaylist[currentMusicIndex].cover;
+  const elemTitle = currentPlaylist[currentMusicIndex].name;
+  const elemArtist = currentPlaylist[currentMusicIndex].artist;
+  const elemLyric = currentPlaylist[currentMusicIndex].lyrics;
 
   bgCover.style.background = `url(${imgSrc}) center no-repeat`;
   bgCover.style.backgroundSize = "cover";
@@ -217,7 +230,7 @@ const musicChangeHandler = () => {
   lyricMusicCover.src = imgSrc;
   lyricMusicName.innerText = elemTitle;
   lyricMusicArtist.innerText = elemArtist;
-  lyricText.innerText = playList.allSongs[currentMusicIndex].lyrics;
+  lyricText.innerText = elemLyric;
 
   const currentlyPlaying = document.querySelector(".is-playing");
   if (currentlyPlaying != null) {
@@ -388,7 +401,9 @@ const allPlaylistFiller = (list, header) => {
 
       playListWrapper.addEventListener("click", () => {
         if (document.querySelector(".song-wrapper-selected") != undefined) {
-          document.querySelector(".song-wrapper-selected").classList.remove("song-wrapper-selected");
+          document
+            .querySelector(".song-wrapper-selected")
+            .classList.remove("song-wrapper-selected");
         }
 
         playListWrapper.classList.add("song-wrapper-selected");
@@ -408,10 +423,16 @@ const allPlaylistFiller = (list, header) => {
           id: playlist.id,
         };
 
-        await fetchInterceptor(REMOVE_PLAYLIST_URI, METHOD_POST, JSON.stringify(body));
+        await fetchInterceptor(
+          REMOVE_PLAYLIST_URI,
+          METHOD_POST,
+          JSON.stringify(body)
+        );
         playListWrapper.remove();
 
-        document.querySelector(`[data-playlist-id = "${playlist.id}"]`).remove();
+        document
+          .querySelector(`[data-playlist-id = "${playlist.id}"]`)
+          .remove();
 
         delete newPlayList[playlist.name];
       });
@@ -422,7 +443,10 @@ const allPlaylistFiller = (list, header) => {
 };
 
 songList.addEventListener("scroll", () => {
-  if (songList.scrollTop >= songList.scrollHeight - songList.offsetHeight && currentHeader == ALL_SONGS) {
+  if (
+    songList.scrollTop >= songList.scrollHeight - songList.offsetHeight &&
+    currentHeader == ALL_SONGS
+  ) {
     songList.scrollTop = songList.scrollHeight;
     fillListOnScroll();
   }
@@ -461,7 +485,11 @@ const playListInitializer = async () => {
   });
 
   const body = JSON.stringify({ token: userToken });
-  const response = await fetchInterceptor(RETRIEVE_PLAYLIST_URI, METHOD_POST, body);
+  const response = await fetchInterceptor(
+    RETRIEVE_PLAYLIST_URI,
+    METHOD_POST,
+    body
+  );
 
   const listArray = await response.json();
 
@@ -470,7 +498,10 @@ const playListInitializer = async () => {
       favPlaylistID = list.id;
       newPlayList[list.name] = list;
       for (index in newPlayList[list.name].songs) {
-        playList.favSongs = [...playList.favSongs, newPlayList[list.name].songs[index].rest.id];
+        playList.favSongs = [
+          ...playList.favSongs,
+          newPlayList[list.name].songs[index].rest.id,
+        ];
       }
       return;
     }
@@ -498,7 +529,11 @@ const createPlayListServer = async (name) => {
   }
 
   if (!alreadyExists) {
-    let response = await fetchInterceptor(CREATE_PLAYLIST_URI, METHOD_POST, JSON.stringify(body));
+    let response = await fetchInterceptor(
+      CREATE_PLAYLIST_URI,
+      METHOD_POST,
+      JSON.stringify(body)
+    );
   }
 };
 
@@ -508,7 +543,11 @@ const removePlayListServer = async (id) => {
     id: id,
   };
 
-  await fetchInterceptor(REMOVE_PLAYLIST_URI, METHOD_POST, JSON.stringify(body));
+  await fetchInterceptor(
+    REMOVE_PLAYLIST_URI,
+    METHOD_POST,
+    JSON.stringify(body)
+  );
   playListInitializer();
 };
 

@@ -1,6 +1,7 @@
 const playBtn = document.querySelectorAll(".play-music-btn");
 const pauseBtnImg = "../../assets/images/controls/pause.svg";
 const playBtnImg = "../../assets/images/controls/play-button.svg";
+const LoadingBtnImg = "../../assets/images/controls/loading.svg ";
 
 const audio = document.querySelector("#audio");
 const nextBtn = document.querySelectorAll(".next-btn");
@@ -29,9 +30,14 @@ let shuffleMode = false;
 let shuffleArray = [];
 let shuffleIndex = 0;
 
+audio.addEventListener("error",()=>{
+  showNotification("مشکلی در بارگیری آهنگ وجود دارد")
+  stop();
+},true);
+
 const loadMusic = () => {
-  audio.src = playList.allSongs[currentMusicIndex].file;
-  const songname = `name:${playList.allSongs[currentMusicIndex].name}`;
+  audio.src = currentPlaylist[currentMusicIndex].file;
+
 };
 
 const nextMusic = () => {
@@ -94,12 +100,11 @@ const handlePlayButton = () => {
 handlePlayButton();
 
 const play = () => {
-  loadMusic();
   musicChangeHandler();
+  loadMusic();
 
-  //TODO replace this with circular loading
   playBtn.forEach((btn) => {
-    btn.children[0].src = "../../assets/images/controls/cancel.svg";
+    btn.children[0].src = LoadingBtnImg;
     btn.setAttribute("data-tooltip", "توقف");
   });
 
@@ -134,6 +139,14 @@ const playBtnState = () => {};
 const pause = () => {
   audio.pause();
   status = statusTypes.PASUED;
+  playBtn.forEach((btn) => {
+    btn.children[0].src = playBtnImg;
+    btn.setAttribute("data-tooltip", "پخش");
+  });
+};
+const stop = () => {
+  audio.pause();
+  status = statusTypes.STOPED;
   playBtn.forEach((btn) => {
     btn.children[0].src = playBtnImg;
     btn.setAttribute("data-tooltip", "پخش");
@@ -187,14 +200,7 @@ previousBtn.forEach((btn) => {
 
 const doubleClickHandler = (elem, id) => {
   elem.addEventListener("dblclick", () => {
-    playList.allSongs.forEach((song, index) => {
-      if (song.id == id) {
-        currentMusicIndex = index;
-        return;
-      }
-    });
-
-    musicChangeHandler();
+     currentMusicIndex = elem.getAttribute("song-index");
     play();
   });
 };

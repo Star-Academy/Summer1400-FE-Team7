@@ -17,7 +17,9 @@ const mobileInfo = document.querySelectorAll(".mobile-info");
 const listViewLayout = document.querySelector("#list-view");
 const gridViewLayout = document.querySelector("#grid-view");
 const listCompactViewLayout = document.querySelector("#list-compact-view");
-const allSongsTabNavigation = document.querySelector("#all-songs-tab-navigation-mobile");
+const allSongsTabNavigation = document.querySelector(
+  "#all-songs-tab-navigation-mobile"
+);
 const userEmail = document.querySelector("#user-email");
 const pofileWrapper = document.querySelector(".profile-wrapper");
 const listLabel = document.querySelector(".list-view-label");
@@ -25,7 +27,9 @@ const listCompactLabel = document.querySelector(".list-compact-view-label");
 
 const darkGlassMobilePreview = document.querySelector(".dark-glass3");
 const mobileSongPreview = document.querySelector(".mobile-song-preview");
-const mobileSongPreviewBackBtn = document.querySelector(".mobile-song-preview-return");
+const mobileSongPreviewBackBtn = document.querySelector(
+  ".mobile-song-preview-return"
+);
 
 const songList = document.querySelector(".song-list");
 const bgCover = document.querySelector(".bg-cover");
@@ -134,7 +138,10 @@ const hiddenTextMovingAnimation = (parentDiv, currentWidht) => {
   }
   animationWidth = Math.abs(animationWidth);
 
-  document.documentElement.style.setProperty("--animation-width", animationWidth + "px");
+  document.documentElement.style.setProperty(
+    "--animation-width",
+    animationWidth + "px"
+  );
 
   mobileInfo[0].classList.remove(MOBILE_INFO_ANIMATION);
   mobileInfo[1].classList.remove(MOBILE_INFO_ANIMATION);
@@ -258,4 +265,21 @@ const playListSectionLayoutFixer = () => {
 const playListSectionLayoutReverser = () => {
   listLabel.classList.remove("display-none");
   listCompactLabel.classList.remove("display-none");
+};
+
+const showNotification = (message) => {
+  const alert = document.querySelector(".alert");
+  const closeBtn = document.querySelector(".close-btn");
+  alert.children[0].innerText = message;
+  alert.classList.add("show");
+  alert.classList.remove("hide");
+  alert.classList.add("showAlert");
+  setTimeout(() => {
+    alert.classList.remove("show");
+    alert.classList.add("hide");
+  }, 3000);
+  closeBtn.addEventListener("click", () => {
+    alert.classList.remove("show");
+    alert.classList.add("hide");
+  });
 };
