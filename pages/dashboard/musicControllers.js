@@ -187,17 +187,12 @@ previousBtn.forEach((btn) => {
 
 const doubleClickHandler = (elem, id) => {
   elem.addEventListener("dblclick", () => {
-    console.log(id);
-    console.log(playList.allSongs.length);
-
     playList.allSongs.forEach((song, index) => {
       if (song.id == id) {
         currentMusicIndex = index;
         return;
       }
     });
-
-    console.log(currentMusicIndex);
 
     musicChangeHandler();
     play();

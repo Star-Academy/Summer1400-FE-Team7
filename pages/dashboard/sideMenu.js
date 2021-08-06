@@ -6,8 +6,10 @@ const playlistContainer = document.querySelector(".playlist-container");
 sideMenuBtns.forEach((menu) => {
   if (menu.classList.contains("exception")) {
     menu.addEventListener("click", () => {
+      console.log("here1");
       if (!menu.classList.contains(MENU_SELECTED)) {
         let sectionHeader = menu.children[1].innerText;
+        currentHeader = sectionHeader;
         // songListFiller(newPlayList[sectionHeader], sectionHeader);
         allPlaylistFiller(newPlayList[sectionHeader], sectionHeader, true);
         // optionFiller();
@@ -17,11 +19,14 @@ sideMenuBtns.forEach((menu) => {
       menu.classList.add(MENU_SELECTED);
     });
   } else {
-    menu.addEventListener("click", () => {
+    menu.addEventListener("click", async () => {
+      console.log("here2");
       playListSectionLayoutReverser();
       if (!menu.classList.contains(MENU_SELECTED)) {
         let sectionHeader = menu.children[1].innerText;
         let sectionHeader2 = menu.children[1].innerText;
+
+        currentHeader = sectionHeader;
 
         let array = [];
 
@@ -29,12 +34,14 @@ sideMenuBtns.forEach((menu) => {
           sectionHeader = "allSongs";
           array = playList[sectionHeader];
         } else if (sectionHeader == FAV_SONGS) {
+          array = await fetchInterceptor(`${GET_ONE_PLAYLIST_URI}/${favPlaylistID}`, METHOD_GET);
+          array = await array.json();
+          array = array.songs;
           sectionHeader = "favSongs";
+        } else {
         }
 
-        console.log(playList[sectionHeader]);
-
-        songListFiller(playList[sectionHeader], sectionHeader2, true);
+        songListFiller(array, sectionHeader2, true);
         optionFiller();
       }
 
@@ -76,17 +83,18 @@ const addNewPlaylist = (title) => {
   div.setAttribute("data-playlist-id", playListID);
 
   bWrapper.addEventListener("click", async () => {
+    console.log("here3");
     currentPlaylistID = playListID;
     if (!bWrapper.classList.contains(MENU_SELECTED)) {
       const sectionHeader = bWrapper.children[1].innerText;
-
       let array = await fetchInterceptor(`${GET_ONE_PLAYLIST_URI}/${currentPlaylistID}`, METHOD_GET);
       array = await array.json();
-      console.log("🚀 ~ file: sideMenu.js ~ line 81 ~ bWrapper.addEventListener ~ array", array);
 
       // for (index in newPlayList[sectionHeader].songs) {
       //   newArray = [...newArray, newPlayList[sectionHeader].songs[index].rest];
       // }
+
+      currentHeader = sectionHeader;
 
       songListFiller(array.songs, sectionHeader, true);
       removeFromPlaylist(sectionHeader);
@@ -122,6 +130,10 @@ const addNewPlaylist = (title) => {
 //   });
 // };
 
-const playListCatcher = () => {
-  fetchInterceptor();
-};
+// const updatePlaylistServer = () => {
+//   const body= {
+
+//   }
+
+//   fetchInterceptor(`${GET_ONE_PLAYLIST_URI}/${}`)
+// }

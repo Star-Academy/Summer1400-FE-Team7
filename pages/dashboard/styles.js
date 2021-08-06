@@ -256,7 +256,6 @@ const playListSectionLayoutFixer = () => {
 };
 
 const playListSectionLayoutReverser = () => {
-  console.log("hirrr");
   listLabel.classList.remove("display-none");
   listCompactLabel.classList.remove("display-none");
 };

@@ -30,6 +30,7 @@ let pageIndex = 1;
 
 let currentPlaylistID = 0;
 let favPlaylistID = 0;
+let currentHeader = ALL_SONGS;
 
 const userToken = localStorage.getItem("token");
 
@@ -121,14 +122,14 @@ const songListFiller = (list, header, remove) => {
         favIcon.src = LIKED;
         favIcon.style.transform = "scale(1)";
         if (!playList.favSongs.includes(song.id)) {
-          playList.favSongs = [...playList.favSongs, song];
+          playList.favSongs = [...playList.favSongs, song.id];
           addToPlayListServer(favPlaylistID, song.id);
-          console.log(newPlayList);
         } else {
           playList.favSongs = playList.favSongs.filter(function (item) {
-            removeFromPlayListServer(song.id, newPlayList.FAV_SONGS);
-            return item !== song;
+            return item !== song.id;
           });
+
+          removeFromPlayListServer(song.id, favPlaylistID);
         }
       });
 
@@ -250,7 +251,7 @@ const optionFiller = () => {
     deleteChildrenNodes(option);
 
     for (let list in newPlayList) {
-      if (list != ALL_PLAYlISTS) {
+      if (list != ALL_PLAYlISTS && list != FAV_SONGS) {
         const li = document.createElement("li");
         li.innerText = list;
         ul.appendChild(li);
@@ -286,6 +287,7 @@ const removeFromPlaylist = (playlistName) => {
     dltBtn.addEventListener("click", () => {
       // deleteFromPlaylist(playlistName, songId);
       removeFromPlayListServer(songId, currentPlaylistID);
+      document.querySelector(`[song-id = "${songId}"]`).remove();
       // songListFiller(newPlayList[playlistName], playlistName, true);
     });
   });
@@ -329,24 +331,25 @@ const addToPlayListServer = (playlistId, songId) => {
     playlistId,
     songId,
   });
+
   fetchInterceptor(ADD_SONG_PLAYLIST_URI, METHOD_POST, body);
 };
 
 const removeFromPlayListServer = async (songId, playlistId) => {
   const body = JSON.stringify({
     token: userToken,
-    playlistId: currentPlaylistID,
+    playlistId: playlistId,
     songId,
   });
 
-  document.querySelector(`[song-id = "${songId}"]`).remove();
+  if (currentHeader != ALL_SONGS) {
+    document.querySelector(`[song-id = "${songId}"]`).remove();
+  }
 
   fetchInterceptor(REMOVE_SONG_PLAYLIST_URI, METHOD_POST, body);
 };
 
 const deleteFromPlaylist = (playListName, id) => {
-  console.log(playListName);
-  console.log(id);
   newPlayList[playListName] = newPlayList[playListName].filter(function (item) {
     return item !== playList.allSongs[id - 1];
   });
@@ -391,7 +394,7 @@ const allPlaylistFiller = (list, header) => {
 };
 
 songList.addEventListener("scroll", () => {
-  if (songList.scrollTop >= songList.scrollHeight - songList.offsetHeight) {
+  if (songList.scrollTop >= songList.scrollHeight - songList.offsetHeight && currentHeader == ALL_SONGS) {
     songList.scrollTop = songList.scrollHeight;
     fillListOnScroll();
   }
