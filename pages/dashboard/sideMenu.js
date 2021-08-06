@@ -149,3 +149,46 @@ const addNewPlaylist = (title) => {
 
 //   fetchInterceptor(`${GET_ONE_PLAYLIST_URI}/${}`)
 // }
+
+const mobileNav = document.querySelectorAll(".tab-nav");
+
+mobileNav.forEach((tab) => {
+  tab.addEventListener("click", async () => {
+    const sectionName = tab.children[1].innerText;
+    currentHeader = sectionName;
+    console.log(sectionName);
+
+    switch (sectionName) {
+      case ALL_SONGS:
+        console.log(playList);
+        songListFiller(playList.allSongs, sectionName, true);
+        break;
+
+      case FAV_SONGS:
+        array = await fetchInterceptor(`${GET_ONE_PLAYLIST_URI}/${favPlaylistID}`, METHOD_GET);
+        array = await array.json();
+        array = array.songs;
+        console.log(playList);
+        songListFiller(array, sectionName, true);
+        break;
+
+      case ALL_PLAYlISTS:
+        console.log(newPlayList);
+        let array = [];
+
+        for (let item in newPlayList) {
+          if (item != FAV_SONGS && item != ALL_PLAYlISTS) {
+            array = [...array, newPlayList[item]];
+          }
+        }
+
+        console.log(array);
+
+        allPlaylistFiller(array, sectionName, true);
+        break;
+
+      default:
+        break;
+    }
+  });
+});
