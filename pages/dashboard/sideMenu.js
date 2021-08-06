@@ -4,7 +4,7 @@ const PLAYLIST_CONTAINER = "playlist-container";
 const playlistContainer = document.querySelector(".playlist-container");
 
 sideMenuBtns.forEach((menu) => {
-  if (menu.classList.contains("exception")) {
+  if (menu.classList.contains("defualt-menu")) {
     menu.addEventListener("click", () => {
       if (!menu.classList.contains(MENU_SELECTED)) {
         let sectionHeader = menu.children[1].innerText;
@@ -25,6 +25,7 @@ sideMenuBtns.forEach((menu) => {
       menu.classList.add(MENU_SELECTED);
     });
   } else {
+
     menu.addEventListener("click", async () => {
       playListSectionLayoutReverser();
       if (!menu.classList.contains(MENU_SELECTED)) {
@@ -42,6 +43,7 @@ sideMenuBtns.forEach((menu) => {
           array = await fetchInterceptor(`${GET_ONE_PLAYLIST_URI}/${favPlaylistID}`, METHOD_GET);
           array = await array.json();
           array = array.songs;
+          playList.favSongsItems=[array];          
           sectionHeader = "favSongs";
         } else {
         }
@@ -158,10 +160,10 @@ mobileNav.forEach((tab) => {
         break;
 
       case FAV_SONGS:
-        array = await fetchInterceptor(`${GET_ONE_PLAYLIST_URI}/${favPlaylistID}`, METHOD_GET);
-        array = await array.json();
-        array = array.songs;
-        songListFiller(array, sectionName, true);
+        let  favSongs = await fetchInterceptor(`${GET_ONE_PLAYLIST_URI}/${favPlaylistID}`, METHOD_GET);
+        favSongs = await favSongs.json();
+        favSongs = favSongs.songs;
+        songListFiller(favSongs, sectionName, true);
         break;
 
       case ALL_PLAYlISTS:

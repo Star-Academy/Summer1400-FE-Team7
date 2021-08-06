@@ -2,15 +2,7 @@ const searchBox = document.querySelector(".search-box");
 searchBox.addEventListener("search", () => onPressHandler());
 searchBox.addEventListener("keyup", () => onPressHandler());
 
-const debouncer = (func, timeout = 600) => {
-  let timer;
-  return (...args) => {
-    clearTimeout(timer);
-    timer = setTimeout(() => {
-      func.apply(this, args);
-    }, timeout);
-  };
-};
+
 
 const search = async () => {
   if (!isLoading) {
@@ -34,15 +26,28 @@ const search = async () => {
     );
     const { songs } = await respones.json();
     playList.searchSongs = songs;
+    
     songListFiller(songs, SEARCH_SONGS, true);
     isLoading = false;
     placeholderOmmiter();
     optionFiller();
   } else {
-    musicGrapper();
     playList.searchSongs = [];
+    songListFiller(playList.allSongs, ALL_SONGS, true);
     isLoading = false;
+    placeholderOmmiter();
+
   }
+};
+
+const debouncer = (func, timeout = 600) => {
+  let timer;
+  return (...args) => {
+    clearTimeout(timer);
+    timer = setTimeout(() => {
+      func.apply(this, args);
+    }, timeout);
+  };
 };
 
 const onPressHandler = debouncer(() => search());

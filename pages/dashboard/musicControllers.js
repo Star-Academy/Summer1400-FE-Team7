@@ -37,13 +37,12 @@ audio.addEventListener("error",()=>{
 
 const loadMusic = () => {
   audio.src = currentPlaylist[currentMusicIndex].file;
-
 };
 
 const nextMusic = () => {
   if (shuffleMode) {
     shuffleIndex++;
-    if (shuffleIndex > playList.allSongs.length - 1) {
+    if (shuffleIndex >= currentPlaylist.length ) {
       shuffleIndex = 0;
     }
     currentMusicIndex = shuffleArray[shuffleIndex];
@@ -51,14 +50,13 @@ const nextMusic = () => {
     currentMusicIndex++;
   }
 
-  if (currentMusicIndex > playList.allSongs.length - 1) {
+  if (currentMusicIndex >=currentPlaylist.length ) {
     currentMusicIndex = 0;
     if (repeatMode == repeatTypes.NO_REPEAT && !shuffleMode) {
       pause();
-      return;
+      
     }
   }
-
   musicChangeHandler();
   loadMusic();
   play();
@@ -68,7 +66,7 @@ const previousMusic = () => {
   if (shuffleMode) {
     shuffleIndex--;
     if (shuffleIndex < 0) {
-      shuffleIndex = playList.allSongs.length - 1;
+      shuffleIndex = currentPlaylist.length - 1;
     }
     currentMusicIndex = shuffleArray[shuffleIndex];
   } else {
@@ -76,7 +74,7 @@ const previousMusic = () => {
   }
 
   if (currentMusicIndex < 0) {
-    currentMusicIndex = playList.allSongs.length - 1;
+    currentMusicIndex = currentPlaylist.length - 1;
   }
   musicChangeHandler();
   loadMusic();
@@ -270,7 +268,7 @@ const shuffle = (array) => {
 };
 
 const generateShuffleList = () => {
-  for (i = 0; i < playList.allSongs.length; i++) shuffleArray[i] = i;
+  for (i = 0; i < currentPlaylist.length; i++) shuffleArray[i] = i;
   shuffleArray = shuffle(shuffleArray);
 };
 

@@ -19,10 +19,9 @@ const mobileMusicName = document.querySelectorAll(".mobile-music-name");
 const mobileArtistName = document.querySelectorAll(".mobile-artist-name");
 const mobilePreviewCover = document.querySelector(".mobile-preview-song-cover");
 const mobileFavBtn = document.querySelector(".mobile-preview-like");
-const realFavList = document.querySelector(".real-fav-list");
 
 let currentMusicIndex = 0;
-let playList = { allSongs: [], favSongs: [], searchSongs: [] };
+let playList = { allSongs: [], favSongsIndex: [],favSongsItems:[], searchSongs: [] };
 let newPlayList = {};
 let currentPlaylist = playList.allSongs;
 
@@ -99,7 +98,7 @@ const songListFiller = (list, header, remove) => {
 
       favIcon.src = LIKE;
       songList.appendChild(clone);
-      if (playList.favSongs.includes(song.id)) {
+      if (playList.favSongsIndex.includes(song.id)) {
         favIcon.classList.add(LIKED_CLASS);
         favIcon.src = LIKED_IMG;
       }
@@ -126,11 +125,11 @@ const songListFiller = (list, header, remove) => {
         favIcon.classList.toggle(LIKED_CLASS);
         favIcon.src = LIKED;
         favIcon.style.transform = "scale(1)";
-        if (!playList.favSongs.includes(song.id)) {
-          playList.favSongs = [...playList.favSongs, song.id];
+        if (!playList.favSongsIndex.includes(song.id)) {
+          playList.favSongsIndex = [...playList.favSongsIndex, song.id];
           addToPlayListServer(favPlaylistID, song.id);
         } else {
-          playList.favSongs = playList.favSongs.filter(function (item) {
+          playList.favSongsIndex = playList.favSongsIndex.filter(function (item) {
             return item !== song.id;
           });
 
@@ -177,10 +176,10 @@ mobileFavBtn.addEventListener("click", () => {
     currentMusicFavIconInMainMenu.src = LIKE;
   }
 
-  if (!playList.favSongs.includes(song)) {
-    playList.favSongs = [...playList.favSongs, song];
+  if (!playList.favSongsIndex.includes(song)) {
+    playList.favSongsIndex = [...playList.favSongsIndex, song];
   } else {
-    playList.favSongs = playList.favSongs.filter(function (item) {
+    playList.favSongsIndex = playList.favSongsIndex.filter(function (item) {
       return item !== song;
     });
   }
@@ -190,7 +189,7 @@ const mobilePreviewStartHandler = () => {
   const favIcon = mobileFavBtn.children[0];
   const song = playList.allSongs[currentMusicIndex];
 
-  if (playList.favSongs.includes(song)) {
+  if (playList.favSongsIndex.includes(song)) {
     favIcon.classList.add(LIKED_CLASS);
     favIcon.src = LIKED_IMG;
   } else {
@@ -214,6 +213,7 @@ const convertHMS = (value) => {
 
 const musicChangeHandler = () => {
   
+  musicCover.src="../../assets/images/default-song-cover.svg"
   const imgSrc = currentPlaylist[currentMusicIndex].cover;
   const elemTitle = currentPlaylist[currentMusicIndex].name;
   const elemArtist = currentPlaylist[currentMusicIndex].artist;
@@ -369,7 +369,6 @@ const deleteFromPlaylist = (playListName, id) => {
 };
 
 const allPlaylistFiller = (list, header) => {
-  console.log(list);
   songListHeader.innerText = header;
 
   document.querySelectorAll(".song-wrapper").forEach((i) => {
@@ -382,7 +381,6 @@ const allPlaylistFiller = (list, header) => {
 
   if ("content" in document.createElement("template")) {
     list.forEach((playlist) => {
-      console.log(playlist);
       const template = document.querySelector("#all-playlist-list");
       const clone = template.content.cloneNode(true);
       const playListWrapper = clone.querySelector(".playlist-wrapper");
@@ -479,7 +477,7 @@ const fillListOnScroll = async () => {
 
 const playListInitializer = async () => {
   document.querySelectorAll(".playlist-container").forEach((l) => {
-    if (!l.classList.contains("exception")) {
+    if (!l.classList.contains("defualt-menu")) {
       l.remove();
     }
   });
@@ -495,11 +493,12 @@ const playListInitializer = async () => {
 
   listArray.forEach((list) => {
     if (list.name == FAV_SONGS) {
+      playList.favSongsItems=list;
       favPlaylistID = list.id;
       newPlayList[list.name] = list;
       for (index in newPlayList[list.name].songs) {
-        playList.favSongs = [
-          ...playList.favSongs,
+        playList.favSongsIndex = [
+          ...playList.favSongsIndex,
           newPlayList[list.name].songs[index].rest.id,
         ];
       }

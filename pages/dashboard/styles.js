@@ -95,6 +95,20 @@ layoutBtns.forEach((layout) => {
   });
 });
 
+const playListSectionLayoutFixer = () => {
+  gridViewLayout.checked = true;
+  songList.classList.remove("list-compact-view");
+  songList.classList.add("grid-view");
+  listLabel.classList.add("display-none");
+  listCompactLabel.classList.add("display-none");
+};
+
+
+const playListSectionLayoutReverser = () => {
+  listLabel.classList.remove("display-none");
+  listCompactLabel.classList.remove("display-none");
+};
+
 /*
 // Handle open/close lyrics-view
 */
@@ -254,18 +268,7 @@ mobileSongPreviewBackBtn.addEventListener("click", () => {
   mobileSongPreview.classList.add("display-none");
 });
 
-const playListSectionLayoutFixer = () => {
-  gridViewLayout.checked = true;
-  songList.classList.remove("list-compact-view");
-  songList.classList.add("grid-view");
-  listLabel.classList.add("display-none");
-  listCompactLabel.classList.add("display-none");
-};
 
-const playListSectionLayoutReverser = () => {
-  listLabel.classList.remove("display-none");
-  listCompactLabel.classList.remove("display-none");
-};
 
 const showNotification = (message) => {
   const alert = document.querySelector(".alert");
