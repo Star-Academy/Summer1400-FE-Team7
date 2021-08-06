@@ -20,14 +20,14 @@ sideMenuBtns.forEach((menu) => {
  
         allPlaylistFiller(array, sectionHeader, true);
       }
-      playListSectionLayoutFixer();
+      allowAllLayoutModes();
       document.querySelector(`.${MENU_SELECTED}`).classList.remove(MENU_SELECTED);
       menu.classList.add(MENU_SELECTED);
     });
   } else {
 
     menu.addEventListener("click", async () => {
-      playListSectionLayoutReverser();
+      allowOnlyGridModeLayout();
       if (!menu.classList.contains(MENU_SELECTED)) {
         let sectionHeader = menu.children[1].innerText;
         let sectionHeader2 = menu.children[1].innerText;

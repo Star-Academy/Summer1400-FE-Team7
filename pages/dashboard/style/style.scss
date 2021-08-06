@@ -64,7 +64,7 @@ main {
         > .search__icon {
           width: 40px;
           height: 50%;
-          background: url(../../assets/images/search.svg) no-repeat;
+          background: url(../../../assets/images/search.svg) no-repeat;
           background-position: center;
           background-size: contain;
 
@@ -301,7 +301,7 @@ main {
           transform: translateY(-50%);
           left: 0.5rem;
 
-          background: url(../../assets/images/more.svg) no-repeat;
+          background: url(../../../assets/images/more.svg) no-repeat;
           background-size: cover;
           background-position: center;
           display: none;
@@ -962,6 +962,10 @@ main {
         &:focus::after {
           width: 100%;
         }
+        &:focus {
+          background: $--selected-bg-blue;
+          color: $--selected-bg-blue;
+        }
 
         &::after {
           content: "";
@@ -978,7 +982,7 @@ main {
 }
 
 .dark-glass,
-.dark-glass2,
+.dark-background-2,
 .dark-glass3,
 .bg-cover {
   position: absolute;
@@ -989,7 +993,7 @@ main {
   z-index: 5;
 }
 
-.dark-glass2 {
+.dark-background-2 {
   animation: opacityAnimation 0.35s ease;
   @keyframes opacityAnimation {
     from {
@@ -1002,7 +1006,7 @@ main {
 }
 
 .dark-glass,
-.dark-glass2 {
+.dark-background-2 {
   background: $--bg-glass;
 }
 
@@ -1014,7 +1018,8 @@ main {
 .bg-cover {
   transition: background 1s ease;
 
-  background: url(../../assets/images/default-song-cover.svg) center no-repeat;
+  background: url(../../../assets/images/default-song-cover.svg) center
+    no-repeat;
   background-size: cover;
 }
 
@@ -1457,6 +1462,6 @@ main {
   background: #ff0000;
 }
 .alert .close-btn img {
-  margin-top: .6rem;
+  margin-top: 0.6rem;
   width: 24px;
 }

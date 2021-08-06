@@ -247,8 +247,8 @@ const musicChangeHandler = () => {
 
   mobilePreviewStartHandler();
 
-  hiddenTextMovingAnimation(mobileInfo[0], (window.innerWidth / 100) * 40);
-  hiddenTextMovingAnimation(mobileInfo[1], (window.innerWidth / 100) * 40);
+  movingTextAnimation(mobileInfo[0], (window.innerWidth / 100) * 40);
+  movingTextAnimation(mobileInfo[1], (window.innerWidth / 100) * 40);
 };
 
 const optionFiller = () => {
@@ -412,7 +412,7 @@ const allPlaylistFiller = (list, header) => {
         }
 
         songListFiller(array, playlist.name, true);
-        playListSectionLayoutReverser();
+        allowOnlyGridModeLayout();
       });
 
       deleteBtn.addEventListener("click", async () => {
