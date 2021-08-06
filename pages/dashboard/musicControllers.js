@@ -232,14 +232,24 @@ repeatBtn.forEach((btn) => {
     switch (repeatMode) {
       case repeatTypes.NO_REPEAT:
         repeatMode = repeatTypes.ONE_REPEAT;
+        btn.classList.add("active-btn");
+        btn.children[0].src = "../../assets/images/controls/repeat1.svg"
+
         break;
 
       case repeatTypes.ONE_REPEAT:
         repeatMode = repeatTypes.ALL_REPEAT;
+        btn.classList.add("active-btn");
+        btn.children[0].src = "../../assets/images/controls/repeat.svg"
+
         break;
 
       case repeatTypes.ALL_REPEAT:
         repeatMode = repeatTypes.NO_REPEAT;
+        btn.classList.remove("active-btn");
+        btn.children[0].src = "../../assets/images/controls/repeat.svg"
+
+
         break;
     }
   });
