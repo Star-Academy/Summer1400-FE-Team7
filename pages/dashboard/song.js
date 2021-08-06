@@ -356,6 +356,7 @@ const deleteFromPlaylist = (playListName, id) => {
 };
 
 const allPlaylistFiller = (list, header) => {
+  console.log(list);
   songListHeader.innerText = header;
 
   document.querySelectorAll(".song-wrapper").forEach((i) => {
@@ -368,24 +369,51 @@ const allPlaylistFiller = (list, header) => {
 
   if ("content" in document.createElement("template")) {
     list.forEach((playlist) => {
+      console.log(playlist);
       const template = document.querySelector("#all-playlist-list");
       const clone = template.content.cloneNode(true);
       const playListWrapper = clone.querySelector(".playlist-wrapper");
       const playListCover = clone.querySelector(".platlist-cover-img");
       const playListName = clone.querySelector("#playlist-name");
+      const deleteBtn = clone.querySelector(".playlist-options");
 
-      playListName.innerText = playlist;
-      if (newPlayList[playlist].length != 0) {
-        playListCover.src = newPlayList[playlist][0].cover;
+      playListName.innerText = playlist.name;
+      if (playlist.songs.length != 0) {
+        playListCover.src = playlist.songs[0].rest.cover;
       } else {
         playListCover.src = DEFUALT_SONG_COVER;
       }
+
+      playListWrapper.setAttribute("alldata-playlist-id", playlist.id);
 
       playListWrapper.addEventListener("click", () => {
         if (document.querySelector(".song-wrapper-selected") != undefined) {
           document.querySelector(".song-wrapper-selected").classList.remove("song-wrapper-selected");
         }
+
         playListWrapper.classList.add("song-wrapper-selected");
+        console.log(newPlayList[playlist.name]);
+        let array = [];
+        for (item in newPlayList[playlist.name].songs) {
+          array = [...array, newPlayList[playlist.name].songs[item].rest];
+        }
+
+        songListFiller(array, playlist.name, true);
+        playListSectionLayoutReverser();
+      });
+
+      deleteBtn.addEventListener("click", async () => {
+        const body = {
+          token: userToken,
+          id: playlist.id,
+        };
+
+        await fetchInterceptor(REMOVE_PLAYLIST_URI, METHOD_POST, JSON.stringify(body));
+        playListWrapper.remove();
+
+        document.querySelector(`[data-playlist-id = "${playlist.id}"]`).remove();
+
+        delete newPlayList[playlist.name];
       });
 
       songList.append(clone);

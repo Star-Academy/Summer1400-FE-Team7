@@ -10,8 +10,18 @@ sideMenuBtns.forEach((menu) => {
       if (!menu.classList.contains(MENU_SELECTED)) {
         let sectionHeader = menu.children[1].innerText;
         currentHeader = sectionHeader;
+        let array = [];
+
+        for (let item in newPlayList) {
+          if (item != FAV_SONGS && item != ALL_PLAYlISTS) {
+            array = [...array, newPlayList[item]];
+          }
+        }
+        console.log(newPlayList);
+
+        // console.log(newPlayList);
         // songListFiller(newPlayList[sectionHeader], sectionHeader);
-        allPlaylistFiller(newPlayList[sectionHeader], sectionHeader, true);
+        allPlaylistFiller(array, sectionHeader, true);
         // optionFiller();
       }
       playListSectionLayoutFixer();
@@ -85,6 +95,7 @@ const addNewPlaylist = (title) => {
   bWrapper.addEventListener("click", async () => {
     console.log("here3");
     currentPlaylistID = playListID;
+
     if (!bWrapper.classList.contains(MENU_SELECTED)) {
       const sectionHeader = bWrapper.children[1].innerText;
       let array = await fetchInterceptor(`${GET_ONE_PLAYLIST_URI}/${currentPlaylistID}`, METHOD_GET);
@@ -107,6 +118,7 @@ const addNewPlaylist = (title) => {
   deleteBtn.addEventListener("click", () => {
     removePlayListServer(playListID);
   });
+
   const profileBtn = document.querySelector(".profile-wrapper");
 
   sideMenu.insertBefore(div, profileBtn);
