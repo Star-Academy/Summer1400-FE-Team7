@@ -1,11 +1,10 @@
 const registerForm = document.querySelector(".signup-form");
 const registerBtn = document.querySelector("#register-btn");
-const emailRegister = document.querySelector("#signup-email-input");
-const passwordRegister = document.querySelector("#signup-password-input");
+const emailRegisterInput = document.querySelector("#signup-email-input");
+const passwordRegisterInput = document.querySelector("#signup-password-input");
 const emailRegisterInputWrapper = document.querySelector("#email-register-input-wrapper");
 const passwordRegisterInputWrapper = document.querySelector("#password-register-input-wrapper");
 const confirmPasswordRegisterInputWrapper = document.querySelector("#confirm-password-register-input-wrapper");
-
 const confirmPasswordRegister = document.querySelector("#signup-confirm-password-input");
 
 const loginForm = document.querySelector(".login-form");
@@ -16,20 +15,20 @@ const emailInputWrapper = document.querySelector("#email-login-input-wrapper");
 const passwordInputWrapper = document.querySelector("#password-login-input-wrapper");
 
 const ERROR_MSG = {
-  MSG_1: "ایمیل نمی‌تواند خالی باشد",
-  MSG_2: "ایمیل وارد شده معتبر نیست",
-  MSG_3: "رمزعبور نمی‌تواند خالی باشد",
-  MSG_4: "رمز عبور باید دارای حداقل ۸ کاراکتر،یک حرف و یک عدد باشد",
-  MSG_5: "تکرار رمزعبور نمی‌تواند خالی باشد",
-  MSG_6: "رمزعبور و تکرارش باید برابر باشند",
-  MSG_7: "کاربر دیگری با این ایمیل موجود می‌باشد",
-  MSG_8: "ثبت‌نام ناموفق ",
-  MSG_9: "ایمیل یا رمز عبور صحیح نمی باشد",
+  MSG_EMAIL_EMPTY: "ایمیل نمی‌تواند خالی باشد",
+  MSG_EMAIL_NOT_VALID: "ایمیل وارد شده معتبر نیست",
+  MSG_PASSWORD_EMPTY: "رمزعبور نمی‌تواند خالی باشد",
+  MSG_PASSWORD_NOT_VALID: "رمز عبور باید دارای حداقل ۵ کاراکتر،یک حرف و یک عدد باشد",
+  MSG_CONFIRM_PASSWORD_EPMTY: "تکرار رمزعبور نمی‌تواند خالی باشد",
+  MSG_PASSWORDS_NOT_MATCH: "رمزعبور و تکرارش باید برابر باشند",
+  MSG_USER_ALREADY_EXIST: "کاربر دیگری با این ایمیل موجود می‌باشد",
+  MSG_UNSUCCESSFUL_REGISTER: "ثبت‌نام ناموفق ",
+  MSG_UNSUCCESSFUL_LOGIN: "ایمیل یا رمز عبور صحیح نمی باشد",
 };
 
 const ERROR_TYPES = {
-  TYPE_1: "error",
-  TYPE_2: "warning",
+  TYPE_ERROR: "error",
+  TYPE_WARNING: "warning",
 };
 
 let isEmailRegisterValid = false;
@@ -39,7 +38,7 @@ let isPasswordLoginValid = false;
 let isFirstLoginSubmit = true;
 
 const validPassword = (password) => {
-  const passwordPattern = /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/;
+  const passwordPattern = /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{5,}$/;
   return passwordPattern.test(String(password).toLowerCase());
 };
 
@@ -48,66 +47,78 @@ const validateEmail = (email) => {
   return emailPattern.test(String(email).toLowerCase());
 };
 
+const errorGenerator = (element, erorText, errorType) => {
+  element.setAttribute("data-error", erorText);
+  element.classList.add(errorType);
+};
+
+const classRemover = (parent, className) => {
+  parent.classList.remove(className);
+};
+
+
+///Register Validations
+
 const checkRegisterEmail = () => {
   if (registerInputs.email == "") {
-    errorGenerator(emailRegisterInputWrapper, ERROR_MSG.MSG_1, ERROR_TYPES.TYPE_1);
+    errorGenerator(emailRegisterInputWrapper, ERROR_MSG.MSG_EMAIL_EMPTY, ERROR_TYPES.TYPE_ERROR);
     return false;
   } else if (!validateEmail(registerInputs.email)) {
-    errorGenerator(emailRegisterInputWrapper, ERROR_MSG.MSG_2, ERROR_TYPES.TYPE_1);
+    errorGenerator(emailRegisterInputWrapper, ERROR_MSG.MSG_EMAIL_NOT_VALID, ERROR_TYPES.TYPE_ERROR);
     return false;
   } else {
-    classRemover(emailRegisterInputWrapper, ERROR_TYPES.TYPE_1);
+    classRemover(emailRegisterInputWrapper, ERROR_TYPES.TYPE_ERROR);
     return true;
   }
 };
 
-emailRegister.addEventListener("input", () => {
-  if (emailRegister.value == "") {
-    errorGenerator(emailRegisterInputWrapper, ERROR_MSG.MSG_1, ERROR_TYPES.TYPE_2);
+emailRegisterInput.addEventListener("input", () => {
+  if (emailRegisterInput.value == "") {
+    errorGenerator(emailRegisterInputWrapper, ERROR_MSG.MSG_EMAIL_EMPTY, ERROR_TYPES.TYPE_WARNING);
     isEmailRegisterValid = false;
-  } else if (!validateEmail(emailRegister.value)) {
-    errorGenerator(emailRegisterInputWrapper, ERROR_MSG.MSG_2, ERROR_TYPES.TYPE_2);
+  } else if (!validateEmail(emailRegisterInput.value)) {
+    errorGenerator(emailRegisterInputWrapper, ERROR_MSG.MSG_EMAIL_NOT_VALID, ERROR_TYPES.TYPE_WARNING);
     isEmailRegisterValid = false;
   } else {
-    classRemover(emailRegisterInputWrapper, ERROR_TYPES.TYPE_1);
-    classRemover(emailRegisterInputWrapper, ERROR_TYPES.TYPE_2);
+    classRemover(emailRegisterInputWrapper, ERROR_TYPES.TYPE_ERROR);
+    classRemover(emailRegisterInputWrapper, ERROR_TYPES.TYPE_WARNING);
     isEmailRegisterValid = true;
   }
 });
 
-passwordRegister.addEventListener("input", () => {
-  if (passwordRegister.value == "") {
-    errorGenerator(passwordRegisterInputWrapper, ERROR_MSG.MSG_3, ERROR_TYPES.TYPE_2);
+passwordRegisterInput.addEventListener("input", () => {
+  if (passwordRegisterInput.value == "") {
+    errorGenerator(passwordRegisterInputWrapper, ERROR_MSG.MSG_PASSWORD_EMPTY, ERROR_TYPES.TYPE_WARNING);
     isPasswordRegisterValid = false;
-  } else if (!validPassword(passwordRegister.value)) {
-    errorGenerator(passwordRegisterInputWrapper, ERROR_MSG.MSG_4, ERROR_TYPES.TYPE_2);
+  } else if (!validPassword(passwordRegisterInput.value)) {
+    errorGenerator(passwordRegisterInputWrapper, ERROR_MSG.MSG_PASSWORD_NOT_VALID, ERROR_TYPES.TYPE_WARNING);
     isPasswordRegisterValid = false;
   } else {
-    classRemover(passwordRegisterInputWrapper, ERROR_TYPES.TYPE_1);
-    classRemover(passwordRegisterInputWrapper, ERROR_TYPES.TYPE_2);
+    classRemover(passwordRegisterInputWrapper, ERROR_TYPES.TYPE_ERROR);
+    classRemover(passwordRegisterInputWrapper, ERROR_TYPES.TYPE_WARNING);
     isPasswordRegisterValid = true;
   }
 });
 
 const checkRegisterPassword = () => {
-  if (passwordRegister.value == "") {
-    errorGenerator(passwordRegisterInputWrapper, ERROR_MSG.MSG_3, ERROR_TYPES.TYPE_1);
+  if (passwordRegisterInput.value == "") {
+    errorGenerator(passwordRegisterInputWrapper, ERROR_MSG.MSG_PASSWORD_EMPTY, ERROR_TYPES.TYPE_ERROR);
     return false;
-  } else if (!validPassword(passwordRegister.value)) {
-    errorGenerator(passwordRegisterInputWrapper, ERROR_MSG.MSG_4, ERROR_TYPES.TYPE_1);
+  } else if (!validPassword(passwordRegisterInput.value)) {
+    errorGenerator(passwordRegisterInputWrapper, ERROR_MSG.MSG_PASSWORD_NOT_VALID, ERROR_TYPES.TYPE_ERROR);
     return false;
   } else {
-    classRemover(passwordRegisterInputWrapper, ERROR_TYPES.TYPE_1);
+    classRemover(passwordRegisterInputWrapper, ERROR_TYPES.TYPE_ERROR);
     return true;
   }
 };
 
 const checkRegisterConfirmPassword = () => {
   if (registerInputs.confirmPassword == "") {
-    errorGenerator(confirmPasswordRegisterInputWrapper, ERROR_MSG.MSG_5, ERROR_TYPES.TYPE_1);
+    errorGenerator(confirmPasswordRegisterInputWrapper, ERROR_MSG.MSG_CONFIRM_PASSWORD_EPMTY, ERROR_TYPES.TYPE_ERROR);
     return false;
   } else {
-    classRemover(confirmPasswordRegisterInputWrapper, ERROR_TYPES.TYPE_1);
+    classRemover(confirmPasswordRegisterInputWrapper, ERROR_TYPES.TYPE_ERROR);
     return true;
   }
 };
@@ -117,32 +128,34 @@ const checkMatchPasswordAndConfirmPassword = () => {
   console.log(registerInputs.confirmPassword);
   if (registerInputs.password != registerInputs.confirmPassword) {
     result = false;
-    errorGenerator(confirmPasswordRegisterInputWrapper, ERROR_MSG.MSG_6, ERROR_TYPES.TYPE_1);
+    errorGenerator(confirmPasswordRegisterInputWrapper, ERROR_MSG.MSG_PASSWORDS_NOT_MATCH, ERROR_TYPES.TYPE_ERROR);
     return false;
   } else {
-    classRemover(confirmPasswordRegisterInputWrapper, ERROR_TYPES.TYPE_1);
+    classRemover(confirmPasswordRegisterInputWrapper, ERROR_TYPES.TYPE_ERROR);
     return true;
   }
 };
 
 const resetRegisterForm = () => {
-  classRemover(registerBtn, ERROR_TYPES.TYPE_1);
-  classRemover(emailRegisterInputWrapper, ERROR_TYPES.TYPE_1);
-  emailRegister.value = "";
-  passwordRegister.value = "";
+  classRemover(registerBtn, ERROR_TYPES.TYPE_ERROR);
+  classRemover(emailRegisterInputWrapper, ERROR_TYPES.TYPE_ERROR);
+  emailRegisterInput.value = "";
+  passwordRegisterInput.value = "";
   confirmPasswordRegister.value = "";
 };
 
+
+///Login Validations
 const checkLoginEmail = () => {
   if (emailLoginInput.value == "") {
-    errorGenerator(emailInputWrapper, ERROR_MSG.MSG_1, ERROR_TYPES.TYPE_1);
+    errorGenerator(emailInputWrapper, ERROR_MSG.MSG_EMAIL_EMPTY, ERROR_TYPES.TYPE_ERROR);
     return false;
   } else if (!validateEmail(emailLoginInput.value)) {
-    errorGenerator(emailInputWrapper, ERROR_MSG.MSG_2, ERROR_TYPES.TYPE_1);
+    errorGenerator(emailInputWrapper, ERROR_MSG.MSG_EMAIL_NOT_VALID, ERROR_TYPES.TYPE_ERROR);
 
     return false;
   } else {
-    classRemover(emailInputWrapper, ERROR_TYPES.TYPE_1);
+    classRemover(emailInputWrapper, ERROR_TYPES.TYPE_ERROR);
     return true;
   }
 };
@@ -150,48 +163,41 @@ const checkLoginEmail = () => {
 emailLoginInput.addEventListener("input", () => {
   if (emailLoginInput.value == "") {
     isEmailLoginValid = false;
-    errorGenerator(emailInputWrapper, ERROR_MSG.MSG_1, ERROR_TYPES.TYPE_2);
+    errorGenerator(emailInputWrapper, ERROR_MSG.MSG_EMAIL_EMPTY, ERROR_TYPES.TYPE_WARNING);
   } else if (!validateEmail(emailLoginInput.value)) {
-    errorGenerator(emailInputWrapper, ERROR_MSG.MSG_2, ERROR_TYPES.TYPE_2);
+    errorGenerator(emailInputWrapper, ERROR_MSG.MSG_EMAIL_NOT_VALID, ERROR_TYPES.TYPE_WARNING);
     isEmailLoginValid = false;
   } else {
-    classRemover(emailInputWrapper, ERROR_TYPES.TYPE_1);
-    classRemover(emailInputWrapper, ERROR_TYPES.TYPE_2);
+    classRemover(emailInputWrapper, ERROR_TYPES.TYPE_ERROR);
+    classRemover(emailInputWrapper, ERROR_TYPES.TYPE_WARNING);
     isEmailLoginValid = true;
   }
 });
 
 const checkLoginPasswords = () => {
   if (passwordLoginInput.value == "") {
-    errorGenerator(passwordInputWrapper, ERROR_MSG.MSG_3, ERROR_TYPES.TYPE_1);
+    errorGenerator(passwordInputWrapper, ERROR_MSG.MSG_PASSWORD_EMPTY, ERROR_TYPES.TYPE_ERROR);
     return false;
   } else {
-    classRemover(passwordInputWrapper, ERROR_TYPES.TYPE_1);
+    classRemover(passwordInputWrapper, ERROR_TYPES.TYPE_ERROR);
     return true;
   }
 };
 
 passwordLoginInput.addEventListener("input", () => {
   if (passwordLoginInput.value == "") {
-    errorGenerator(passwordInputWrapper, ERROR_MSG.MSG_3, ERROR_TYPES.TYPE_2);
+    errorGenerator(passwordInputWrapper, ERROR_MSG.MSG_PASSWORD_EMPTY, ERROR_TYPES.TYPE_WARNING);
     isPasswordLoginValid = false;
   } else {
-    classRemover(passwordInputWrapper, ERROR_TYPES.TYPE_2);
+    classRemover(passwordInputWrapper, ERROR_TYPES.TYPE_WARNING);
     isPasswordLoginValid = true;
   }
 });
 
 const resetLoginForm = () => {
-  classRemover(loginBtn, ERROR_TYPES.TYPE_1);
+  classRemover(loginBtn, ERROR_TYPES.TYPE_ERROR);
   emailLoginInput.value = "";
   passwordLoginInput.value = "";
 };
 
-const errorGenerator = (element, erorText, errotType) => {
-  element.setAttribute("data-error", erorText);
-  element.classList.add(errotType);
-};
 
-const classRemover = (parent, className) => {
-  parent.classList.remove(className);
-};

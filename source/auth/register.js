@@ -3,39 +3,52 @@ const registerInputs = {
   password: "",
   confirmPassword: "",
 };
-
-const performRegister = async () => {
-  registerInputs.email = emailRegister.value;
-  registerInputs.password = passwordRegister.value;
-  registerInputs.confirmPassword = confirmPasswordRegister.value;
-
+const isRegisterFormValid = () => {
   if (!checkRegisterEmail()) return false;
   if (!checkRegisterPassword()) return false;
   if (!checkRegisterConfirmPassword()) return false;
   if (!checkMatchPasswordAndConfirmPassword()) return false;
-
   if (!isEmailRegisterValid) return false;
   if (!isPasswordRegisterValid) return false;
+  return true;
+};
 
+const performRegister = async () => {
+  registerInputs.email = emailRegisterInput.value;
+  registerInputs.password = passwordRegisterInput.value;
+  registerInputs.confirmPassword = confirmPasswordRegister.value;
   registerInputs.username = registerInputs.email.split("@")[0];
 
+  if (!isRegisterFormValid) return false;
+
   const body = JSON.stringify(registerInputs);
-
   let response = await fetchInterceptor(USER_REGISTER_URI, METHOD_POST, body);
-
+  const responseBody = await response.json();
   if (response.ok) {
-    const responseBody = await response.json();
-
-    initializeNewUser(registerInputs.email, responseBody.id, responseBody.token);
+    initializeNewUser(
+      registerInputs.email,
+      responseBody.id,
+      responseBody.token
+    );
     resetRegisterForm();
+    //* we create a favorite playlist for each user by default*/
     await createFavouritePlayList(responseBody.token);
-
-    window.location.href = "../../pages/dashboard/index.html";
+    window.location.href = DASHBOARD_URL;
   } else {
     if (response.status == 400) {
-      errorGenerator(emailRegisterInputWrapper, ERROR_MSG.MSG_7, ERROR_TYPES.TYPE_1);
+      errorGenerator(
+        emailRegisterInputWrapper,
+        ERROR_MSG.MSG_USER_ALREADY_EXIST,
+        ERROR_TYPES.TYPE_ERROR
+      );
     } else if (response.status == 500) {
-      errorGenerator(registerBtn, ERROR_MSG.MSG_8, ERROR_TYPES.TYPE_1);
+      errorGenerator(
+        registerBtn,
+        ERROR_MSG.MSG_UNSUCCESSFUL_REGISTER,
+        ERROR_TYPES.TYPE_ERROR
+      );
+    } else {
+      errorGenerator(registerBtn, responseBody.message, ERROR_TYPES.TYPE_ERROR);
     }
   }
 };
@@ -51,12 +64,9 @@ const createFavouritePlayList = async (token) => {
     name: "مورد علاقه",
   });
 
-  const response = await fetchInterceptor(CREATE_PLAYLIST_URI, METHOD_POST, body);
-  console.log(await response.json());
-};
-
-const initializeNewUser = (email, token, id) => {
-  localStorage.setItem("email", email);
-  localStorage.setItem("id", token);
-  localStorage.setItem("token", id);
+  await fetchInterceptor(
+    CREATE_PLAYLIST_URI,
+    METHOD_POST,
+    body
+  );
 };
