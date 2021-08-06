@@ -10,22 +10,22 @@ sideMenuBtns.forEach((menu) => {
         let sectionHeader = menu.children[1].innerText;
         currentHeader = sectionHeader;
         let array = [];
-        
 
         for (let item in newPlayList) {
           if (item != FAV_SONGS && item != ALL_PLAYlISTS) {
             array = [...array, newPlayList[item]];
           }
         }
- 
+
         allPlaylistFiller(array, sectionHeader, true);
       }
       allowAllLayoutModes();
-      document.querySelector(`.${MENU_SELECTED}`).classList.remove(MENU_SELECTED);
+      document
+        .querySelector(`.${MENU_SELECTED}`)
+        .classList.remove(MENU_SELECTED);
       menu.classList.add(MENU_SELECTED);
     });
   } else {
-
     menu.addEventListener("click", async () => {
       allowOnlyGridModeLayout();
       if (!menu.classList.contains(MENU_SELECTED)) {
@@ -40,19 +40,24 @@ sideMenuBtns.forEach((menu) => {
           sectionHeader = "allSongs";
           array = playList[sectionHeader];
         } else if (sectionHeader == FAV_SONGS) {
-          array = await fetchInterceptor(`${GET_ONE_PLAYLIST_URI}/${favPlaylistID}`, METHOD_GET);
+          array = await fetchInterceptor(
+            `${GET_ONE_PLAYLIST_URI}/${favPlaylistID}`,
+            METHOD_GET
+          );
           array = await array.json();
           array = array.songs;
-          playList.favSongsItems=[array];          
+          playList.favSongsItems = [array];
           sectionHeader = "favSongs";
         } else {
         }
 
         songListFiller(array, sectionHeader2, true);
-        optionFiller();
+        addToPlaylistMenuItemGenetor();
       }
 
-      document.querySelector(`.${MENU_SELECTED}`).classList.remove(MENU_SELECTED);
+      document
+        .querySelector(`.${MENU_SELECTED}`)
+        .classList.remove(MENU_SELECTED);
       menu.classList.add(MENU_SELECTED);
     });
   }
@@ -94,7 +99,10 @@ const addNewPlaylist = (title) => {
 
     if (!bWrapper.classList.contains(MENU_SELECTED)) {
       const sectionHeader = bWrapper.children[1].innerText;
-      let array = await fetchInterceptor(`${GET_ONE_PLAYLIST_URI}/${currentPlaylistID}`, METHOD_GET);
+      let array = await fetchInterceptor(
+        `${GET_ONE_PLAYLIST_URI}/${currentPlaylistID}`,
+        METHOD_GET
+      );
       array = await array.json();
 
       // for (index in newPlayList[sectionHeader].songs) {
@@ -160,7 +168,10 @@ mobileNav.forEach((tab) => {
         break;
 
       case FAV_SONGS:
-        let  favSongs = await fetchInterceptor(`${GET_ONE_PLAYLIST_URI}/${favPlaylistID}`, METHOD_GET);
+        let favSongs = await fetchInterceptor(
+          `${GET_ONE_PLAYLIST_URI}/${favPlaylistID}`,
+          METHOD_GET
+        );
         favSongs = await favSongs.json();
         favSongs = favSongs.songs;
         songListFiller(favSongs, sectionName, true);
@@ -174,7 +185,6 @@ mobileNav.forEach((tab) => {
             array = [...array, newPlayList[item]];
           }
         }
-
 
         allPlaylistFiller(array, sectionName, true);
         break;

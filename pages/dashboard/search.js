@@ -30,7 +30,7 @@ const search = async () => {
     songListFiller(songs, SEARCH_SONGS, true);
     isLoading = false;
     placeholderOmmiter();
-    optionFiller();
+    addToPlaylistMenuItemGenetor();
   } else {
     playList.searchSongs = [];
     songListFiller(playList.allSongs, ALL_SONGS, true);

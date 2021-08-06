@@ -31,7 +31,7 @@ const mobileSongPreviewBackBtn = document.querySelector(
   ".mobile-song-preview-return"
 );
 
-const songList = document.querySelector(".song-list");
+const songListLayout = document.querySelector(".song-list");
 const bgCover = document.querySelector(".bg-cover");
 const bgDarkForAddPlaylistModal = document.querySelector(".dark-background-2");
 const addPlayListBtn = document.querySelector(".add-btn");
@@ -76,7 +76,7 @@ const LIKED_IMG = "../../../assets/images/liked.svg";
 */
 sideMenuOpener.addEventListener("click", () => {
   sideMenu.classList.toggle(SIDE_MENU_CLOSED);
-  songList.classList.toggle(SIDE_MENU_OPEND);
+  songListLayout.classList.toggle(SIDE_MENU_OPEND);
 });
 
 /*
@@ -86,18 +86,18 @@ layoutBtns.forEach((layout) => {
   layout.addEventListener("change", (event) => {
     switch (event.target.id) {
       case LIST_VIEW_COMPACT:
-        songList.classList.remove(GRID_VIEW);
-        songList.classList.add(LIST_VIEW_COMPACT);
+        songListLayout.classList.remove(GRID_VIEW);
+        songListLayout.classList.add(LIST_VIEW_COMPACT);
         break;
 
       case GRID_VIEW:
-        songList.classList.remove(LIST_VIEW_COMPACT);
-        songList.classList.add(GRID_VIEW);
+        songListLayout.classList.remove(LIST_VIEW_COMPACT);
+        songListLayout.classList.add(GRID_VIEW);
         break;
 
       default:
-        songList.classList.remove(GRID_VIEW);
-        songList.classList.remove(LIST_VIEW_COMPACT);
+        songListLayout.classList.remove(GRID_VIEW);
+        songListLayout.classList.remove(LIST_VIEW_COMPACT);
         break;
     }
   });
@@ -110,8 +110,8 @@ const allowOnlyGridModeLayout = () => {
 
 const allowAllLayoutModes = () => {
   gridViewLayout.checked = true;
-  songList.classList.remove("list-compact-view");
-  songList.classList.add("grid-view");
+  songListLayout.classList.remove("list-compact-view");
+  songListLayout.classList.add("grid-view");
   listLabel.classList.add("display-none");
   listCompactLabel.classList.add("display-none");
 };
@@ -120,8 +120,8 @@ const allowAllLayoutModes = () => {
 // Delete song-list compact-list mode in mobile size
 */
 const disableCompactListLayoutMode = () => {
-  if (songList.classList.contains(LIST_VIEW_COMPACT)) {
-    songList.classList.remove(LIST_VIEW_COMPACT);
+  if (songListLayout.classList.contains(LIST_VIEW_COMPACT)) {
+    songListLayout.classList.remove(LIST_VIEW_COMPACT);
     listViewLayout.checked = true;
   }
 };
@@ -201,7 +201,7 @@ makePlayListBtn.addEventListener("click", async () => {
 
   bgDarkForAddPlaylistModal.classList.add("display-none");
   addPlayListWrapper.classList.add("display-none");
-  optionFiller();
+  addToPlaylistMenuItemGenetor();
   createNewPlaylistInput.value = "";
 
   await createPlayListServer(title);
@@ -222,7 +222,7 @@ pofileWrapper.addEventListener("click", () => {
 mobileInfo[0].addEventListener("click", () => {
   darkGlassMobilePreview.classList.remove("display-none");
   mobileSongPreview.classList.remove("display-none");
-  mobilePreviewStartHandler();
+  mobileFullScreenViewStartHandler();
 });
 
 mobileSongPreviewBackBtn.addEventListener("click", () => {
@@ -230,19 +230,3 @@ mobileSongPreviewBackBtn.addEventListener("click", () => {
   mobileSongPreview.classList.add("display-none");
 });
 
-const showNotification = (message) => {
-  const alert = document.querySelector(".alert");
-  const closeBtn = document.querySelector(".close-btn");
-  alert.children[0].innerText = message;
-  alert.classList.add("show");
-  alert.classList.remove("hide");
-  alert.classList.add("showAlert");
-  setTimeout(() => {
-    alert.classList.remove("show");
-    alert.classList.add("hide");
-  }, 3000);
-  closeBtn.addEventListener("click", () => {
-    alert.classList.remove("show");
-    alert.classList.add("hide");
-  });
-};
