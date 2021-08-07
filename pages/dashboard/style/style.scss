@@ -238,13 +238,11 @@ main {
             display: none;
 
             + label > img {
-              filter: invert(0%) sepia(0%) saturate(0%) hue-rotate(0deg)
-                brightness(0%) contrast(0%);
+              filter: invert(0%) sepia(0%) saturate(0%) hue-rotate(0deg) brightness(0%) contrast(0%);
             }
 
             &:checked + label > img {
-              filter: invert(39%) sepia(96%) saturate(903%) hue-rotate(184deg)
-                brightness(86%) contrast(97%);
+              filter: invert(39%) sepia(96%) saturate(903%) hue-rotate(184deg) brightness(86%) contrast(97%);
             }
           }
 
@@ -365,12 +363,12 @@ main {
           margin-right: 0.5rem;
 
           > p:first-child {
-            font-size: 0.8rem;
+            font-size: 0.85rem;
           }
 
           > p:last-child {
             color: $--clr-grayish;
-            font-size: 0.7rem;
+            font-size: 0.75rem;
           }
 
           > .author-name-selected {
@@ -424,11 +422,7 @@ main {
         gap: 0.25rem;
 
         * {
-          background: linear-gradient(
-            var(--placeholder-rotation),
-            $--bg-mellow-black,
-            $--selected-bg-blue
-          );
+          background: linear-gradient(var(--placeholder-rotation), $--bg-mellow-black, $--selected-bg-blue);
         }
 
         > .place-holders {
@@ -763,8 +757,7 @@ main {
       }
 
       .lyric-btn-active {
-        filter: invert(39%) sepia(96%) saturate(903%) hue-rotate(184deg)
-          brightness(86%) contrast(97%);
+        filter: invert(39%) sepia(96%) saturate(903%) hue-rotate(184deg) brightness(86%) contrast(97%);
       }
     }
   }
@@ -867,15 +860,13 @@ main {
           height: 100%;
 
           &:active {
-            filter: invert(39%) sepia(96%) saturate(903%) hue-rotate(184deg)
-              brightness(86%) contrast(97%);
+            filter: invert(39%) sepia(96%) saturate(903%) hue-rotate(184deg) brightness(86%) contrast(97%);
           }
         }
       }
 
       > .lyric-btn-active {
-        filter: invert(39%) sepia(96%) saturate(903%) hue-rotate(184deg)
-          brightness(86%) contrast(97%);
+        filter: invert(39%) sepia(96%) saturate(903%) hue-rotate(184deg) brightness(86%) contrast(97%);
       }
 
       > .mobile-info {
@@ -887,13 +878,7 @@ main {
         // gap: 2rem;
 
         overflow: hidden;
-        -webkit-mask: linear-gradient(
-          to right,
-          transparent 0%,
-          rgb(0, 0, 0) 10px,
-          rgb(0, 0, 0) calc(100% - 10px),
-          transparent 100%
-        );
+        -webkit-mask: linear-gradient(to right, transparent 0%, rgb(0, 0, 0) 10px, rgb(0, 0, 0) calc(100% - 10px), transparent 100%);
 
         > p {
           font-size: 0.7rem;
@@ -1019,25 +1004,21 @@ main {
 .bg-cover {
   transition: background 1s ease;
 
-  background: url(../../../assets/images/default-song-cover.svg) center
-    no-repeat;
+  background: url(../../../assets/images/default-song-cover.svg) center no-repeat;
   background-size: cover;
 }
 
 .active-btn {
-  filter: invert(39%) sepia(96%) saturate(903%) hue-rotate(184deg)
-   brightness(86%) contrast(97%) !important;
+  filter: invert(39%) sepia(96%) saturate(903%) hue-rotate(184deg) brightness(86%) contrast(97%) !important;
 }
 
 .ctl-btn {
   position: relative;
 
   > img:hover {
-    filter: invert(39%) sepia(96%) saturate(903%) hue-rotate(184deg)
-      brightness(86%) contrast(97%);
+    filter: invert(39%) sepia(96%) saturate(903%) hue-rotate(184deg) brightness(86%) contrast(97%);
   }
 
- 
   &:hover::after {
     transition: opacity 0.2s ease;
     transition-delay: 0.5s;
@@ -1323,7 +1304,7 @@ main {
       height: 2rem;
       > img {
         width: 100% !important;
-        height:auto;
+        height: auto;
       }
     }
   }
@@ -1342,13 +1323,7 @@ main {
     // gap: 2rem;
 
     overflow: hidden;
-    -webkit-mask: linear-gradient(
-      to right,
-      transparent 0%,
-      rgb(0, 0, 0) 10px,
-      rgb(0, 0, 0) calc(100% - 10px),
-      transparent 100%
-    );
+    -webkit-mask: linear-gradient(to right, transparent 0%, rgb(0, 0, 0) 10px, rgb(0, 0, 0) calc(100% - 10px), transparent 100%);
 
     > p {
       font-size: 0.7rem;
@@ -1419,8 +1394,6 @@ main {
 .alert.success {
   border-left: 8px solid #00a800 !important;
   background: #006400;
-
-
 }
 .alert.success .close-btn {
   position: absolute;
