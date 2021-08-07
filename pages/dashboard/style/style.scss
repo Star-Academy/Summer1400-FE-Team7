@@ -995,6 +995,7 @@ main {
 
 .dark-background-2 {
   animation: opacityAnimation 0.35s ease;
+  z-index: 100;
   @keyframes opacityAnimation {
     from {
       opacity: 0;

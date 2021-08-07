@@ -1252,6 +1252,7 @@ main .mobile-navigation > .tab-navigation > button::after {
 .dark-background-2 {
   -webkit-animation: opacityAnimation 0.35s ease;
           animation: opacityAnimation 0.35s ease;
+  z-index: 100;
 }
 
 @-webkit-keyframes opacityAnimation {

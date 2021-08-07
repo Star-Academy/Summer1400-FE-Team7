@@ -51,4 +51,3 @@ const initializeNewUser = (email, token, id) => {
   localStorage.setItem("token", id);
 };
 
-//TODO: remember me and forget password

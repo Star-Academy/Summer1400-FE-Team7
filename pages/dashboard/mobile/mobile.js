@@ -83,7 +83,7 @@ mobileFavBtn.addEventListener("click", () => {
 
   if (!playList.favSongsIndex.includes(song)) {
     playList.favSongsIndex = [...playList.favSongsIndex, song.id];
-    addToPlayListServer(favPlaylistID, song.id);
+    addToPlayListServer(favPlaylistID, song.id,true);
   } else {
     removeFromPlayListServer(song.id, favPlaylistID);
     playList.favSongsIndex = playList.favSongsIndex.filter(function (item) {

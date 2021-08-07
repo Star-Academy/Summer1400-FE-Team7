@@ -70,7 +70,7 @@ const songListFiller = (list, header, remove) => {
           favIcon.style.transform = "scale(1)";
           if (!playList.favSongsIndex.includes(song.id)) {
             playList.favSongsIndex = [...playList.favSongsIndex, song.id];
-            addToPlayListServer(favPlaylistID, song.id);
+            addToPlayListServer(favPlaylistID, song.id,true);
           } else {
             playList.favSongsIndex = playList.favSongsIndex.filter(function (item) {
               return item !== song.id;
