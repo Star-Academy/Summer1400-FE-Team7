@@ -22,11 +22,7 @@ const addToPlaylistMenuItemGenetor = () => {
         li.innerText = list;
         ul.appendChild(li);
         li.addEventListener("click", () => {
-          addToPlayListServer(
-            newPlayList[li.innerText].id,
-            option.getAttribute("data-id"),
-            false
-          );
+          addToPlayListServer(newPlayList[li.innerText].id, option.getAttribute("data-id"), false);
         });
       }
       option.appendChild(p);
@@ -79,22 +75,13 @@ const addToPlayListServer = async (playlistId, songId, isFavorite) => {
     songId,
   });
 
-  const response = await fetchInterceptor(
-    ADD_SONG_PLAYLIST_URI,
-    METHOD_POST,
-    body
-  );
+  const response = await fetchInterceptor(ADD_SONG_PLAYLIST_URI, METHOD_POST, body);
 
   if (!isFavorite) {
     if (response.ok) {
-      showNotification(
-        notificationMessages.MSG_ADDED_TO_PLAYLIST,
-        notificationType.SUCCESS
-      );
+      showNotification(notificationMessages.MSG_ADDED_TO_PLAYLIST, notificationType.SUCCESS);
     } else {
-      showNotification(
-        notificationMessages.MSG_SONG_ALREADY_EXISTS_IN_PLAYLIST
-      );
+      showNotification(notificationMessages.MSG_SONG_ALREADY_EXISTS_IN_PLAYLIST);
     }
   }
 };
@@ -130,13 +117,10 @@ const allPlaylistFiller = (list, header) => {
 
       playListWrapper.addEventListener("click", () => {
         if (document.querySelector(".song-wrapper-selected") != undefined) {
-          document
-            .querySelector(".song-wrapper-selected")
-            .classList.remove("song-wrapper-selected");
+          document.querySelector(".song-wrapper-selected").classList.remove("song-wrapper-selected");
         }
 
         playListWrapper.classList.add("song-wrapper-selected");
-        console.log(newPlayList[playlist.name]);
         let array = [];
         for (item in newPlayList[playlist.name].songs) {
           array = [...array, newPlayList[playlist.name].songs[item].rest];
@@ -152,16 +136,10 @@ const allPlaylistFiller = (list, header) => {
           id: playlist.id,
         };
 
-        await fetchInterceptor(
-          REMOVE_PLAYLIST_URI,
-          METHOD_POST,
-          JSON.stringify(body)
-        );
+        await fetchInterceptor(REMOVE_PLAYLIST_URI, METHOD_POST, JSON.stringify(body));
         playListWrapper.remove();
 
-        document
-          .querySelector(`[data-playlist-id = "${playlist.id}"]`)
-          .remove();
+        document.querySelector(`[data-playlist-id = "${playlist.id}"]`).remove();
 
         delete newPlayList[playlist.name];
       });
@@ -179,11 +157,7 @@ const playListInitializer = async () => {
   });
 
   const body = JSON.stringify({ token: userToken });
-  const response = await fetchInterceptor(
-    RETRIEVE_PLAYLIST_URI,
-    METHOD_POST,
-    body
-  );
+  const response = await fetchInterceptor(RETRIEVE_PLAYLIST_URI, METHOD_POST, body);
 
   const listArray = await response.json();
 
@@ -193,10 +167,7 @@ const playListInitializer = async () => {
       favPlaylistID = list.id;
       newPlayList[list.name] = list;
       for (index in newPlayList[list.name].songs) {
-        playList.favSongsIndex = [
-          ...playList.favSongsIndex,
-          newPlayList[list.name].songs[index].rest.id,
-        ];
+        playList.favSongsIndex = [...playList.favSongsIndex, newPlayList[list.name].songs[index].rest.id];
       }
       return;
     }
@@ -225,16 +196,9 @@ const createPlayListServer = async (name) => {
   }
 
   if (!alreadyExists) {
-    const response = await fetchInterceptor(
-      CREATE_PLAYLIST_URI,
-      METHOD_POST,
-      JSON.stringify(body)
-    );
+    const response = await fetchInterceptor(CREATE_PLAYLIST_URI, METHOD_POST, JSON.stringify(body));
     if (response.ok) {
-      showNotification(
-        notificationMessages.MSG_NEW_PLALIST_CREATED,
-        notificationType.SUCCESS
-      );
+      showNotification(notificationMessages.MSG_NEW_PLALIST_CREATED, notificationType.SUCCESS);
     }
   } else {
     showNotification(notificationMessages.MSG_PLAYLIST_NAME_ALREADY_EXISTS);
@@ -248,23 +212,16 @@ const removePlayListServer = async (id) => {
     id: id,
   };
 
-  const response = await fetchInterceptor(
-    REMOVE_PLAYLIST_URI,
-    METHOD_POST,
-    JSON.stringify(body)
-  );
+  const response = await fetchInterceptor(REMOVE_PLAYLIST_URI, METHOD_POST, JSON.stringify(body));
   if (response.ok) {
-    showNotification(
-      notificationMessages.MSG_PLAYLIST_DELETED,
-      notificationType.SUCCESS
-    );
+    showNotification(notificationMessages.MSG_PLAYLIST_DELETED, notificationType.SUCCESS);
   } else {
     showNotification(notificationMessages.MSG_ERROR);
   }
   const removedPlaylist = document.querySelector(`[data-playlist-id="${id}"]`);
   const playListName = removedPlaylist.children[0].children[1].innerText;
 
-  document.querySelector(`[data-playlist-id="${id}"]`).remove()
+  document.querySelector(`[data-playlist-id="${id}"]`).remove();
   removedPlaylist.remove();
   delete newPlayList[playListName];
 

@@ -56,7 +56,6 @@ const classRemover = (parent, className) => {
   parent.classList.remove(className);
 };
 
-
 ///Register Validations
 
 const checkRegisterEmail = () => {
@@ -124,8 +123,6 @@ const checkRegisterConfirmPassword = () => {
 };
 
 const checkMatchPasswordAndConfirmPassword = () => {
-  console.log(registerInputs.password);
-  console.log(registerInputs.confirmPassword);
   if (registerInputs.password != registerInputs.confirmPassword) {
     result = false;
     errorGenerator(confirmPasswordRegisterInputWrapper, ERROR_MSG.MSG_PASSWORDS_NOT_MATCH, ERROR_TYPES.TYPE_ERROR);
@@ -143,7 +140,6 @@ const resetRegisterForm = () => {
   passwordRegisterInput.value = "";
   confirmPasswordRegister.value = "";
 };
-
 
 ///Login Validations
 const checkLoginEmail = () => {
@@ -199,5 +195,3 @@ const resetLoginForm = () => {
   emailLoginInput.value = "";
   passwordLoginInput.value = "";
 };
-
-

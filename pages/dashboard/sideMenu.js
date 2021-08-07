@@ -3,8 +3,6 @@ const MENU_SELECTED = "menu-selected";
 const PLAYLIST_CONTAINER = "playlist-container";
 const playlistContainer = document.querySelector(".playlist-container");
 
-
-//email text in side menu
 userEmail.innerText = localStorage.getItem("email");
 sideMenuBtns.forEach((menu) => {
   if (menu.classList.contains("defualt-menu")) {
@@ -23,9 +21,7 @@ sideMenuBtns.forEach((menu) => {
         allPlaylistFiller(array, sectionHeader, true);
       }
       allowAllLayoutModes();
-      document
-        .querySelector(`.${MENU_SELECTED}`)
-        .classList.remove(MENU_SELECTED);
+      document.querySelector(`.${MENU_SELECTED}`).classList.remove(MENU_SELECTED);
       menu.classList.add(MENU_SELECTED);
     });
   } else {
@@ -43,10 +39,7 @@ sideMenuBtns.forEach((menu) => {
           sectionHeader = "allSongs";
           array = playList[sectionHeader];
         } else if (sectionHeader == FAV_SONGS) {
-          array = await fetchInterceptor(
-            `${GET_ONE_PLAYLIST_URI}/${favPlaylistID}`,
-            METHOD_GET
-          );
+          array = await fetchInterceptor(`${GET_ONE_PLAYLIST_URI}/${favPlaylistID}`, METHOD_GET);
           array = await array.json();
           array = array.songs;
           playList.favSongsItems = [array];
@@ -58,9 +51,7 @@ sideMenuBtns.forEach((menu) => {
         addToPlaylistMenuItemGenetor();
       }
 
-      document
-        .querySelector(`.${MENU_SELECTED}`)
-        .classList.remove(MENU_SELECTED);
+      document.querySelector(`.${MENU_SELECTED}`).classList.remove(MENU_SELECTED);
       menu.classList.add(MENU_SELECTED);
     });
   }
@@ -102,15 +93,8 @@ const addNewPlaylist = (title) => {
 
     if (!bWrapper.classList.contains(MENU_SELECTED)) {
       const sectionHeader = bWrapper.children[1].innerText;
-      let array = await fetchInterceptor(
-        `${GET_ONE_PLAYLIST_URI}/${currentPlaylistID}`,
-        METHOD_GET
-      );
+      let array = await fetchInterceptor(`${GET_ONE_PLAYLIST_URI}/${currentPlaylistID}`, METHOD_GET);
       array = await array.json();
-
-      // for (index in newPlayList[sectionHeader].songs) {
-      //   newArray = [...newArray, newPlayList[sectionHeader].songs[index].rest];
-      // }
 
       currentHeader = sectionHeader;
 
@@ -133,6 +117,3 @@ const addNewPlaylist = (title) => {
     allPlaylistFiller(newPlayList[ALL_PLAYlISTS], ALL_PLAYlISTS);
   }
 };
-
-
-

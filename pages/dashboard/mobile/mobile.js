@@ -5,49 +5,44 @@ const mobileNav = document.querySelectorAll(".tab-nav");
 // Handle long song title and artist name with moving text animation
 */
 const movingTextAnimation = (parentDiv, currentWidht) => {
-    let totalWidth = 0;
-    const children = [...parentDiv.children];
-  
-    children.forEach((elem) => {
-      totalWidth += elem.getBoundingClientRect().width;
-    });
-  
-    let animationWidth = currentWidht - totalWidth;
-    if (animationWidth > 0) {
-      return;
-    }
-    animationWidth = Math.abs(animationWidth);
-  
-    document.documentElement.style.setProperty(
-      "--animation-width",
-      animationWidth + "px"
-    );
-  
-    mobileInfo[0].classList.remove(MOBILE_INFO_ANIMATION);
-    mobileInfo[1].classList.remove(MOBILE_INFO_ANIMATION);
-    mobileInfo[0].classList.add(MOBILE_INFO_ANIMATION);
-    mobileInfo[1].classList.add(MOBILE_INFO_ANIMATION);
-    mobileInfo[0].style.justifyContent = "flex-start";
-    mobileInfo[1].style.justifyContent = "flex-start";
-  };
-  
-  window.addEventListener("resize", () => {
-    if (window.innerWidth < 750) {
-      disableCompactListLayoutMode();
-      movingTextAnimation(mobileInfo[0], (window.innerWidth / 100) * 40);
-      movingTextAnimation(mobileInfo[1], (window.innerWidth / 100) * 40);
-    } else {
-      darkGlassMobilePreview.classList.add("display-none");
-      mobileSongPreview.classList.add("display-none");
-    }
-  });
-  
-  // call movingTextAnimation in mobile for information in songList mode and fullScreen mode
-  
-  movingTextAnimation(mobileInfo[0], (window.innerWidth / 100) * 40);
-  movingTextAnimation(mobileInfo[1], (window.innerWidth / 100) * 40);
-  
+  let totalWidth = 0;
+  const children = [...parentDiv.children];
 
+  children.forEach((elem) => {
+    totalWidth += elem.getBoundingClientRect().width;
+  });
+
+  let animationWidth = currentWidht - totalWidth;
+  if (animationWidth > 0) {
+    return;
+  }
+  animationWidth = Math.abs(animationWidth);
+
+  document.documentElement.style.setProperty("--animation-width", animationWidth + "px");
+
+  mobileInfo[0].classList.remove(MOBILE_INFO_ANIMATION);
+  mobileInfo[1].classList.remove(MOBILE_INFO_ANIMATION);
+  mobileInfo[0].classList.add(MOBILE_INFO_ANIMATION);
+  mobileInfo[1].classList.add(MOBILE_INFO_ANIMATION);
+  mobileInfo[0].style.justifyContent = "flex-start";
+  mobileInfo[1].style.justifyContent = "flex-start";
+};
+
+window.addEventListener("resize", () => {
+  if (window.innerWidth < 750) {
+    disableCompactListLayoutMode();
+    movingTextAnimation(mobileInfo[0], (window.innerWidth / 100) * 40);
+    movingTextAnimation(mobileInfo[1], (window.innerWidth / 100) * 40);
+  } else {
+    darkGlassMobilePreview.classList.add("display-none");
+    mobileSongPreview.classList.add("display-none");
+  }
+});
+
+// call movingTextAnimation in mobile for information in songList mode and fullScreen mode
+
+movingTextAnimation(mobileInfo[0], (window.innerWidth / 100) * 40);
+movingTextAnimation(mobileInfo[1], (window.innerWidth / 100) * 40);
 
 const mobileFullScreenViewStartHandler = () => {
   const favIcon = mobileFavBtn.children[0];
@@ -61,13 +56,11 @@ const mobileFullScreenViewStartHandler = () => {
     favIcon.src = LIKE;
   }
 };
- //TODO not working...
+//TODO not working...
 mobileFavBtn.addEventListener("click", () => {
   const song = playList.allSongs[currentMusicIndex];
   const favIcon = mobileFavBtn.children[0];
-  const currentMusicFavIconInMainMenu = document.querySelector(
-    `[song-id = "${song.id}"]`
-  ).children[2].children[1];
+  const currentMusicFavIconInMainMenu = document.querySelector(`[song-id = "${song.id}"]`).children[2].children[1];
 
   favIcon.classList.toggle(LIKED_CLASS);
   currentMusicFavIconInMainMenu.classList.toggle(LIKED_CLASS);
@@ -83,7 +76,7 @@ mobileFavBtn.addEventListener("click", () => {
 
   if (!playList.favSongsIndex.includes(song)) {
     playList.favSongsIndex = [...playList.favSongsIndex, song.id];
-    addToPlayListServer(favPlaylistID, song.id,true);
+    addToPlayListServer(favPlaylistID, song.id, true);
   } else {
     removeFromPlayListServer(song.id, favPlaylistID);
     playList.favSongsIndex = playList.favSongsIndex.filter(function (item) {
@@ -92,12 +85,10 @@ mobileFavBtn.addEventListener("click", () => {
   }
 });
 
-
 mobileNav.forEach((tab) => {
   tab.addEventListener("click", async () => {
     const sectionName = tab.children[1].innerText;
     currentHeader = sectionName;
-    console.log(sectionName);
 
     switch (sectionName) {
       case ALL_SONGS:
@@ -105,10 +96,7 @@ mobileNav.forEach((tab) => {
         break;
 
       case FAV_SONGS:
-        let favSongs = await fetchInterceptor(
-          `${GET_ONE_PLAYLIST_URI}/${favPlaylistID}`,
-          METHOD_GET
-        );
+        let favSongs = await fetchInterceptor(`${GET_ONE_PLAYLIST_URI}/${favPlaylistID}`, METHOD_GET);
         favSongs = await favSongs.json();
         favSongs = favSongs.songs;
         songListFiller(favSongs, sectionName, true);
@@ -125,8 +113,8 @@ mobileNav.forEach((tab) => {
 
         allPlaylistFiller(array, sectionName, true);
         break;
-        case LOGOUT_USER:
-          logoutUser();
+      case LOGOUT_USER:
+        logoutUser();
         break;
 
       default:
