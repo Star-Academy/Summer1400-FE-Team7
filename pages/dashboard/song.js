@@ -54,9 +54,8 @@ const musicGrapper = async () => {
     placeholderOmmiter();
     addToPlaylistMenuItemGenetor();
   }else{
-    showNotification("اشکال در بارگیری آهنگ‌ها")
+    showNotification(notificationMessages.MSG_ERROR_LOADING_SONGS)
   }
-
 };
 
 

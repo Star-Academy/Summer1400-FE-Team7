@@ -1314,13 +1314,17 @@ main {
   }
 
   .mobile-preview-controls {
-    width: 100%;
+    width: 80%;
     display: flex;
     justify-content: space-evenly;
     align-items: center;
     > button {
       width: 2rem;
       height: 2rem;
+      > img {
+        width: 100% !important;
+        height:auto;
+      }
     }
   }
 

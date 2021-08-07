@@ -31,7 +31,7 @@ let shuffleArray = [];
 let shuffleIndex = 0;
 
 audio.addEventListener("error",()=>{
-  showNotification("مشکلی در بارگیری آهنگ وجود دارد")
+  showNotification(notificationMessages.MSG_ERROR_LOAD_SONG)
   stop();
 },true);
 

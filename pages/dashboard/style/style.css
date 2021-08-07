@@ -1621,7 +1621,7 @@ main .mobile-navigation > .tab-navigation > button::after {
 }
 
 .mobile-song-preview .mobile-preview-controls {
-  width: 100%;
+  width: 80%;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -1636,6 +1636,11 @@ main .mobile-navigation > .tab-navigation > button::after {
 .mobile-song-preview .mobile-preview-controls > button {
   width: 2rem;
   height: 2rem;
+}
+
+.mobile-song-preview .mobile-preview-controls > button > img {
+  width: 100% !important;
+  height: auto;
 }
 
 .mobile-song-preview .mobile-preview-song-cover {

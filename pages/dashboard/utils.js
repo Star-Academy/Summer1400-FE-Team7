@@ -3,6 +3,15 @@ const notificationType={
     SUCCESS:"success",
 }
 
+const notificationMessages={
+  MSG_ERROR_LOAD_SONG:"مشکلی در بارگیری آهنگ وجود دارد",
+  MSG_ADDED_TO_PLAYLIST:"به پلی لیست اضافه شد",
+  MSG_SONG_ALREADY_EXISTS_IN_PLAYLIST:"آهنگ مورد نظر از قبل اضافه شده است",
+  MSG_NEW_PLALIST_CREATED:"پلی لیست جدید ساخته شد",
+  MSG_PLAYLIST_NAME_ALREADY_EXISTS:"پلی لیست با این نام وجود دارد",
+  MSG_ERROR_LOADING_SONGS:"اشکال در بارگیری آهنگ‌ها",
+}
+
 
 const convertHMS = (value) => {
   const sec = parseInt(value, 10); // convert value to number if it's string

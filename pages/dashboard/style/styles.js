@@ -182,8 +182,6 @@ favIcon.forEach((elem) => {
 });
 
 addPlayListBtn.addEventListener("click", () => {
-
-  //showNotification("aaaaaa",notificationType.SUCCESS)
   bgDarkForAddPlaylistModal.classList.remove("display-none");
   addPlayListWrapper.classList.remove("display-none");
 });
@@ -197,9 +195,6 @@ makePlayListBtn.addEventListener("click", async () => {
   if (title == "") {
     return false;
   }
-
-  // newPlayList[title] = [];
-  // addNewPlaylist(title);
 
   bgDarkForAddPlaylistModal.classList.add("display-none");
   addPlayListWrapper.classList.add("display-none");

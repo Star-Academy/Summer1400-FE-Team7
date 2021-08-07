@@ -1,4 +1,3 @@
-//TODO: This darkGlass2
 const deleteChildrenNodes = (parent) => {
   while (parent.firstChild) {
     parent.removeChild(parent.firstChild);
@@ -23,7 +22,6 @@ const addToPlaylistMenuItemGenetor = () => {
         li.innerText = list;
         ul.appendChild(li);
         li.addEventListener("click", () => {
-          // addToPlayList(li.innerText, option.getAttribute("data-id"));
           addToPlayListServer(
             newPlayList[li.innerText].id,
             option.getAttribute("data-id"),
@@ -74,17 +72,7 @@ const removeFromPlayListServer = async (songId, playlistId) => {
   fetchInterceptor(REMOVE_SONG_PLAYLIST_URI, METHOD_POST, body);
 };
 
-//   const deleteFromPlaylist = (playListName, id) => {
-//     newPlayList[playListName] = newPlayList[playListName].filter(function (item) {
-//       return item !== playList.allSongs[id - 1];
-//     });
-//   };
 
-// const ssssssssssssss = (playListName, id) => {
-
-//     addToPlayListServer(newPlayList[playListName].id, id);
-
-//   };
 
 const addToPlayListServer = async (playlistId, songId,isFavorite) => {
   const body = JSON.stringify({
@@ -101,11 +89,9 @@ const addToPlayListServer = async (playlistId, songId,isFavorite) => {
   
   if (!isFavorite) {
     if (response.ok) {
-      showNotification("به پلی لیست اضافه شد", notificationType.SUCCESS);
-    } else {
-      const responseBody = await response.json();
-  
-      showNotification(responseBody.message);
+      showNotification(notificationMessages.MSG_ADDED_TO_PLAYLIST, notificationType.SUCCESS);
+    } else {      
+      showNotification(notificationMessages.MSG_SONG_ALREADY_EXISTS_IN_PLAYLIST);
     }
   }
 };
@@ -235,11 +221,17 @@ const createPlayListServer = async (name) => {
   }
 
   if (!alreadyExists) {
-    let response = await fetchInterceptor(
+    const response = await fetchInterceptor(
       CREATE_PLAYLIST_URI,
       METHOD_POST,
       JSON.stringify(body)
     );
+    if (response.ok) {
+      showNotification(notificationMessages.MSG_NEW_PLALIST_CREATED, notificationType.SUCCESS)
+    }
+  }else{
+    showNotification(notificationMessages.MSG_PLAYLIST_NAME_ALREADY_EXISTS)
+
   }
 };
 
