@@ -21,7 +21,7 @@ const mobileArtistName = document.querySelectorAll(".mobile-artist-name");
 const mobilePreviewCover = document.querySelector(".mobile-preview-song-cover");
 
 let currentMusicIndex = 0;
-let playList = { allSongs: [], favSongsIndex: [],favSongsItems:[], searchSongs: [] };
+let playList = { allSongs: [], favSongsIndex: [], favSongsItems: [], searchSongs: [] };
 let newPlayList = {};
 let currentPlaylist = playList.allSongs;
 
@@ -34,6 +34,10 @@ let favPlaylistID = 0;
 let currentHeader = ALL_SONGS;
 
 const userToken = localStorage.getItem("token");
+
+if (userToken == null) {
+  window.location.href = LANDING_URL;
+}
 
 const musicGrapper = async () => {
   let response = await fetchInterceptor(
@@ -54,20 +58,17 @@ const musicGrapper = async () => {
     songListFiller(playList.allSongs, ALL_SONGS, true);
     placeholderOmmiter();
     addToPlaylistMenuItemGenetor();
-  }else{
-    showNotification(notificationMessages.MSG_ERROR_LOADING_SONGS)
+  } else {
+    showNotification(notificationMessages.MSG_ERROR_LOADING_SONGS);
   }
 };
-
-
-
 
 /**
  * update all song info for current playing song, like song cover and name of music and artist in control section,
  * and update lyric page
  */
 const musicChangeHandler = () => {
-  musicCover.src="../../assets/images/default-song-cover.svg"
+  musicCover.src = "../../assets/images/default-song-cover.svg";
   const imgSrc = currentPlaylist[currentMusicIndex].cover;
   const elemTitle = currentPlaylist[currentMusicIndex].name;
   const elemArtist = currentPlaylist[currentMusicIndex].artist;
@@ -106,13 +107,10 @@ const musicChangeHandler = () => {
 };
 
 /*
-* Handel load more music on scroll to end of current music list
-*/
+ * Handel load more music on scroll to end of current music list
+ */
 songListLayout.addEventListener("scroll", () => {
-  if (
-    songListLayout.scrollTop >= songListLayout.scrollHeight - songListLayout.offsetHeight &&
-    currentHeader == ALL_SONGS
-  ) {
+  if (songListLayout.scrollTop >= songListLayout.scrollHeight - songListLayout.offsetHeight && currentHeader == ALL_SONGS) {
     songListLayout.scrollTop = songListLayout.scrollHeight;
     loadMoreSongOnScroll();
   }
@@ -135,15 +133,12 @@ const loadMoreSongOnScroll = async () => {
   data.songs.forEach((song) => {
     playList.allSongs = [...playList.allSongs, song];
   });
-  currentPlaylist = playList.allSongs ;
+  currentPlaylist = playList.allSongs;
 
   songListFiller(data.songs, ALL_SONGS, false);
   placeholderOmmiter();
   addToPlaylistMenuItemGenetor();
 };
-
-
-
 
 playListInitializer();
 musicGrapper();

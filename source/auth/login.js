@@ -1,10 +1,9 @@
-const DASHBOARD_URL = "../../pages/dashboard/index.html";
 const loginInputs = {
   email: "",
   password: "",
 };
 
-const isLoginFormValid=()=> {
+const isLoginFormValid = () => {
   if (!checkLoginEmail()) return false;
   if (!checkLoginPasswords()) return false;
 
@@ -12,16 +11,13 @@ const isLoginFormValid=()=> {
   if (!isPasswordLoginValid) return false;
 
   return true;
-}
+};
 
 const performLogin = async () => {
   loginInputs.email = emailLoginInput.value;
   loginInputs.password = passwordLoginInput.value;
 
-
   if (!isLoginFormValid()) return false;
-  
-
 
   const body = JSON.stringify(loginInputs);
 
@@ -30,13 +26,12 @@ const performLogin = async () => {
 
   if (response.ok) {
     initializeNewUser(loginInputs.email, responseBody.id, responseBody.token);
-    window.location.href =DASHBOARD_URL;
+    window.location.href = DASHBOARD_URL;
     resetLoginForm();
-  } else if (response.status == 401){
+  } else if (response.status == 401) {
     errorGenerator(loginBtn, ERROR_MSG.MSG_UNSUCCESSFUL_LOGIN, ERROR_TYPES.TYPE_ERROR);
-  }else{
+  } else {
     errorGenerator(loginBtn, responseBody.message, ERROR_TYPES.TYPE_ERROR);
-
   }
 };
 
@@ -50,4 +45,3 @@ const initializeNewUser = (email, token, id) => {
   localStorage.setItem("id", token);
   localStorage.setItem("token", id);
 };
-

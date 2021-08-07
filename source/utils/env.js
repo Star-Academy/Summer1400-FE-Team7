@@ -11,3 +11,6 @@ const REMOVE_SONG_PLAYLIST_URI = "playlist/remove-song";
 const GET_ONE_PLAYLIST_URI = "playlist/one";
 const REMOVE_PLAYLIST_URI = "playlist/remove";
 const SEARCH_URI = "song/find";
+
+const DASHBOARD_URL = "../../pages/dashboard/index.html";
+const LANDING_URL = "../../pages/landing/index.html";
