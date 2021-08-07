@@ -49,19 +49,23 @@ const removeFromPlaylist = (playlistName) => {
     option.appendChild(removeImg);
     const songId = option.getAttribute("data-id");
     dltBtn.addEventListener("click", () => {
-      removeFromPlayListServer(songId, currentPlaylistID);
+      removeFromPlayListServer(songId, currentPlaylistID, false);
     });
   });
 };
 
-const removeFromPlayListServer = async (songId, playlistId) => {
+const removeFromPlayListServer = async (songId, playlistId, isFav) => {
   const body = JSON.stringify({
     token: userToken,
     playlistId: playlistId,
     songId,
   });
 
-  if (currentHeader != ALL_SONGS) {
+  if (isFav && currentHeader == FAV_SONGS) {
+    document.querySelector(`[song-id = "${songId}"]`).remove();
+  }
+
+  if (currentHeader != ALL_SONGS && !isFav) {
     document.querySelector(`[song-id = "${songId}"]`).remove();
   }
 

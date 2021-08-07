@@ -75,7 +75,7 @@ const songListFiller = (list, header, remove) => {
             return item !== song.id;
           });
 
-          removeFromPlayListServer(song.id, favPlaylistID);
+          removeFromPlayListServer(song.id, favPlaylistID, true);
         }
       });
 
