@@ -72,9 +72,7 @@ const removeFromPlayListServer = async (songId, playlistId) => {
   fetchInterceptor(REMOVE_SONG_PLAYLIST_URI, METHOD_POST, body);
 };
 
-
-
-const addToPlayListServer = async (playlistId, songId,isFavorite) => {
+const addToPlayListServer = async (playlistId, songId, isFavorite) => {
   const body = JSON.stringify({
     token: userToken,
     playlistId,
@@ -86,12 +84,17 @@ const addToPlayListServer = async (playlistId, songId,isFavorite) => {
     METHOD_POST,
     body
   );
-  
+
   if (!isFavorite) {
     if (response.ok) {
-      showNotification(notificationMessages.MSG_ADDED_TO_PLAYLIST, notificationType.SUCCESS);
-    } else {      
-      showNotification(notificationMessages.MSG_SONG_ALREADY_EXISTS_IN_PLAYLIST);
+      showNotification(
+        notificationMessages.MSG_ADDED_TO_PLAYLIST,
+        notificationType.SUCCESS
+      );
+    } else {
+      showNotification(
+        notificationMessages.MSG_SONG_ALREADY_EXISTS_IN_PLAYLIST
+      );
     }
   }
 };
@@ -216,7 +219,8 @@ const createPlayListServer = async (name) => {
   for (listName in newPlayList) {
     if (name == listName) {
       alreadyExists = true;
-      return;
+      showNotification(notificationMessages.MSG_PLAYLIST_NAME_ALREADY_EXISTS);
+      return false;
     }
   }
 
@@ -227,12 +231,15 @@ const createPlayListServer = async (name) => {
       JSON.stringify(body)
     );
     if (response.ok) {
-      showNotification(notificationMessages.MSG_NEW_PLALIST_CREATED, notificationType.SUCCESS)
+      showNotification(
+        notificationMessages.MSG_NEW_PLALIST_CREATED,
+        notificationType.SUCCESS
+      );
     }
-  }else{
-    showNotification(notificationMessages.MSG_PLAYLIST_NAME_ALREADY_EXISTS)
-
+  } else {
+    showNotification(notificationMessages.MSG_PLAYLIST_NAME_ALREADY_EXISTS);
   }
+  return true;
 };
 
 const removePlayListServer = async (id) => {
@@ -241,10 +248,25 @@ const removePlayListServer = async (id) => {
     id: id,
   };
 
-  await fetchInterceptor(
+  const response = await fetchInterceptor(
     REMOVE_PLAYLIST_URI,
     METHOD_POST,
     JSON.stringify(body)
   );
-  playListInitializer();
+  if (response.ok) {
+    showNotification(
+      notificationMessages.MSG_PLAYLIST_DELETED,
+      notificationType.SUCCESS
+    );
+  } else {
+    showNotification(notificationMessages.MSG_ERROR);
+  }
+  const removedPlaylist = document.querySelector(`[data-playlist-id="${id}"]`);
+  const playListName = removedPlaylist.children[0].children[1].innerText;
+
+  document.querySelector(`[data-playlist-id="${id}"]`).remove()
+  removedPlaylist.remove();
+  delete newPlayList[playListName];
+
+  addToPlaylistMenuItemGenetor();
 };

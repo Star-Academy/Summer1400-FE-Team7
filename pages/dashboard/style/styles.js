@@ -185,32 +185,39 @@ addPlayListBtn.addEventListener("click", () => {
   bgDarkForAddPlaylistModal.classList.remove("display-none");
   addPlayListWrapper.classList.remove("display-none");
 });
+bgDarkForAddPlaylistModal.addEventListener("click", () => {
+  deleteDarkBackfroundCreatPlaylist();
+})
 
-const makePlayList = document.querySelector("#make-playlist");
-const cancleMakingPlayList = document.querySelector("#cancle-making-playlist");
-const makeNewPlaylistInput = document.querySelector("#make-new-playlist-input");
+
 
 makePlayListBtn.addEventListener("click", async () => {
-  const title = createNewPlaylistInput.value;
-  if (title == "") {
+  const playListName = createNewPlaylistInput.value;
+  if (playListName == "") {
+    showNotification(notificationMessages.MSG_ERROR_CANT_BE_EMPTY)
     return false;
   }
+  const canCreate=await createPlayListServer(playListName);
 
-  bgDarkForAddPlaylistModal.classList.add("display-none");
-  addPlayListWrapper.classList.add("display-none");
-  addToPlaylistMenuItemGenetor();
-  createNewPlaylistInput.value = "";
+  if (canCreate) {
+    deleteDarkBackfroundCreatPlaylist()
+    addToPlaylistMenuItemGenetor();
+    createNewPlaylistInput.value = "";
+    playListInitializer();
+  }
 
-  await createPlayListServer(title);
-  playListInitializer();
 });
 
 cancleMakingPlayListBtn.addEventListener("click", () => {
-  bgDarkForAddPlaylistModal.classList.add("display-none");
-  addPlayListWrapper.classList.add("display-none");
+  deleteDarkBackfroundCreatPlaylist();
 });
 
-userEmail.innerText = localStorage.getItem("email");
+const deleteDarkBackfroundCreatPlaylist=()=> {
+  bgDarkForAddPlaylistModal.classList.add("display-none");
+  addPlayListWrapper.classList.add("display-none");
+}
+
+
 
 pofileWrapper.addEventListener("click", () => {
   logoutUser();

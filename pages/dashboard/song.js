@@ -15,6 +15,7 @@ const ALL_SONGS = "همه آهنگ ها";
 const FAV_SONGS = "مورد علاقه";
 const ALL_PLAYlISTS = "پلی لیست ها";
 const SEARCH_SONGS = "جست و جو";
+const LOGOUT_USER = "خروج";
 const mobileMusicName = document.querySelectorAll(".mobile-music-name");
 const mobileArtistName = document.querySelectorAll(".mobile-artist-name");
 const mobilePreviewCover = document.querySelector(".mobile-preview-song-cover");
@@ -134,6 +135,7 @@ const loadMoreSongOnScroll = async () => {
   data.songs.forEach((song) => {
     playList.allSongs = [...playList.allSongs, song];
   });
+  currentPlaylist = playList.allSongs ;
 
   songListFiller(data.songs, ALL_SONGS, false);
   placeholderOmmiter();

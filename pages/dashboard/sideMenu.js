@@ -3,6 +3,9 @@ const MENU_SELECTED = "menu-selected";
 const PLAYLIST_CONTAINER = "playlist-container";
 const playlistContainer = document.querySelector(".playlist-container");
 
+
+//email text in side menu
+userEmail.innerText = localStorage.getItem("email");
 sideMenuBtns.forEach((menu) => {
   if (menu.classList.contains("defualt-menu")) {
     menu.addEventListener("click", () => {
@@ -126,71 +129,10 @@ const addNewPlaylist = (title) => {
   const profileBtn = document.querySelector(".profile-wrapper");
 
   sideMenu.insertBefore(div, profileBtn);
-
-  // newPlayList[ALL_PLAYlISTS] = [...newPlayList[ALL_PLAYlISTS], title];
-
   if (songListHeader.innerText == ALL_PLAYlISTS) {
     allPlaylistFiller(newPlayList[ALL_PLAYlISTS], ALL_PLAYlISTS);
   }
 };
 
-// const removePlaylist = (title) => {
-//   delete newPlayList[title];
-//   const playlistContainer2 = document.querySelectorAll(".playlist-container");
 
-//   playlistContainer2.forEach((item) => {
-//     if (item.children[0].children[1].innerText == title) {
-//       item.remove();
-//       return;
-//     }
-//   });
-// };
 
-// const updatePlaylistServer = () => {
-//   const body= {
-
-//   }
-
-//   fetchInterceptor(`${GET_ONE_PLAYLIST_URI}/${}`)
-// }
-
-const mobileNav = document.querySelectorAll(".tab-nav");
-
-mobileNav.forEach((tab) => {
-  tab.addEventListener("click", async () => {
-    const sectionName = tab.children[1].innerText;
-    currentHeader = sectionName;
-    console.log(sectionName);
-
-    switch (sectionName) {
-      case ALL_SONGS:
-        songListFiller(playList.allSongs, sectionName, true);
-        break;
-
-      case FAV_SONGS:
-        let favSongs = await fetchInterceptor(
-          `${GET_ONE_PLAYLIST_URI}/${favPlaylistID}`,
-          METHOD_GET
-        );
-        favSongs = await favSongs.json();
-        favSongs = favSongs.songs;
-        songListFiller(favSongs, sectionName, true);
-        break;
-
-      case ALL_PLAYlISTS:
-        let array = [];
-
-        for (let item in newPlayList) {
-          if (item != FAV_SONGS && item != ALL_PLAYlISTS) {
-            array = [...array, newPlayList[item]];
-          }
-        }
-
-        allPlaylistFiller(array, sectionName, true);
-        break;
-
-      default:
-        break;
-    }
-  });
-});

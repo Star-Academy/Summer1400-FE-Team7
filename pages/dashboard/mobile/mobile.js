@@ -1,6 +1,6 @@
 const mobileFavBtn = document.querySelector(".mobile-preview-like");
+const mobileNav = document.querySelectorAll(".tab-nav");
 
-allSongsMobileTabNavigation.focus();
 /*
 // Handle long song title and artist name with moving text animation
 */
@@ -91,3 +91,48 @@ mobileFavBtn.addEventListener("click", () => {
     });
   }
 });
+
+
+mobileNav.forEach((tab) => {
+  tab.addEventListener("click", async () => {
+    const sectionName = tab.children[1].innerText;
+    currentHeader = sectionName;
+    console.log(sectionName);
+
+    switch (sectionName) {
+      case ALL_SONGS:
+        songListFiller(playList.allSongs, sectionName, true);
+        break;
+
+      case FAV_SONGS:
+        let favSongs = await fetchInterceptor(
+          `${GET_ONE_PLAYLIST_URI}/${favPlaylistID}`,
+          METHOD_GET
+        );
+        favSongs = await favSongs.json();
+        favSongs = favSongs.songs;
+        songListFiller(favSongs, sectionName, true);
+        break;
+
+      case ALL_PLAYlISTS:
+        let array = [];
+
+        for (let item in newPlayList) {
+          if (item != FAV_SONGS && item != ALL_PLAYlISTS) {
+            array = [...array, newPlayList[item]];
+          }
+        }
+
+        allPlaylistFiller(array, sectionName, true);
+        break;
+        case LOGOUT_USER:
+          logoutUser();
+        break;
+
+      default:
+        break;
+    }
+  });
+});
+
+allSongsMobileTabNavigation.focus();

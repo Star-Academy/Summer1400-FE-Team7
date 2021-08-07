@@ -10,6 +10,9 @@ const notificationMessages={
   MSG_NEW_PLALIST_CREATED:"پلی لیست جدید ساخته شد",
   MSG_PLAYLIST_NAME_ALREADY_EXISTS:"پلی لیست با این نام وجود دارد",
   MSG_ERROR_LOADING_SONGS:"اشکال در بارگیری آهنگ‌ها",
+  MSG_ERROR_CANT_BE_EMPTY:"نام نمی‌تواند خالی باشد",
+  MSG_ERROR : "مشکلی رخ داده است",
+  MSG_PLAYLIST_DELETED : "پلی لیست حذف شد"
 }
 
 
