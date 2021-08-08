@@ -1,9 +1,10 @@
 const songListFiller = (list, header, remove) => {
   songListHeader.innerText = header;
   currentHeader = header;
-  currentPlaylist = list;
 
-  console.log(list);
+  if (header != ALL_SONGS) {
+    currentPlaylist = list;
+  }
 
   if (remove) {
     document.querySelectorAll(".song-wrapper").forEach((i) => {

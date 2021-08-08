@@ -55,6 +55,7 @@ const musicGrapper = async () => {
 
   if (response.ok) {
     playList.allSongs = data.songs;
+    currentPlaylist = playList.allSongs;
     songListFiller(playList.allSongs, ALL_SONGS, true);
     placeholderOmmiter();
     addToPlaylistMenuItemGenetor();
