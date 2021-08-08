@@ -1,4 +1,4 @@
-const BASE_URL = " https://songs.code-star.ir/api-docs";
+const BASE_URL = "https://songs.code-star.ir";
 const METHOD_GET = "GET";
 const METHOD_POST = "POST";
 const USER_REGISTER_URI = "user/register";
