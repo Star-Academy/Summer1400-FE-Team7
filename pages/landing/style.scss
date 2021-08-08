@@ -11,7 +11,7 @@ $--lg-bg-4: hsl(113, 91%, 44%);
 p,
 a,
 h1 {
-  text-shadow: 0 0 0.125em $text-shadow, 0 0 0.45em var(--clr-white);
+  // text-shadow: 0 0 0.125em $text-shadow, 0 0 0.45em var(--clr-white);
 }
 
 @mixin _body-lg-bg {

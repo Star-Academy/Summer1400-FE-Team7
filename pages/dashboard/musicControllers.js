@@ -30,10 +30,14 @@ let shuffleMode = false;
 let shuffleArray = [];
 let shuffleIndex = 0;
 
-audio.addEventListener("error",()=>{
-  showNotification(notificationMessages.MSG_ERROR_LOAD_SONG)
-  stop();
-},true);
+audio.addEventListener(
+  "error",
+  () => {
+    showNotification(notificationMessages.MSG_ERROR_LOAD_SONG);
+    stop();
+  },
+  true
+);
 
 const loadMusic = () => {
   audio.src = currentPlaylist[currentMusicIndex].file;
@@ -42,7 +46,7 @@ const loadMusic = () => {
 const nextMusic = () => {
   if (shuffleMode) {
     shuffleIndex++;
-    if (shuffleIndex >= currentPlaylist.length ) {
+    if (shuffleIndex >= currentPlaylist.length) {
       shuffleIndex = 0;
     }
     currentMusicIndex = shuffleArray[shuffleIndex];
@@ -50,11 +54,10 @@ const nextMusic = () => {
     currentMusicIndex++;
   }
 
-  if (currentMusicIndex >=currentPlaylist.length ) {
+  if (currentMusicIndex >= currentPlaylist.length) {
     currentMusicIndex = 0;
     if (repeatMode == repeatTypes.NO_REPEAT && !shuffleMode) {
       pause();
-      
     }
   }
   musicChangeHandler();
@@ -198,7 +201,7 @@ previousBtn.forEach((btn) => {
 
 const doubleClickHandler = (elem, id) => {
   elem.addEventListener("dblclick", () => {
-     currentMusicIndex = elem.getAttribute("song-index");
+    currentMusicIndex = elem.getAttribute("song-index");
     play();
   });
 };
@@ -233,22 +236,21 @@ repeatBtn.forEach((btn) => {
       case repeatTypes.NO_REPEAT:
         repeatMode = repeatTypes.ONE_REPEAT;
         btn.classList.add("active-btn");
-        btn.children[0].src = "../../assets/images/controls/repeat1.svg"
+        btn.children[0].src = "../../assets/images/controls/repeat1.svg";
 
         break;
 
       case repeatTypes.ONE_REPEAT:
         repeatMode = repeatTypes.ALL_REPEAT;
         btn.classList.add("active-btn");
-        btn.children[0].src = "../../assets/images/controls/repeat.svg"
+        btn.children[0].src = "../../assets/images/controls/repeat.svg";
 
         break;
 
       case repeatTypes.ALL_REPEAT:
         repeatMode = repeatTypes.NO_REPEAT;
         btn.classList.remove("active-btn");
-        btn.children[0].src = "../../assets/images/controls/repeat.svg"
-
+        btn.children[0].src = "../../assets/images/controls/repeat.svg";
 
         break;
     }
@@ -261,7 +263,7 @@ shuffleBtn.forEach((btn) => {
     if (shuffleMode) {
       btn.classList.add("active-btn");
       generateShuffleList();
-    }else{
+    } else {
       btn.classList.remove("active-btn");
     }
   });

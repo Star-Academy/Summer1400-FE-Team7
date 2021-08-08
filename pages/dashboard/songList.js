@@ -3,6 +3,8 @@ const songListFiller = (list, header, remove) => {
   currentHeader = header;
   currentPlaylist = list;
 
+  console.log(list);
+
   if (remove) {
     document.querySelectorAll(".song-wrapper").forEach((i) => {
       i.remove();
@@ -16,6 +18,8 @@ const songListFiller = (list, header, remove) => {
   const template = document.querySelector("#song-wrapper-template");
   if ("content" in document.createElement("template")) {
     list.forEach((song, index) => {
+      index += (pageIndex - 1) * 50;
+
       const clone = template.content.cloneNode(true);
       const options = clone.querySelector(".options");
       const songCoverImage = clone.querySelector(".song-cover-img");

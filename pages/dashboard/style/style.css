@@ -78,6 +78,8 @@ main > .section-1 > .side-menu > .search {
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
+  width: 92%;
+  border: 2px solid var(--clr-white);
 }
 
 main > .section-1 > .side-menu > .search > .search__icon {
@@ -111,6 +113,7 @@ main > .section-1 > .side-menu .btn-wrapper {
   position: relative;
   border-right: 5px solid transparent;
   cursor: pointer;
+  padding-right: 0.4rem;
 }
 
 main > .section-1 > .side-menu .btn-wrapper > img {
@@ -456,12 +459,12 @@ main > .section-1 > .song-list > .song-wrapper > .song-info {
 }
 
 main > .section-1 > .song-list > .song-wrapper > .song-info > p:first-child {
-  font-size: 0.8rem;
+  font-size: 0.85rem;
 }
 
 main > .section-1 > .song-list > .song-wrapper > .song-info > p:last-child {
   color: #7b7b7b;
-  font-size: 0.7rem;
+  font-size: 0.75rem;
 }
 
 main > .section-1 > .song-list > .song-wrapper > .song-info > .author-name-selected {
@@ -1288,6 +1291,7 @@ main .mobile-navigation > .tab-navigation > button::after {
   -webkit-transition: background 1s ease;
   transition: background 1s ease;
   background: url(../../../assets/images/default-song-cover.svg) center no-repeat;
+  background: #1d7dd7;
   background-size: cover;
 }
 
@@ -1339,7 +1343,7 @@ main .mobile-navigation > .tab-navigation > button::after {
   position: absolute;
   top: 2vh;
   right: 0;
-  padding: 0.5rem 1rem;
+  padding: 0.5rem 1.6rem;
   background: #1d7dd7;
   z-index: 120;
   border-radius: 200px 0 0 200px;

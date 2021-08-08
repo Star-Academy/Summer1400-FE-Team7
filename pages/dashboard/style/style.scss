@@ -61,6 +61,9 @@ main {
         display: flex;
         align-items: center;
 
+        width: 92%;
+        border: 2px solid var(--clr-white);
+
         > .search__icon {
           width: 40px;
           height: 50%;
@@ -88,6 +91,8 @@ main {
         position: relative;
         border-right: 5px solid transparent;
         cursor: pointer;
+
+        padding-right: 0.4rem;
 
         > img {
           width: 40px;
@@ -1005,6 +1010,7 @@ main {
   transition: background 1s ease;
 
   background: url(../../../assets/images/default-song-cover.svg) center no-repeat;
+  background: $--selected-bg-blue;
   background-size: cover;
 }
 
@@ -1048,7 +1054,8 @@ main {
   position: absolute;
   top: 2vh;
   right: 0;
-  padding: 0.5rem 1rem;
+  // padding: 0.5rem 1rem;
+  padding: 0.5rem 1.6rem;
   background: $--selected-bg-blue;
   z-index: 120;
   border-radius: 200px 0 0 200px;

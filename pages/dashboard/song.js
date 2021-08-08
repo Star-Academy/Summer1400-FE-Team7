@@ -68,6 +68,9 @@ const musicGrapper = async () => {
  * and update lyric page
  */
 const musicChangeHandler = () => {
+  console.log(currentMusicIndex);
+  console.log(currentPlaylist);
+
   musicCover.src = "../../assets/images/default-song-cover.svg";
   const imgSrc = currentPlaylist[currentMusicIndex].cover;
   const elemTitle = currentPlaylist[currentMusicIndex].name;
@@ -115,6 +118,7 @@ songListLayout.addEventListener("scroll", () => {
     loadMoreSongOnScroll();
   }
 });
+
 const loadMoreSongOnScroll = async () => {
   pageIndex++;
   let response = await fetchInterceptor(
@@ -133,7 +137,9 @@ const loadMoreSongOnScroll = async () => {
   data.songs.forEach((song) => {
     playList.allSongs = [...playList.allSongs, song];
   });
+  console.log(currentPlaylist);
   currentPlaylist = playList.allSongs;
+  console.log(currentPlaylist);
 
   songListFiller(data.songs, ALL_SONGS, false);
   placeholderOmmiter();
