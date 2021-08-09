@@ -1,3 +1,11 @@
+
+/**
+ * 
+ * this part generates loding songlist effects
+ * 
+ */
+
+
 const placeholdersWrapper = document.querySelector(".placeholders-wrapper");
 const PLACEHOLDER_COUNT = 13;
 

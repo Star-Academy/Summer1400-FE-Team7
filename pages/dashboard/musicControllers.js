@@ -1,14 +1,15 @@
 const playBtn = document.querySelectorAll(".play-music-btn");
 const pauseBtnImg = "../../assets/images/controls/pause.svg";
 const playBtnImg = "../../assets/images/controls/play-button.svg";
+const LoadingBtnImg = "../../assets/images/controls/loading.svg ";
 
 const audio = document.querySelector("#audio");
-const nextBtn = document.querySelector("#next-btn");
-const previousBtn = document.querySelector("#previous-btn");
-const shuffleBtn = document.querySelector("#shuffle-btn");
-const repeatBtn = document.querySelector("#repeat-btn");
-const currentTimeLabel = document.querySelector("#current-time");
-const endTimeLabel = document.querySelector("#end-time");
+const nextBtn = document.querySelectorAll(".next-btn");
+const previousBtn = document.querySelectorAll(".previous-btn");
+const shuffleBtn = document.querySelectorAll(".shuffle-btn");
+const repeatBtn = document.querySelectorAll(".repeat-btn");
+const currentTimeLabel = document.querySelectorAll(".current-time");
+const endTimeLabel = document.querySelectorAll(".end-time");
 
 const statusTypes = {
   PLAYING: "playing",
@@ -29,15 +30,23 @@ let shuffleMode = false;
 let shuffleArray = [];
 let shuffleIndex = 0;
 
+audio.addEventListener(
+  "error",
+  () => {
+    showNotification(notificationMessages.MSG_ERROR_LOAD_SONG);
+    stop();
+  },
+  true
+);
+
 const loadMusic = () => {
-  audio.src = playList.allSongs[currentMusicIndex].file;
-  const songname = `name:${playList.allSongs[currentMusicIndex].name}`;
+  audio.src = currentPlaylist[currentMusicIndex].file;
 };
 
 const nextMusic = () => {
   if (shuffleMode) {
     shuffleIndex++;
-    if (shuffleIndex > playList.allSongs.length - 1) {
+    if (shuffleIndex >= currentPlaylist.length) {
       shuffleIndex = 0;
     }
     currentMusicIndex = shuffleArray[shuffleIndex];
@@ -45,14 +54,12 @@ const nextMusic = () => {
     currentMusicIndex++;
   }
 
-  if (currentMusicIndex > playList.allSongs.length - 1) {
+  if (currentMusicIndex >= currentPlaylist.length) {
     currentMusicIndex = 0;
     if (repeatMode == repeatTypes.NO_REPEAT && !shuffleMode) {
       pause();
-      return;
     }
   }
-
   musicChangeHandler();
   loadMusic();
   play();
@@ -62,7 +69,7 @@ const previousMusic = () => {
   if (shuffleMode) {
     shuffleIndex--;
     if (shuffleIndex < 0) {
-      shuffleIndex = playList.allSongs.length - 1;
+      shuffleIndex = currentPlaylist.length - 1;
     }
     currentMusicIndex = shuffleArray[shuffleIndex];
   } else {
@@ -70,7 +77,7 @@ const previousMusic = () => {
   }
 
   if (currentMusicIndex < 0) {
-    currentMusicIndex = playList.allSongs.length - 1;
+    currentMusicIndex = currentPlaylist.length - 1;
   }
   musicChangeHandler();
   loadMusic();
@@ -94,12 +101,11 @@ const handlePlayButton = () => {
 handlePlayButton();
 
 const play = () => {
-  loadMusic();
   musicChangeHandler();
+  loadMusic();
 
-  //TODO replace this with circular loading
   playBtn.forEach((btn) => {
-    btn.children[0].src = "../../assets/images/controls/cancel.svg";
+    btn.children[0].src = LoadingBtnImg;
     btn.setAttribute("data-tooltip", "توقف");
   });
 
@@ -110,8 +116,13 @@ const play = () => {
       btn.children[0].src = pauseBtnImg;
       btn.setAttribute("data-tooltip", "توقف");
     });
-    seekSlider.max = audio.duration;
-    endTimeLabel.innerHTML = convertHMS(audio.duration);
+    seekSlider.forEach((slider) => {
+      slider.max = audio.duration;
+    });
+
+    endTimeLabel.forEach((label) => {
+      label.innerHTML = convertHMS(audio.duration);
+    });
   });
 };
 
@@ -134,15 +145,33 @@ const pause = () => {
     btn.setAttribute("data-tooltip", "پخش");
   });
 };
+const stop = () => {
+  audio.pause();
+  status = statusTypes.STOPED;
+  playBtn.forEach((btn) => {
+    btn.children[0].src = playBtnImg;
+    btn.setAttribute("data-tooltip", "پخش");
+  });
+};
 
 const updateMusicBarValue = (value) => {
   audio.currentTime = value;
   resume();
 };
+const updateMobileMusicBarValue = (value) => {
+  audio.currentTime = value;
+  resume();
+};
 
 audio.addEventListener("timeupdate", (event) => {
-  seekSlider.value = audio.currentTime;
-  currentTimeLabel.innerHTML = convertHMS(seekSlider.value);
+  let seekbarValue = 0;
+  seekSlider.forEach((slider) => {
+    slider.value = audio.currentTime;
+    seekbarValue = slider.value;
+  });
+  currentTimeLabel.forEach((label) => {
+    label.innerHTML = convertHMS(seekbarValue);
+  });
 });
 
 audio.addEventListener("ended", (event) => {
@@ -158,18 +187,21 @@ audio.addEventListener("ended", (event) => {
   }
 });
 
-nextBtn.addEventListener("click", (event) => {
-  nextMusic();
+nextBtn.forEach((btn) => {
+  btn.addEventListener("click", (event) => {
+    nextMusic();
+  });
 });
 
-previousBtn.addEventListener("click", (event) => {
-  previousMusic();
+previousBtn.forEach((btn) => {
+  btn.addEventListener("click", (event) => {
+    previousMusic();
+  });
 });
 
 const doubleClickHandler = (elem, id) => {
   elem.addEventListener("dblclick", () => {
-    currentMusicIndex = id - 1;
-    musicChangeHandler();
+    currentMusicIndex = elem.getAttribute("song-index");
     play();
   });
 };
@@ -198,29 +230,44 @@ function KeyPress(e) {
 
 document.onkeydown = KeyPress;
 
-repeatBtn.addEventListener("click", () => {
-  switch (repeatMode) {
-    case repeatTypes.NO_REPEAT:
-      repeatMode = repeatTypes.ONE_REPEAT;
-      break;
+repeatBtn.forEach((btn) => {
+  btn.addEventListener("click", () => {
+    switch (repeatMode) {
+      case repeatTypes.NO_REPEAT:
+        repeatMode = repeatTypes.ONE_REPEAT;
+        btn.classList.add("active-btn");
+        btn.children[0].src = "../../assets/images/controls/repeat1.svg";
 
-    case repeatTypes.ONE_REPEAT:
-      repeatMode = repeatTypes.ALL_REPEAT;
-      break;
+        break;
 
-    case repeatTypes.ALL_REPEAT:
-      repeatMode = repeatTypes.NO_REPEAT;
-      break;
-  }
+      case repeatTypes.ONE_REPEAT:
+        repeatMode = repeatTypes.ALL_REPEAT;
+        btn.classList.add("active-btn");
+        btn.children[0].src = "../../assets/images/controls/repeat.svg";
+
+        break;
+
+      case repeatTypes.ALL_REPEAT:
+        repeatMode = repeatTypes.NO_REPEAT;
+        btn.classList.remove("active-btn");
+        btn.children[0].src = "../../assets/images/controls/repeat.svg";
+
+        break;
+    }
+  });
 });
 
-shuffleBtn.addEventListener("click", () => {
-  shuffleMode = !shuffleMode;
-  if (shuffleMode) {
-    generateShuffleList();
-  }
+shuffleBtn.forEach((btn) => {
+  btn.addEventListener("click", () => {
+    shuffleMode = !shuffleMode;
+    if (shuffleMode) {
+      btn.classList.add("active-btn");
+      generateShuffleList();
+    } else {
+      btn.classList.remove("active-btn");
+    }
+  });
 });
-
 const shuffle = (array) => {
   var tmp,
     current,
@@ -236,7 +283,7 @@ const shuffle = (array) => {
 };
 
 const generateShuffleList = () => {
-  for (i = 0; i < playList.allSongs.length; i++) shuffleArray[i] = i;
+  for (i = 0; i < currentPlaylist.length; i++) shuffleArray[i] = i;
   shuffleArray = shuffle(shuffleArray);
 };
 

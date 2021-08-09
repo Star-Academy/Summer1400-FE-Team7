@@ -13,24 +13,43 @@ const volumeBtn = document.querySelector("#volume-btn");
 const volumeBtnImg = volumeBtn.childNodes[1];
 const volumeText = document.getElementById("volume-text");
 const volumeSlider = document.getElementById("volume-slider");
-const mobileInfo = document.querySelector(".mobile-info");
+const mobileInfo = document.querySelectorAll(".mobile-info");
 const listViewLayout = document.querySelector("#list-view");
-const allSongsTabNavigation = document.querySelector("#all-songs-tab-navigation-mobile");
+const gridViewLayout = document.querySelector("#grid-view");
+const listCompactViewLayout = document.querySelector("#list-compact-view");
+const allSongsMobileTabNavigation = document.querySelector(
+  "#all-songs-tab-navigation-mobile"
+);
 const userEmail = document.querySelector("#user-email");
 const pofileWrapper = document.querySelector(".profile-wrapper");
+const listLabel = document.querySelector(".list-view-label");
+const listCompactLabel = document.querySelector(".list-compact-view-label");
 
-const songList = document.querySelector(".song-list");
+const darkGlassMobilePreview = document.querySelector(".dark-glass3");
+const mobileSongPreview = document.querySelector(".mobile-song-preview");
+const mobileSongPreviewBackBtn = document.querySelector(
+  ".mobile-song-preview-return"
+);
+
+const songListLayout = document.querySelector(".song-list");
 const bgCover = document.querySelector(".bg-cover");
-const bgGlass2 = document.querySelector(".dark-glass2");
+const bgDarkForAddPlaylistModal = document.querySelector(".dark-background-2");
 const addPlayListBtn = document.querySelector(".add-btn");
 const addPlayListWrapper = document.querySelector(".add-playlist-wrapper");
 
-const seekSlider = document.getElementById("seek-slider");
+const seekSlider = document.querySelectorAll(".seek-slider");
 
 const musicCover = document.querySelector("#music-cover");
 const musicTitle = document.querySelector("#music-title");
 const musicArtist = document.querySelector("#music-artist");
 const songWrapper = document.querySelectorAll(".song-wrapper");
+const makePlayListBtn = document.querySelector("#make-playlist");
+const cancleMakingPlayListBtn = document.querySelector(
+  "#cancle-making-playlist"
+);
+const createNewPlaylistInput = document.querySelector(
+  "#make-new-playlist-input"
+);
 
 const SIDE_MENU_CLOSED = "side-menu-closed";
 const SIDE_MENU_OPEND = "side-menu-opended";
@@ -44,44 +63,68 @@ const LYRICS_WRAPPER_OPEN = "lyrics-wrapper-open";
 const SIDE_MENU_OPENER_CLOED = "side-menu-opener-closed";
 const LYRIC_BTN_ACTIVE = "lyric-btn-active";
 const DISPLAY_NONE = "display-none";
-const MUTE_BTN_IMG = "../../assets/images/controls/mute.svg";
-const VOLUME_BTN_IMG = "../../assets/images/controls/volume.svg";
+
+const MUTE_BTN_IMG = "../../../assets/images/controls/mute.svg";
+const VOLUME_BTN_IMG = "../../../assets/images/controls/volume.svg";
 const MOBILE_INFO_ANIMATION = "mobile-info-animation";
-const LIKE_HOVE_IMG = "../../assets/images/like-hovered.svg";
-const LIKE_IMG = "../../assets/images/like.svg";
-const LIKED_IMG = "../../assets/images/liked.svg";
+const LIKE_HOVE_IMG = "../../../assets/images/like-hovered.svg";
+const LIKE_IMG = "../../../assets/images/like.svg";
+const LIKED_IMG = "../../../assets/images/liked.svg";
 
 /*
 // Handle open/close side menu
 */
 sideMenuOpener.addEventListener("click", () => {
   sideMenu.classList.toggle(SIDE_MENU_CLOSED);
-  songList.classList.toggle(SIDE_MENU_OPEND);
+  songListLayout.classList.toggle(SIDE_MENU_OPEND);
 });
 
 /*
-// Handle change song list modes (list-view , list-view-compact- grid)
+// Handle change song list view modes (list-view , list-view-compact- grid)
 */
 layoutBtns.forEach((layout) => {
   layout.addEventListener("change", (event) => {
     switch (event.target.id) {
       case LIST_VIEW_COMPACT:
-        songList.classList.remove(GRID_VIEW);
-        songList.classList.add(LIST_VIEW_COMPACT);
+        songListLayout.classList.remove(GRID_VIEW);
+        songListLayout.classList.add(LIST_VIEW_COMPACT);
         break;
 
       case GRID_VIEW:
-        songList.classList.remove(LIST_VIEW_COMPACT);
-        songList.classList.add(GRID_VIEW);
+        songListLayout.classList.remove(LIST_VIEW_COMPACT);
+        songListLayout.classList.add(GRID_VIEW);
         break;
 
       default:
-        songList.classList.remove(GRID_VIEW);
-        songList.classList.remove(LIST_VIEW_COMPACT);
+        songListLayout.classList.remove(GRID_VIEW);
+        songListLayout.classList.remove(LIST_VIEW_COMPACT);
         break;
     }
   });
 });
+
+const allowOnlyGridModeLayout = () => {
+  listLabel.classList.remove("display-none");
+  listCompactLabel.classList.remove("display-none");
+};
+
+const allowAllLayoutModes = () => {
+  gridViewLayout.checked = true;
+  songListLayout.classList.remove("list-compact-view");
+  songListLayout.classList.add("grid-view");
+  listLabel.classList.add("display-none");
+  listCompactLabel.classList.add("display-none");
+};
+
+/*
+// Delete song-list compact-list mode in mobile size
+*/
+const disableCompactListLayoutMode = () => {
+  if (songListLayout.classList.contains(LIST_VIEW_COMPACT)) {
+    songListLayout.classList.remove(LIST_VIEW_COMPACT);
+    listViewLayout.checked = true;
+  }
+};
 
 /*
 // Handle open/close lyrics-view
@@ -108,48 +151,6 @@ lyricsBtnReturn.addEventListener("click", () => {
   toggleLyricsLayout(lyricsBtnMobile);
   lyricsBtn.classList.toggle(LYRIC_BTN_ACTIVE);
 });
-
-/*
-// Handle long song title and artis name with moving text animation
-*/
-const hiddenTextMovingAnimation = (parentDiv, currentWidht) => {
-  let totalWidth = 0;
-  const children = [...parentDiv.children];
-
-  children.forEach((elem) => {
-    totalWidth += elem.getBoundingClientRect().width;
-  });
-
-  let animationWidth = currentWidht - totalWidth;
-  if (animationWidth > 0) {
-    return;
-  }
-  animationWidth = Math.abs(animationWidth);
-
-  document.documentElement.style.setProperty("--animation-width", animationWidth + "px");
-
-  mobileInfo.classList.remove(MOBILE_INFO_ANIMATION);
-
-  mobileInfo.classList.add(MOBILE_INFO_ANIMATION);
-  mobileInfo.style.justifyContent = "flex-start";
-};
-
-window.addEventListener("resize", () => {
-  if (window.innerWidth < 750) {
-    layoutFixer();
-    hiddenTextMovingAnimation(mobileInfo, (window.innerWidth / 100) * 40);
-  }
-});
-
-/*
-// Delete song-list compact-list mode in mobile size
-*/
-const layoutFixer = () => {
-  if (songList.classList.contains(LIST_VIEW_COMPACT)) {
-    songList.classList.remove(LIST_VIEW_COMPACT);
-    listViewLayout.checked = true;
-  }
-};
 
 /*
 // Handle like btn hover and click
@@ -180,40 +181,56 @@ favIcon.forEach((elem) => {
   });
 });
 
-hiddenTextMovingAnimation(mobileInfo, (window.innerWidth / 100) * 40);
-allSongsTabNavigation.focus();
-
 addPlayListBtn.addEventListener("click", () => {
-  bgGlass2.classList.remove("display-none");
+  bgDarkForAddPlaylistModal.classList.remove("display-none");
   addPlayListWrapper.classList.remove("display-none");
 });
+bgDarkForAddPlaylistModal.addEventListener("click", () => {
+  deleteDarkBackfroundCreatPlaylist();
+})
 
-const makePlayList = document.querySelector("#make-playlist");
-const cancleMakingPlayList = document.querySelector("#cancle-making-playlist");
-const makeNewPlaylistInput = document.querySelector("#make-new-playlist-input");
 
-makePlayList.addEventListener("click", () => {
-  const title = makeNewPlaylistInput.value;
-  if (title == "") {
+
+makePlayListBtn.addEventListener("click", async () => {
+  const playListName = createNewPlaylistInput.value;
+  if (playListName == "") {
+    showNotification(notificationMessages.MSG_ERROR_CANT_BE_EMPTY)
     return false;
   }
+  const canCreate=await createPlayListServer(playListName);
 
-  newPlayList[title] = [];
-  addNewPlaylist(title);
+  if (canCreate) {
+    deleteDarkBackfroundCreatPlaylist()
+    addToPlaylistMenuItemGenetor();
+    createNewPlaylistInput.value = "";
+    playListInitializer();
+  }
 
-  bgGlass2.classList.add("display-none");
-  addPlayListWrapper.classList.add("display-none");
-  optionFiller();
-  makeNewPlaylistInput.value = "";
 });
 
-cancleMakingPlayList.addEventListener("click", () => {
-  bgGlass2.classList.add("display-none");
-  addPlayListWrapper.classList.add("display-none");
+cancleMakingPlayListBtn.addEventListener("click", () => {
+  deleteDarkBackfroundCreatPlaylist();
 });
 
-userEmail.innerText = localStorage.getItem("email");
+const deleteDarkBackfroundCreatPlaylist=()=> {
+  bgDarkForAddPlaylistModal.classList.add("display-none");
+  addPlayListWrapper.classList.add("display-none");
+}
+
+
 
 pofileWrapper.addEventListener("click", () => {
   logoutUser();
 });
+
+mobileInfo[0].addEventListener("click", () => {
+  darkGlassMobilePreview.classList.remove("display-none");
+  mobileSongPreview.classList.remove("display-none");
+  mobileFullScreenViewStartHandler();
+});
+
+mobileSongPreviewBackBtn.addEventListener("click", () => {
+  darkGlassMobilePreview.classList.add("display-none");
+  mobileSongPreview.classList.add("display-none");
+});
+
