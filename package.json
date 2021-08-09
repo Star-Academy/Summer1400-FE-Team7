@@ -19,6 +19,12 @@
   },
   "homepage": "https://github.com/Star-Academy/Summer1400-FE-Team7#readme",
   "devDependencies": {
+    "karma-chrome-launcher": "^3.1.0",
+    "karma-jasmine": "^4.0.1",
     "sass": "^1.36.0"
+  },
+  "dependencies": {
+    "karma": "^6.3.4",
+    "karma-jasmine-dom": "^1.0.1"
   }
 }
