@@ -3,12 +3,6 @@
   src: url("assets/fonts/sahel-bold.ttf");
   src: url("assets/fonts/sahel.ttf");
 }
-
-$--font-size-sm: 1rem;
-$--font-size-md: 1.5rem;
-$--font-size-lg: 2rem;
-$--font-size-xl: 2.5rem;
-
 *,
 *::before,
 *::after {
@@ -20,8 +14,6 @@ $--font-size-xl: 2.5rem;
   border: none;
 }
 
-$--clr-scrollbar: rgb(29, 125, 215);
-
 :root {
   --clr-bg: hsl(323 21% 16%);
   --clr-blue: rgb(8, 192, 255);
@@ -32,7 +24,6 @@ $--clr-scrollbar: rgb(29, 125, 215);
 
 body {
   height: 100vh;
-
   font-size: 62.5%;
 }
 
@@ -53,8 +44,9 @@ button {
 }
 
 *::-webkit-scrollbar-thumb {
-  background: $--clr-scrollbar;
-
+  background: #1d7dd7;
   border: none;
   border-radius: 1rem;
 }
+
+/*# sourceMappingURL=styles.css.map */
