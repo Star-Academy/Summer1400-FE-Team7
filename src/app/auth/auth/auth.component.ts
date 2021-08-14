@@ -7,9 +7,8 @@ import { NgForm } from '@angular/forms';
   styleUrls: ['./auth.component.scss'],
 })
 export class AuthComponent implements OnInit {
-  @ViewChild('f', { static: false }) signupForm!: NgForm;
+  @ViewChild('f', { static: false }) loginForm!: NgForm;
 
-  test = 'hahahaha';
 
   _ERROR_MSG = {
     MSG_EMAIL_EMPTY: 'ایمیل نمی‌تواند خالی باشد',
@@ -24,11 +23,20 @@ export class AuthComponent implements OnInit {
     MSG_UNSUCCESSFUL_LOGIN: 'ایمیل یا رمز عبور صحیح نمی باشد',
   };
 
+  user = {
+    email: '',
+    password:''
+  };
+
   constructor() {}
 
   ngOnInit(): void {}
 
   onSubmit() {
-    console.log(this.signupForm);
+    if(!this.loginForm.valid) return;
+    this.user.email=this.loginForm.value.email;
+    this.user.password=this.loginForm.value.password;
+    console.log(this.user)
+    this.loginForm.reset();
   }
 }

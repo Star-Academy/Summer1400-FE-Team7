@@ -33,7 +33,7 @@
         [attr.data-error]="
           password.value === ''
             ? _ERROR_MSG.MSG_PASSWORD_EMPTY
-            : _ERROR_MSG.MSG_PASSWORD_NOT_VALID
+            : ''
         "
         [ngClass]="!password.valid && password.touched ? 'error' : ''"
       >
@@ -45,7 +45,7 @@
           autocomplete="on"
           appFloatingLabel
           ngModel
-          pattern="^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{5,}$"
+
           name="password"
           #password="ngModel"
         />
@@ -69,7 +69,9 @@
         </div>
       </div>
 
-      <button type="submit" class="login-btn" id="login-submit-btn">
+      <button type="submit" class="login-btn"
+              [style.cursor]="!f.valid ? 'not-allowed' : 'pointer' "
+              id="login-submit-btn"  [disabled]="!f.valid">
         ورود
       </button>
       <a routerLink="/auth" id="create-new-account">ساخت حساب جدید</a>
@@ -97,6 +99,7 @@
           type="password"
           title="رمز عبور باید دارای حداقل ۵ کاراکتر،یک حرف و یک عدد باشد"
           id="signup-password-input"
+          pattern="^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{5,}$"
           required
           autocomplete="off"
           appFloatingLabel
