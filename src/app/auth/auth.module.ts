@@ -1,18 +1,19 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { FormComponent } from './form/form.component';
+import { AuthComponent } from './auth/auth.component';
+import {AppModule} from "../app.module";
 
 
 @NgModule({
   declarations: [
-    FormComponent
+
+    AuthComponent
   ],
   exports: [
-    FormComponent
   ],
   imports: [
-    CommonModule
+    CommonModule,
+    AppModule
   ],
-  bootstrap:[FormComponent]
 })
 export class AuthModule { }
