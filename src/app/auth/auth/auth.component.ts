@@ -1,5 +1,7 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { NgForm } from '@angular/forms';
+import {AuthService} from "../../services/auth.service";
+import {Subscription} from "rxjs";
 
 @Component({
   selector: 'app-auth',
@@ -8,8 +10,10 @@ import { NgForm } from '@angular/forms';
 })
 export class AuthComponent implements OnInit {
   @ViewChild('f', { static: false }) loginForm!: NgForm;
-
-
+  loadingSubscription: Subscription= new Subscription();
+  errorSubscription: Subscription= new Subscription();
+  loading=false;
+  error='';
   _ERROR_MSG = {
     MSG_EMAIL_EMPTY: 'ایمیل نمی‌تواند خالی باشد',
     MSG_EMAIL_NOT_VALID: 'ایمیل وارد شده معتبر نیست',
@@ -28,15 +32,30 @@ export class AuthComponent implements OnInit {
     password:''
   };
 
-  constructor() {}
+  constructor(private authService: AuthService) {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.loadingSubscription=this.authService.loading.subscribe((loading:boolean)=>{
+      this.loading = loading;
+    })
+
+    this.errorSubscription=this.authService.error.subscribe((error:string)=>{
+      this.error = error;
+      console.log(error);
+    })
+
+  }
 
   onSubmit() {
     if(!this.loginForm.valid) return;
     this.user.email=this.loginForm.value.email;
     this.user.password=this.loginForm.value.password;
-    console.log(this.user)
+    this.authService.login(this.user)
     this.loginForm.reset();
+  }
+
+  ngDestroy(){
+    this.loadingSubscription.unsubscribe();
+    this.errorSubscription.unsubscribe();
   }
 }

@@ -13,7 +13,7 @@
         "
         [ngClass]="!email.valid && email.touched ? 'error' : ''"
       >
-        <img src="../../assets/images/email.svg" alt="" />
+        <img src="../../assets/images/email.svg" alt=""/>
         <input
           type="email"
           id="login-email-input"
@@ -37,7 +37,7 @@
         "
         [ngClass]="!password.valid && password.touched ? 'error' : ''"
       >
-        <img src="../../assets/images/password.svg" alt="" />
+        <img src="../../assets/images/password.svg" alt=""/>
         <input
           type="password"
           id="login-password-input"
@@ -60,7 +60,7 @@
 
       <div>
         <div class="input-checkbox">
-          <input type="checkbox" id="checkbox-input" />
+          <input type="checkbox" id="checkbox-input"/>
           <label for="checkbox-input"> مرا به خاطر بسپار </label>
         </div>
 
@@ -70,8 +70,15 @@
       </div>
 
       <button type="submit" class="login-btn"
-              [style.cursor]="!f.valid ? 'not-allowed' : 'pointer' "
-              id="login-submit-btn"  [disabled]="!f.valid">
+              [style.cursor]="loading ? 'wait' : !f.valid?'not-allowed':'pointer' "
+              id="login-submit-btn" [disabled]="!f.valid"
+              [attr.data-error]="
+               error !== ''
+            ? error
+            : ''
+        "
+              [ngClass]="error !==''? 'error' : ''"
+      >
         ورود
       </button>
       <a routerLink="/auth" id="create-new-account">ساخت حساب جدید</a>
@@ -84,8 +91,8 @@
         id="email-register-input-wrapper"
         data-error=""
       >
-        <img src="../../assets/images/email.svg" alt="" />
-        <input type="email" id="signup-email-input" required appFloatingLabel />
+        <img src="../../assets/images/email.svg" alt=""/>
+        <input type="email" id="signup-email-input" required appFloatingLabel/>
         <label for="signup-email-input"> ایمیل </label>
       </div>
 
@@ -94,7 +101,7 @@
         id="password-register-input-wrapper"
         data-error=""
       >
-        <img src="../../assets/images/password.svg" alt="" appShowPassword />
+        <img src="../../assets/images/password.svg" alt="" appShowPassword/>
         <input
           type="password"
           title="رمز عبور باید دارای حداقل ۵ کاراکتر،یک حرف و یک عدد باشد"
