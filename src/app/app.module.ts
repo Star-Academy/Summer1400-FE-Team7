@@ -3,28 +3,21 @@ import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import {AuthModule} from './auth/auth.module';
-import {LandingModule} from './landing/landing.module';
-import { InputComponent } from './components/input/input.component';
-import {FormsModule} from "@angular/forms";
-
+import { AuthModule } from './auth/auth.module';
+import { LandingModule } from './landing/landing.module';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
-  declarations: [
-    AppComponent,
-    InputComponent
-  ],
+  declarations: [AppComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,
     AuthModule,
     LandingModule,
-    FormsModule
+    FormsModule,
   ],
   providers: [],
-  exports: [
-    InputComponent
-  ],
-  bootstrap: [AppComponent]
+  exports: [],
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}

@@ -1,0 +1,146 @@
+<main class="bg-animation-1">
+  <div class="form-wrapper">
+    <form class="login-form" (ngSubmit)="onSubmit()" #f="ngForm">
+      <h2 class="switch--up">ورود</h2>
+
+      <div
+        class="input-wrapper"
+        id="email-login-input-wrapper"
+        [attr.data-error]="
+          email.value === ''
+            ? _ERROR_MSG.MSG_EMAIL_EMPTY
+            : _ERROR_MSG.MSG_EMAIL_NOT_VALID
+        "
+        [ngClass]="!email.valid && email.touched ? 'error' : ''"
+      >
+        <img src="../../assets/images/email.svg" alt="" />
+        <input
+          type="email"
+          id="login-email-input"
+          required
+          appFloatingLabel
+          ngModel
+          email
+          name="email"
+          #email="ngModel"
+        />
+        <label for="login-email-input"> ایمیل </label>
+      </div>
+
+      <div
+        class="input-wrapper"
+        id="password-login-input-wrapper"
+        [attr.data-error]="
+          password.value === ''
+            ? _ERROR_MSG.MSG_PASSWORD_EMPTY
+            : _ERROR_MSG.MSG_PASSWORD_NOT_VALID
+        "
+        [ngClass]="!password.valid && password.touched ? 'error' : ''"
+      >
+        <img src="../../assets/images/password.svg" alt="" />
+        <input
+          type="password"
+          id="login-password-input"
+          required
+          autocomplete="on"
+          appFloatingLabel
+          ngModel
+          pattern="^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{5,}$"
+          name="password"
+          #password="ngModel"
+        />
+        <label for="login-password-input"> رمز عبور </label>
+        <img
+          src="../../assets/images/show-password.svg"
+          alt=""
+          class="show-pass-cta"
+          appShowPassword
+        />
+      </div>
+
+      <div>
+        <div class="input-checkbox">
+          <input type="checkbox" id="checkbox-input" />
+          <label for="checkbox-input"> مرا به خاطر بسپار </label>
+        </div>
+
+        <div class="forgot-pass">
+          <a routerLink="/auth">رمز عبورم را فراموش کردم</a>
+        </div>
+      </div>
+
+      <button type="submit" class="login-btn" id="login-submit-btn">
+        ورود
+      </button>
+      <a routerLink="/auth" id="create-new-account">ساخت حساب جدید</a>
+    </form>
+
+    <form class="signup-form display-none">
+      <h2>ثبت‌نام</h2>
+      <div
+        class="input-wrapper"
+        id="email-register-input-wrapper"
+        data-error=""
+      >
+        <img src="../../assets/images/email.svg" alt="" />
+        <input type="email" id="signup-email-input" required appFloatingLabel />
+        <label for="signup-email-input"> ایمیل </label>
+      </div>
+
+      <div
+        class="input-wrapper"
+        id="password-register-input-wrapper"
+        data-error=""
+      >
+        <img src="../../assets/images/password.svg" alt="" appShowPassword />
+        <input
+          type="password"
+          title="رمز عبور باید دارای حداقل ۵ کاراکتر،یک حرف و یک عدد باشد"
+          id="signup-password-input"
+          required
+          autocomplete="off"
+          appFloatingLabel
+        />
+
+        <label for="signup-password-input"> رمز عبور </label>
+        <img
+          src="../../assets/images/show-password.svg"
+          alt=""
+          class="show-pass-cta"
+        />
+      </div>
+
+      <div
+        class="input-wrapper"
+        id="confirm-password-register-input-wrapper"
+        data-error=""
+      >
+        <img
+          src="../../assets/images/confirm-password.svg"
+          alt=""
+          appShowPassword
+        />
+        <input
+          type="password"
+          title="رمز عبور باید دارای حداقل ۵ کاراکتر،یک حرف و یک عدد باشد"
+          id="signup-confirm-password-input"
+          required
+          autocomplete="off"
+          appFloatingLabel
+        />
+        />
+        <label for="signup-confirm-password-input"> تکرار رمز عبور </label>
+        <img
+          src="../../assets/images/show-password.svg"
+          alt=""
+          class="show-pass-cta"
+        />
+      </div>
+
+      <button type="button" class="register-btn" id="register-btn">
+        ثبت نام
+      </button>
+      <a href="#" id="already-have-account">قبلا عضو شده اید؟</a>
+    </form>
+  </div>
+</main>
