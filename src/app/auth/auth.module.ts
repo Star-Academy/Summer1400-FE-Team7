@@ -7,9 +7,17 @@ import { RouterModule } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 import { LoginFormComponent } from './login-form/login-form.component';
 import { SignupFormComponent } from './signup-form/signup-form.component';
+import { AuthAnimationDirective } from '../directives/auth-animation.directive';
 
 @NgModule({
-  declarations: [AuthComponent, FloatingLabelDirective, ShowPasswordDirective, LoginFormComponent, SignupFormComponent],
+  declarations: [
+    AuthComponent,
+    FloatingLabelDirective,
+    ShowPasswordDirective,
+    LoginFormComponent,
+    SignupFormComponent,
+    AuthAnimationDirective,
+  ],
   exports: [],
   imports: [CommonModule, RouterModule, FormsModule],
 })
