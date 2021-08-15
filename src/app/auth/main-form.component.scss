@@ -133,7 +133,7 @@ form {
 
 .error {
   box-shadow: inset 0 0 0.3em $--clr-boarder-error,
-    0 0 0.3em $--clr-boarder-error !important;
+  0 0 0.3em $--clr-boarder-error !important;
   position: relative;
 
   &::after {
@@ -147,10 +147,6 @@ form {
     padding: 0 1rem;
     border-radius: 1000rem;
   }
-}
-
-.show-pass-cta {
-  cursor: pointer;
 }
 
 .display-none {
