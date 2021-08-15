@@ -71,7 +71,7 @@
     id="login-submit-btn"
     [disabled]="!f.valid"
     [attr.data-error]="error !== '' ? error : ''"
-    [ngClass]="error !== '' ? 'error' : ''"
+    [ngClass]="error !== ''&& !loading ? 'error' : ''"
   >
     ورود
   </button>

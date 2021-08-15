@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
+import {ActivatedRoute} from "@angular/router";
 
 @Component({
   selector: 'app-auth',
@@ -6,7 +7,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./auth.component.scss'],
 })
 export class AuthComponent implements OnInit {
-  constructor() {}
+  constructor(private route: ActivatedRoute,) {}
 
   BG_ANIMATION = {
     TYPE1: 'bg-animation-1',
@@ -19,7 +20,16 @@ export class AuthComponent implements OnInit {
 
   isLoginPage: boolean = true;
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+
+    this.route.queryParams.subscribe(params => {
+      if(params['name']==="register")
+      {
+        this.currentBgState = this.BG_ANIMATION.TYPE3;
+        this.isLoginPage = false;
+      }
+    });
+  }
 
   pageNavigation(currentState: string) {
     if (currentState === 'login') {

@@ -80,7 +80,7 @@
       autocomplete="off"
       appFloatingLabel
       ngModel
-      name="confirm-passowrd"
+      name="confirmPassword"
       #confirmPassword="ngModel"
     />
     <label for="signup-confirm-password-input"> تکرار رمز عبور </label>
@@ -92,7 +92,13 @@
     />
   </div>
 
-  <button type="submit" class="register-btn" id="register-btn">ثبت نام</button>
+  <button type="submit" class="register-btn" id="register-btn"
+          [style.cursor]="loading ? 'wait' : !f.valid ? 'not-allowed' : 'pointer'"
+          id="login-submit-btn"
+          [disabled]="!f.valid"
+          [attr.data-error]="error !== '' ? error : ''"
+          [ngClass]="error !== ''&& !loading ? 'error' : ''"
+  >ثبت نام</button>
   <a
     routerLink="/auth"
     id="already-have-account"

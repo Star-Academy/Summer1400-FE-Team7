@@ -9,7 +9,7 @@
     ></app-login-form>
     <app-signup-form
       *ngIf="!isLoginPage"
-      (onCreateAcountClick)="pageNavigation('signup')"
+      (onAlreadyHaveAcount)="pageNavigation('signup')"
     ></app-signup-form>
   </div>
 </main>

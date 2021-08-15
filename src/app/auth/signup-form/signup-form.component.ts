@@ -5,17 +5,17 @@ import {
   Output,
   ViewChild,
 } from '@angular/core';
-import { NgForm } from '@angular/forms';
-import { Subscription } from 'rxjs';
-import { AuthService } from '../../services/auth.service';
+import {NgForm} from '@angular/forms';
+import {Subscription} from 'rxjs';
+import {AuthService} from '../../services/auth.service';
 
 @Component({
   selector: 'app-signup-form',
   templateUrl: './signup-form.component.html',
-  styleUrls: ['./signup-form.component.scss'],
+  styleUrls: ['../main-form.component.scss'],
 })
 export class SignupFormComponent implements OnInit {
-  @Output() onCreateAcountClick = new EventEmitter<void>();
+  @Output() onAlreadyHaveAcount = new EventEmitter<void>();
 
   _ERROR_MSG = {
     MSG_PASSWORD_NOT_VALID:
@@ -27,15 +27,17 @@ export class SignupFormComponent implements OnInit {
     MSG_PASSWORD_EMPTY: 'رمزعبور نمی‌تواند خالی باشد',
   };
 
-  @ViewChild('f', { static: false }) signupForm!: NgForm;
+  @ViewChild('f', {static: false}) signupForm!: NgForm;
   loadingSubscription: Subscription = new Subscription();
   errorSubscription: Subscription = new Subscription();
+  completeSubscription: Subscription = new Subscription();
 
   loading = false;
   error = '';
   isPasswordsMatch = true;
 
-  constructor(private authService: AuthService) {}
+  constructor(private authService: AuthService) {
+  }
 
   user = {
     email: '',
@@ -52,32 +54,38 @@ export class SignupFormComponent implements OnInit {
     this.errorSubscription = this.authService.error.subscribe(
       (error: string) => {
         this.error = error;
-        console.log(error);
+      }
+    );
+    this.completeSubscription = this.authService.complete.subscribe(
+      (complete: boolean) => {
+        if (complete) {
+          this.signupForm.reset()
+        }
+
       }
     );
   }
 
   onSubmit() {
     if (!this.signupForm.valid) return;
-    if (
-      this.signupForm.value.password !== this.signupForm.value.confirmPassword
-    ) {
+    if (this.signupForm.value.password !== this.signupForm.value.confirmPassword) {
       this.isPasswordsMatch = false;
       return;
     }
     this.isPasswordsMatch = true;
     this.user.email = this.signupForm.value.email;
     this.user.password = this.signupForm.value.password;
-    this.authService.login(this.user);
-    this.signupForm.reset();
+    this.authService.signUp(this.user);
   }
 
   ngDestroy() {
     this.loadingSubscription.unsubscribe();
     this.errorSubscription.unsubscribe();
+    this.completeSubscription.unsubscribe();
+
   }
 
   alreadyHaveAccountClick() {
-    this.onCreateAcountClick.emit();
+    this.onAlreadyHaveAcount.emit();
   }
 }
