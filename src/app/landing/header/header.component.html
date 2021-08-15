@@ -2,10 +2,10 @@
   <img src="../../../assets/images/logo.svg" alt="" width="24" height="24" />
   <ul>
     <li>
-      <a routerLink="auth">ثبت‌ نام</a>
+      <a [routerLink]="['auth']" [queryParams]="{name:'register'}">ثبت‌ نام</a>
     </li>
     <li>
-      <a routerLink="auth">ورود</a>
+      <a [routerLink]="['auth']" [queryParams]="{name:'login'}" >ورود</a>
     </li>
   </ul>
 </header>

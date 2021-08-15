@@ -12,7 +12,7 @@ import { AuthService } from '../../services/auth.service';
 @Component({
   selector: 'app-login-form',
   templateUrl: './login-form.component.html',
-  styleUrls: ['./login-form.component.scss'],
+  styleUrls: ['../main-form.component.scss'],
 })
 export class LoginFormComponent implements OnInit {
   @Output() onCreateAcountClick = new EventEmitter<void>();
@@ -26,6 +26,7 @@ export class LoginFormComponent implements OnInit {
   @ViewChild('f', { static: false }) loginForm!: NgForm;
   loadingSubscription: Subscription = new Subscription();
   errorSubscription: Subscription = new Subscription();
+  completeSubscription: Subscription = new Subscription();
 
   loading = false;
   error = '';
@@ -47,7 +48,14 @@ export class LoginFormComponent implements OnInit {
     this.errorSubscription = this.authService.error.subscribe(
       (error: string) => {
         this.error = error;
-        console.log(error);
+      }
+    );
+    this.completeSubscription = this.authService.complete.subscribe(
+      (complete: boolean) => {
+        if (complete){
+          this.loginForm.reset()
+        }
+
       }
     );
   }
@@ -57,12 +65,14 @@ export class LoginFormComponent implements OnInit {
     this.user.email = this.loginForm.value.email;
     this.user.password = this.loginForm.value.password;
     this.authService.login(this.user);
-    this.loginForm.reset();
+
   }
+
 
   ngDestroy() {
     this.loadingSubscription.unsubscribe();
     this.errorSubscription.unsubscribe();
+    this.completeSubscription.unsubscribe();
   }
 
   createAcountClick() {

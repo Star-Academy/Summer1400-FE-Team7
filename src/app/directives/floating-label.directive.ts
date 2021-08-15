@@ -8,11 +8,11 @@ const _FULL_LABEL = 'full-label';
 export class FloatingLabelDirective {
   constructor(private el: ElementRef, private renderer: Renderer2) {}
 
-  private flaot(fouse: boolean) {
+  private float(focused: boolean) {
     const value: string = this.el.nativeElement.value;
     const label: HTMLLabelElement = this.el.nativeElement.nextElementSibling;
 
-    if (fouse) {
+    if (focused) {
       if (value === '') {
         this.renderer.addClass(label, _FULL_LABEL);
       }
@@ -24,10 +24,10 @@ export class FloatingLabelDirective {
   }
 
   @HostListener('focus') onInputFocus() {
-    this.flaot(true);
+    this.float(true);
   }
 
   @HostListener('blur') onInputBlur() {
-    this.flaot(false);
+    this.float(false);
   }
 }
