@@ -7,6 +7,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { AuthModule } from './auth/auth.module';
 import { LandingModule } from './landing/landing.module';
+import {DashboardModule} from "./dashboard/dashboard.module";
 
 @NgModule({
   declarations: [AppComponent],
@@ -17,6 +18,7 @@ import { LandingModule } from './landing/landing.module';
     FormsModule,
     AuthModule,
     LandingModule,
+    DashboardModule
   ],
   providers: [],
   exports: [],
