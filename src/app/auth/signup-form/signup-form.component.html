@@ -1,1 +1,102 @@
-<p>signup-form works!</p>
+<form class="signup-form" (ngSubmit)="onSubmit()" #f="ngForm">
+  <h2>ثبت‌نام</h2>
+  <div
+    class="input-wrapper"
+    id="email-register-input-wrapper"
+    [attr.data-error]="
+      email.value === ''
+        ? _ERROR_MSG.MSG_EMAIL_EMPTY
+        : _ERROR_MSG.MSG_EMAIL_NOT_VALID
+    "
+    [ngClass]="!email.valid && email.touched ? 'error' : ''"
+  >
+    <img src="../../assets/images/email.svg" alt="" />
+    <input
+      type="email"
+      id="signup-email-input"
+      required
+      appFloatingLabel
+      ngModel
+      email
+      name="email"
+      #email="ngModel"
+    />
+    <label for="signup-email-input"> ایمیل </label>
+  </div>
+
+  <div
+    class="input-wrapper"
+    id="password-register-input-wrapper"
+    [attr.data-error]="
+      password.value === ''
+        ? _ERROR_MSG.MSG_PASSWORD_EMPTY
+        : _ERROR_MSG.MSG_PASSWORD_NOT_VALID
+    "
+    [ngClass]="!password.valid && password.touched ? 'error' : ''"
+  >
+    <img src="../../assets/images/password.svg" alt="" appShowPassword />
+    <input
+      type="password"
+      title="رمز عبور باید دارای حداقل ۵ کاراکتر،یک حرف و یک عدد باشد"
+      id="signup-password-input"
+      pattern="^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{5,}$"
+      required
+      autocomplete="off"
+      appFloatingLabel
+      ngModel
+      name="password"
+      #password="ngModel"
+    />
+
+    <label for="signup-password-input"> رمز عبور </label>
+    <img
+      src="../../assets/images/show-password.svg"
+      alt=""
+      class="show-pass-cta"
+      appShowPassword
+    />
+  </div>
+
+  <div
+    class="input-wrapper"
+    id="confirm-password-register-input-wrapper"
+    [attr.data-error]="
+      confirmPassword.value === ''
+        ? _ERROR_MSG.MSG_CONFIRM_PASSWORD_EPMTY
+        : _ERROR_MSG.MSG_PASSWORDS_NOT_MATCH
+    "
+    [ngClass]="
+      (!confirmPassword.valid && confirmPassword.touched) || !isPasswordsMatch
+        ? 'error'
+        : ''
+    "
+  >
+    <img src="../../assets/images/confirm-password.svg" alt="" />
+    <input
+      type="password"
+      title="رمز عبور باید دارای حداقل ۵ کاراکتر،یک حرف و یک عدد باشد"
+      id="signup-confirm-password-input"
+      required
+      autocomplete="off"
+      appFloatingLabel
+      ngModel
+      name="confirm-passowrd"
+      #confirmPassword="ngModel"
+    />
+    <label for="signup-confirm-password-input"> تکرار رمز عبور </label>
+    <img
+      src="../../assets/images/show-password.svg"
+      alt=""
+      class="show-pass-cta"
+      appShowPassword
+    />
+  </div>
+
+  <button type="submit" class="register-btn" id="register-btn">ثبت نام</button>
+  <a
+    routerLink="/auth"
+    id="already-have-account"
+    (click)="alreadyHaveAccountClick()"
+    >قبلا عضو شده اید؟</a
+  >
+</form>
