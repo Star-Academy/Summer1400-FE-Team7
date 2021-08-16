@@ -1,0 +1,31 @@
+<div class="song-wrapper">
+    <div class="song-cover">
+        <img class="song-cover-img" loading="lazy" [src]="song.cover" />
+    </div>
+    <div class="song-info">
+        <p id="song-name">{{ song.name }}</p>
+        <p id="artist-name">{{ song.artist }}</p>
+    </div>
+    <div class="song-prop">
+        <p id="duration">{{ song.duration }}</p>
+        <img
+            class="fav-icon"
+            [src]="song.isFavourite ? '../../../../assets/images/like.svg' : '../../../../assets/images/liked.svg'"
+        />
+    </div>
+
+    <button class="more-options" (click)="isMoreOptionsOpened = !isMoreOptionsOpened"></button>
+
+    <div class="options" *ngIf="isMoreOptionsOpened">
+        <div class="button-wrapper">
+            <img src="../../../../assets/images/download.svg" alt="" />
+            <button>دانلود آهنگ</button>
+        </div>
+        <div class="button-wrapper">
+            <img src="../../../../assets/images/playlist-add.svg" alt="" />
+            <button>افزودن به پلی‌لیست ها</button>
+        </div>
+    </div>
+</div>
+
+<div class="transparent-window" *ngIf="isMoreOptionsOpened" (click)="isMoreOptionsOpened = !isMoreOptionsOpened"></div>
