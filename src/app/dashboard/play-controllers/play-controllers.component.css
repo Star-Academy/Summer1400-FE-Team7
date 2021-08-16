@@ -1,0 +1,130 @@
+:host {
+  height: 100%;
+  width: 100%;
+  user-select: none;
+  display: flex;
+  align-items: center;
+}
+:host div {
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+:host .info-wrapper {
+  position: absolute;
+  right: 0;
+  display: flex;
+  gap: 0.7rem;
+  user-select: none;
+  padding-left: 2rem;
+}
+:host .info-wrapper:hover {
+  background: rgba(0, 0, 0, 0.2);
+}
+:host .info-wrapper > img {
+  height: calc(100% - 2px);
+}
+:host .info-wrapper > div {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+:host .info-wrapper > div > p {
+  color: var(--clr-white);
+}
+:host .info-wrapper > div > p:first-child {
+  font-size: 1rem;
+}
+:host .info-wrapper > div > p:last-child {
+  font-size: 0.7rem;
+}
+:host .controls-wrapper {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-evenly;
+}
+:host .controls-wrapper > div {
+  height: fit-content;
+}
+:host .controls-wrapper > div:nth-of-type(1) {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+:host .controls-wrapper > div:nth-of-type(1) > button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 0 0.4rem;
+}
+:host .controls-wrapper > div:nth-of-type(1) > button > img {
+  width: 65%;
+  height: 65%;
+}
+:host .controls-wrapper > div:nth-of-type(1) > .size-1 {
+  width: 25px;
+  height: 25px;
+}
+:host .controls-wrapper > div:nth-of-type(1) > .size-2 {
+  width: 30px;
+  height: 30px;
+}
+:host .controls-wrapper .music-bar-wrapper {
+  width: 45%;
+  display: flex;
+  flex-direction: row-reverse;
+  align-items: center;
+  gap: 0.5rem;
+}
+:host .controls-wrapper .music-bar-wrapper > p {
+  color: var(--clr-white);
+}
+:host .controls-wrapper .music-bar-wrapper > input[type=range] {
+  flex: 1;
+  height: 4px;
+  border-radius: 999rem;
+  direction: ltr;
+}
+:host .volume-wrapper {
+  position: absolute;
+  left: 1rem;
+  display: flex;
+  flex-direction: row-reverse;
+  gap: 0.5rem;
+}
+:host .volume-wrapper > p {
+  color: var(--clr-white);
+  width: 3ch;
+  text-align: left;
+}
+:host .volume-wrapper > button:nth-of-type(1) {
+  width: 20px;
+  height: 20px;
+}
+:host .volume-wrapper > button:nth-of-type(1) > img {
+  width: 100%;
+  height: 100%;
+}
+:host .volume-wrapper > input[type=range] {
+  width: 100px;
+  height: 4px;
+  border-radius: 0;
+  direction: ltr;
+}
+:host .volume-wrapper > button:nth-of-type(2) {
+  width: 25px;
+  height: 25px;
+  margin-left: 2rem;
+}
+:host .volume-wrapper > button:nth-of-type(2) > img {
+  width: 100%;
+  height: 100%;
+}
+:host .volume-wrapper .lyric-btn-active {
+  filter: invert(39%) sepia(96%) saturate(903%) hue-rotate(184deg) brightness(86%) contrast(97%);
+}
+
+/*# sourceMappingURL=play-controllers.component.css.map */

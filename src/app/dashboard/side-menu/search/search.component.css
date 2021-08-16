@@ -1,0 +1,33 @@
+:host {
+  width: 100%;
+}
+:host .search {
+  background: #1b1a1a;
+  height: 2.5rem;
+  margin-bottom: 0.5rem;
+  border-radius: 999rem;
+  flex-direction: row-reverse;
+  padding-left: 0.5rem;
+  display: flex;
+  align-items: center;
+  width: 92%;
+  margin: 0 auto;
+  border: 2px solid var(--clr-white);
+}
+:host .search > .search__icon {
+  width: 40px;
+  height: 50%;
+  background: url(../../../../assets/images/search.svg) no-repeat;
+  background-position: center;
+  background-size: contain;
+  transform: rotate(90deg);
+}
+:host .search > input {
+  flex: 1;
+  height: 100%;
+  padding-right: 0.5rem;
+  background: transparent;
+  color: whitesmoke;
+}
+
+/*# sourceMappingURL=search.component.css.map */

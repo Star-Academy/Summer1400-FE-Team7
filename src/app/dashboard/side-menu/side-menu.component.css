@@ -1,0 +1,60 @@
+.side-menu {
+  width: 275px;
+  height: 90vh;
+  background: #00000066;
+  padding-top: 4rem;
+  position: fixed;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  transition: transform 0.1s linear;
+  transform-origin: right;
+  transform: translateX(0);
+  z-index: 100;
+}
+.side-menu > * {
+  width: 100%;
+  height: 3rem;
+}
+.side-menu > .menu-selected {
+  border-right: 5px solid #1d7dd7;
+}
+.side-menu .profile-wrapper {
+  display: flex;
+  width: 100%;
+  height: 3rem;
+  flex-direction: row-reverse;
+  cursor: pointer;
+  font-size: 0.8rem;
+  margin-top: auto;
+  padding: 0 0.5rem;
+}
+.side-menu .profile-wrapper > p {
+  flex: 1;
+  user-select: none;
+  color: var(--clr-white);
+  text-align: left;
+}
+.side-menu .profile-wrapper > button {
+  width: 3rem;
+  display: flex;
+  align-items: center;
+}
+.side-menu .profile-wrapper > button > img {
+  width: 40px;
+  height: 60%;
+}
+
+.side-menu-closed {
+  transform: translateX(100%) !important;
+}
+
+.side-menu-opended {
+  width: calc(100% - 275px) !important;
+}
+
+.side-menu-opener-closed {
+  transform: translateX(100%);
+}
+
+/*# sourceMappingURL=side-menu.component.css.map */

@@ -1,0 +1,68 @@
+:host {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 20rem;
+  height: 15rem;
+  background: #282828;
+  z-index: 200;
+  overflow-y: overlay;
+  overflow-x: hidden;
+  display: flex;
+  flex-direction: column;
+  padding: 0.5rem 1rem;
+}
+:host p {
+  font-size: 0.8rem;
+  color: var(--clr-white);
+  cursor: pointer;
+  user-select: none;
+}
+:host .header {
+  display: flex;
+  align-items: center;
+  height: 2rem;
+}
+:host .header button {
+  height: 0.9rem;
+  width: auto;
+  margin-right: auto;
+}
+:host .header button img {
+  width: 100%;
+  height: 100%;
+}
+:host .playlists-container {
+  display: flex;
+  flex-direction: column;
+}
+:host .playlists-container .playlists {
+  display: flex;
+  align-items: center;
+  height: 2rem;
+}
+:host .playlists-container .playlists input {
+  margin-left: 0.7rem;
+}
+
+.create-new-palylist {
+  padding-right: 0.7rem;
+  width: calc(100% + 1rem);
+  cursor: pointer;
+  height: 2.5rem;
+  margin-top: auto;
+  background: #222121;
+  position: sticky;
+  bottom: -0.5rem;
+  left: 0;
+  display: flex;
+  align-items: center;
+}
+.create-new-palylist img {
+  height: 50%;
+  width: auto;
+  margin-left: 0.7rem;
+}
+
+/*# sourceMappingURL=add-to-playlist-panel.component.css.map */
