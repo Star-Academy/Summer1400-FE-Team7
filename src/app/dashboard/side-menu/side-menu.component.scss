@@ -1,0 +1,187 @@
+$--clr-grayish: #7b7b7b;
+$--hover-bg-clr: rgba(138, 135, 135, 0.15);
+$--select-bg-clr: hsl(139, 182, 113);
+$--selected-bg-blue: rgb(29, 125, 215);
+$--bg-glass: rgba(0, 0, 0, 0.85);
+$--bg-mellow-black: rgb(40, 40, 40);
+
+.side-menu {
+    width: 275px;
+    height: 90vh;
+    background: #00000066;
+    padding-top: 4rem;
+    position: fixed;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    transition: transform 0.1s linear;
+    transform-origin: right;
+    transform: translateX(0);
+
+    z-index: 100;
+
+    > * {
+        width: 100%;
+        height: 3rem;
+    }
+    //TODO
+    // > .search {
+    //     background: rgb(27, 26, 26);
+
+    //     height: 2.5rem;
+    //     margin-bottom: 0.5rem;
+
+    //     border-radius: 999rem;
+
+    //     flex-direction: row-reverse;
+    //     padding-left: 0.5rem;
+
+    //     display: flex;
+    //     align-items: center;
+
+    //     width: 92%;
+    //     border: 2px solid var(--clr-white);
+
+    //     > .search__icon {
+    //         width: 40px;
+    //         height: 50%;
+    //         background: url(../../../assets/images/search.svg) no-repeat;
+    //         background-position: center;
+    //         background-size: contain;
+
+    //         transform: rotate(90deg);
+    //     }
+
+    //     > input {
+    //         flex: 1;
+    //         height: 100%;
+    //         padding-right: 0.5rem;
+    //         background: transparent;
+
+    //         color: whitesmoke;
+    //     }
+    // }
+    //TODO
+    // .btn-wrapper {
+    //     display: flex;
+    //     width: 100%;
+    //     align-items: center;
+    //     position: relative;
+    //     border-right: 5px solid transparent;
+    //     cursor: pointer;
+
+    //     padding-right: 0.4rem;
+
+    //     > img {
+    //         width: 40px;
+    //         height: 60%;
+    //         padding: 0 0.5rem;
+    //     }
+
+    //     > button {
+    //         height: 100%;
+    //         cursor: pointer;
+    //         background: none;
+    //         text-align: right;
+    //         color: var(--clr-white);
+
+    //         width: 100%;
+    //     }
+
+    //     &:hover {
+    //         background: rgba(255, 255, 255, 0.486) !important;
+    //     }
+    // }
+    //TODO
+    // .playlist-container {
+    //     display: flex;
+    //     justify-self: flex-start;
+    //     align-self: baseline;
+    //     width: 100%;
+    //     // margin-right: 5px;
+
+    //     & > .btn-wrapper {
+    //         margin-right: 0;
+    //     }
+
+    //     &:hover {
+    //         // background: red !important;
+    //         .delete-btn {
+    //             display: block !important;
+    //         }
+    //     }
+    // }
+
+    // .add-btn,
+    // .delete-btn {
+    //     height: 3rem;
+    //     width: 3rem;
+    //     &:hover {
+    //         background: rgba(255, 255, 255, 0.486);
+    //     }
+
+    //     & > img {
+    //         width: 50%;
+    //         height: 100%;
+    //     }
+    // }
+
+    // .delete-btn {
+    //     display: none;
+    //     > img {
+    //         width: 40%;
+    //     }
+    //     &:hover {
+    //         display: block;
+    //     }
+    // }
+    //TODO
+    > .menu-selected {
+        border-right: 5px solid $--selected-bg-blue;
+    }
+
+    .profile-wrapper {
+        display: flex;
+        width: 100%;
+        height: 3rem;
+        flex-direction: row-reverse;
+        cursor: pointer;
+        font-size: 0.8rem;
+
+        margin-top: auto;
+        padding: 0 0.5rem;
+
+        > p {
+            flex: 1;
+            user-select: none;
+            color: var(--clr-white);
+            text-align: left;
+        }
+
+        > button {
+            width: 3rem;
+
+            display: flex;
+            align-items: center;
+
+            > img {
+                width: 40px;
+                height: 60%;
+            }
+        }
+    }
+}
+// TODO CHECK IF NECCESSARY ELSE DELETE
+.side-menu-closed {
+    transform: translateX(100%) !important;
+}
+
+.side-menu-opended {
+    width: calc(100% - 275px) !important;
+}
+
+.side-menu-opener-closed {
+    transform: translateX(100%);
+}
