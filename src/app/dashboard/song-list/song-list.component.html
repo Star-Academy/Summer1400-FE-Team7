@@ -1,7 +1,7 @@
-<div class="song-list side-menu-opended">
+<div class="song-list side-menu-opended" [ngClass]="layoutView">
     <div>
         <h2 class="song-list-header">test test test</h2>
-        <app-layout-manager></app-layout-manager>
+        <app-layout-manager (chosedLayout)="changeLayoutViewHandler($event)"></app-layout-manager>
         <!-- // TODO -->
         <!-- <div class="song-list-view-wrapper">
             <input type="radio" name="song-list-view" id="list-view" checked class="radio-btn" />
@@ -21,5 +21,5 @@
         </div> -->
     </div>
     <div class="placeholders-wrapper"></div>
-    <app-song-item *ngFor="let song of allSongs" [song]="song"></app-song-item>
+    <app-song-item [layout]="layoutView" *ngFor="let song of allSongs" [song]="song"></app-song-item>
 </div>

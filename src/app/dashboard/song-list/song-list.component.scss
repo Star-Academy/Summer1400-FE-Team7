@@ -308,6 +308,7 @@ $--bg-mellow-black: rgb(40, 40, 40);
                 }
             }
         }
+
         .playlist-wrapper {
             display: flex;
             flex-direction: column;
@@ -380,8 +381,8 @@ $--bg-mellow-black: rgb(40, 40, 40);
 
             align-self: baseline;
         }
-
-        > .song-wrapper {
+        //TODO
+        .song-wrapper {
             display: flex;
             flex-direction: column;
             height: auto;

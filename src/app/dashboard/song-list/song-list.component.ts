@@ -13,6 +13,8 @@ export class SongListComponent implements OnInit {
 
     allSongsSub!: Subscription;
 
+    layoutView: string = '';
+
     constructor(private songService: SongService) {}
 
     ngOnInit(): void {
@@ -24,5 +26,9 @@ export class SongListComponent implements OnInit {
 
     ngOnDestroy(): void {
         this.allSongsSub.unsubscribe();
+    }
+
+    changeLayoutViewHandler(viewType: any) {
+        this.layoutView = viewType;
     }
 }
