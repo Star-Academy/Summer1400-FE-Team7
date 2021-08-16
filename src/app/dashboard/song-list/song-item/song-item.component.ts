@@ -14,10 +14,10 @@ export class SongItemComponent implements OnInit {
 
     isMoreOptionsOpened: boolean = false;
 
-    constructor(private uiManager: UiManagerService, private songManager: SongService) {}
+    constructor(private uiManager: UiManagerService, private songService: SongService) {}
 
     ngOnInit(): void {
-        console.log(this.layout);
+        // console.log(this.layout);
     }
 
     openNewPlaylistPanel() {
@@ -26,7 +26,8 @@ export class SongItemComponent implements OnInit {
     }
 
     oneClick() {
-        this.songManager.removeSelectedAttribute();
+        this.songService.removeSelectedAttribute();
         this.song.isSelected = true;
+        this.songService.selectedSong=this.song;
     }
 }

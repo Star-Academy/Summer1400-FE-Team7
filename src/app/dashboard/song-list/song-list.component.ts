@@ -4,31 +4,41 @@ import {Song} from 'src/app/models/song';
 import {SongService} from 'src/app/services/song.service';
 
 @Component({
-    selector: 'app-song-list',
-    templateUrl: './song-list.component.html',
-    styleUrls: ['./song-list.component.scss'],
+  selector: 'app-song-list',
+  templateUrl: './song-list.component.html',
+  styleUrls: ['./song-list.component.scss'],
 })
 export class SongListComponent implements OnInit {
-    allSongs: Song[] = [];
+  // allSongs: Song[] = [];
+  currentPlaylist: Song[] = [];
+  currentPlaylistName: string="";
 
-    allSongsSub!: Subscription;
+  // allSongsSub!: Subscription;
+  currentPlaylistSub!: Subscription;
 
-    layoutView: string = '';
+  layoutView: string = '';
 
-    constructor(private songService: SongService) {}
+  constructor(private songService: SongService) {
+  }
 
-    ngOnInit(): void {
-        this.allSongsSub = this.songService.allSongsChanged.subscribe((data: Song[]) => {
-            this.allSongs = data;
-        });
-        this.allSongs = this.songService.allSongs;
-    }
+  ngOnInit(): void {
+    this.currentPlaylistSub = this.songService.currentPlaylistChanged.subscribe((data:{name:string,songs:Song[]}) => {
+      this.currentPlaylistName = data.name;
+      this.currentPlaylist = data.songs;
+    });
 
-    ngOnDestroy(): void {
-        this.allSongsSub.unsubscribe();
-    }
+    // this.allSongsSub = this.songService.allSongsChanged.subscribe((data: Song[]) => {
+    //     this.allSongs = data;
+    // });
+    // this.allSongs = this.songService.allSongs;
+  }
 
-    changeLayoutViewHandler(viewType: any) {
-        this.layoutView = viewType;
-    }
+  ngOnDestroy(): void {
+    // this.allSongsSub.unsubscribe();
+    this.currentPlaylistSub.unsubscribe();
+  }
+
+  changeLayoutViewHandler(viewType: any) {
+    this.layoutView = viewType;
+  }
 }
