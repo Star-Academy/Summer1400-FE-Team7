@@ -1,4 +1,3 @@
-[
 <div [ngSwitch]="playlistItem.buttonType">
     <div *ngSwitchCase="'add'" class="playlist-container">
         <div class="btn-wrapper" [ngClass]="playlistItem.isSelected ? 'menu-selected' : ''">
@@ -25,7 +24,7 @@
         <button>{{ playlistItem.name }}</button>
     </div>
 </div>
-]
+
 <!-- //TODO -->
 <!-- <div class="btn-wrapper" [ngClass]="playlistItem.isSelected ? 'menu-selected' : ''">
     <img [src]="playlistItem.icon" alt="" />
