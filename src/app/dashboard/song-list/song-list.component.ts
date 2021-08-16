@@ -1,15 +1,28 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
+import {Subscription} from 'rxjs';
+import {Song} from 'src/app/models/song';
+import {SongService} from 'src/app/services/song.service';
 
 @Component({
-  selector: 'app-song-list',
-  templateUrl: './song-list.component.html',
-  styleUrls: ['./song-list.component.scss']
+    selector: 'app-song-list',
+    templateUrl: './song-list.component.html',
+    styleUrls: ['./song-list.component.scss'],
 })
 export class SongListComponent implements OnInit {
+    allSongs: Song[] = [];
 
-  constructor() { }
+    allSongsSub!: Subscription;
 
-  ngOnInit(): void {
-  }
+    constructor(private songService: SongService) {}
 
+    ngOnInit(): void {
+        this.allSongsSub = this.songService.allSongsChanged.subscribe((data: Song[]) => {
+            this.allSongs = data;
+        });
+        this.allSongs = this.songService.allSongs;
+    }
+
+    ngOnDestroy(): void {
+        this.allSongsSub.unsubscribe();
+    }
 }

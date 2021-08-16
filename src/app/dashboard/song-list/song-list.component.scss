@@ -4,6 +4,7 @@ $--select-bg-clr: hsl(139, 182, 113);
 $--selected-bg-blue: rgb(29, 125, 215);
 $--bg-glass: rgba(0, 0, 0, 0.85);
 $--bg-mellow-black: rgb(40, 40, 40);
+
 :host {
     width: 100%;
     height: 90vh;
@@ -71,163 +72,163 @@ $--bg-mellow-black: rgb(40, 40, 40);
             //     }
             // }
         }
+        //TODO
+        // p {
+        //     color: var(--clr-white);
+        //     user-select: none;
+        // }
+        // TODO
+        // > .song-wrapper {
+        //     width: 100%;
+        //     height: 3rem;
 
-        p {
-            color: var(--clr-white);
-            user-select: none;
-        }
+        //     display: flex;
+        //     align-items: center;
 
-        > .song-wrapper {
-            width: 100%;
-            height: 3rem;
+        //     position: relative;
 
-            display: flex;
-            align-items: center;
+        //     > .song-cover {
+        //         width: 3rem;
+        //         height: 3rem;
+        //         // background: black;
 
-            position: relative;
+        //         overflow: hidden;
 
-            > .song-cover {
-                width: 3rem;
-                height: 3rem;
-                // background: black;
+        //         > img {
+        //             width: 100%;
+        //             height: 100%;
 
-                overflow: hidden;
+        //             object-fit: cover;
+        //             user-select: none;
+        //         }
+        //     }
 
-                > img {
-                    width: 100%;
-                    height: 100%;
+        //     > :is(.song-prop, .song-info) {
+        //         display: flex;
+        //         flex-direction: column;
+        //         height: 80%;
+        //         justify-content: space-evenly;
+        //         align-items: space-evenly;
+        //     }
 
-                    object-fit: cover;
-                    user-select: none;
-                }
-            }
+        //     & > .more-options {
+        //         height: 35%;
+        //         width: 0.5rem;
 
-            > :is(.song-prop, .song-info) {
-                display: flex;
-                flex-direction: column;
-                height: 80%;
-                justify-content: space-evenly;
-                align-items: space-evenly;
-            }
+        //         position: absolute;
+        //         top: 50%;
+        //         transform: translateY(-50%);
+        //         left: 0.5rem;
 
-            & > .more-options {
-                height: 35%;
-                width: 0.5rem;
+        //         background: url(../../../assets/images/more.svg) no-repeat;
+        //         background-size: cover;
+        //         background-position: center;
+        //         display: none;
 
-                position: absolute;
-                top: 50%;
-                transform: translateY(-50%);
-                left: 0.5rem;
+        //         align-items: center;
+        //         justify-content: flex-start;
+        //     }
 
-                background: url(../../../assets/images/more.svg) no-repeat;
-                background-size: cover;
-                background-position: center;
-                display: none;
+        //     .more-options:hover {
+        //         & ~ .options {
+        //             display: flex;
+        //             flex-direction: column;
+        //             justify-content: flex-start;
+        //         }
+        //     }
 
-                align-items: center;
-                justify-content: flex-start;
-            }
+        //     > .options {
+        //         position: absolute;
+        //         top: 30%;
+        //         left: 1rem;
+        //         width: 10rem;
+        //         // padding: 2rem;
+        //         background: $--bg-mellow-black;
+        //         border-radius: 10px;
+        //         display: none;
+        //         z-index: 400;
 
-            .more-options:hover {
-                & ~ .options {
-                    display: flex;
-                    flex-direction: column;
-                    justify-content: flex-start;
-                }
-            }
+        //         & > p {
+        //             border-bottom: 1px solid $--selected-bg-blue;
+        //             padding: 0.5rem;
+        //             font-size: 0.8rem;
+        //         }
 
-            > .options {
-                position: absolute;
-                top: 30%;
-                left: 1rem;
-                width: 10rem;
-                // padding: 2rem;
-                background: $--bg-mellow-black;
-                border-radius: 10px;
-                display: none;
-                z-index: 400;
+        //         > ul {
+        //             list-style: none;
+        //             padding: 1rem;
+        //             display: flex;
+        //             flex-direction: column;
+        //             gap: 1rem;
+        //             width: 100%;
 
-                & > p {
-                    border-bottom: 1px solid $--selected-bg-blue;
-                    padding: 0.5rem;
-                    font-size: 0.8rem;
-                }
+        //             > li {
+        //                 width: 100%;
+        //                 font-size: 0.8rem;
+        //                 cursor: pointer;
 
-                > ul {
-                    list-style: none;
-                    padding: 1rem;
-                    display: flex;
-                    flex-direction: column;
-                    gap: 1rem;
-                    width: 100%;
+        //                 &:hover {
+        //                     background: darken($--bg-mellow-black, 1);
+        //                 }
+        //             }
+        //         }
 
-                    > li {
-                        width: 100%;
-                        font-size: 0.8rem;
-                        cursor: pointer;
+        //         &:hover {
+        //             display: flex;
+        //             flex-direction: column;
+        //             justify-content: flex-start;
+        //         }
+        //     }
 
-                        &:hover {
-                            background: darken($--bg-mellow-black, 1);
-                        }
-                    }
-                }
+        //     > .song-info {
+        //         margin-right: 0.5rem;
 
-                &:hover {
-                    display: flex;
-                    flex-direction: column;
-                    justify-content: flex-start;
-                }
-            }
+        //         > p:first-child {
+        //             font-size: 0.85rem;
+        //         }
 
-            > .song-info {
-                margin-right: 0.5rem;
+        //         > p:last-child {
+        //             color: $--clr-grayish;
+        //             font-size: 0.75rem;
+        //         }
 
-                > p:first-child {
-                    font-size: 0.85rem;
-                }
+        //         > .author-name-selected {
+        //             color: var(--clr-white) !important;
+        //         }
+        //     }
 
-                > p:last-child {
-                    color: $--clr-grayish;
-                    font-size: 0.75rem;
-                }
+        //     > .song-prop {
+        //         margin-right: auto;
+        //         margin-left: 1.5rem;
+        //         align-items: flex-end;
 
-                > .author-name-selected {
-                    color: var(--clr-white) !important;
-                }
-            }
+        //         > img {
+        //             width: 15px;
+        //         }
+        //     }
 
-            > .song-prop {
-                margin-right: auto;
-                margin-left: 1.5rem;
-                align-items: flex-end;
+        //     &:hover {
+        //         background: $--hover-bg-clr;
+        //         .more-options {
+        //             display: block;
+        //         }
+        //     }
+        // }
 
-                > img {
-                    width: 15px;
-                }
-            }
+        // > .is-playing * {
+        //     color: $--selected-bg-blue !important;
+        // }
 
-            &:hover {
-                background: $--hover-bg-clr;
-                .more-options {
-                    display: block;
-                }
-            }
-        }
+        // > .song-wrapper-selected {
+        //     background-color: $--selected-bg-blue;
+        //     * {
+        //         color: var(--clr-white) !important;
+        //     }
 
-        > .is-playing * {
-            color: $--selected-bg-blue !important;
-        }
-
-        > .song-wrapper-selected {
-            background-color: $--selected-bg-blue;
-            * {
-                color: var(--clr-white) !important;
-            }
-
-            &:hover {
-                background: $--selected-bg-blue;
-            }
-        }
+        //     &:hover {
+        //         background: $--selected-bg-blue;
+        //     }
+        // }
 
         > .placeholders-wrapper {
             position: absolute;
