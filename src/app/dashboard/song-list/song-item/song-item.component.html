@@ -1,4 +1,12 @@
-<div class="song-wrapper">
+<!-- <div class="song-wrapper" [ngClass] => -->
+<div
+    class="song-wrapper"
+    [ngClass]="{
+        'song-wrapper-grid': layout === 'grid-view',
+        'song-wrapper-selected': song.isSelected
+    }"
+    (click)="oneClick()"
+>
     <div class="song-cover">
         <img class="song-cover-img" loading="lazy" [src]="song.cover" />
     </div>
@@ -14,7 +22,11 @@
         />
     </div>
 
-    <button class="more-options" (click)="isMoreOptionsOpened = !isMoreOptionsOpened"></button>
+    <button
+        class="more-options"
+        (click)="isMoreOptionsOpened = !isMoreOptionsOpened"
+        [ngClass]="isMoreOptionsOpened ? 'display-block' : ''"
+    ></button>
 
     <div class="options" *ngIf="isMoreOptionsOpened">
         <div class="button-wrapper">
@@ -23,7 +35,7 @@
         </div>
         <div class="button-wrapper">
             <img src="../../../../assets/images/playlist-add.svg" alt="" />
-            <button>افزودن به پلی‌لیست ها</button>
+            <button (click)="openNewPlaylistPanel()">افزودن به پلی‌لیست ها</button>
         </div>
     </div>
 </div>

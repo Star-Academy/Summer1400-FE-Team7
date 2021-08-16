@@ -1,5 +1,7 @@
 import {Component, OnInit, Input} from '@angular/core';
 import {Song} from 'src/app/models/song';
+import {SongService} from 'src/app/services/song.service';
+import {UiManagerService} from 'src/app/services/ui-manager.service';
 
 @Component({
     selector: 'app-song-item',
@@ -8,10 +10,23 @@ import {Song} from 'src/app/models/song';
 })
 export class SongItemComponent implements OnInit {
     @Input() song!: Song;
+    @Input() layout!: string;
 
     isMoreOptionsOpened: boolean = false;
 
-    constructor() {}
+    constructor(private uiManager: UiManagerService, private songManager: SongService) {}
 
-    ngOnInit(): void {}
+    ngOnInit(): void {
+        console.log(this.layout);
+    }
+
+    openNewPlaylistPanel() {
+        this.uiManager.openAddtoNewPlaylistPanel();
+        this.isMoreOptionsOpened = false;
+    }
+
+    oneClick() {
+        this.songManager.removeSelectedAttribute();
+        this.song.isSelected = true;
+    }
 }
