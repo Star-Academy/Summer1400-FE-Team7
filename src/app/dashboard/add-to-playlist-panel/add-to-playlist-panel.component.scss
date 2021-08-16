@@ -1,0 +1,86 @@
+$--clr-grayish: #7b7b7b;
+$--hover-bg-clr: rgba(138, 135, 135, 0.15);
+$--select-bg-clr: hsl(139, 182, 113);
+$--selected-bg-blue: rgb(29, 125, 215);
+$--bg-glass: rgba(0, 0, 0, 0.85);
+$--bg-mellow-black: rgb(40, 40, 40);
+$--bg-mellow-black2: rgb(34, 33, 33);
+
+:host {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 20rem;
+    height: 15rem;
+    background: $--bg-mellow-black;
+    z-index: 200;
+    overflow-y: overlay;
+    overflow-x: hidden;
+
+    display: flex;
+    flex-direction: column;
+
+    padding: 0.5rem 1rem;
+
+    p {
+        font-size: 0.8rem;
+        color: var(--clr-white);
+        cursor: pointer;
+        user-select: none;
+    }
+
+    .header {
+        display: flex;
+        align-items: center;
+        height: 2rem;
+
+        button {
+            height: 0.9rem;
+            width: auto;
+            margin-right: auto;
+
+            img {
+                width: 100%;
+                height: 100%;
+            }
+        }
+    }
+
+    .playlists-container {
+        display: flex;
+        flex-direction: column;
+
+        .playlists {
+            display: flex;
+            align-items: center;
+
+            height: 2rem;
+
+            input {
+                margin-left: 0.7rem;
+            }
+        }
+    }
+}
+
+.create-new-palylist {
+    padding-right: 0.7rem;
+    width: calc(100% + 1rem);
+    cursor: pointer;
+    height: 2.5rem;
+    margin-top: auto;
+    background: $--bg-mellow-black2;
+    position: sticky;
+    bottom: -0.5rem;
+    left: 0;
+
+    display: flex;
+    align-items: center;
+
+    img {
+        height: 50%;
+        width: auto;
+        margin-left: 0.7rem;
+    }
+}
