@@ -49,6 +49,196 @@ export class SongService {
             'ازم نخواه بشینم زیر پایِ دلم\r\nکه قولشو بزاره زیر پاش من\r\nمثل همون تب روزای اول\r\nهنوز از دیدن چشم تو داغم\r\nتا زیر سایَته آسمون بارونم\r\nوصله به حالت خاص چشات\r\nهر کی بخواد تورو ببینه قبلش\r\nباید این دیوونه ی مستو بخواد\r\n\r\nسر تو با همه ',
             'https://host2.rj-mw1.com/media/mp3/mp3-256/Shadmehr-Aghili-Jange-Delam.mp3'
         ),
+        new Song(
+            1,
+            '4جنگه دلم',
+            'شادمهر عقیلی',
+            '1:30',
+            'https://assets.rjassets.com/static/mp3/shadmehr-aghili-jange-delam/507fffa95687e04.jpg',
+            false,
+            'ازم نخواه بشینم زیر پایِ دلم\r\nکه قولشو بزاره زیر پاش من\r\nمثل همون تب روزای اول\r\nهنوز از دیدن چشم تو داغم\r\nتا زیر سایَته آسمون بارونم\r\nوصله به حالت خاص چشات\r\nهر کی بخواد تورو ببینه قبلش\r\nباید این دیوونه ی مستو بخواد\r\n\r\nسر تو با همه ',
+            'https://host2.rj-mw1.com/media/mp3/mp3-256/Shadmehr-Aghili-Jange-Delam.mp3'
+        ),
+        new Song(
+            1,
+            '4جنگه دلم',
+            'شادمهر عقیلی',
+            '1:30',
+            'https://assets.rjassets.com/static/mp3/shadmehr-aghili-jange-delam/507fffa95687e04.jpg',
+            false,
+            'ازم نخواه بشینم زیر پایِ دلم\r\nکه قولشو بزاره زیر پاش من\r\nمثل همون تب روزای اول\r\nهنوز از دیدن چشم تو داغم\r\nتا زیر سایَته آسمون بارونم\r\nوصله به حالت خاص چشات\r\nهر کی بخواد تورو ببینه قبلش\r\nباید این دیوونه ی مستو بخواد\r\n\r\nسر تو با همه ',
+            'https://host2.rj-mw1.com/media/mp3/mp3-256/Shadmehr-Aghili-Jange-Delam.mp3'
+        ),
+        new Song(
+            1,
+            '4جنگه دلم',
+            'شادمهر عقیلی',
+            '1:30',
+            'https://assets.rjassets.com/static/mp3/shadmehr-aghili-jange-delam/507fffa95687e04.jpg',
+            false,
+            'ازم نخواه بشینم زیر پایِ دلم\r\nکه قولشو بزاره زیر پاش من\r\nمثل همون تب روزای اول\r\nهنوز از دیدن چشم تو داغم\r\nتا زیر سایَته آسمون بارونم\r\nوصله به حالت خاص چشات\r\nهر کی بخواد تورو ببینه قبلش\r\nباید این دیوونه ی مستو بخواد\r\n\r\nسر تو با همه ',
+            'https://host2.rj-mw1.com/media/mp3/mp3-256/Shadmehr-Aghili-Jange-Delam.mp3'
+        ),
+        new Song(
+            1,
+            '4جنگه دلم',
+            'شادمهر عقیلی',
+            '1:30',
+            'https://assets.rjassets.com/static/mp3/shadmehr-aghili-jange-delam/507fffa95687e04.jpg',
+            false,
+            'ازم نخواه بشینم زیر پایِ دلم\r\nکه قولشو بزاره زیر پاش من\r\nمثل همون تب روزای اول\r\nهنوز از دیدن چشم تو داغم\r\nتا زیر سایَته آسمون بارونم\r\nوصله به حالت خاص چشات\r\nهر کی بخواد تورو ببینه قبلش\r\nباید این دیوونه ی مستو بخواد\r\n\r\nسر تو با همه ',
+            'https://host2.rj-mw1.com/media/mp3/mp3-256/Shadmehr-Aghili-Jange-Delam.mp3'
+        ),
+        new Song(
+            1,
+            '4جنگه دلم',
+            'شادمهر عقیلی',
+            '1:30',
+            'https://assets.rjassets.com/static/mp3/shadmehr-aghili-jange-delam/507fffa95687e04.jpg',
+            false,
+            'ازم نخواه بشینم زیر پایِ دلم\r\nکه قولشو بزاره زیر پاش من\r\nمثل همون تب روزای اول\r\nهنوز از دیدن چشم تو داغم\r\nتا زیر سایَته آسمون بارونم\r\nوصله به حالت خاص چشات\r\nهر کی بخواد تورو ببینه قبلش\r\nباید این دیوونه ی مستو بخواد\r\n\r\nسر تو با همه ',
+            'https://host2.rj-mw1.com/media/mp3/mp3-256/Shadmehr-Aghili-Jange-Delam.mp3'
+        ),
+        new Song(
+            1,
+            '4جنگه دلم',
+            'شادمهر عقیلی',
+            '1:30',
+            'https://assets.rjassets.com/static/mp3/shadmehr-aghili-jange-delam/507fffa95687e04.jpg',
+            false,
+            'ازم نخواه بشینم زیر پایِ دلم\r\nکه قولشو بزاره زیر پاش من\r\nمثل همون تب روزای اول\r\nهنوز از دیدن چشم تو داغم\r\nتا زیر سایَته آسمون بارونم\r\nوصله به حالت خاص چشات\r\nهر کی بخواد تورو ببینه قبلش\r\nباید این دیوونه ی مستو بخواد\r\n\r\nسر تو با همه ',
+            'https://host2.rj-mw1.com/media/mp3/mp3-256/Shadmehr-Aghili-Jange-Delam.mp3'
+        ),
+        new Song(
+            1,
+            '4جنگه دلم',
+            'شادمهر عقیلی',
+            '1:30',
+            'https://assets.rjassets.com/static/mp3/shadmehr-aghili-jange-delam/507fffa95687e04.jpg',
+            false,
+            'ازم نخواه بشینم زیر پایِ دلم\r\nکه قولشو بزاره زیر پاش من\r\nمثل همون تب روزای اول\r\nهنوز از دیدن چشم تو داغم\r\nتا زیر سایَته آسمون بارونم\r\nوصله به حالت خاص چشات\r\nهر کی بخواد تورو ببینه قبلش\r\nباید این دیوونه ی مستو بخواد\r\n\r\nسر تو با همه ',
+            'https://host2.rj-mw1.com/media/mp3/mp3-256/Shadmehr-Aghili-Jange-Delam.mp3'
+        ),
+        new Song(
+            1,
+            '4جنگه دلم',
+            'شادمهر عقیلی',
+            '1:30',
+            'https://assets.rjassets.com/static/mp3/shadmehr-aghili-jange-delam/507fffa95687e04.jpg',
+            false,
+            'ازم نخواه بشینم زیر پایِ دلم\r\nکه قولشو بزاره زیر پاش من\r\nمثل همون تب روزای اول\r\nهنوز از دیدن چشم تو داغم\r\nتا زیر سایَته آسمون بارونم\r\nوصله به حالت خاص چشات\r\nهر کی بخواد تورو ببینه قبلش\r\nباید این دیوونه ی مستو بخواد\r\n\r\nسر تو با همه ',
+            'https://host2.rj-mw1.com/media/mp3/mp3-256/Shadmehr-Aghili-Jange-Delam.mp3'
+        ),
+        new Song(
+            1,
+            '4جنگه دلم',
+            'شادمهر عقیلی',
+            '1:30',
+            'https://assets.rjassets.com/static/mp3/shadmehr-aghili-jange-delam/507fffa95687e04.jpg',
+            false,
+            'ازم نخواه بشینم زیر پایِ دلم\r\nکه قولشو بزاره زیر پاش من\r\nمثل همون تب روزای اول\r\nهنوز از دیدن چشم تو داغم\r\nتا زیر سایَته آسمون بارونم\r\nوصله به حالت خاص چشات\r\nهر کی بخواد تورو ببینه قبلش\r\nباید این دیوونه ی مستو بخواد\r\n\r\nسر تو با همه ',
+            'https://host2.rj-mw1.com/media/mp3/mp3-256/Shadmehr-Aghili-Jange-Delam.mp3'
+        ),
+        new Song(
+            1,
+            '4جنگه دلم',
+            'شادمهر عقیلی',
+            '1:30',
+            'https://assets.rjassets.com/static/mp3/shadmehr-aghili-jange-delam/507fffa95687e04.jpg',
+            false,
+            'ازم نخواه بشینم زیر پایِ دلم\r\nکه قولشو بزاره زیر پاش من\r\nمثل همون تب روزای اول\r\nهنوز از دیدن چشم تو داغم\r\nتا زیر سایَته آسمون بارونم\r\nوصله به حالت خاص چشات\r\nهر کی بخواد تورو ببینه قبلش\r\nباید این دیوونه ی مستو بخواد\r\n\r\nسر تو با همه ',
+            'https://host2.rj-mw1.com/media/mp3/mp3-256/Shadmehr-Aghili-Jange-Delam.mp3'
+        ),
+        new Song(
+            1,
+            '4جنگه دلم',
+            'شادمهر عقیلی',
+            '1:30',
+            'https://assets.rjassets.com/static/mp3/shadmehr-aghili-jange-delam/507fffa95687e04.jpg',
+            false,
+            'ازم نخواه بشینم زیر پایِ دلم\r\nکه قولشو بزاره زیر پاش من\r\nمثل همون تب روزای اول\r\nهنوز از دیدن چشم تو داغم\r\nتا زیر سایَته آسمون بارونم\r\nوصله به حالت خاص چشات\r\nهر کی بخواد تورو ببینه قبلش\r\nباید این دیوونه ی مستو بخواد\r\n\r\nسر تو با همه ',
+            'https://host2.rj-mw1.com/media/mp3/mp3-256/Shadmehr-Aghili-Jange-Delam.mp3'
+        ),
+        new Song(
+            1,
+            '4جنگه دلم',
+            'شادمهر عقیلی',
+            '1:30',
+            'https://assets.rjassets.com/static/mp3/shadmehr-aghili-jange-delam/507fffa95687e04.jpg',
+            false,
+            'ازم نخواه بشینم زیر پایِ دلم\r\nکه قولشو بزاره زیر پاش من\r\nمثل همون تب روزای اول\r\nهنوز از دیدن چشم تو داغم\r\nتا زیر سایَته آسمون بارونم\r\nوصله به حالت خاص چشات\r\nهر کی بخواد تورو ببینه قبلش\r\nباید این دیوونه ی مستو بخواد\r\n\r\nسر تو با همه ',
+            'https://host2.rj-mw1.com/media/mp3/mp3-256/Shadmehr-Aghili-Jange-Delam.mp3'
+        ),
+        new Song(
+            1,
+            '4جنگه دلم',
+            'شادمهر عقیلی',
+            '1:30',
+            'https://assets.rjassets.com/static/mp3/shadmehr-aghili-jange-delam/507fffa95687e04.jpg',
+            false,
+            'ازم نخواه بشینم زیر پایِ دلم\r\nکه قولشو بزاره زیر پاش من\r\nمثل همون تب روزای اول\r\nهنوز از دیدن چشم تو داغم\r\nتا زیر سایَته آسمون بارونم\r\nوصله به حالت خاص چشات\r\nهر کی بخواد تورو ببینه قبلش\r\nباید این دیوونه ی مستو بخواد\r\n\r\nسر تو با همه ',
+            'https://host2.rj-mw1.com/media/mp3/mp3-256/Shadmehr-Aghili-Jange-Delam.mp3'
+        ),
+        new Song(
+            1,
+            '4جنگه دلم',
+            'شادمهر عقیلی',
+            '1:30',
+            'https://assets.rjassets.com/static/mp3/shadmehr-aghili-jange-delam/507fffa95687e04.jpg',
+            false,
+            'ازم نخواه بشینم زیر پایِ دلم\r\nکه قولشو بزاره زیر پاش من\r\nمثل همون تب روزای اول\r\nهنوز از دیدن چشم تو داغم\r\nتا زیر سایَته آسمون بارونم\r\nوصله به حالت خاص چشات\r\nهر کی بخواد تورو ببینه قبلش\r\nباید این دیوونه ی مستو بخواد\r\n\r\nسر تو با همه ',
+            'https://host2.rj-mw1.com/media/mp3/mp3-256/Shadmehr-Aghili-Jange-Delam.mp3'
+        ),
+        new Song(
+            1,
+            '4جنگه دلم',
+            'شادمهر عقیلی',
+            '1:30',
+            'https://assets.rjassets.com/static/mp3/shadmehr-aghili-jange-delam/507fffa95687e04.jpg',
+            false,
+            'ازم نخواه بشینم زیر پایِ دلم\r\nکه قولشو بزاره زیر پاش من\r\nمثل همون تب روزای اول\r\nهنوز از دیدن چشم تو داغم\r\nتا زیر سایَته آسمون بارونم\r\nوصله به حالت خاص چشات\r\nهر کی بخواد تورو ببینه قبلش\r\nباید این دیوونه ی مستو بخواد\r\n\r\nسر تو با همه ',
+            'https://host2.rj-mw1.com/media/mp3/mp3-256/Shadmehr-Aghili-Jange-Delam.mp3'
+        ),
+        new Song(
+            1,
+            '4جنگه دلم',
+            'شادمهر عقیلی',
+            '1:30',
+            'https://assets.rjassets.com/static/mp3/shadmehr-aghili-jange-delam/507fffa95687e04.jpg',
+            false,
+            'ازم نخواه بشینم زیر پایِ دلم\r\nکه قولشو بزاره زیر پاش من\r\nمثل همون تب روزای اول\r\nهنوز از دیدن چشم تو داغم\r\nتا زیر سایَته آسمون بارونم\r\nوصله به حالت خاص چشات\r\nهر کی بخواد تورو ببینه قبلش\r\nباید این دیوونه ی مستو بخواد\r\n\r\nسر تو با همه ',
+            'https://host2.rj-mw1.com/media/mp3/mp3-256/Shadmehr-Aghili-Jange-Delam.mp3'
+        ),
+        new Song(
+            1,
+            '4جنگه دلم',
+            'شادمهر عقیلی',
+            '1:30',
+            'https://assets.rjassets.com/static/mp3/shadmehr-aghili-jange-delam/507fffa95687e04.jpg',
+            false,
+            'ازم نخواه بشینم زیر پایِ دلم\r\nکه قولشو بزاره زیر پاش من\r\nمثل همون تب روزای اول\r\nهنوز از دیدن چشم تو داغم\r\nتا زیر سایَته آسمون بارونم\r\nوصله به حالت خاص چشات\r\nهر کی بخواد تورو ببینه قبلش\r\nباید این دیوونه ی مستو بخواد\r\n\r\nسر تو با همه ',
+            'https://host2.rj-mw1.com/media/mp3/mp3-256/Shadmehr-Aghili-Jange-Delam.mp3'
+        ),
+        new Song(
+            1,
+            '4جنگه دلم',
+            'شادمهر عقیلی',
+            '1:30',
+            'https://assets.rjassets.com/static/mp3/shadmehr-aghili-jange-delam/507fffa95687e04.jpg',
+            false,
+            'ازم نخواه بشینم زیر پایِ دلم\r\nکه قولشو بزاره زیر پاش من\r\nمثل همون تب روزای اول\r\nهنوز از دیدن چشم تو داغم\r\nتا زیر سایَته آسمون بارونم\r\nوصله به حالت خاص چشات\r\nهر کی بخواد تورو ببینه قبلش\r\nباید این دیوونه ی مستو بخواد\r\n\r\nسر تو با همه ',
+            'https://host2.rj-mw1.com/media/mp3/mp3-256/Shadmehr-Aghili-Jange-Delam.mp3'
+        ),
+        new Song(
+            1,
+            '4جنگه دلم',
+            'شادمهر عقیلی',
+            '1:30',
+            'https://assets.rjassets.com/static/mp3/shadmehr-aghili-jange-delam/507fffa95687e04.jpg',
+            false,
+            'ازم نخواه بشینم زیر پایِ دلم\r\nکه قولشو بزاره زیر پاش من\r\nمثل همون تب روزای اول\r\nهنوز از دیدن چشم تو داغم\r\nتا زیر سایَته آسمون بارونم\r\nوصله به حالت خاص چشات\r\nهر کی بخواد تورو ببینه قبلش\r\nباید این دیوونه ی مستو بخواد\r\n\r\nسر تو با همه ',
+            'https://host2.rj-mw1.com/media/mp3/mp3-256/Shadmehr-Aghili-Jange-Delam.mp3'
+        ),
     ];
 
     private _favouriteSongs: Song[] = [];
@@ -99,6 +289,15 @@ export class SongService {
     public set currentPlaylist(value: Song[]) {
         this._currentPlaylist = value;
         this.currentPlaylistChanged.next(this._currentPlaylist.slice());
+    }
+
+    public removeSelectedAttribute(): void {
+        this._allSongs.map((song) => {
+            if (song.isSelected === true) {
+                song.isSelected = false;
+                return;
+            }
+        });
     }
 
     constructor() {}
