@@ -7,6 +7,7 @@ export class Song {
     isFavourite?: boolean;
     lyrics!: string;
     file!: string;
+    isSelected!: boolean;
 
     constructor(
         id: number,
@@ -16,7 +17,8 @@ export class Song {
         cover: string,
         isFavourite: boolean,
         lyrics: string,
-        file: string
+        file: string,
+        isSelected: boolean = false
     ) {
         this.id = id;
         this.name = name;
@@ -26,5 +28,6 @@ export class Song {
         this.isFavourite = isFavourite;
         this.lyrics = lyrics;
         this.file = file;
+        this.isSelected = isSelected;
     }
 }
