@@ -1,3 +1,4 @@
+<script src="menu-item.component.ts"></script>
 <div [ngSwitch]="playlistItem.buttonType">
     <div *ngSwitchCase="'add'" class="playlist-container">
         <div class="btn-wrapper" [ngClass]="playlistItem.isSelected ? 'menu-selected' : ''">
@@ -5,17 +6,17 @@
             <button>{{ playlistItem.name }}</button>
         </div>
         <button class="add-btn" (click)="openNewPlaylistPanel()">
-            <img src="../../../assets/images/add.svg" alt="add svg" />
+            <img src="../../../../assets/images/add.svg" alt="add svg" />
         </button>
     </div>
 
-    <div *ngSwitchCase="'remove'">
+    <div *ngSwitchCase="'remove'" class="playlist-container">
         <div class="btn-wrapper" [ngClass]="playlistItem.isSelected ? 'menu-selected' : ''">
-            <img [src]="playlistItem.icon" alt="" />
+            <img [src]="playlistItem.icon" alt=""  />
             <button>{{ playlistItem.name }}</button>
         </div>
-        <button class="add-btn">
-            <img src="../../assets/images/trash.svg" alt="delete playlist" />
+        <button class="add-btn" (click)="onRemove()">
+            <img src="../../../../assets/images/controls/cancel.svg" alt="delete playlist" />
         </button>
     </div>
 

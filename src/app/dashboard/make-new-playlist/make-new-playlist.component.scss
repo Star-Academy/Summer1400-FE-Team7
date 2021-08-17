@@ -1,5 +1,7 @@
 $--bg-mellow-black: rgb(40, 40, 40);
 $--selected-bg-blue: rgb(29, 125, 215);
+$--clr-background-error: rgba(255, 0, 0, 0.431);
+$--clr-boarder-error: rgb(255, 0, 0);
 
 :host {
     position: absolute;
@@ -70,3 +72,21 @@ $--selected-bg-blue: rgb(29, 125, 215);
         }
     }
 }
+.error {
+  box-shadow: inset 0 0 0.3em $--clr-boarder-error,
+  0 0 0.3em $--clr-boarder-error !important;
+  position: relative;
+
+  &::after {
+    content: attr(data-error);
+    color: var(--clr-white);
+    position: absolute;
+    background-color: $--clr-background-error;
+    right: 0;
+    bottom: -1.5rem;
+    font-size: 0.8rem;
+    padding: 0 1rem;
+    border-radius: 1000rem;
+  }
+}
+
