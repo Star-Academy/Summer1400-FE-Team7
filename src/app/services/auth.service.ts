@@ -19,20 +19,53 @@ export class AuthService {
   }
 
   login(user: { email: string; password: string }) {
-    this.sendRequest("user/login", user).subscribe((data)=>{
-      console.log(data)
-    })
+    this.sendRequest("user/login", user)
+    .subscribe((data:{id:number,token:string}) => {
+        this.initializeUser(data,user.email,false)
+      })
   }
 
   signUp(user: { email: string; password: string }) {
     this.sendRequest("user/register", {...user, username: user.email.split("@")[0]})
+      .subscribe((data:{id:number,token:string}) => {
+        this.initializeUser(data,user.email,true)
+      })
+  }
+  logoutUser () {
+    localStorage.removeItem("email");
+    localStorage.removeItem("id");
+    localStorage.removeItem("token");
+    localStorage.removeItem("favId");
+  };
+
+
+  initializeUser(data: {id:number,token:string},email:string,createFavorites:boolean) {
+    localStorage.setItem("email", email);
+    localStorage.setItem("id", String(data.id));
+    localStorage.setItem("token", data.token);
+    if (createFavorites) {
+      const body = {
+        token: data.token,
+        name: "مورد علاقه",
+      }
+      this.sendRequest("playlist/create", body)
+        .subscribe((id:number) => {
+          localStorage.setItem("favId", String(id));
+          this.complete.next(true);
+        })
+    }else{
+      this.complete.next(true);
+    }
+
   }
 
 
-  private sendRequest(url: string, body?: object): Observable<any> {
 
+
+
+  private sendRequest(url: string, body?: object): Observable<any> {
     this.loading.next(true);
-    return new Observable((observer)=> this.http
+    return new Observable((observer) => this.http
       .request<any>(body ? "POST" : "GET", `${BASE_URL}${url}`, {
         body: body,
         observe: 'body',
@@ -41,20 +74,17 @@ export class AuthService {
         (responseData) => {
           this.loading.next(false);
           this.error.next('');
-          console.log(responseData);
           observer.next(responseData)
         },
         (error) => {
           this.loading.next(false);
           this.error.next(error.error.message);
-          this.complete.next(false);
 
           console.log(error.error.message);
 
         },
         () => {
           this.loading.next(false);
-          this.complete.next(true);
           this.error.next("");
         }
       ))

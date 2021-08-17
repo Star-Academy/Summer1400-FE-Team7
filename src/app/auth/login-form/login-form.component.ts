@@ -3,19 +3,20 @@ import {
   OnInit,
   ViewChild,
   Output,
-  EventEmitter,
+  EventEmitter, OnDestroy,
 } from '@angular/core';
-import { NgForm } from '@angular/forms';
-import { Subscription } from 'rxjs';
-import { AuthService } from '../../services/auth.service';
+import {NgForm} from '@angular/forms';
+import {Subscription} from 'rxjs';
+import {AuthService} from '../../services/auth.service';
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-login-form',
   templateUrl: './login-form.component.html',
   styleUrls: ['../main-form.component.scss'],
 })
-export class LoginFormComponent implements OnInit {
-  @Output() onCreateAcountClick = new EventEmitter<void>();
+export class LoginFormComponent implements OnInit ,OnDestroy{
+  @Output() onCreateAccountClick = new EventEmitter<void>();
 
   _ERROR_MSG = {
     MSG_EMAIL_EMPTY: 'ایمیل نمی‌تواند خالی باشد',
@@ -23,7 +24,7 @@ export class LoginFormComponent implements OnInit {
     MSG_PASSWORD_EMPTY: 'رمزعبور نمی‌تواند خالی باشد',
   };
 
-  @ViewChild('f', { static: false }) loginForm!: NgForm;
+  @ViewChild('f', {static: false}) loginForm!: NgForm;
   loadingSubscription: Subscription = new Subscription();
   errorSubscription: Subscription = new Subscription();
   completeSubscription: Subscription = new Subscription();
@@ -31,14 +32,7 @@ export class LoginFormComponent implements OnInit {
   loading = false;
   error = '';
 
-  constructor(private authService: AuthService) {}
-
-  user = {
-    email: '',
-    password: '',
-  };
-
-  ngOnInit(): void {
+  constructor(private authService: AuthService,private router: Router) {
     this.loadingSubscription = this.authService.loading.subscribe(
       (loading: boolean) => {
         this.loading = loading;
@@ -52,15 +46,30 @@ export class LoginFormComponent implements OnInit {
     );
     this.completeSubscription = this.authService.complete.subscribe(
       (complete: boolean) => {
-        if (complete){
-          this.loginForm.reset()
+        if (complete) {
+          this.loginForm.reset();
+          router.navigate(['/dashboard']).then();
+
         }
 
       }
     );
   }
 
+
+
+  user = {
+    email: '',
+    password: '',
+  };
+
+  ngOnInit = (): void => {
+
+
+  };
+
   onSubmit() {
+
     if (!this.loginForm.valid) return;
     this.user.email = this.loginForm.value.email;
     this.user.password = this.loginForm.value.password;
@@ -69,13 +78,12 @@ export class LoginFormComponent implements OnInit {
   }
 
 
-  ngDestroy() {
+
+  ngOnDestroy(): void {
     this.loadingSubscription.unsubscribe();
     this.errorSubscription.unsubscribe();
-    this.completeSubscription.unsubscribe();
-  }
-
-  createAcountClick() {
-    this.onCreateAcountClick.emit();
+    this.completeSubscription.unsubscribe();  }
+  createAccountClick() {
+    this.onCreateAccountClick.emit();
   }
 }

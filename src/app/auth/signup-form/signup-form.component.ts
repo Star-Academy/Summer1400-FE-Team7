@@ -1,6 +1,6 @@
 import {
   Component,
-  EventEmitter,
+  EventEmitter, OnDestroy,
   OnInit,
   Output,
   ViewChild,
@@ -8,14 +8,15 @@ import {
 import {NgForm} from '@angular/forms';
 import {Subscription} from 'rxjs';
 import {AuthService} from '../../services/auth.service';
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-signup-form',
   templateUrl: './signup-form.component.html',
   styleUrls: ['../main-form.component.scss'],
 })
-export class SignupFormComponent implements OnInit {
-  @Output() onAlreadyHaveAcount = new EventEmitter<void>();
+export class SignupFormComponent implements OnInit,OnDestroy {
+  @Output() onAlreadyHaveAccount = new EventEmitter<void>();
 
   _ERROR_MSG = {
     MSG_PASSWORD_NOT_VALID:
@@ -36,15 +37,7 @@ export class SignupFormComponent implements OnInit {
   error = '';
   isPasswordsMatch = true;
 
-  constructor(private authService: AuthService) {
-  }
-
-  user = {
-    email: '',
-    password: '',
-  };
-
-  ngOnInit(): void {
+  constructor(private authService: AuthService,private router: Router) {
     this.loadingSubscription = this.authService.loading.subscribe(
       (loading: boolean) => {
         this.loading = loading;
@@ -59,14 +52,26 @@ export class SignupFormComponent implements OnInit {
     this.completeSubscription = this.authService.complete.subscribe(
       (complete: boolean) => {
         if (complete) {
-          this.signupForm.reset()
+          this.signupForm.reset();
+          router.navigate(['/dashboard']).then();
+
         }
 
       }
     );
   }
 
+  user = {
+    email: '',
+    password: '',
+  };
+
+  ngOnInit(): void {
+
+  }
+
   onSubmit() {
+
     if (!this.signupForm.valid) return;
     if (this.signupForm.value.password !== this.signupForm.value.confirmPassword) {
       this.isPasswordsMatch = false;
@@ -78,7 +83,7 @@ export class SignupFormComponent implements OnInit {
     this.authService.signUp(this.user);
   }
 
-  ngDestroy() {
+  ngOnDestroy() {
     this.loadingSubscription.unsubscribe();
     this.errorSubscription.unsubscribe();
     this.completeSubscription.unsubscribe();
@@ -86,6 +91,6 @@ export class SignupFormComponent implements OnInit {
   }
 
   alreadyHaveAccountClick() {
-    this.onAlreadyHaveAcount.emit();
+    this.onAlreadyHaveAccount.emit();
   }
 }

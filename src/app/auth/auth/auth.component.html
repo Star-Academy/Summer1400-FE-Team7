@@ -4,12 +4,12 @@
     [ngClass]="!isLoginPage ? 'signup-form-wrapper' : ''"
   >
     <app-login-form
-      (onCreateAcountClick)="pageNavigation('login')"
+            (onCreateAccountClick)="pageNavigation('login')"
       *ngIf="isLoginPage"
     ></app-login-form>
     <app-signup-form
       *ngIf="!isLoginPage"
-      (onAlreadyHaveAcount)="pageNavigation('signup')"
+      (onAlreadyHaveAccount)="pageNavigation('signup')"
     ></app-signup-form>
   </div>
 </main>
