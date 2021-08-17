@@ -18,7 +18,7 @@ describe('LandingComponent', () => {
         fixture.detectChanges();
     });
 
-    it('should fill LANDING with components', () => {
+    it('should fill __LANDING__ with components', () => {
         expect(component).toBeTruthy();
     });
 });

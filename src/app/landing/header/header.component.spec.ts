@@ -18,7 +18,7 @@ describe('HeaderComponent', () => {
         fixture.detectChanges();
     });
 
-    it('should create HEADER for LANDING', () => {
+    it('should create -HEADER- for __LANDING__', () => {
         expect(component).toBeTruthy();
     });
 });

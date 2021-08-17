@@ -18,7 +18,7 @@ describe('MainComponent', () => {
         fixture.detectChanges();
     });
 
-    it('should create MAIN for LANDING', () => {
+    it('should create MAIN for __LANDING__', () => {
         expect(component).toBeTruthy();
     });
 });
