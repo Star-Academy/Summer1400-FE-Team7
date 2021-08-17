@@ -12,6 +12,7 @@ import {MenuItemComponent} from './side-menu/menu-item/menu-item.component';
 import {SearchComponent} from './side-menu/search/search.component';
 import {SongItemComponent} from './song-list/song-item/song-item.component';
 import {AddToPlaylistPanelComponent} from './add-to-playlist-panel/add-to-playlist-panel.component';
+import {FormsModule} from "@angular/forms";
 
 @NgModule({
     declarations: [
@@ -27,6 +28,6 @@ import {AddToPlaylistPanelComponent} from './add-to-playlist-panel/add-to-playli
         SongItemComponent,
         AddToPlaylistPanelComponent,
     ],
-    imports: [CommonModule, RouterModule],
+    imports: [CommonModule, RouterModule, FormsModule],
 })
 export class DashboardModule {}
