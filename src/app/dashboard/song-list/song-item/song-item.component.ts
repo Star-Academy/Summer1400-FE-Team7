@@ -25,9 +25,14 @@ export class SongItemComponent implements OnInit {
         this.isMoreOptionsOpened = false;
     }
 
-    oneClick() {
+    onSingleClick() {
         this.songService.removeSelectedAttribute();
         this.song.isSelected = true;
         this.songService.selectedSong=this.song;
     }
+
+  onDoubleClick(){
+    this.songService.playingSong=this.song;
+
+  }
 }

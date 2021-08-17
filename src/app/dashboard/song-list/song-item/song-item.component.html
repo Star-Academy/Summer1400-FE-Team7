@@ -5,7 +5,8 @@
         'song-wrapper-grid': layout === 'grid-view',
         'song-wrapper-selected': song.isSelected
     }"
-    (click)="oneClick()"
+    (click)="onSingleClick()"
+    (dblclick)="onDoubleClick()"
 >
     <div class="song-cover">
         <img class="song-cover-img" loading="lazy" [src]="song.cover" />

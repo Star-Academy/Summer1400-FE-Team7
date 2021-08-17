@@ -1,9 +1,11 @@
-<audio id="audio"></audio>
+<audio #audio (error)="onAudioError()"></audio>
 <div class="info-wrapper">
-    <img src="../../../assets/images/default-song-cover.svg" alt="music-cover" id="music-cover" />
+    <img
+         [src]="playingSong.cover"
+         alt="music-cover" id="music-cover" />
     <div>
-        <p id="music-title"></p>
-        <p id="music-artist"></p>
+        <p id="music-title">{{playingSong.name}}</p>
+        <p id="music-artist">{{playingSong.artist}}</p>
     </div>
 </div>
 
