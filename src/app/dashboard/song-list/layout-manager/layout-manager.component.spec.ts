@@ -1,25 +1,24 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+import {ComponentFixture, TestBed} from '@angular/core/testing';
 
-import { LayoutManagerComponent } from './layout-manager.component';
+import {LayoutManagerComponent} from './layout-manager.component';
 
 describe('LayoutManagerComponent', () => {
-  let component: LayoutManagerComponent;
-  let fixture: ComponentFixture<LayoutManagerComponent>;
+    let component: LayoutManagerComponent;
+    let fixture: ComponentFixture<LayoutManagerComponent>;
 
-  beforeEach(async () => {
-    await TestBed.configureTestingModule({
-      declarations: [ LayoutManagerComponent ]
-    })
-    .compileComponents();
-  });
+    beforeEach(async () => {
+        await TestBed.configureTestingModule({
+            declarations: [LayoutManagerComponent],
+        }).compileComponents();
+    });
 
-  beforeEach(() => {
-    fixture = TestBed.createComponent(LayoutManagerComponent);
-    component = fixture.componentInstance;
-    fixture.detectChanges();
-  });
+    beforeEach(() => {
+        fixture = TestBed.createComponent(LayoutManagerComponent);
+        component = fixture.componentInstance;
+        fixture.detectChanges();
+    });
 
-  it('should create', () => {
-    expect(component).toBeTruthy();
-  });
+    // it('should create', () => {
+    //   expect(component).toBeTruthy();
+    // });
 });
