@@ -9,7 +9,7 @@ const routes: Routes = [
   { path: 'auth', component: AuthComponent },
   { path: 'dashboard', component: DashboardComponent },
 ];
-
+//TODO page not found
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule],
