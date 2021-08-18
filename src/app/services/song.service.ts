@@ -2,7 +2,7 @@ import {Injectable} from '@angular/core';
 import {Playlist} from '../models/playlist';
 import {Song} from '../models/song';
 import {Observable, Subject} from 'rxjs';
-import {HttpClient} from "@angular/common/http";
+import {HttpClient, HttpHeaders} from "@angular/common/http";
 import {Constants} from "../utils/constants";
 
 const BASE_URL = 'https://songs.code-star.ir/';
@@ -125,9 +125,7 @@ export class SongService {
   public set currentPlaylist(value: { name: string, songs: Song[] }) {
     let songs = value.songs;
     songs.map(song => {
-      if (this.favouriteSongsIndexes.includes(song.id)) {
-        song.isFavourite = true
-      }
+      song.isFavourite = this.favouriteSongsIndexes.includes(song.id);
       return song
     })
     this._currentPlaylist = {name: value.name, songs};
@@ -151,13 +149,10 @@ export class SongService {
   changeCurrentPlaylist(playlistName: string) {
     let currentPlaylist;
     if (playlistName !== Constants.ALL_SONGS) {
-      currentPlaylist = this.allPlaylists.filter(playlist =>
-        playlist.name === playlistName
-      )[0]
+      currentPlaylist = this.allPlaylists.filter(playlist => playlist.name === playlistName)[0]
       if (currentPlaylist !== undefined) {
         // this.currentPlaylist = {name: playlistName, songs: currentPlaylist.songs}
         this.getOnePlaylist(currentPlaylist.id, playlistName)
-
       }
     } else {
       currentPlaylist = this.allSongs
@@ -170,15 +165,20 @@ export class SongService {
   }
 
   getOnePlaylist(playlistId: number, playlistName: string) {
+    console.log(playlistId);
     this.sendRequest("playlist/one" + "/" + playlistId)
       .subscribe((data: { name: string, songs: Song[] }) => {
-        console.log(data.songs);
+        console.log("getOne: \n", data.songs);
         let songs: Song[] = [];
         data.songs.forEach(song => {
-          songs.push(new Song(song.id, song.name, song.artist, "0:0", song.cover,
+          songs.push(new Song(song.id, song.name, song.artist, Math.random() * (400 - 180) + 180, song.cover,
             false, song.lyrics, song.file, false))
         })
+        if (playlistName === Constants.FAVOURITE_SONGS) {
+          this.favouriteSongs = songs
+        }
         this.currentPlaylist = {name: playlistName, songs: songs}
+        this.allPlaylists.filter(playlist => playlist.name === playlistName)[0].songs = songs
       })
   }
 
@@ -193,7 +193,7 @@ export class SongService {
     this.sendRequest("song/page", body).subscribe((data) => {
       // console.log(data["songs"]);
       this.allSongs = data["songs"].map((song: any) => {
-        return new Song(song.id, song.name, song.artist, "0:0", song.cover, false, song.lyrics,
+        return new Song(song.id, song.name, song.artist, Math.random() * (400 - 180) + 180, song.cover, false, song.lyrics,
           song.file, false)
       });
       this.currentPlaylist = {name: "همه آهنگ ها", songs: this.allSongs}
@@ -279,8 +279,10 @@ export class SongService {
       songId,
     };
     this.sendRequest("playlist/add-song", body).subscribe((data: any) => {
-      console.log(data);
-
+      console.log("added like");
+      let indexes: number[] = this.favouriteSongsIndexes;
+      indexes.push(songId)
+      this.favouriteSongsIndexes = indexes;
     })
   }
 
@@ -291,26 +293,34 @@ export class SongService {
       songId,
     };
     this.sendRequest("playlist/remove-song", body).subscribe((data: any) => {
-      console.log(data);
-
+      console.log("removed like");
+      let indexes: number[] = this.favouriteSongsIndexes;
+      let songIndex = indexes.indexOf(songId);
+      indexes.splice(songIndex, 1);
+      this.favouriteSongsIndexes = indexes;
     })
   }
 
 
   private sendRequest(url: string, body?: object): Observable<any> {
-
     this.loading.next(true);
     return new Observable((observer) => this.http
       .request<any>(body ? "POST" : "GET", `${BASE_URL}${url}`, {
-        body: body,
-        observe: 'body',
-      })
+          body: body,
+          headers: new HttpHeaders({
+            'Cache-Control': `no-cache`,
+            'Pragma': 'no-cache',
+
+          }),
+          observe: 'body',
+        },
+      )
       .subscribe(
         (responseData) => {
           this.loading.next(false);
           this.error.next('');
           observer.next(responseData)
-         // console.log(responseData);
+          // console.log(responseData);
         },
         (error) => {
           this.loading.next(false);
