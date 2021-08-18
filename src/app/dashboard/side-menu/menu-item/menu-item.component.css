@@ -19,6 +19,10 @@
   background: none;
   text-align: right;
   color: var(--clr-white);
+  text-decoration: none;
+  font-size: 1rem;
+  display: flex;
+  align-items: center;
   width: 100%;
 }
 :host > div .btn-wrapper:hover {
@@ -63,6 +67,29 @@
 }
 :host > div .menu-selected {
   border-right: 5px solid #1d7dd7 !important;
+}
+
+.dark-background-2 {
+  background: rgba(3, 3, 3, 0.01);
+  position: fixed;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  z-index: 500;
+}
+
+.dark-background-2 {
+  animation: opacityAnimation 0.35s ease;
+  z-index: 500;
+}
+@keyframes opacityAnimation {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 0.35;
+  }
 }
 
 /*# sourceMappingURL=menu-item.component.css.map */
