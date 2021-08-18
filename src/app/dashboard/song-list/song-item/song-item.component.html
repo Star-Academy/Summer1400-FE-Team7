@@ -44,3 +44,6 @@
 </div>
 
 <div class="transparent-window" *ngIf="isMoreOptionsOpened" (click)="isMoreOptionsOpened = !isMoreOptionsOpened"></div>
+<div *ngIf="isAddToPlaylistPanelOpen" class="dark-background-2" (click)="toggleNewPlaylistPanel()"></div>
+
+<app-add-to-playlist-panel (closeAddToNewPlaylistPanel)="toggleNewPlaylistPanel()" *ngIf="isAddToPlaylistPanelOpen"></app-add-to-playlist-panel>

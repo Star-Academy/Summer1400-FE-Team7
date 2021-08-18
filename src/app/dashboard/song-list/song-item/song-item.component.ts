@@ -1,4 +1,4 @@
-import {Component, OnInit, Input} from '@angular/core';
+import {Component, OnInit, Input, HostListener} from '@angular/core';
 import {Song} from 'src/app/models/song';
 import {SongService} from 'src/app/services/song.service';
 import {UiManagerService} from 'src/app/services/ui-manager.service';
@@ -14,16 +14,16 @@ export class SongItemComponent implements OnInit {
   @Input() layout!: string;
 
   isMoreOptionsOpened: boolean = false;
+  isAddToPlaylistPanelOpen: boolean = false;
 
   constructor(private uiManager: UiManagerService, private songService: SongService) {
   }
 
   ngOnInit(): void {
-    // console.log(this.layout);
-  }
+   }
 
   openNewPlaylistPanel() {
-    this.uiManager.openAddtoNewPlaylistPanel();
+    this.toggleNewPlaylistPanel()
     this.isMoreOptionsOpened = false;
   }
 
@@ -39,11 +39,25 @@ export class SongItemComponent implements OnInit {
   }
 
   onFavoriteClick() {
-    this.song.isFavourite = !this.song.isFavourite
+    this.song.isFavourite = !this.song.isFavourite;
     if (this.song.isFavourite) {
       this.songService.addToFavorites(this.song.id);
     } else {
       this.songService.removeFromFavorites(this.song.id);
     }
   }
+
+  toggleNewPlaylistPanel() {
+    this.isAddToPlaylistPanelOpen=!this.isAddToPlaylistPanelOpen;
+  }
+  @HostListener('document:keydown', ['$event'])
+  handleKeyboardEvent(event: KeyboardEvent) {
+    if (event.key==="Escape")
+    if (this.isAddToPlaylistPanelOpen){
+      this.isAddToPlaylistPanelOpen=false
+    }
+
+
+  }
+
 }
