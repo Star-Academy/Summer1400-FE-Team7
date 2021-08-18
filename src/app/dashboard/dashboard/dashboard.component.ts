@@ -1,54 +1,55 @@
-import {AfterViewInit, Component, OnDestroy, OnInit} from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import {Component, OnDestroy, OnInit} from '@angular/core';
+import {ActivatedRoute} from '@angular/router';
 import {Subscription} from 'rxjs';
-import { SongService } from 'src/app/services/song.service';
+import {SongService} from 'src/app/services/song.service';
 import {UiManagerService} from 'src/app/services/ui-manager.service';
 
 @Component({
-    selector: 'app-dashboard',
-    templateUrl: './dashboard.component.html',
-    styleUrls: ['./dashboard.component.scss'],
+  selector: 'app-dashboard',
+  templateUrl: './dashboard.component.html',
+  styleUrls: ['./dashboard.component.scss'],
 })
-export class DashboardComponent implements OnInit,OnDestroy,AfterViewInit {
-    public isCreateNewplaylistPanelOpen: Subscription = new Subscription();
-    public isPanelOpen: boolean = false;
+export class DashboardComponent implements OnInit, OnDestroy {
+  sideMenuOpen:boolean = true;
 
-    public isAddtoPlaylistPanelOpenSub: Subscription = new Subscription();
-    public isAddtoPlaylistPanelOpen: boolean = false;
+  public isCreateNewPlaylistPanelOpen: Subscription = new Subscription();
 
-    constructor(private uiManager: UiManagerService,private songService: SongService,
-                private route: ActivatedRoute) {}
+  public isPanelOpen: boolean = false;
+  public isAddToPlaylistPanelOpenSub: Subscription = new Subscription();
 
-  ngAfterViewInit(): void {
+  public isAddToPlaylistPanelOpen: boolean = false;
+
+  constructor(private uiManager: UiManagerService, private songService: SongService,
+              private route: ActivatedRoute) {
+  }
+
+
+  ngOnInit(): void {
+    this.songService.fetchSongs();
+    this.songService.fetchPlaylist();
     this.route.queryParams.subscribe(params => {
-      if(params['playlist'])
-      {
+      if (params['playlist']) {
         this.songService.changeCurrentPlaylist(params['playlist']);
       }
-    });    }
+    });      //TODO change this
+    this.isCreateNewPlaylistPanelOpen = this.uiManager.isCreateNewplaylistPanelOpen.subscribe((state: boolean) => {
+      this.isPanelOpen = state;
+    });
 
-    ngOnInit(): void {
-      this.songService.fetchSongs();
-      this.songService.fetchPlaylist();
+    this.isAddToPlaylistPanelOpenSub = this.uiManager.isAddtoNewPlaylistPanelOpen.subscribe((state: boolean) => {
+      this.isAddToPlaylistPanelOpen = state;
+    });
+  }
 
-      //TODO change this
-        this.isCreateNewplaylistPanelOpen = this.uiManager.isCreateNewplaylistPanelOpen.subscribe((state: boolean) => {
-            this.isPanelOpen = state;
-        });
-
-        this.isAddtoPlaylistPanelOpenSub = this.uiManager.isAddtoNewPlaylistPanelOpen.subscribe((state: boolean) => {
-            this.isAddtoPlaylistPanelOpen = state;
-        });
-    }
-
-
-    ngOnDestroy(): void {
-        this.isCreateNewplaylistPanelOpen.unsubscribe();
-        this.isAddtoPlaylistPanelOpenSub.unsubscribe();
-    }
-
-    closeNewPlaylistPanel() {
-        this.uiManager.closeCreatePlaylistPanel();
-        this.uiManager.closeAddtoNewPlaylistPanel();
-    }
+  ngOnDestroy(): void {
+    this.isCreateNewPlaylistPanelOpen.unsubscribe();
+    this.isAddToPlaylistPanelOpenSub.unsubscribe();
+  }
+  closeNewPlaylistPanel() {
+    this.uiManager.closeCreatePlaylistPanel();
+    this.uiManager.closeAddtoNewPlaylistPanel();
+  }
+  onToggleSideMenu = () => {
+    this.sideMenuOpen = !this.sideMenuOpen;
+  };
 }

@@ -1,4 +1,5 @@
 import {Component, OnInit, Input} from '@angular/core';
+import { Router } from '@angular/router';
 import {PlaylistItem} from 'src/app/models/playlistItem';
 import {UiManagerService} from 'src/app/services/ui-manager.service';
 import {SongService} from "../../../services/song.service";
@@ -11,7 +12,8 @@ import {SongService} from "../../../services/song.service";
 export class MenuItemComponent implements OnInit {
     @Input() playlistItem!: PlaylistItem;
 
-    constructor(private uiManager: UiManagerService,private songService:SongService) {}
+    constructor(private uiManager: UiManagerService,private songService:SongService,
+                private router:Router) {}
 
     ngOnInit(): void {}
 
@@ -22,5 +24,11 @@ export class MenuItemComponent implements OnInit {
 
   onRemove() {
     this.songService.removePlaylist(this.playlistItem.id);
+  }
+
+  onPlaylistItemClick() {
+    console.log(this.playlistItem.name);
+    this.router.navigate(["/dashboard"],
+      {queryParams:{playlist:this.playlistItem.name}})
   }
 }

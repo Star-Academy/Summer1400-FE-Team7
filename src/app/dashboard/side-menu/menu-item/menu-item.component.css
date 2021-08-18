@@ -13,7 +13,7 @@
   height: 60%;
   padding: 0 0.5rem;
 }
-:host > div .btn-wrapper > button {
+:host > div .btn-wrapper > a {
   height: 100%;
   cursor: pointer;
   background: none;

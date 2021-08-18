@@ -13,6 +13,7 @@ import {SearchComponent} from './side-menu/search/search.component';
 import {SongItemComponent} from './song-list/song-item/song-item.component';
 import {AddToPlaylistPanelComponent} from './add-to-playlist-panel/add-to-playlist-panel.component';
 import {FormsModule} from "@angular/forms";
+import {HmsTimePipe} from "../pipes/hms-time.pipe";
 
 @NgModule({
     declarations: [
@@ -27,6 +28,7 @@ import {FormsModule} from "@angular/forms";
         SearchComponent,
         SongItemComponent,
         AddToPlaylistPanelComponent,
+        HmsTimePipe
     ],
     imports: [CommonModule, RouterModule, FormsModule],
 })
