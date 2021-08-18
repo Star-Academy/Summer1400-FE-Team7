@@ -190,7 +190,7 @@
 </div>
 
 <div class="side-menu-opener-closer">
-    <button id="side-menu-opener-closer-btn">
+    <button id="side-menu-opener-closer-btn" (click)="onToggleSideMenu()">
         <img src="../../../assets/images/controls/menu.svg" alt="menu button" />
     </button>
 </div>
@@ -237,7 +237,5 @@
 </template>
 
 <!-- //TODO -->
-<app-make-new-playlist *ngIf="isPanelOpen"></app-make-new-playlist>
-<div *ngIf="isPanelOpen || isAddtoPlaylistPanelOpen" class="dark-background-2" (click)="closeNewPlaylistPanel()"></div>
 
-<app-add-to-playlist-panel *ngIf="isAddtoPlaylistPanelOpen"></app-add-to-playlist-panel>
+

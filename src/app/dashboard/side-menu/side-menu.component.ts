@@ -4,6 +4,7 @@ import {SongService} from 'src/app/services/song.service';
 import {Subscription} from "rxjs";
 import {Song} from "../../models/song";
 import {Playlist} from "../../models/playlist";
+import {Constants} from "../../utils/constants";
 
 @Component({
   selector: 'app-side-menu',
@@ -13,9 +14,9 @@ import {Playlist} from "../../models/playlist";
 export class SideMenuComponent implements OnInit {
   public playlists!: PlaylistItem[]
   private initialPlaylists: PlaylistItem[] = [
-    new PlaylistItem('همه آهنگ‌ها',-1, '../../../../assets/images/playlist.svg', 'none', '', true),
-    new PlaylistItem('مورد علاقه', -2,'../../../assets/images/favourite.svg', 'none', '', false),
-    new PlaylistItem('پلی لیست‌ها', -3,'../../../assets/images/playlist-add.svg', 'add', '', false),
+    new PlaylistItem(Constants.ALL_SONGS,-1, '../../../../assets/images/playlist.svg', 'none', '', true),
+    new PlaylistItem(Constants.FAVOURITE_SONGS, -2,'../../../assets/images/favourite.svg', 'none', '', false),
+    new PlaylistItem(Constants.ALL_PLAYLISTS, -3,'../../../assets/images/playlist-add.svg', 'add', '', false),
   ];
   playlistsSub!: Subscription;
 

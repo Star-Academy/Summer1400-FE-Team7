@@ -64,6 +64,9 @@
   width: 65%;
   height: 65%;
 }
+:host .controls-wrapper > div:nth-of-type(1) .active-btn {
+  filter: invert(39%) sepia(96%) saturate(903%) hue-rotate(184deg) brightness(86%) contrast(97%) !important;
+}
 :host .controls-wrapper > div:nth-of-type(1) > .size-1 {
   width: 25px;
   height: 25px;

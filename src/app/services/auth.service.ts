@@ -1,6 +1,7 @@
 import {Injectable} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import {Observable, Subject} from 'rxjs';
+import {Constants} from "../utils/constants";
 
 const BASE_URL = 'https://songs.code-star.ir/';
 
@@ -46,7 +47,7 @@ export class AuthService {
     if (createFavorites) {
       const body = {
         token: data.token,
-        name: "مورد علاقه",
+        name: Constants.FAVOURITE_SONGS,
       }
       this.sendRequest("playlist/create", body)
         .subscribe((id:number) => {

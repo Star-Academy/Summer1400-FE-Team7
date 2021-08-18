@@ -9,17 +9,19 @@
     (dblclick)="onDoubleClick()"
 >
     <div class="song-cover">
-        <img class="song-cover-img" loading="lazy" [src]="song.cover" />
+        <img class="song-cover-img" loading="lazy" [src]="song.cover" alt="" />
     </div>
     <div class="song-info">
         <p id="song-name">{{ song.name }}</p>
         <p id="artist-name">{{ song.artist }}</p>
     </div>
     <div class="song-prop">
-        <p id="duration">{{ song.duration }}</p>
+        <p id="duration">{{ song.duration | hmsTime }}</p>
         <img
             class="fav-icon"
-            [src]="song.isFavourite ? '../../../../assets/images/like.svg' : '../../../../assets/images/liked.svg'"
+            (click)="onFavoriteClick()"
+            [src]="!song.isFavourite ? '../../../../assets/images/like.svg' : '../../../../assets/images/liked.svg'"
+            alt=""
         />
     </div>
 
@@ -42,3 +44,6 @@
 </div>
 
 <div class="transparent-window" *ngIf="isMoreOptionsOpened" (click)="isMoreOptionsOpened = !isMoreOptionsOpened"></div>
+<div *ngIf="isAddToPlaylistPanelOpen" class="dark-background-2" (click)="toggleNewPlaylistPanel()"></div>
+
+<app-add-to-playlist-panel (closeAddToNewPlaylistPanel)="toggleNewPlaylistPanel()" *ngIf="isAddToPlaylistPanelOpen"></app-add-to-playlist-panel>

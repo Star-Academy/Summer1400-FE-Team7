@@ -1,13 +1,29 @@
-import {Component, OnInit} from '@angular/core';
-import {UiManagerService} from 'src/app/services/ui-manager.service';
+import {Component, Input, OnInit, Output,EventEmitter} from '@angular/core';
+import { HostListener } from '@angular/core';
+
+import {Song} from "../../models/song";
 
 @Component({
-    selector: 'app-add-to-playlist-panel',
-    templateUrl: './add-to-playlist-panel.component.html',
-    styleUrls: ['./add-to-playlist-panel.component.scss'],
+  selector: 'app-add-to-playlist-panel',
+  templateUrl: './add-to-playlist-panel.component.html',
+  styleUrls: ['./add-to-playlist-panel.component.scss'],
+
 })
 export class AddToPlaylistPanelComponent implements OnInit {
-    constructor(private uiManager: UiManagerService) {}
+  @Input() song!: Song
+  @Output()closeAddToNewPlaylistPanel = new EventEmitter<void>()
 
-    ngOnInit(): void {}
+
+  constructor() {
+  }
+
+  ngOnInit(): void {
+  }
+
+
+  closeNewPlaylistPanel() {
+    this.closeAddToNewPlaylistPanel.emit();
+  }
+
+
 }
