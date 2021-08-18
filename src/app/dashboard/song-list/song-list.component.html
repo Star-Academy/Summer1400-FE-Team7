@@ -21,5 +21,7 @@
         </div> -->
     </div>
     <div class="placeholders-wrapper"></div>
-    <app-song-item [layout]="layoutView" *ngFor="let song of currentPlaylist" [song]="song"></app-song-item>
+    <app-song-item [layout]="layoutView" *ngFor="let song of currentPlaylist;let i =index" [song]="song"
+    [index]="i"
+    ></app-song-item>
 </div>

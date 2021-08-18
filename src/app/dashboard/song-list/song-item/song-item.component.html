@@ -9,7 +9,7 @@
     (dblclick)="onDoubleClick()"
 >
     <div class="song-cover">
-        <img class="song-cover-img" loading="lazy" [src]="song.cover" />
+        <img class="song-cover-img" loading="lazy" [src]="song.cover" alt="" />
     </div>
     <div class="song-info">
         <p id="song-name">{{ song.name }}</p>
@@ -19,7 +19,9 @@
         <p id="duration">{{ song.duration }}</p>
         <img
             class="fav-icon"
-            [src]="song.isFavourite ? '../../../../assets/images/like.svg' : '../../../../assets/images/liked.svg'"
+            (click)="onFavoriteClick()"
+            [src]="!song.isFavourite ? '../../../../assets/images/like.svg' : '../../../../assets/images/liked.svg'"
+            alt=""
         />
     </div>
 

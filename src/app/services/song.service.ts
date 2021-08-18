@@ -3,6 +3,7 @@ import {Playlist} from '../models/playlist';
 import {Song} from '../models/song';
 import {Observable, Subject} from 'rxjs';
 import {HttpClient} from "@angular/common/http";
+import {Constants} from "../utils/constants";
 
 const BASE_URL = 'https://songs.code-star.ir/';
 
@@ -10,27 +11,33 @@ const BASE_URL = 'https://songs.code-star.ir/';
   providedIn: 'root',
 })
 export class SongService {
+
   private _allPlaylists: Playlist[] = [];
   private _allSongs: Song[] = [];
   private _favouriteSongs: Song[] = [];
+  private _favouriteSongsIndexes: number[] = [];
   private _searchSongs: Song[] = [];
   private _currentPlaylist: { name: string, songs: Song[] } = {name: "", songs: []};
-  currenSongIndex: number = 0;
+  private _currenSongIndex: number = 0;
   private _selectedSong!: Song
   private _playingSong!: Song
 
   allPlaylistsChanged = new Subject<Playlist[]>();
   allSongsChanged = new Subject<Song[]>();
   favouriteSongsChanged = new Subject<Song[]>();
+  favouriteSongsIndexesChanged = new Subject<number[]>();
   searchSongsChanged = new Subject<Song[]>();
   currentPlaylistChanged = new Subject<{ name: string, songs: Song[] }>();
   selectedSongChange = new Subject<Song>();
   playingSongChange = new Subject<Song>();
+  currenSongIndexChange = new Subject<number>();
 
   error = new Subject<string>();
   loading = new Subject<boolean>();
   complete = new Subject<boolean>();
   userToken: string | null = "";
+  userFavId: string | null = "";
+
 
   public get playingSong(): Song {
     return this._playingSong;
@@ -40,6 +47,16 @@ export class SongService {
     this._playingSong = value;
     this.playingSongChange.next(this._playingSong);
   }
+
+  get currenSongIndex(): number {
+    return this._currenSongIndex;
+  }
+
+  set currenSongIndex(value: number) {
+    this._currenSongIndex = value;
+    this.currenSongIndexChange.next(value);
+  }
+
 
   public get selectedSong(): Song {
     return this._selectedSong;
@@ -82,8 +99,23 @@ export class SongService {
   }
 
   public set favouriteSongs(value: Song[]) {
+    this.favouriteSongsIndexes = [];
+    let indexes: number[] = [];
+    value.forEach(song => {
+      indexes.push(song.id)
+    })
+    this.favouriteSongsIndexes = indexes;
     this._favouriteSongs = value;
     this.favouriteSongsChanged.next(value);
+  }
+
+  get favouriteSongsIndexes(): number[] {
+    return this._favouriteSongsIndexes;
+  }
+
+  set favouriteSongsIndexes(value: number[]) {
+    this._favouriteSongsIndexes = value;
+    this.favouriteSongsIndexesChanged.next(value)
   }
 
   public get currentPlaylist(): { name: string, songs: Song[] } {
@@ -91,8 +123,15 @@ export class SongService {
   }
 
   public set currentPlaylist(value: { name: string, songs: Song[] }) {
-    this._currentPlaylist = value;
-    this.currentPlaylistChanged.next(value);
+    let songs = value.songs;
+    songs.map(song => {
+      if (this.favouriteSongsIndexes.includes(song.id)) {
+        song.isFavourite = true
+      }
+      return song
+    })
+    this._currentPlaylist = {name: value.name, songs};
+    this.currentPlaylistChanged.next({name: value.name, songs});
   }
 
   public removeSelectedAttribute(): void {
@@ -106,7 +145,41 @@ export class SongService {
 
   constructor(private http: HttpClient) {
     this.userToken = localStorage.getItem("token");
-    console.log(localStorage.getItem("email"))
+    this.userFavId = localStorage.getItem("favId");
+  }
+
+  changeCurrentPlaylist(playlistName: string) {
+    let currentPlaylist;
+    if (playlistName !== Constants.ALL_SONGS) {
+      currentPlaylist = this.allPlaylists.filter(playlist =>
+        playlist.name === playlistName
+      )[0]
+      if (currentPlaylist !== undefined) {
+        // this.currentPlaylist = {name: playlistName, songs: currentPlaylist.songs}
+        this.getOnePlaylist(currentPlaylist.id, playlistName)
+
+      }
+    } else {
+      currentPlaylist = this.allSongs
+      this.currentPlaylist = {name: playlistName, songs: currentPlaylist}
+    }
+    //console.log(currentPlaylist);
+
+    // this.getOnePlaylist(2)
+
+  }
+
+  getOnePlaylist(playlistId: number, playlistName: string) {
+    this.sendRequest("playlist/one" + "/" + playlistId)
+      .subscribe((data: { name: string, songs: Song[] }) => {
+        console.log(data.songs);
+        let songs: Song[] = [];
+        data.songs.forEach(song => {
+          songs.push(new Song(song.id, song.name, song.artist, "0:0", song.cover,
+            false, song.lyrics, song.file, false))
+        })
+        this.currentPlaylist = {name: playlistName, songs: songs}
+      })
   }
 
 
@@ -125,9 +198,10 @@ export class SongService {
       });
       this.currentPlaylist = {name: "همه آهنگ ها", songs: this.allSongs}
       this.selectedSong = this.currentPlaylist.songs[0]
-      this.playingSong = this.currentPlaylist.songs[0]
+      //this.playingSong = this.currentPlaylist.songs[0]
     })
   }
+
 
   public fetchPlaylist(): void {
     const body = {
@@ -139,9 +213,11 @@ export class SongService {
         playlists.push(new Playlist(playlist.name, playlist.id, playlist.songs))
         if (playlist.name === "مورد علاقه") {
           localStorage.setItem("favId", String(playlist.id));
+          this.favouriteSongs = playlist.songs;
         }
       })
       this.allPlaylists = playlists
+      // console.log(playlists);
 
     })
   }
@@ -174,15 +250,49 @@ export class SongService {
 
   }
 
-  public removePlaylist(id: number) {
+  removePlaylist(id: number) {
     const body = {
       token: this.userToken,
       id: id,
     };
-    this.sendRequest("playlist/remove", body).subscribe((data: any) => {
-      this.allPlaylists = this.allPlaylists.filter((playlist) => {
-        return playlist.id !== id;
+
+  }
+
+  addToPlaylist(playlistId: number[], songId: number) {
+    playlistId.forEach(playlistId => {
+      const body = {
+        token: this.userToken,
+        playlistId,
+        songId,
+      };
+      this.sendRequest("playlist/add-song", body).subscribe((data: any) => {
+        console.log(data);
       })
+    })
+  }
+
+  addToFavorites(songId: number) {
+    console.log(this.userFavId);
+    const body = {
+      token: this.userToken,
+      playlistId: this.userFavId,
+      songId,
+    };
+    this.sendRequest("playlist/add-song", body).subscribe((data: any) => {
+      console.log(data);
+
+    })
+  }
+
+  removeFromFavorites(songId: number) {
+    const body = {
+      token: this.userToken,
+      playlistId: this.userFavId,
+      songId,
+    };
+    this.sendRequest("playlist/remove-song", body).subscribe((data: any) => {
+      console.log(data);
+
     })
   }
 
@@ -200,6 +310,7 @@ export class SongService {
           this.loading.next(false);
           this.error.next('');
           observer.next(responseData)
+         // console.log(responseData);
         },
         (error) => {
           this.loading.next(false);
@@ -219,15 +330,6 @@ export class SongService {
   }
 
 
-  changeCurrentPlaylist(playlistName: string) {
-    console.log(playlistName);
-    console.log(this.allPlaylists);
-    // const playlist = this.allPlaylists.filter(playlist => playlist.name === playlistName)
-    // console.log(playlist);
-
-    // this.currentPlaylist = {name: playlist, songs: this.allplaylists[]}
-
-  }
 }
 
 //   [
