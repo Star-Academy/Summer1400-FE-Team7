@@ -31,7 +31,6 @@ describe('AUTH PAGE login form', () => {
     });
 
     it('should fill __AUTH__ REGISTER form', () => {
-        console.log(component);
         expect(component.isLoginPage).toBeFalsy();
     });
 });
@@ -63,7 +62,6 @@ describe('AUTH PAGE register form', () => {
     });
 
     it('should fill __AUTH__ LOGIN form', () => {
-        console.log(component);
         expect(component.isLoginPage).toBeTruthy();
     });
 });
