@@ -2,7 +2,7 @@ export class Song {
     id!: number;
     name!: string;
     artist!: string;
-    duration?: string;
+    duration?: number;
     cover!: string;
     isFavourite?: boolean;
     lyrics!: string;
@@ -13,7 +13,7 @@ export class Song {
         id: number=-1,
         name: string="",
         artist: string="",
-        duration: string="",
+        duration: number=0,
         cover: string="",
         isFavourite: boolean=false,
         lyrics: string="",

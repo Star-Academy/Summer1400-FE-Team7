@@ -16,7 +16,7 @@
         <p id="artist-name">{{ song.artist }}</p>
     </div>
     <div class="song-prop">
-        <p id="duration">{{ song.duration }}</p>
+        <p id="duration">{{ song.duration | hmsTime }}</p>
         <img
             class="fav-icon"
             (click)="onFavoriteClick()"
