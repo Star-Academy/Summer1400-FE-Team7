@@ -1,7 +1,7 @@
 @font-face {
-  font-family: "Sahel";
-  src: url("assets/fonts/sahel-bold.ttf");
-  src: url("assets/fonts/sahel.ttf");
+    font-family: 'Sahel';
+    src: url('assets/fonts/sahel-bold.ttf');
+    src: url('assets/fonts/sahel.ttf');
 }
 //TODO colors
 
@@ -13,49 +13,53 @@ $--font-size-xl: 2.5rem;
 *,
 *::before,
 *::after {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-  font-family: "Sahel", sans-serif;
-  outline: none;
-  border: none;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Sahel', sans-serif;
+    outline: none;
+    border: none;
 }
 
 $--clr-scrollbar: rgb(29, 125, 215);
 
 :root {
-  --clr-bg: hsl(323 21% 16%);
-  --clr-blue: rgb(8, 192, 255);
-  --clr-black: rgb(0, 0, 0);
-  --clr-white: rgb(255, 255, 255);
-  --clr-gray-light: rgb(200, 200, 200);
+    --clr-bg: hsl(323 21% 16%);
+    --clr-blue: rgb(8, 192, 255);
+    --clr-black: rgb(0, 0, 0);
+    --clr-white: rgb(255, 255, 255);
+    --clr-gray-light: rgb(200, 200, 200);
 }
 
 body {
-  height: 100vh;
+    height: 100vh;
 
-  font-size: 62.5%;
+    font-size: 62.5%;
 }
 
 button {
-  background: none;
-  border: none;
-  cursor: pointer;
-  -webkit-tap-highlight-color: transparent;
+    background: none;
+    border: none;
+    cursor: pointer;
+    -webkit-tap-highlight-color: transparent;
 }
 
 *::-webkit-scrollbar {
-  width: 0.5rem;
-  height: 1rem;
+    width: 0.5rem;
+    height: 1rem;
 }
 
 *::-webkit-scrollbar-track {
-  background: transparent;
+    background: transparent;
 }
 
 *::-webkit-scrollbar-thumb {
-  background: $--clr-scrollbar;
+    background: $--clr-scrollbar;
 
-  border: none;
-  border-radius: 1rem;
+    border: none;
+    border-radius: 1rem;
+}
+
+img {
+    user-select: none;
 }
