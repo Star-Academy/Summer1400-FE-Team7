@@ -2,6 +2,8 @@
   width: 100%;
   height: 90vh;
   margin-right: auto;
+  user-select: none;
+  transition: width 0.1s linear;
 }
 :host .song-list {
   width: 100%;

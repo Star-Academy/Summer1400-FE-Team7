@@ -1,5 +1,6 @@
 :host {
   width: 100%;
+  margin-bottom: 0.5rem;
 }
 :host .search {
   background: #1b1a1a;

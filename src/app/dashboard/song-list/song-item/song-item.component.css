@@ -1,6 +1,7 @@
 .song-wrapper {
   width: 100%;
   height: 3rem;
+  user-select: none;
   display: flex;
   align-items: center;
   position: relative;
