@@ -1,0 +1,22 @@
+<div class="header">
+    <p>افزودن به...</p>
+    <button (click)="closeNewPlaylistPanel()"><img src="../../../assets/images/controls/cancel.svg" alt="" /></button>
+</div>
+<hr />
+
+<div class="playlist-wrapper">
+    <div class="playlists-container" *ngFor="let playlist of playlists; let i = index">
+        <div class="checkbox-container">
+            <label class="checkbox-label">
+                <input type="checkbox" />
+                <span class="checkbox-custom rectangular"></span>
+                <p>{{ playlist }}</p>
+            </label>
+        </div>
+    </div>
+</div>
+
+<div class="create-new-palylist">
+    <img src="../../../assets/images/add.svg" alt="" />
+    <p>ساخت پلی‌لیست جدید</p>
+</div>
