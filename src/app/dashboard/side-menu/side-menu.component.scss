@@ -11,6 +11,7 @@ $--bg-mellow-black: rgb(40, 40, 40);
     background: #00000066;
     padding-top: 4rem;
     position: fixed;
+    overflow-y: hidden;
 
     //TODO
     user-select: none;
@@ -150,8 +151,10 @@ $--bg-mellow-black: rgb(40, 40, 40);
         width: 100%;
         height: 3rem;
         flex-direction: row-reverse;
+        align-items: center;
         cursor: pointer;
         font-size: 0.8rem;
+        border-top: 2px solid $--selected-bg-blue;
 
         margin-top: auto;
         padding: 0 0.5rem;
@@ -170,9 +173,13 @@ $--bg-mellow-black: rgb(40, 40, 40);
             align-items: center;
 
             > img {
-                width: 40px;
-                height: 60%;
+                // width: 40px;
+                height: 1.5rem;
             }
+        }
+
+        &:hover {
+            background: $--hover-bg-clr;
         }
     }
 }
@@ -187,4 +194,23 @@ $--bg-mellow-black: rgb(40, 40, 40);
 
 .side-menu-opener-closed {
     transform: translateX(100%);
+}
+
+.menu-items-wrapper {
+    overflow: overlay;
+    flex: 1;
+
+    &:hover {
+        overflow-y: auto;
+
+        &::-webkit-scrollbar {
+            width: 0.4rem;
+            height: 1rem;
+        }
+    }
+
+    &::-webkit-scrollbar {
+        width: 0rem;
+        height: 1rem;
+    }
 }
