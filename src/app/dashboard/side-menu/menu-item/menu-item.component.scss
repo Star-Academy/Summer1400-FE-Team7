@@ -1,5 +1,6 @@
 $--selected-bg-blue: rgb(29, 125, 215);
 $--bg-mellow-black: rgb(40, 40, 40);
+$--hover-bg-clr: rgba(138, 135, 135, 0.15);
 
 :host {
     > div {
@@ -35,7 +36,7 @@ $--bg-mellow-black: rgb(40, 40, 40);
             }
 
             &:hover {
-                background: rgba(255, 255, 255, 0.486) !important;
+                background: $--hover-bg-clr !important;
             }
         }
 
@@ -67,7 +68,7 @@ $--bg-mellow-black: rgb(40, 40, 40);
             align-items: center;
 
             &:hover {
-                background: rgba(255, 255, 255, 0.486);
+                background: $--hover-bg-clr;
             }
 
             & > img {
