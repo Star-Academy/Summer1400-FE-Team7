@@ -17,6 +17,32 @@
 </div>
 
 <div class="create-new-palylist">
-    <img src="../../../assets/images/add.svg" alt="" />
-    <p>ساخت پلی‌لیست جدید</p>
+    <div
+        class="make-new-playlist-wrapper"
+        *ngIf="!isCreatePlaylistPanelOpen"
+        (click)="isCreatePlaylistPanelOpen = !isCreatePlaylistPanelOpen"
+    >
+        <img src="../../../assets/images/add.svg" alt="" />
+        <p>ساخت پلی‌لیست جدید</p>
+    </div>
+
+    <div
+        class="make-new-playlist-options"
+        [ngClass]="error !== '' ? 'more-space-for-error' : ''"
+        *ngIf="isCreatePlaylistPanelOpen"
+    >
+        <input type="text" [(ngModel)]="playlistName" name="playlist-name" placeholder="نام پلی‌لیست جدید..." />
+        <div class="btn-wrapper">
+            <button
+                (click)="createNewPlaylist()"
+                [style.cursor]="loading ? 'wait' : playlistName === '' ? 'not-allowed' : 'pointer'"
+                [disabled]="playlistName === ''"
+                [attr.data-error]="error !== '' ? error : ''"
+                [ngClass]="error !== '' && !loading ? 'error' : ''"
+            >
+                ساخت پلی‌لیست
+            </button>
+            <button (click)="onCancleClick()">انصراف</button>
+        </div>
+    </div>
 </div>
