@@ -75,19 +75,16 @@
 
                 margin: 0 0.4rem;
 
-
                 > img {
                     width: 65%;
                     height: 65%;
                 }
             }
-          .active-btn {
-            filter: invert(39%) sepia(96%) saturate(903%) hue-rotate(184deg)
-            brightness(86%) contrast(97%) !important;
-          }
+            .active-btn {
+                filter: invert(39%) sepia(96%) saturate(903%) hue-rotate(184deg) brightness(86%) contrast(97%) !important;
+            }
 
-
-          > .size-1 {
+            > .size-1 {
                 width: 25px;
                 height: 25px;
             }
@@ -100,6 +97,7 @@
 
         .music-bar-wrapper {
             width: 45%;
+            height: 1rem;
             display: flex;
             flex-direction: row-reverse;
             align-items: center;
