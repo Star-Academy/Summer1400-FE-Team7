@@ -12,6 +12,9 @@ $--bg-mellow-black: rgb(40, 40, 40);
     padding-top: 4rem;
     position: fixed;
 
+    //TODO
+    user-select: none;
+
     display: flex;
     flex-direction: column;
     align-items: center;
