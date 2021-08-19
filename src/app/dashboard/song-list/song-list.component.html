@@ -1,6 +1,6 @@
-<div class="song-list side-menu-opended" [ngClass]="layoutView">
+<div class="song-list" [ngClass]="layoutView">
     <div>
-        <h2 class="song-list-header">{{currentPlaylistName}}</h2>
+        <h2 class="song-list-header">{{ currentPlaylistName }}</h2>
         <app-layout-manager (chosedLayout)="changeLayoutViewHandler($event)"></app-layout-manager>
         <!-- // TODO -->
         <!-- <div class="song-list-view-wrapper">
@@ -21,7 +21,10 @@
         </div> -->
     </div>
     <div class="placeholders-wrapper"></div>
-    <app-song-item [layout]="layoutView" *ngFor="let song of currentPlaylist;let i =index" [song]="song"
-    [index]="i"
+    <app-song-item
+        [layout]="layoutView"
+        *ngFor="let song of currentPlaylist; let i = index"
+        [song]="song"
+        [index]="i"
     ></app-song-item>
 </div>
