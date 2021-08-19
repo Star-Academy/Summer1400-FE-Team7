@@ -11,6 +11,7 @@ import {UiManagerService} from 'src/app/services/ui-manager.service';
 })
 export class DashboardComponent implements OnInit, OnDestroy {
     sideMenuOpen: boolean = true;
+    isLyricPanelOpen: boolean = false;
 
     public isCreateNewPlaylistPanelOpen: Subscription = new Subscription();
 
@@ -42,11 +43,17 @@ export class DashboardComponent implements OnInit, OnDestroy {
         this.isCreateNewPlaylistPanelOpen.unsubscribe();
         this.isAddToPlaylistPanelOpenSub.unsubscribe();
     }
+
     closeNewPlaylistPanel() {
         this.uiManager.closeCreatePlaylistPanel();
         this.uiManager.closeAddtoNewPlaylistPanel();
     }
+
     onToggleSideMenu = () => {
         this.sideMenuOpen = !this.sideMenuOpen;
     };
+
+    lyricPanelToggle() {
+        this.isLyricPanelOpen = !this.isLyricPanelOpen;
+    }
 }
