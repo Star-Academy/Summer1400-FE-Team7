@@ -1,0 +1,79 @@
+:host {
+    .lyric-wrapper {
+        width: 100%;
+        height: 90%;
+        position: fixed;
+        overflow-y: scroll;
+        top: 0;
+        left: -100%;
+        transition: transform 1s ease;
+        padding: 5rem 3rem;
+
+        > button:nth-of-type(1) {
+            position: fixed;
+            top: 2vh;
+            right: 0;
+            background: #1d7dd7;
+            z-index: 120;
+            border-radius: 200px 0 0 200px;
+            transition: transform 1s ease;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 0.5rem 1.25rem;
+
+            > img {
+                width: 15px;
+                height: 15px;
+                transform: rotate(180deg);
+            }
+        }
+
+        display: flex;
+
+        > .lyrics-music-cover {
+            width: 350px;
+            height: 100%;
+            position: fixed;
+
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+
+            > img {
+                width: 80%;
+                height: auto;
+                background: rgba(0, 0, 0, 0.4);
+            }
+
+            > .music-info {
+                width: 80%;
+                display: flex;
+                flex-direction: column;
+                align-items: flex-start;
+                margin-top: 0.5rem;
+
+                font-size: 1rem;
+                color: rgba(255, 255, 255, 0.678);
+            }
+        }
+        > .lyrics-text {
+            flex: 1;
+            // background: steelblue;
+            margin-right: 350px;
+            font-size: 1rem;
+            max-width: 100ch;
+            line-height: 2;
+            color: rgba(255, 255, 255, 0.678);
+
+            > .lyric-text {
+                padding-bottom: 5rem;
+            }
+        }
+    }
+}
+
+.section-close,
+.lyrics-wrapper-open {
+    transform: translateX(100%);
+}

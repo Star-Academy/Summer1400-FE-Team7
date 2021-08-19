@@ -1,1 +1,17 @@
-<p>lyrics works!</p>
+<section class="lyric-wrapper" [ngClass]="isPanelOpen ? 'lyrics-wrapper-open' : ''">
+    <button id="return" class="display-none">
+        <img src="../../../assets/images/controls/previous-1.svg" alt="" />
+    </button>
+
+    <div class="lyrics-music-cover">
+        <img src="../../../assets/images/default-song-cover.svg" alt="song cover" id="lyric-music-cover" />
+        <div class="music-info">
+            <p id="lyric-music-name"></p>
+            <p id="lyric-music-artist"></p>
+        </div>
+    </div>
+
+    <div class="lyrics-text">
+        <p class="lyric-text"></p>
+    </div>
+</section>
