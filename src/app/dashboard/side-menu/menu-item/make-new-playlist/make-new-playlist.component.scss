@@ -1,0 +1,90 @@
+$--bg-mellow-black: rgb(40, 40, 40);
+$--selected-bg-blue: rgb(29, 125, 215);
+$--clr-background-error: rgba(255, 0, 0, 0.431);
+$--clr-boarder-error: rgb(255, 0, 0);
+
+:host {
+    position: fixed;
+    top: 50%;
+    right: 50%;
+    transform: translate(-50%, -50%);
+    width: 29.375rem;
+    height: 32.125rem;
+    background: $--bg-mellow-black;
+    z-index: 999;
+    padding: 4rem;
+
+    .add-playlist-wrapper {
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: space-between;
+
+        > div {
+            width: 11rem;
+            height: 11rem;
+            background: $--selected-bg-blue;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+            > img {
+                width: 50%;
+                height: auto;
+            }
+        }
+
+        > input {
+            height: 3rem;
+            width: 80%;
+            padding-right: 1rem;
+        }
+
+        & > button {
+            color: var(--clr-white);
+            font-size: 1rem;
+            // padding: 1rem 3rem;
+            width: 12rem;
+            height: 4rem;
+        }
+
+        > button:nth-of-type(1) {
+            background: $--selected-bg-blue;
+
+            &:hover {
+                background: darken($--selected-bg-blue, 10);
+            }
+
+            &:active {
+                background: darken($--selected-bg-blue, 20);
+            }
+        }
+
+        > button:nth-of-type(2) {
+            &:hover {
+                background: darken($--bg-mellow-black, 3);
+            }
+
+            &:active {
+                background: darken($--bg-mellow-black, 6);
+            }
+        }
+    }
+}
+.error {
+    box-shadow: inset 0 0 0.3em $--clr-boarder-error, 0 0 0.3em $--clr-boarder-error !important;
+    position: relative;
+
+    &::after {
+        content: attr(data-error);
+        color: var(--clr-white);
+        position: absolute;
+        background-color: $--clr-background-error;
+        right: 0;
+        bottom: -1.5rem;
+        font-size: 0.8rem;
+        padding: 0 1rem;
+        border-radius: 1000rem;
+    }
+}
