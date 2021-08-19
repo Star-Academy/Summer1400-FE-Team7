@@ -1,40 +1,28 @@
 <!--<script src="menu-item.component.ts"></script>-->
-<div [ngSwitch]="playlistItem.buttonType" >
+<div [ngSwitch]="playlistItem.buttonType">
     <div *ngSwitchCase="'add'" class="playlist-container">
-        <div class="btn-wrapper" routerLinkActive="menu-selected" >
+        <div class="btn-wrapper" routerLinkActive="menu-selected">
             <img [src]="playlistItem.icon" alt="" />
-            <a
-              [routerLink]="['/dashboard']"
-              [queryParams]="{playlist:playlistItem.name}"
-            >{{ playlistItem.name }}</a>
+            <a [routerLink]="['/dashboard']" [queryParams]="{playlist: playlistItem.name}">{{ playlistItem.name }}</a>
         </div>
         <button class="add-btn" (click)="openNewPlaylistPanel()">
             <img src="../../../../assets/images/add.svg" alt="add svg" />
         </button>
     </div>
 
-    <div *ngSwitchCase="'remove'" class="playlist-container"
-         (mouseover)="onMouseover()" (mouseout)="onMouseout()"
-    >
-        <div class="btn-wrapper" routerLinkActive="menu-selected"
-             >
-            <img [src]="playlistItem.icon" alt=""  />
-            <a
-              [routerLink]="['/dashboard']"
-              [queryParams]="{playlist:playlistItem.name}"
-         >{{ playlistItem.name }}</a>
+    <div *ngSwitchCase="'remove'" class="playlist-container">
+        <div class="btn-wrapper" routerLinkActive="menu-selected">
+            <img [src]="playlistItem.icon" alt="" />
+            <a [routerLink]="['/dashboard']" [queryParams]="{playlist: playlistItem.name}">{{ playlistItem.name }}</a>
         </div>
-        <button *ngIf="showRemoveIcon" class="add-btn" (click)="onRemove()" >
-            <img src="../../../../assets/images/controls/cancel.svg" alt="delete playlist" />
+        <button class="delete-btn" (click)="onRemove()">
+            <img src="../../../../assets/images/add.svg" alt="delete playlist" />
         </button>
     </div>
 
-    <div *ngSwitchDefault class="btn-wrapper" routerLinkActive="menu-selected" >
+    <div *ngSwitchDefault class="btn-wrapper" routerLinkActive="menu-selected">
         <img [src]="playlistItem.icon" alt="" />
-        <a
-          [routerLink]="['/dashboard']"
-          [queryParams]="{playlist:playlistItem.name}"
-        >{{ playlistItem.name }}</a>
+        <a [routerLink]="['/dashboard']" [queryParams]="{playlist: playlistItem.name}">{{ playlistItem.name }}</a>
     </div>
 </div>
 <div *ngIf="isPanelOpen" class="dark-background-2" (click)="closePanel()"></div>
