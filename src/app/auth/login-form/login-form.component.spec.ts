@@ -11,13 +11,11 @@ describe('LoginFormComponent', () => {
     let component: LoginFormComponent;
     let fixture: ComponentFixture<LoginFormComponent>;
     let debug: DebugElement;
-    let element: HTMLElement;
-    let loginForm: any;
 
     beforeEach(async () => {
         await TestBed.configureTestingModule({
             declarations: [LoginFormComponent],
-            imports: [BrowserModule, FormsModule, ReactiveFormsModule, HttpClientTestingModule, RouterTestingModule],
+            imports: [BrowserModule, FormsModule, HttpClientTestingModule, RouterTestingModule],
         })
             .compileComponents()
             .then(() => {
@@ -26,17 +24,10 @@ describe('LoginFormComponent', () => {
                 component = fixture.componentInstance;
 
                 debug = fixture.debugElement.query(By.css('form'));
-                // element = debug.nativeElement;
             });
 
         fixture.detectChanges();
     });
-
-    // beforeEach(() => {
-    //     fixture = TestBed.createComponent(LoginFormComponent);
-    //     component = fixture.componentInstance;
-    //     fixture.detectChanges();
-    // });
 
     const MOCK_USER_VALID = [
         {
@@ -72,16 +63,20 @@ describe('LoginFormComponent', () => {
         },
     ];
 
-    it('TEST_1: should have rendered LOGIN form', async () => {
+    it('should create', () => {
+        expect(component).toBeTruthy();
+    });
+
+    it('should have rendered login form', async () => {
         expect(debug.query(By.css('h2')).nativeElement.innerText).toBe('ورود');
     });
 
-    it('TEST_2: should initial values be empty', async () => {
+    it('should initial values be empty', async () => {
         const user = component.loginForm.value;
         expect(user.email === '' && user.password === '').toBeTruthy();
     });
 
-    it('TEST_3: testing form inputs validation', () => {
+    it('testing form inputs validation(correct values)', () => {
         let form = component.loginForm;
 
         for (let user of MOCK_USER_VALID) {
@@ -89,6 +84,10 @@ describe('LoginFormComponent', () => {
             form.controls['password'].setValue(user.password);
             expect(form.valid).toBeTruthy();
         }
+    });
+
+    it('testing form inputs validation(incorrect values)', () => {
+        let form = component.loginForm;
 
         for (let user of MOCK_USER_UNVALID) {
             form.controls['email'].setValue(user.email);
