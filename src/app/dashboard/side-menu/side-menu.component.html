@@ -6,7 +6,16 @@
         <div class="search__icon"></div>
     </div> -->
 
-    <app-menu-item *ngFor="let playlistItem of playlists" [playlistItem]="playlistItem"></app-menu-item>
+    <div class="menu-items-wrapper">
+        <app-menu-item *ngFor="let playlistItem of playlists" [playlistItem]="playlistItem"></app-menu-item>
+    </div>
+
+    <div class="profile-wrapper btn-wrapper">
+        <p id="user-email">USERNAME</p>
+        <button>
+            <img src="../../../assets/images/logout.svg" alt="" />
+        </button>
+    </div>
 
     <!-- <div class="btn-wrapper menu-selected">
         <img src="../../../assets/images/playlist.svg" alt="" />
