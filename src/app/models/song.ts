@@ -8,6 +8,7 @@ export class Song {
     lyrics!: string;
     file!: string;
     isSelected!: boolean;
+    playlistIndexes!: number[];
 
     constructor(
         id: number=-1,
@@ -18,7 +19,7 @@ export class Song {
         isFavourite: boolean=false,
         lyrics: string="",
         file: string="",
-        isSelected: boolean = false
+        isSelected: boolean = false,
     ) {
         this.id = id;
         this.name = name;
@@ -29,5 +30,6 @@ export class Song {
         this.lyrics = lyrics;
         this.file = file;
         this.isSelected = isSelected;
+
     }
 }
