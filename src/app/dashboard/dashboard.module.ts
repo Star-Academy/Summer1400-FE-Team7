@@ -15,6 +15,8 @@ import {AddToPlaylistPanelComponent} from './song-list/song-item/add-to-playlist
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {HmsTimePipe} from '../pipes/hms-time.pipe';
 import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
+import { MobileComponent } from './mobile/mobile.component';
+import { MobilePlaybackControllersComponent } from './mobile/mobile-playback-controllers/mobile-playback-controllers.component';
 
 @NgModule({
     declarations: [
@@ -30,6 +32,8 @@ import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
         SongItemComponent,
         AddToPlaylistPanelComponent,
         HmsTimePipe,
+        MobileComponent,
+        MobilePlaybackControllersComponent,
     ],
     imports: [CommonModule, RouterModule, FormsModule, ReactiveFormsModule],
 })
