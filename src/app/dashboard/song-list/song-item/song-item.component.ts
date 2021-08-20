@@ -72,5 +72,7 @@ export class SongItemComponent implements OnInit {
 
   onDeletePlaylist() {
     this.songService.removeFromPlaylist(this.currentPlaylist.id,this.song.id)
+    this.isMoreOptionsOpened=false;
+
   }
 }
