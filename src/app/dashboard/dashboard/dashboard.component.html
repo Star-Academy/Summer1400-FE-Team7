@@ -84,7 +84,7 @@
         </div>
     </section> -->
     <!-- QWEQWEQWEYQWEYQWYEQWUIYIUIYUYI -->
-    <app-lyrics [isPanelOpen]="isLyricPanelOpen"></app-lyrics>
+    <app-lyrics [isPanelOpen]="isLyricPanelOpen" (toggleLyric)="lyricPanelToggle()"></app-lyrics>
 
     <section></section>
 
@@ -194,7 +194,10 @@
 
 <div *ngIf="!isLyricPanelOpen" class="side-menu-opener-closer" (click)="onToggleSideMenu()">
     <button id="side-menu-opener-closer-btn">
-        <img src="../../../assets/images/controls/menu.svg" alt="menu button" />
+        <img [src]="sideMenuOpen?'../../../assets/images/add.svg':
+        '../../../assets/images/controls/menu.svg'" alt="menu button"
+        [ngClass]="sideMenuOpen?'rotate':''"
+        />
     </button>
 </div>
 

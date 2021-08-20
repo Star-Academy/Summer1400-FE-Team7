@@ -1079,6 +1079,11 @@ main {
             height: 100%;
             user-select: none;
         }
+
+      .rotate{
+        transform: rotate(45deg);
+
+      }
     }
 }
 //TODO

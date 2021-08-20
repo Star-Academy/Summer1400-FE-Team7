@@ -12,7 +12,7 @@ import {MenuItemComponent} from './side-menu/menu-item/menu-item.component';
 import {SearchComponent} from './side-menu/search/search.component';
 import {SongItemComponent} from './song-list/song-item/song-item.component';
 import {AddToPlaylistPanelComponent} from './song-list/song-item/add-to-playlist-panel/add-to-playlist-panel.component';
-import {FormsModule} from '@angular/forms';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {HmsTimePipe} from '../pipes/hms-time.pipe';
 import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
 
@@ -31,6 +31,6 @@ import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
         AddToPlaylistPanelComponent,
         HmsTimePipe,
     ],
-    imports: [CommonModule, RouterModule, FormsModule],
+    imports: [CommonModule, RouterModule, FormsModule, ReactiveFormsModule],
 })
 export class DashboardModule {}
