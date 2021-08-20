@@ -3,6 +3,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { AuthComponent } from './auth/auth/auth.component';
 import { DashboardComponent } from './dashboard/dashboard/dashboard.component';
 import { LandingComponent } from './landing/landing/landing.component';
+import {Constants} from "./utils/constants";
 
 const routes: Routes = [
   { path: '', component: LandingComponent },
