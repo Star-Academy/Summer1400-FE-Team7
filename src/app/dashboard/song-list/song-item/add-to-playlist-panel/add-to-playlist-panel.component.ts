@@ -1,81 +1,109 @@
-import {Component, Input, OnInit, Output, EventEmitter} from '@angular/core';
-import {HostListener} from '@angular/core';
-import {Subscription} from 'rxjs';
+import {Component, Input, OnInit, Output, EventEmitter,  } from '@angular/core';
+ import {Subscription} from 'rxjs';
 import {SongService} from 'src/app/services/song.service';
 
 import {Song} from '../../../../models/song';
+import {Playlist} from "../../../../models/playlist";
+import {Constants} from "../../../../utils/constants";
+import {PlaylistSmall} from "../../../../models/playlistSmall";
 
 @Component({
-    selector: 'app-add-to-playlist-panel',
-    templateUrl: './add-to-playlist-panel.component.html',
-    styleUrls: ['./add-to-playlist-panel.component.scss'],
+  selector: 'app-add-to-playlist-panel',
+  templateUrl: './add-to-playlist-panel.component.html',
+  styleUrls: ['./add-to-playlist-panel.component.scss'],
 })
 export class AddToPlaylistPanelComponent implements OnInit {
-    @Input() song!: Song;
-    @Output() closeAddToNewPlaylistPanel = new EventEmitter<void>();
+  @Input() song!: Song;
+  @Output() closeAddToNewPlaylistPanel = new EventEmitter<void>();
 
-    isCreatePlaylistPanelOpen: boolean = false;
-    playlistName!: string;
+  isCreatePlaylistPanelOpen: boolean = false;
+  playlistName!: string;
 
-    loadingSubscription: Subscription = new Subscription();
-    errorSubscription: Subscription = new Subscription();
-    completeSubscription: Subscription = new Subscription();
+  loadingSubscription: Subscription = new Subscription();
+  errorSubscription: Subscription = new Subscription();
+  completeSubscription: Subscription = new Subscription();
 
-    loading = false;
-    error = '';
+  allPlaylistsSubscription: Subscription = new Subscription();
 
-    playlists = [
-        'test1',
-        'test2',
-        'test3',
-        'test4',
-        'test5',
-        'test3',
-        'test4',
-        'test5',
-        'test3',
-        'test4',
-        'test5',
-        'test3',
-        'test4',
-        'test5',
-    ];
+  loading = false;
+  error = '';
 
-    constructor(private songService: SongService) {
-        this.loadingSubscription = this.songService.loading.subscribe((loading: boolean) => {
-            this.loading = loading;
-        });
+  playlists !: PlaylistSmall[];
 
-        this.errorSubscription = this.songService.error.subscribe((error: string) => {
-            this.error = error;
-        });
-        this.completeSubscription = this.songService.complete.subscribe((complete: boolean) => {
-            if (complete) {
-                console.log('hererer');
-                this.isCreatePlaylistPanelOpen = !this.isCreatePlaylistPanelOpen;
-            }
-        });
-    }
+  constructor(private songService: SongService) {
+    this.loadingSubscription = songService.loading.subscribe((loading: boolean) => {
+      this.loading = loading;
+    });
 
-    ngOnInit(): void {}
-
-    closeNewPlaylistPanel() {
-        this.closeAddToNewPlaylistPanel.emit();
-    }
-
-    createNewPlaylist() {
-        this.songService.createNewPlaylist(this.playlistName);
-    }
-
-    ngOnDestroy(): void {
-        this.loadingSubscription.unsubscribe();
-        this.errorSubscription.unsubscribe();
-        this.completeSubscription.unsubscribe();
-    }
-
-    onCancleClick() {
-        this.isCreatePlaylistPanelOpen = !this.isCreatePlaylistPanelOpen;
+    this.errorSubscription = songService.error.subscribe((error: string) => {
+      this.error = error;
+    });
+    this.completeSubscription = songService.complete.subscribe((complete: boolean) => {
+      if (complete) {
+         this.isCreatePlaylistPanelOpen = false;
         this.playlistName = '';
         this.songService.error.next('');
+      }
+    });
+  }
+
+
+
+  ngOnInit(): void {
+     this.playlists = this.songService.allPlaylists.map((playlist: Playlist) => {
+      let checked =false;
+       for (let song of playlist.songs){
+        if (song.id === this.song.id)
+          checked=true;
+      }
+      return new PlaylistSmall(playlist.id, playlist.name, checked)
+    }).filter((playlist: PlaylistSmall) =>playlist.name !==Constants.FAVOURITE_SONGS);
+
+    this.allPlaylistsSubscription = this.songService.allPlaylistsChanged
+      .subscribe((allPlaylists: Playlist[]) => {
+        this.playlists = allPlaylists.map((playlist: Playlist) => {
+          let checked =false;
+          for (let song of playlist.songs){
+            if (song.id === this.song.id)
+              checked=true;
+          }
+          return new PlaylistSmall(playlist.id, playlist.name, checked)
+        }).filter((playlist: PlaylistSmall) =>playlist.name !==Constants.FAVOURITE_SONGS);
+
+
+      })
+
+   }
+
+
+  closeNewPlaylistPanel() {
+    this.closeAddToNewPlaylistPanel.emit();
+  }
+
+  createNewPlaylist() {
+    this.songService.createNewPlaylist(this.playlistName);
+  }
+
+
+  onCancelClick() {
+    this.isCreatePlaylistPanelOpen = false;
+    this.playlistName = '';
+    this.songService.error.next('');
+  }
+
+  ngOnDestroy(): void {
+    this.loadingSubscription.unsubscribe();
+    this.errorSubscription.unsubscribe();
+    this.completeSubscription.unsubscribe();
+    this.allPlaylistsSubscription.unsubscribe();
+  }
+
+  onCheckChanged(playlist: PlaylistSmall, event: any) {
+     if (event.target.checked){
+      this.songService.addToPlaylist(playlist.id,this.song.id)
+    }else{
+      this.songService.removeFromPlaylist(playlist.id,this.song.id)
+
     }
+  }
 }
