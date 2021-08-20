@@ -1,7 +1,8 @@
 import {Component, OnDestroy, OnInit} from '@angular/core';
-import {ActivatedRoute } from '@angular/router';
+import {ActivatedRoute} from '@angular/router';
 import {Subscription} from 'rxjs';
 import {SongService} from 'src/app/services/song.service';
+import { NotificationService } from 'src/app/services/notification.service';
 
 @Component({
   selector: 'app-dashboard',
@@ -12,32 +13,38 @@ export class DashboardComponent implements OnInit, OnDestroy {
   sideMenuOpen: boolean = true;
   isLyricPanelOpen: boolean = false;
 
-  public isCreateNewPlaylistPanelOpen: Subscription = new Subscription();
+  public notificationSub: Subscription = new Subscription();
 
-  public isAddToPlaylistPanelOpenSub: Subscription = new Subscription();
+  public showNotification: boolean = false;
+  public isErrorNotification: boolean = false;
+  public messageNotification: string = "";
 
 
-  constructor(  private songService: SongService, private route: ActivatedRoute,
-             ) {
-
-  }
+  constructor(private songService: SongService
+              , private route: ActivatedRoute,
+              private uiManager:NotificationService) {}
 
   ngOnInit(): void {
     this.songService.fetchPlaylist();
     this.route.queryParams.subscribe((params) => {
       if (params['playlist']) {
         this.songService.changeCurrentPlaylist(params['playlist']);
-        this.songService.currentPlaylistName=params['playlist'];
+        this.songService.currentPlaylistName = params['playlist'];
       }
     });
+
+    this.notificationSub = this.uiManager.notification
+      .subscribe((notification:{show:boolean,message: string,isError: boolean})=>{
+        this.showNotification=notification.show;
+        this.isErrorNotification=notification.isError;
+        this.messageNotification=notification.message;
+    })
 
   }
 
   ngOnDestroy(): void {
-    this.isCreateNewPlaylistPanelOpen.unsubscribe();
-    this.isAddToPlaylistPanelOpenSub.unsubscribe();
+    this.notificationSub.unsubscribe();
   }
-
 
 
   onToggleSideMenu = () => {
