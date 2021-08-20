@@ -1,7 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {FormControl, FormGroup} from "@angular/forms";
 import {Subscription} from "rxjs";
 import {debounceTime} from "rxjs/operators";
+import {SongService} from 'src/app/services/song.service';
+import {Playlist} from "../../../models/playlist";
+import {Constants} from "../../../utils/constants";
 
 @Component({
   selector: 'app-search',
@@ -10,16 +13,20 @@ import {debounceTime} from "rxjs/operators";
 })
 export class SearchComponent implements OnInit {
 
+
+  searchPlaylist!: Playlist;
+
   form: FormGroup = new FormGroup({
     searchText: new FormControl()
   });
 
   obs!: Subscription;
 
-  constructor() { }
+  constructor(private songService: SongService) {
+  }
 
   ngOnInit() {
-    this.obs=this.form.valueChanges
+    this.obs = this.form.valueChanges
       .pipe(debounceTime(1000))
       .subscribe(data => this.performSearch(data.searchText));
   }
@@ -29,8 +36,8 @@ export class SearchComponent implements OnInit {
   }
 
 
-  performSearch(searchText:string){
-    console.log(searchText)
+  performSearch(searchText: string) {
+    this.songService.searchSongsByName(searchText)
   }
 
 }
