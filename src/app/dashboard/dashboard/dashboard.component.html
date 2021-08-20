@@ -83,12 +83,11 @@
             <p class="lyric-text"></p>
         </div>
     </section> -->
-    <!-- QWEQWEQWEYQWEYQWYEQWUIYIUIYUYI -->
     <app-lyrics [isPanelOpen]="isLyricPanelOpen" (toggleLyric)="lyricPanelToggle()"></app-lyrics>
+    <app-mobile (toggleLyric)="lyricPanelToggle()"></app-mobile>
 
-    <section></section>
-
-    <section class="mobile-navigation">
+    <!-- //TODO -->
+    <!-- <section class="mobile-navigation">
         <div class="music-contolers">
             <button id="lyrics-btn-mobile">
                 <img src="../../../assets/images/controls/lyric.svg" alt="lyrics button" />
@@ -127,7 +126,7 @@
                 <p>خروج</p>
             </button>
         </div>
-    </section>
+    </section> -->
 </main>
 <div class="bg-cover"></div>
 <div class="dark-glass"></div>
@@ -194,9 +193,10 @@
 
 <div *ngIf="!isLyricPanelOpen" class="side-menu-opener-closer" (click)="onToggleSideMenu()">
     <button id="side-menu-opener-closer-btn">
-        <img [src]="sideMenuOpen?'../../../assets/images/add.svg':
-        '../../../assets/images/controls/menu.svg'" alt="menu button"
-        [ngClass]="sideMenuOpen?'rotate':''"
+        <img
+            [src]="sideMenuOpen ? '../../../assets/images/add.svg' : '../../../assets/images/controls/menu.svg'"
+            alt="menu button"
+            [ngClass]="sideMenuOpen ? 'rotate' : ''"
         />
     </button>
 </div>
