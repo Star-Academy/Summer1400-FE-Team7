@@ -1,4 +1,10 @@
 <div class="search">
-    <input type="search" placeholder="جست و جو..." class="search-box" />
-    <div class="search__icon"></div>
-</div>
+  <form  [formGroup]="form">
+    <input type="search"
+           placeholder="جست و جو..."
+           class="search-box"
+           formControlName="searchText"
+    />
+  </form>
+    <img class="search__icon" src="../../../../assets/images/search.svg">
+ </div>

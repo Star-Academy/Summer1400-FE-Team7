@@ -1,41 +1,40 @@
 :host {
-    width: 100%;
-    margin-bottom: 0.5rem;
-    .search {
-        background: rgb(27, 26, 26);
+  width: 100%;
+  margin-bottom: 0.5rem;
 
-        height: 2.5rem;
-        margin-bottom: 0.5rem;
+  .search {
+    background: rgb(27, 26, 26);
 
-        border-radius: 999rem;
+    height: 2.5rem;
 
-        flex-direction: row-reverse;
-        padding-left: 0.5rem;
+    border-radius: 999rem;
 
-        display: flex;
-        align-items: center;
+    flex-direction: row-reverse;
+    padding-left: 0.5rem;
 
-        width: 92%;
-        margin: 0 auto;
-        border: 2px solid var(--clr-white);
+    display: flex;
+    align-items: center;
 
-        > .search__icon {
-            width: 40px;
-            height: 50%;
-            background: url(../../../../assets/images/search.svg) no-repeat;
-            background-position: center;
-            background-size: contain;
+    width: 92%;
+    margin: 0 auto;
+    border: 2px solid var(--clr-white);
 
-            transform: rotate(90deg);
-        }
-
-        > input {
-            flex: 1;
-            height: 100%;
-            padding-right: 0.5rem;
-            background: transparent;
-
-            color: whitesmoke;
-        }
+    form {
+      width: 100%
     }
+
+    .search__icon {
+      width: 40px;
+      height: 50%;
+      transform: rotate(90deg);
+    }
+
+    input {
+      width: 100%;
+      height: 100%;
+      padding-right: 0.5rem;
+      background: transparent;
+      color: whitesmoke;
+    }
+  }
 }
