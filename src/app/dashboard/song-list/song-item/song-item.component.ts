@@ -2,6 +2,8 @@ import {Component, OnInit, Input, HostListener} from '@angular/core';
 import {Song} from 'src/app/models/song';
 import {SongService} from 'src/app/services/song.service';
 import {UiManagerService} from 'src/app/services/ui-manager.service';
+import { Constants } from 'src/app/utils/constants';
+import {Playlist} from "../../../models/playlist";
 
 @Component({
   selector: 'app-song-item',
@@ -13,6 +15,9 @@ export class SongItemComponent implements OnInit {
   @Input() index!: number;
   @Input() layout!: string;
 
+  canDelete: boolean = false;
+  currentPlaylist!:Playlist;
+
   isMoreOptionsOpened: boolean = false;
   isAddToPlaylistPanelOpen: boolean = false;
 
@@ -20,6 +25,11 @@ export class SongItemComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.currentPlaylist=this.songService.currentPlaylist;
+    if(this.currentPlaylist.name!==Constants.ALL_SONGS &&
+      this.currentPlaylist.name!==Constants.FAVOURITE_SONGS ){
+      this.canDelete=true;
+      }
    }
 
   openNewPlaylistPanel() {
@@ -60,4 +70,7 @@ export class SongItemComponent implements OnInit {
 
   }
 
+  onDeletePlaylist() {
+    this.songService.removeFromPlaylist(this.currentPlaylist.id,this.song.id)
+  }
 }

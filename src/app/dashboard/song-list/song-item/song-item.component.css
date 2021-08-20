@@ -85,6 +85,9 @@
 .song-wrapper > .options .button-wrapper:nth-of-type(2) img {
   margin-top: 0.15rem;
 }
+.song-wrapper > .options .button-wrapper--delete button {
+  color: red !important;
+}
 .song-wrapper > .song-info {
   margin-right: 0.5rem;
 }

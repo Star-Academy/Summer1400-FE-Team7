@@ -2,6 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {Subscription} from 'rxjs';
 import {Song} from 'src/app/models/song';
 import {SongService} from 'src/app/services/song.service';
+import {Playlist} from "../../models/playlist";
 
 @Component({
   selector: 'app-song-list',
@@ -22,7 +23,7 @@ export class SongListComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.currentPlaylistSub = this.songService.currentPlaylistChanged.subscribe((data:{name:string,songs:Song[]}) => {
+    this.currentPlaylistSub = this.songService.currentPlaylistChanged.subscribe((data:Playlist) => {
       this.currentPlaylistName = data.name;
       this.currentPlaylist = data.songs;
     });
