@@ -356,6 +356,11 @@ $--bg-mellow-black: rgb(40, 40, 40);
             }
         }
     }
+    @media only screen and (max-width: 750px) {
+        .song-list {
+            height: calc(100vh - max(12vh, 102px));
+        }
+    }
 
     .list-compact-view {
         display: grid;
