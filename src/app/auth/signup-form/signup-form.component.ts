@@ -3,6 +3,7 @@ import {NgForm} from '@angular/forms';
 import {Subscription} from 'rxjs';
 import {AuthService} from '../../services/auth.service';
 import {Router} from '@angular/router';
+import {Constants} from "../../utils/constants";
 
 @Component({
     selector: 'app-signup-form',
@@ -41,7 +42,7 @@ export class SignupFormComponent implements OnInit, OnDestroy {
         this.completeSubscription = this.authService.complete.subscribe((complete: boolean) => {
             if (complete) {
                 this.signupForm.reset();
-                router.navigate(['/dashboard']).then();
+                router.navigate(['/dashboard'],{queryParams:{playlist:Constants.ALL_SONGS}}).then();
             }
         });
     }

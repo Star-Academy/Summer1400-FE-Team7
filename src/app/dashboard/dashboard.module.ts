@@ -14,6 +14,7 @@ import {SongItemComponent} from './song-list/song-item/song-item.component';
 import {AddToPlaylistPanelComponent} from './song-list/song-item/add-to-playlist-panel/add-to-playlist-panel.component';
 import {FormsModule} from '@angular/forms';
 import {HmsTimePipe} from '../pipes/hms-time.pipe';
+import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
 
 @NgModule({
     declarations: [
