@@ -65,7 +65,7 @@
             max-width: 100ch;
             line-height: 2;
             color: rgba(255, 255, 255, 0.678);
-          white-space: pre-line;
+            white-space: pre-line;
             > .lyric-text {
                 padding-bottom: 5rem;
             }
@@ -76,4 +76,17 @@
 .section-close,
 .lyrics-wrapper-open {
     transform: translateX(100%);
+}
+
+@media only screen and (max-width: 750px) {
+    .lyric-wrapper {
+        height: calc(100vh - max(12vh, 102px)) !important;
+    }
+    .lyrics-music-cover {
+        display: none !important;
+    }
+
+    .lyrics-text {
+        margin-right: 0 !important;
+    }
 }

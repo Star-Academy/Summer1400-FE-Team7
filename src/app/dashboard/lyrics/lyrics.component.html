@@ -1,18 +1,21 @@
 <section class="lyric-wrapper" [ngClass]="isPanelOpen ? 'lyrics-wrapper-open' : ''">
-    <button id="return" class="display-none" (click)="onBackClick()">
+    <button id="return" *ngIf="isPanelOpen" (click)="onBackClick()">
         <img src="../../../assets/images/controls/previous-1.svg" alt="" />
     </button>
 
     <div class="lyrics-music-cover">
-        <img [src]="playingSong.cover ===''?'../../../assets/images/default-song-cover.svg':
-          playingSong.cover" alt="song cover" id="lyric-music-cover" />
+        <img
+            [src]="playingSong.cover === '' ? '../../../assets/images/default-song-cover.svg' : playingSong.cover"
+            alt="song cover"
+            id="lyric-music-cover"
+        />
         <div class="music-info">
-            <p id="lyric-music-name">{{playingSong.name}}</p>
-            <p id="lyric-music-artist">{{playingSong.artist}}</p>
+            <p id="lyric-music-name">{{ playingSong.name }}</p>
+            <p id="lyric-music-artist">{{ playingSong.artist }}</p>
         </div>
     </div>
 
     <div class="lyrics-text">
-        <p class="lyric-text">{{playingSong.lyrics}}</p>
+        <p class="lyric-text">{{ playingSong.lyrics }}</p>
     </div>
 </section>
