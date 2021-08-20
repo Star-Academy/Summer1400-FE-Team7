@@ -7,6 +7,11 @@ import {Component, EventEmitter, OnInit, Output} from '@angular/core';
 })
 export class MobilePlaybackControllersComponent implements OnInit {
     @Output() lyricToggle = new EventEmitter<void>();
+    @Output() songPreviewToggle = new EventEmitter();
+
+    onSongPreviewToggle() {
+        this.songPreviewToggle.emit();
+    }
 
     lyricToggler() {
         this.lyricToggle.emit();
