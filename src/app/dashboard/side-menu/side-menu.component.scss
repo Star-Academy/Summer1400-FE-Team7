@@ -197,12 +197,10 @@ $--bg-mellow-black: rgb(40, 40, 40);
 }
 
 .menu-items-wrapper {
-    overflow: overlay;
-    flex: 1;
+     flex: 1;
 
     &:hover {
         overflow-y: auto;
-
         &::-webkit-scrollbar {
             width: 0.4rem;
             height: 1rem;
