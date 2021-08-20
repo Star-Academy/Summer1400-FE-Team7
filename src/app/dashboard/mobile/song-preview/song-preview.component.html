@@ -1,0 +1,57 @@
+<div class="mobile-song-preview">
+    <button class="mobile-song-preview-return" (click)="onSongPreviewToggle()">
+        <img src="../../../assets/images/controls/previous-1.svg" alt=" back button" />
+    </button>
+
+    <img src="../../../assets/images/default-song-cover.svg" alt="song cover" class="mobile-preview-song-cover" />
+
+    <div class="mobile-info mobile-info-animation">
+        <p class="mobile-preview-name-section">
+            <span class="mobile-music-name"></span><span>&nbsp;•&nbsp;</span><span class="mobile-artist-name"></span>
+        </p>
+    </div>
+
+    <div class="music-bar-wrapper">
+        <p class="current-time"></p>
+        <input
+            type="range"
+            class="seek-slider"
+            max="100"
+            value="0"
+            onchange="updateMobileMusicBarValue(this.value);"
+            step="1"
+            oninput="updateMobileMusicBarValue(this.value)"
+        />
+        <p class="end-time"></p>
+    </div>
+
+    <div class="mobile-preview-controls">
+        <button class="size-1 ctl-btn shuffle-btn" data-tooltip="درهم‌رختن">
+            <img src="../../../assets/images/controls/shuffle.svg" alt="shuffle button" />
+        </button>
+
+        <button class="size-1 ctl-btn next-btn" data-tooltip="بعدی">
+            <img src="../../../assets/images/controls/next.svg" alt="next music button" />
+        </button>
+
+        <button class="size-2 ctl-btn play-music-btn" data-tooltip="پخش">
+            <img src="../../../assets/images/controls/play-button.svg" alt="play puase button" />
+        </button>
+
+        <button class="size-1 ctl-btn previous-btn" data-tooltip="قبلی">
+            <img src="../../../assets/images/controls/back.svg" alt="previous music button" />
+        </button>
+
+        <button class="size-1 ctl-btn repeat-btn" data-tooltip=" تکرار">
+            <img src="../../../assets/images/controls/repeat.svg" alt="repeat mode button" />
+        </button>
+    </div>
+
+    <button class="mobile-preview-like">
+        <img src="../../../assets/images/like.svg" alt="like img" />
+    </button>
+
+    <button class="mobile-preview-add-playlist">
+        <img src="../../../assets/images/playlist.svg" alt="add to playlist" />
+    </button>
+</div>
