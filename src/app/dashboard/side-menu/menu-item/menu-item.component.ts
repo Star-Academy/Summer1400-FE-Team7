@@ -1,5 +1,4 @@
 import {Component, OnInit, Input, HostListener} from '@angular/core';
-import {Router} from '@angular/router';
 import {PlaylistItem} from 'src/app/models/playlistItem';
 import {SongService} from '../../../services/song.service';
 
@@ -13,7 +12,7 @@ export class MenuItemComponent implements OnInit {
 
     isPanelOpen: boolean = false;
 
-    constructor(private songService: SongService, private router: Router) {}
+    constructor(private songService: SongService) {}
 
     ngOnInit(): void {}
 

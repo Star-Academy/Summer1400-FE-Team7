@@ -260,14 +260,17 @@ export class SongService {
     }
   }
 
-  removePlaylist(songId: number) {
-    // const body = {
-    //   token: this.userToken,
-    //   playlistId: this.userFavId,
-    //   songId,
-    // };
-    // this.sendRequest('playlist/remove-song', body).subscribe((data: any) => {
-    // });
+  removePlaylist(playlistId: number) {
+    const body = {
+      token: this.userToken,
+      id: playlistId,
+    };
+    this.sendRequest('playlist/remove', body).subscribe((data: any) => {
+      this.allPlaylists = this.allPlaylists.filter((playlist: Playlist) => {
+        return playlist.id !== playlistId;
+      });
+      console.log(this.allPlaylists)
+    });
   }
 
   addToPlaylist(playlistId: number, songId: number) {
