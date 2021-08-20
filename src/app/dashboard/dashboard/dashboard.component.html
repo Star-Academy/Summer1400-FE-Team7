@@ -202,12 +202,7 @@
     </button>
 </div>
 
-<div class="alert hide">
-    <p class="msg">خطایی رخ داده است</p>
-    <div class="close-btn">
-        <img src="../../../assets/images/controls/cancel.svg" />
-    </div>
-</div>
+<app-notification [show]="showNotification" [message]="'خطا'" [isError]="true" ></app-notification>
 
 <template id="song-wrapper-template">
     <div class="song-wrapper">

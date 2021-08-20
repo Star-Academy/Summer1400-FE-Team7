@@ -1,4 +1,6 @@
 import {Component, Input, OnInit, Output, EventEmitter,  } from '@angular/core';
+
+
  import {Subscription} from 'rxjs';
 import {SongService} from 'src/app/services/song.service';
 
@@ -57,7 +59,7 @@ export class AddToPlaylistPanelComponent implements OnInit {
           checked=true;
       }
       return new PlaylistSmall(playlist.id, playlist.name, checked)
-    }).filter((playlist: PlaylistSmall) =>playlist.name !==Constants.FAVOURITE_SONGS);
+    }).filter((playlist: PlaylistSmall) =>playlist.name !==Constants.FAVOURITE_SONGS && playlist.name!== this.songService.currentPlaylistName);
 
     this.allPlaylistsSubscription = this.songService.allPlaylistsChanged
       .subscribe((allPlaylists: Playlist[]) => {
@@ -68,7 +70,7 @@ export class AddToPlaylistPanelComponent implements OnInit {
               checked=true;
           }
           return new PlaylistSmall(playlist.id, playlist.name, checked)
-        }).filter((playlist: PlaylistSmall) =>playlist.name !==Constants.FAVOURITE_SONGS);
+        }).filter((playlist: PlaylistSmall) =>playlist.name !==Constants.FAVOURITE_SONGS && playlist.name!== this.songService.currentPlaylistName  );
 
 
       })
@@ -100,7 +102,7 @@ export class AddToPlaylistPanelComponent implements OnInit {
 
   onCheckChanged(playlist: PlaylistSmall, event: any) {
      if (event.target.checked){
-      this.songService.addToPlaylist(playlist.id,this.song.id)
+      this.songService.addToPlaylist(playlist.id,this.song)
     }else{
       this.songService.removeFromPlaylist(playlist.id,this.song.id)
 

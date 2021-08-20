@@ -1,0 +1,8 @@
+<div class="alert"
+      [ngClass]="{'success':!isError,'hide':!show,'show':show,
+      'showAlert':show}">
+  <p class="msg">{{message}}</p>
+  <div class="close-btn" (click)="onClose()">
+    <img src="../../../../assets/images/add.svg"  alt=""/>
+  </div>
+</div>

@@ -17,7 +17,9 @@ import {HmsTimePipe} from '../pipes/hms-time.pipe';
 import {MobileComponent} from './mobile/mobile.component';
 import {MobilePlaybackControllersComponent} from './mobile/mobile-playback-controllers/mobile-playback-controllers.component';
 import {LikeHoverDirective} from '../directives/like-hover.directive';
-import { SongPreviewComponent } from './mobile/song-preview/song-preview.component';
+import {SongPreviewComponent} from './mobile/song-preview/song-preview.component';
+import {NotificationComponent} from './dashboard/notification/notification.component';
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 
 @NgModule({
     declarations: [
@@ -37,7 +39,8 @@ import { SongPreviewComponent } from './mobile/song-preview/song-preview.compone
         MobilePlaybackControllersComponent,
         LikeHoverDirective,
         SongPreviewComponent,
+        NotificationComponent,
     ],
-    imports: [CommonModule, RouterModule, FormsModule, ReactiveFormsModule],
+    imports: [CommonModule, RouterModule, BrowserAnimationsModule, FormsModule, ReactiveFormsModule],
 })
 export class DashboardModule {}

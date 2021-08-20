@@ -1,7 +1,9 @@
 import {Component, OnInit, Input, HostListener} from '@angular/core';
+import { trigger, state, style, animate, transition } from '@angular/animations';
+
 import {Song} from 'src/app/models/song';
 import {SongService} from 'src/app/services/song.service';
-import {UiManagerService} from 'src/app/services/ui-manager.service';
+import {NotificationService} from 'src/app/services/notification.service';
 import { Constants } from 'src/app/utils/constants';
 import {Playlist} from "../../../models/playlist";
 
@@ -9,6 +11,29 @@ import {Playlist} from "../../../models/playlist";
   selector: 'app-song-item',
   templateUrl: './song-item.component.html',
   styleUrls: ['./song-item.component.scss'],
+  animations: [
+    trigger(
+      'inOutAnimation',
+      [
+        transition(
+          ':enter',
+          [
+            style({  opacity: 0, transform: 'scale(0.8)'}),
+            animate('0.3s ease-out',
+              style({  opacity: 1 , transform: 'scale(1)'}))
+          ]
+        ),
+        transition(
+          ':leave',
+          [
+            style({  opacity: 1,transform: 'scale(1)' }),
+            animate('0.1s ease-in',
+              style({  opacity: 0 , transform: 'scale(0.8)'}))
+          ]
+        )
+      ]
+    )
+  ]
 })
 export class SongItemComponent implements OnInit {
   @Input() song!: Song;
@@ -21,7 +46,7 @@ export class SongItemComponent implements OnInit {
   isMoreOptionsOpened: boolean = false;
   isAddToPlaylistPanelOpen: boolean = false;
 
-  constructor(private uiManager: UiManagerService, private songService: SongService) {
+  constructor(private uiManager: NotificationService, private songService: SongService) {
   }
 
   ngOnInit(): void {
@@ -73,6 +98,8 @@ export class SongItemComponent implements OnInit {
   onDeletePlaylist() {
     this.songService.removeFromPlaylist(this.currentPlaylist.id,this.song.id)
     this.isMoreOptionsOpened=false;
-
+    this.uiManager.showNotification("حذف شد",false,()=>{
+      this.songService.addToPlaylist(this.currentPlaylist.id,this.song)
+    })
   }
 }

@@ -2,10 +2,10 @@ import {Component, OnInit, Input} from '@angular/core';
 import {PlaylistItem} from 'src/app/models/playlistItem';
 import {SongService} from 'src/app/services/song.service';
 import {Subscription} from 'rxjs';
-import {Song} from '../../models/song';
-import {Playlist} from '../../models/playlist';
+ import {Playlist} from '../../models/playlist';
 import {Constants} from '../../utils/constants';
-import {animate, state, style, transition, trigger} from "@angular/animations";
+ import {AuthService} from "../../services/auth.service";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-side-menu',
@@ -20,15 +20,17 @@ export class SideMenuComponent implements OnInit {
     new PlaylistItem(Constants.FAVOURITE_SONGS, -2, '../../../assets/images/favourite.svg', 'none', '', false),
     new PlaylistItem(Constants.ALL_PLAYLISTS, -3, '../../../assets/images/playlist-add.svg', 'add', '', false),
   ];
+  @Input() public isOpen!: boolean;
+  email!: string;
   playlistsSub!: Subscription;
 
-  @Input() public isOpen!: boolean;
 
-  constructor(private songService: SongService) {
+  constructor(private songService: SongService,private authService: AuthService,
+             private router:Router) {
     this.playlistsSub = this.songService.allPlaylistsChanged.subscribe((data: Playlist[]) => {
       this.playlists = [];
       this.playlists = this.initialPlaylists.slice();
-      data.forEach((playlist, index) => {
+      data.forEach((playlist, ) => {
         if (playlist.name !== 'مورد علاقه') {
           this.playlists.push(
             new PlaylistItem(
@@ -46,9 +48,16 @@ export class SideMenuComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.email = localStorage.getItem('email')||""
   }
 
   ngOnDestroy(): void {
     this.playlistsSub.unsubscribe();
+  }
+
+  onLogOutClick() {
+    this.authService.logoutUser();
+    //TODO not this :)
+    this.router.navigate(['/']).then()
   }
 }
