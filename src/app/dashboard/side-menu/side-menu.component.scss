@@ -182,6 +182,10 @@ $--bg-mellow-black: rgb(40, 40, 40);
             background: $--hover-bg-clr;
         }
     }
+
+    @media only screen and (max-width: 750px) {
+        display: none;
+    }
 }
 // TODO CHECK IF NECCESSARY ELSE DELETE
 .side-menu-closed {
@@ -197,7 +201,7 @@ $--bg-mellow-black: rgb(40, 40, 40);
 }
 
 .menu-items-wrapper {
-     flex: 1;
+    flex: 1;
 
     &:hover {
         overflow-y: auto;
