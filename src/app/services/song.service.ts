@@ -102,6 +102,7 @@ export class SongService {
       indexes.push(song.id);
     });
     this.favouriteSongsIndexes = indexes;
+    console.log(this.favouriteSongsIndexes);
     this._favouriteSongs = value;
     this.favouriteSongsChanged.next(value);
   }
@@ -115,18 +116,20 @@ export class SongService {
     this.favouriteSongsIndexesChanged.next(value);
   }
 
-  public get currentPlaylist(): Playlist{
+  public get currentPlaylist(): Playlist {
     return this._currentPlaylist;
   }
 
   public set currentPlaylist(value: Playlist) {
+
     let songs = value.songs;
     songs.map((song) => {
       song.isFavourite = this.favouriteSongsIndexes.includes(song.id);
       return song;
     });
-    this._currentPlaylist =value;
-    this.currentPlaylistChanged.next(value);
+    let currentPlaylist = new Playlist(value.name, value.id, songs)
+    this._currentPlaylist = currentPlaylist;
+    this.currentPlaylistChanged.next(currentPlaylist);
   }
 
   public removeSelectedAttribute(): void {
@@ -148,21 +151,16 @@ export class SongService {
     if (playlistName !== Constants.ALL_SONGS) {
       currentPlaylist = this.allPlaylists.filter((playlist) => playlist.name === playlistName)[0];
       if (currentPlaylist !== undefined) {
-        // this.currentPlaylist = {name: playlistName, songs: currentPlaylist.songs}
         this.getOnePlaylist(currentPlaylist.id, playlistName);
       }
     } else {
       currentPlaylist = this.allSongs;
-      // this.currentPlaylist = {name: playlistName, songs: currentPlaylist};
-      this.currentPlaylist = new Playlist(playlistName,-1,currentPlaylist)
+       // this.favouriteSongs = this.allPlaylists.filter((playlist) => playlist.id === parseInt(this.userFavId||"-1"))[0].songs
+      this.currentPlaylist = new Playlist(playlistName, -1, currentPlaylist)
     }
-    //console.log(currentPlaylist);
-
-    // this.getOnePlaylist(2)
   }
 
   getOnePlaylist(playlistId: number, playlistName: string) {
-    console.log(playlistId);
     this.sendRequest('playlist/one' + '/' + playlistId).subscribe((data: { name: string; songs: Song[] }) => {
       let songs: Song[] = [];
       data.songs.forEach((song) => {
@@ -183,7 +181,8 @@ export class SongService {
       if (playlistName === Constants.FAVOURITE_SONGS) {
         this.favouriteSongs = songs;
       }
-      this.currentPlaylist = new Playlist(playlistName,playlistId,songs)
+
+      this.currentPlaylist = new Playlist(playlistName, playlistId, songs)
       this.allPlaylists.filter((playlist) => playlist.name === playlistName)[0].songs = songs;
     });
   }
@@ -199,20 +198,13 @@ export class SongService {
     this.sendRequest('song/page', body).subscribe((data) => {
       this.allSongs = data['songs'].map((song: any) => {
         return new Song(
-          song.id,
-          song.name,
-          song.artist,
-          Math.random() * (400 - 180) + 180,
-          song.cover,
-          false,
-          song.lyrics,
-          song.file,
-          false
+          song.id, song.name, song.artist, Math.random() * (400 - 180) + 180, song.cover,
+          false, song.lyrics, song.file, false
         );
       });
-      this.currentPlaylist = new Playlist(Constants.ALL_SONGS,-1,this.allSongs);
+      this.changeCurrentPlaylist(Constants.ALL_SONGS)
+      //this.currentPlaylist = new Playlist(Constants.ALL_SONGS, -1, this.allSongs);
       this.selectedSong = this.currentPlaylist.songs[0];
-      //this.playingSong = this.currentPlaylist.songs[0]
     });
   }
 
@@ -230,7 +222,7 @@ export class SongService {
         }
       });
       this.allPlaylists = playlists;
-      // console.log(playlists);
+      this.fetchSongs();
     });
   }
 
