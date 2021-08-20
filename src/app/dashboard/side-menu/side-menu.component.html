@@ -7,7 +7,9 @@
     </div> -->
 
     <div class="menu-items-wrapper">
-        <app-menu-item *ngFor="let playlistItem of playlists" [playlistItem]="playlistItem"></app-menu-item>
+        <app-menu-item
+           *ngFor="let playlistItem of playlists" [playlistItem]="playlistItem">
+        </app-menu-item>
     </div>
 
     <div class="profile-wrapper btn-wrapper">
