@@ -37,3 +37,8 @@
         }
     }
 }
+@media only screen and (max-width: 750px) {
+    .list-compact-view-label {
+        display: none !important;
+    }
+}
