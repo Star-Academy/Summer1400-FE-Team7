@@ -12,8 +12,8 @@
         </app-menu-item>
     </div>
 
-    <div class="profile-wrapper btn-wrapper">
-        <p id="user-email">USERNAME</p>
+    <div class="profile-wrapper btn-wrapper" (click)="onLogOutClick()">
+        <p id="user-email">{{email}}</p>
         <button>
             <img src="../../../assets/images/logout.svg" alt="" />
         </button>
