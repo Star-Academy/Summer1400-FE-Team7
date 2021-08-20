@@ -17,6 +17,7 @@ import {HmsTimePipe} from '../pipes/hms-time.pipe';
 import {MobileComponent} from './mobile/mobile.component';
 import {MobilePlaybackControllersComponent} from './mobile/mobile-playback-controllers/mobile-playback-controllers.component';
 import {LikeHoverDirective} from '../directives/like-hover.directive';
+import { SongPreviewComponent } from './mobile/song-preview/song-preview.component';
 
 @NgModule({
     declarations: [
@@ -35,6 +36,7 @@ import {LikeHoverDirective} from '../directives/like-hover.directive';
         MobileComponent,
         MobilePlaybackControllersComponent,
         LikeHoverDirective,
+        SongPreviewComponent,
     ],
     imports: [CommonModule, RouterModule, FormsModule, ReactiveFormsModule],
 })
