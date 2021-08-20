@@ -1,8 +1,7 @@
 import {Component, OnDestroy, OnInit} from '@angular/core';
-import {ActivatedRoute, Router} from '@angular/router';
+import {ActivatedRoute } from '@angular/router';
 import {Subscription} from 'rxjs';
 import {SongService} from 'src/app/services/song.service';
-import {Constants} from "../../utils/constants";
 
 @Component({
   selector: 'app-dashboard',
@@ -19,10 +18,8 @@ export class DashboardComponent implements OnInit, OnDestroy {
 
 
   constructor(  private songService: SongService, private route: ActivatedRoute,
-              router: Router) {
-    // router.navigate(['dashboard'], {queryParams: {playlist: Constants.ALL_SONGS}}).then();
-    // //TODO
-    // this.songService.changeCurrentPlaylist(Constants.ALL_SONGS);
+             ) {
+
   }
 
   ngOnInit(): void {
@@ -30,6 +27,7 @@ export class DashboardComponent implements OnInit, OnDestroy {
     this.route.queryParams.subscribe((params) => {
       if (params['playlist']) {
         this.songService.changeCurrentPlaylist(params['playlist']);
+        this.songService.currentPlaylistName=params['playlist'];
       }
     });
 

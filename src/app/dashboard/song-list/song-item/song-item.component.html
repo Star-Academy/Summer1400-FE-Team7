@@ -18,6 +18,7 @@
         <p id="duration">{{ song.duration | hmsTime }}</p>
         <img
             class="fav-icon"
+            appLikeHover
             (click)="onFavoriteClick()"
             [src]="!song.isFavourite ? '../../../../assets/images/like.svg' : '../../../../assets/images/liked.svg'"
             alt=""

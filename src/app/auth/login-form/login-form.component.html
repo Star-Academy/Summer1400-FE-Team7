@@ -7,7 +7,7 @@
         [attr.data-error]="email.value === '' ? _ERROR_MSG.MSG_EMAIL_EMPTY : _ERROR_MSG.MSG_EMAIL_NOT_VALID"
         [ngClass]="!email.valid && email.touched ? 'error' : ''"
     >
-        <img src="../../assets/images/email.svg" alt="" />
+        <img src="../../../assets/images/email.svg" alt="" />
         <input
             type="email"
             id="login-email-input"
@@ -27,7 +27,7 @@
         [attr.data-error]="password.value === '' ? _ERROR_MSG.MSG_PASSWORD_EMPTY : ''"
         [ngClass]="!password.valid && password.touched ? 'error' : ''"
     >
-        <img src="../../assets/images/password.svg" alt="" />
+        <img src="../../../assets/images/password.svg" alt="" />
         <input
             type="password"
             id="login-password-input"
@@ -39,7 +39,7 @@
             #password="ngModel"
         />
         <label for="login-password-input"> رمز عبور </label>
-        <img src="../../assets/images/show-password.svg" alt="" class="show-pass-cta" appShowPassword />
+        <img src="../../../assets/images/show-password.svg" alt="" class="show-pass-cta" appShowPassword />
     </div>
 
     <div class="check-box-wrapper">

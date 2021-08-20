@@ -14,9 +14,9 @@ import {SongItemComponent} from './song-list/song-item/song-item.component';
 import {AddToPlaylistPanelComponent} from './song-list/song-item/add-to-playlist-panel/add-to-playlist-panel.component';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {HmsTimePipe} from '../pipes/hms-time.pipe';
-import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
-import { MobileComponent } from './mobile/mobile.component';
-import { MobilePlaybackControllersComponent } from './mobile/mobile-playback-controllers/mobile-playback-controllers.component';
+import {MobileComponent} from './mobile/mobile.component';
+import {MobilePlaybackControllersComponent} from './mobile/mobile-playback-controllers/mobile-playback-controllers.component';
+import {LikeHoverDirective} from '../directives/like-hover.directive';
 
 @NgModule({
     declarations: [
@@ -34,6 +34,7 @@ import { MobilePlaybackControllersComponent } from './mobile/mobile-playback-con
         HmsTimePipe,
         MobileComponent,
         MobilePlaybackControllersComponent,
+        LikeHoverDirective,
     ],
     imports: [CommonModule, RouterModule, FormsModule, ReactiveFormsModule],
 })

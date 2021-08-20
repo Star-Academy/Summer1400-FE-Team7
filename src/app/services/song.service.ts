@@ -11,12 +11,14 @@ const BASE_URL = 'https://songs.code-star.ir/';
   providedIn: 'root',
 })
 export class SongService {
+
   private _allPlaylists: Playlist[] = [];
   private _allSongs: Song[] = [];
   private _favouriteSongs: Song[] = [];
   private _favouriteSongsIndexes: number[] = [];
   private _searchSongs: Song[] = [];
   private _currentPlaylist!: Playlist;
+  private _currentPlaylistName: string=Constants.ALL_SONGS;
   private _currenSongIndex: number = 0;
   private _selectedSong!: Song;
   private _playingSong!: Song;
@@ -27,6 +29,7 @@ export class SongService {
   favouriteSongsIndexesChanged = new Subject<number[]>();
   searchSongsChanged = new Subject<Song[]>();
   currentPlaylistChanged = new Subject<Playlist>();
+  currentPlaylistNameChanged = new Subject<string>();
   selectedSongChange = new Subject<Song>();
   playingSongChange = new Subject<Song>();
   currenSongIndexChange = new Subject<number>();
@@ -53,6 +56,14 @@ export class SongService {
   set currenSongIndex(value: number) {
     this._currenSongIndex = value;
     this.currenSongIndexChange.next(value);
+  }
+  get currentPlaylistName(): string {
+    return this._currentPlaylistName;
+  }
+
+  set currentPlaylistName(value: string) {
+    this._currentPlaylistName = value;
+    this.currentPlaylistNameChanged.next(value);
   }
 
   public get selectedSong(): Song {
@@ -102,7 +113,6 @@ export class SongService {
       indexes.push(song.id);
     });
     this.favouriteSongsIndexes = indexes;
-    console.log(this.favouriteSongsIndexes);
     this._favouriteSongs = value;
     this.favouriteSongsChanged.next(value);
   }
@@ -148,16 +158,22 @@ export class SongService {
 
   changeCurrentPlaylist(playlistName: string) {
     let currentPlaylist;
-    if (playlistName !== Constants.ALL_SONGS) {
-      currentPlaylist = this.allPlaylists.filter((playlist) => playlist.name === playlistName)[0];
-      if (currentPlaylist !== undefined) {
-        this.getOnePlaylist(currentPlaylist.id, playlistName);
-      }
-    } else {
-      currentPlaylist = this.allSongs;
-       // this.favouriteSongs = this.allPlaylists.filter((playlist) => playlist.id === parseInt(this.userFavId||"-1"))[0].songs
-      this.currentPlaylist = new Playlist(playlistName, -1, currentPlaylist)
+    switch (playlistName) {
+      case  Constants.ALL_SONGS:
+        currentPlaylist = this.allSongs;
+        this.currentPlaylist = new Playlist(playlistName, -1, currentPlaylist)
+        break;
+      case  Constants.SEARCH_SONGS:
+        this.currentPlaylist = new Playlist(playlistName, -2, this.searchSongs)
+        break;
+      default:
+        currentPlaylist = this.allPlaylists.filter((playlist) => playlist.name === playlistName)[0];
+        if (currentPlaylist !== undefined) {
+          this.getOnePlaylist(currentPlaylist.id, playlistName);
+        }
+        break;
     }
+
   }
 
   getOnePlaylist(playlistId: number, playlistName: string) {
@@ -203,8 +219,7 @@ export class SongService {
         );
       });
       this.changeCurrentPlaylist(Constants.ALL_SONGS)
-      //this.currentPlaylist = new Playlist(Constants.ALL_SONGS, -1, this.allSongs);
-      this.selectedSong = this.currentPlaylist.songs[0];
+       this.selectedSong = this.currentPlaylist.songs[0];
     });
   }
 
@@ -214,7 +229,7 @@ export class SongService {
     };
     this.sendRequest('playlist/all', body).subscribe((data: Playlist[]) => {
       let playlists: Playlist[] = [];
-      data.forEach((playlist, index) => {
+      data.forEach((playlist) => {
         playlists.push(new Playlist(playlist.name, playlist.id, playlist.songs));
         if (playlist.name === 'مورد علاقه') {
           localStorage.setItem('favId', String(playlist.id));
@@ -257,7 +272,7 @@ export class SongService {
       token: this.userToken,
       id: playlistId,
     };
-    this.sendRequest('playlist/remove', body).subscribe((data: any) => {
+    this.sendRequest('playlist/remove', body).subscribe(() => {
       this.allPlaylists = this.allPlaylists.filter((playlist: Playlist) => {
         return playlist.id !== playlistId;
       });
@@ -271,23 +286,23 @@ export class SongService {
       playlistId,
       songId,
     };
-    this.sendRequest('playlist/add-song', body).subscribe((data: any) => {
+    this.sendRequest('playlist/add-song', body).subscribe(() => {
     });
 
   }
 
   removeFromPlaylist(playlistId: number, songId: number) {
-    //console.log(this.allPlaylists)
+
     const body = {
       token: this.userToken,
       playlistId: playlistId,
       songId,
     };
 
-    this.sendRequest('playlist/remove-song', body).subscribe((data: any) => {
+    this.sendRequest('playlist/remove-song', body).subscribe(() => {
       let playlistTemp: Playlist = this.allPlaylists.filter((playlist: Playlist) => playlist.id === playlistId)[0];
       playlistTemp.songs = playlistTemp.songs.filter(song => song.id !== songId);
-
+      this.currentPlaylist = playlistTemp;
       this.allPlaylists = this.allPlaylists.map((playlist: Playlist) => {
         if (playlist.id === playlistId)
           return playlistTemp
@@ -303,7 +318,7 @@ export class SongService {
       playlistId: this.userFavId,
       songId,
     };
-    this.sendRequest('playlist/add-song', body).subscribe((data: any) => {
+    this.sendRequest('playlist/add-song', body).subscribe(() => {
       console.log('added like');
       let indexes: number[] = this.favouriteSongsIndexes;
       indexes.push(songId);
@@ -317,13 +332,39 @@ export class SongService {
       playlistId: this.userFavId,
       songId,
     };
-    this.sendRequest('playlist/remove-song', body).subscribe((data: any) => {
+    this.sendRequest('playlist/remove-song', body).subscribe(() => {
       console.log('removed like');
       let indexes: number[] = this.favouriteSongsIndexes;
       let songIndex = indexes.indexOf(songId);
       indexes.splice(songIndex, 1);
       this.favouriteSongsIndexes = indexes;
     });
+  }
+
+  searchSongsByName(phrase: string) {
+    const body = {
+      phrase: phrase,
+      count: 20,
+      sorter: "name",
+      desc: true,
+    };
+    console.log(this.currentPlaylist.name)
+    if (phrase !== "") {
+      this.sendRequest('song/find', body).subscribe((data: any) => {
+        this.searchSongs = data['songs'].map((song: any) => {
+          return new Song(
+            song.id, song.name, song.artist, Math.random() * (400 - 180) + 180, song.cover,
+            false, song.lyrics, song.file, false
+          );
+        });
+        this.changeCurrentPlaylist(Constants.SEARCH_SONGS)
+      });
+    } else {
+      //TODO ...save
+      this.changeCurrentPlaylist(this.currentPlaylistName)
+
+    }
+
   }
 
   private sendRequest(url: string, body?: object): Observable<any> {
