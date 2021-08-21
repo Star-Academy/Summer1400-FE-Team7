@@ -3,12 +3,18 @@
         <h2 class="song-list-header">{{ currentPlaylistName }}</h2>
         <app-layout-manager (chosedLayout)="changeLayoutViewHandler($event)"></app-layout-manager>
     </div>
-    <div class="placeholders-wrapper"></div>
+    <!-- <div class="placeholders-wrapper">
+        <app-placeholder *ngFor="let dummy of ' '.repeat(placeholdersCount).split('')"></app-placeholder>
+    </div> -->
+
+    <!-- <app-placeholder *ngIf="!isPlaceholderNeeded"></app-placeholder> -->
+
     <app-song-item
         [layout]="layoutView"
         *ngFor="let song of currentPlaylist; let i = index"
         [song]="song"
         [index]="i"
     ></app-song-item>
-  <h1 *ngIf="isListEmpty">موردی وجود ندارد</h1>
+
+    <h1 *ngIf="isListEmpty">موردی وجود ندارد</h1>
 </div>
