@@ -20,8 +20,7 @@ export class LyricsComponent implements OnInit ,OnDestroy{
     ngOnInit(): void {
        this.playingSongSub = this.songService.playingSongChange.subscribe((song: Song) => {
         this.playingSong = song;
-         console.log(song.lyrics)
-      });
+       });
     }
 
     ngOnDestroy(): void {
