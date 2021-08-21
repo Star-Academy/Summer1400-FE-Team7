@@ -20,6 +20,7 @@ import {LikeHoverDirective} from '../directives/like-hover.directive';
 import {SongPreviewComponent} from './mobile/song-preview/song-preview.component';
 import {NotificationComponent} from './dashboard/notification/notification.component';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import { PlaceholderComponent } from './song-list/placeholder/placeholder.component';
 
 @NgModule({
     declarations: [
@@ -40,6 +41,7 @@ import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
         LikeHoverDirective,
         SongPreviewComponent,
         NotificationComponent,
+        PlaceholderComponent,
     ],
     imports: [CommonModule, RouterModule, BrowserAnimationsModule, FormsModule, ReactiveFormsModule],
 })
