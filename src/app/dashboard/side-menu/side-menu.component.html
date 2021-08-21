@@ -8,6 +8,7 @@
 
     <div class="menu-items-wrapper">
         <app-menu-item
+          (openAddNewPlaylistPanel)="openAddNewPlaylistPanel()"
            *ngFor="let playlistItem of playlists" [playlistItem]="playlistItem">
         </app-menu-item>
     </div>
@@ -19,30 +20,8 @@
         </button>
     </div>
 
-    <!-- <div class="btn-wrapper menu-selected">
-        <img src="../../../assets/images/playlist.svg" alt="" />
-        <button>همه آهنگ ها</button>
-    </div>
 
-    <div class="btn-wrapper">
-        <img src="../../../assets/images/favourite.svg" alt="" />
-        <button>مورد علاقه</button>
-    </div> -->
-
-    <!-- <div class="playlist-container defualt-menu">
-        <div class="btn-wrapper defualt-menu">
-            <img src="../../../assets/images/playlist-add.svg" alt="" />
-            <button>پلی لیست ها</button>
-        </div>
-        <button class="add-btn">
-            <img src="../../../assets/images/add.svg" alt="add svg" />
-        </button>
-    </div>
-
-    <div class="profile-wrapper btn-wrapper">
-        <p id="user-email"></p>
-        <button>
-            <img src="../../../assets/images/logout.svg" alt="" />
-        </button>
-    </div> -->
 </div>
+
+<app-make-new-playlist (closeCreatePlaylistPanel)="closePanel()" *ngIf="isPanelOpen"></app-make-new-playlist>
+

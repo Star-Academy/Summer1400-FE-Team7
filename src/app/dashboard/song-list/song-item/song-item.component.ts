@@ -1,4 +1,4 @@
-import {Component, OnInit, Input, HostListener} from '@angular/core';
+import {Component, OnInit, Input, HostListener, OnDestroy} from '@angular/core';
 import {trigger, state, style, animate, transition} from '@angular/animations';
 
 import {Song} from 'src/app/models/song';
@@ -6,6 +6,8 @@ import {SongService} from 'src/app/services/song.service';
 import {NotificationService} from 'src/app/services/notification.service';
 import {Constants} from 'src/app/utils/constants';
 import {Playlist} from '../../../models/playlist';
+import {PlayControllerService} from 'src/app/services/play-controller.service';
+import {Subscription} from 'rxjs';
 
 @Component({
     selector: 'app-song-item',
@@ -24,18 +26,34 @@ import {Playlist} from '../../../models/playlist';
         ]),
     ],
 })
-export class SongItemComponent implements OnInit {
+export class SongItemComponent implements OnInit, OnDestroy {
+    readonly statusTypes = {
+        PLAYING: 'playing',
+        PAUSED: 'paused',
+        STOPPED: 'stopped',
+        LOADING: 'loading',
+        MUTED: 'muted',
+    };
+
     @Input() song!: Song;
     @Input() index!: number;
     @Input() layout!: string;
-
+    isPlaying: boolean = false;
+    playingSongSub!: Subscription;
     canDelete: boolean = false;
     currentPlaylist!: Playlist;
+
+    status!: string;
+    statusSub!: Subscription;
 
     isMoreOptionsOpened: boolean = false;
     isAddToPlaylistPanelOpen: boolean = false;
 
-    constructor(private uiManager: NotificationService, private songService: SongService) {}
+    constructor(
+        private uiManager: NotificationService,
+        private songService: SongService,
+        private playController: PlayControllerService
+    ) {}
 
     ngOnInit(): void {
         this.currentPlaylist = this.songService.currentPlaylist;
@@ -45,6 +63,12 @@ export class SongItemComponent implements OnInit {
         ) {
             this.canDelete = true;
         }
+        this.playingSongSub = this.songService.playingSongChange.subscribe((song: Song) => {
+            this.isPlaying = this.song.id === song.id;
+        });
+        this.statusSub = this.playController.statusChanged.subscribe((status: string) => {
+            this.status = status;
+        });
     }
 
     openNewPlaylistPanel() {
@@ -63,6 +87,10 @@ export class SongItemComponent implements OnInit {
         this.songService.currenSongIndex = this.index;
     }
 
+    toggleNewPlaylistPanel() {
+        this.isAddToPlaylistPanelOpen = !this.isAddToPlaylistPanelOpen;
+    }
+
     onFavoriteClick() {
         this.song.isFavourite = !this.song.isFavourite;
         if (this.song.isFavourite) {
@@ -72,9 +100,6 @@ export class SongItemComponent implements OnInit {
         }
     }
 
-    toggleNewPlaylistPanel() {
-        this.isAddToPlaylistPanelOpen = !this.isAddToPlaylistPanelOpen;
-    }
     @HostListener('document:keydown', ['$event'])
     handleKeyboardEvent(event: KeyboardEvent) {
         if (event.key === 'Escape')
@@ -91,7 +116,24 @@ export class SongItemComponent implements OnInit {
         });
     }
 
-    onPlayCover() {
-        console.log('Aaaaaaaaaa');
+    onPlaySong() {
+        if (!this.isPlaying) {
+            if (this.songService.playingSong === undefined) {
+                this.songService.playingSong = this.song;
+            } else if (this.songService.playingSong.id === this.song.id) {
+                this.playController.resume();
+                this.isPlaying = true;
+            } else {
+                this.songService.playingSong = this.song;
+            }
+        } else {
+            this.playController.pause();
+            this.isPlaying = false;
+        }
+    }
+
+    ngOnDestroy(): void {
+        this.playingSongSub.unsubscribe();
+        this.statusSub.unsubscribe();
     }
 }

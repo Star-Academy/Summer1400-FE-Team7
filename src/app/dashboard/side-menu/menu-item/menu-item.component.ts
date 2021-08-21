@@ -1,4 +1,4 @@
-import {Component, OnInit, Input, HostListener} from '@angular/core';
+import {Component, OnInit, Input, HostListener, Output, EventEmitter} from '@angular/core';
 import {PlaylistItem} from 'src/app/models/playlistItem';
 import {SongService} from '../../../services/song.service';
 
@@ -9,36 +9,36 @@ import {SongService} from '../../../services/song.service';
 })
 export class MenuItemComponent implements OnInit {
     @Input() playlistItem!: PlaylistItem;
+    @Output() openAddNewPlaylistPanel = new EventEmitter<void>()
 
-    isPanelOpen: boolean = false;
 
     constructor(private songService: SongService) {}
 
     ngOnInit(): void {}
 
     openNewPlaylistPanel() {
-        this.isPanelOpen = true;
+        this.openAddNewPlaylistPanel.emit();
     }
 
     onRemove() {
         this.songService.removePlaylist(this.playlistItem.id);
     }
 
-    @HostListener('document:keydown', ['$event'])
-    handleKeyboardEvent(event: KeyboardEvent) {
-        if (event.key === 'Escape')
-            if (this.isPanelOpen) {
-                this.isPanelOpen = false;
-            }
-    }
+    // @HostListener('document:keydown', ['$event'])
+    // handleKeyboardEvent(event: KeyboardEvent) {
+    //     if (event.key === 'Escape')
+    //         if (this.isPanelOpen) {
+    //             this.isPanelOpen = false;
+    //         }
+    // }
     // onPlaylistItemClick() {
     //   console.log(this.playlistItem.name);
     //   this.router.navigate(["/dashboard"],
     //     {queryParams:{playlist:this.playlistItem.name}})
     // }
-    closePanel() {
-        this.isPanelOpen = false;
-    }
+    // closePanel() {
+    //     this.isPanelOpen = false;
+    // }
 
     // onMouseout() {
     //     this.showRemoveIcon = false;

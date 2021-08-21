@@ -19,7 +19,7 @@ export class DashboardComponent implements OnInit, OnDestroy {
   public isErrorNotification: boolean = false;
   public messageNotification: string = "";
 
-
+//TODO on refresh other play list
   constructor(private songService: SongService
               , private route: ActivatedRoute,
               private uiManager:NotificationService) {}

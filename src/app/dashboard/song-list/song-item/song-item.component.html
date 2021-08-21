@@ -2,7 +2,8 @@
     class="song-wrapper"
     [ngClass]="{
         'song-wrapper-grid': layout === 'grid-view',
-        'song-wrapper-selected': song.isSelected
+        'song-wrapper-selected': song.isSelected,
+        'is-playing': isPlaying
     }"
     (click)="onSingleClick()"
     (dblclick)="onDoubleClick()"
@@ -11,9 +12,13 @@
         <img class="song-cover-img" loading="lazy" [src]="song.cover" alt="" />
         <img
             class="song-cover-play"
-            src="../../../../assets/images/controls/play-button.svg"
+            [src]="
+                isPlaying
+                    ? '../../../../assets/images/controls/pause.svg'
+                    : '../../../../assets/images/controls/play-button.svg'
+            "
             alt=""
-            (click)="onPlayCover()"
+            (click)="onPlaySong()"
         />
     </div>
     <div class="song-info">

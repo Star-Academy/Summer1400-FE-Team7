@@ -66,9 +66,9 @@
             [max]="seekBarMaxvalue"
             #seekBar
             [ngModel]="seekBarValue"
-            (change)="updateMusicBarValue(seekBar)"
+            (change)="onChangeMusicBarValue(seekBar)"
             step="1"
-            (input)="updateMusicBarValue(seekBar)"
+            (input)="onChangeMusicBarValue(seekBar)"
         />
         <p class="end-time" *ngIf="seekBarMaxvalue !== 0">{{ seekBarMaxvalue | hmsTime }}</p>
     </div>
@@ -92,7 +92,9 @@
         (input)="updateVolumeValue(volumebar)"
     />
     <p id="volume-text">{{ volumeBarValue }}</p>
-    <button class="ctl-btn" id="lyrics-btn" data-tooltip="متن آهنگ" (click)="lyricToggler()">
+    <button class="ctl-btn" id="lyrics-btn" data-tooltip="متن آهنگ" (click)="lyricToggles()">
         <img src="../../../assets/images/controls/lyric.svg" alt="lyrics button" />
     </button>
 </div>
+
+
