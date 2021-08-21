@@ -11,8 +11,14 @@
             </p>
         </div>
 
-        <button class="play-music-btn">
-            <img src="../../../../assets/images/controls/play-button.svg" alt="play puase button" />
+        <button class="play-music-btn" (click)="onPlay()">
+            <img                [src]="
+                    status === statusTypes.PLAYING
+                        ? '../../../assets/images/controls/pause.svg'
+                        : status === statusTypes.LOADING
+                        ? '../../../assets/images/controls/loading.svg'
+                        : '../../../assets/images/controls/play-button.svg'
+                " alt="play puase button" />
         </button>
     </div>
 
