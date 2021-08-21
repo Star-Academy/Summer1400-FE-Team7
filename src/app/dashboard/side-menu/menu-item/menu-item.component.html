@@ -25,8 +25,8 @@
         <a [routerLink]="['/dashboard']" [queryParams]="{playlist: playlistItem.name}">{{ playlistItem.name }}</a>
     </div>
 </div>
-<div *ngIf="isPanelOpen" class="dark-background-2" (click)="closePanel()"></div>
-<app-make-new-playlist (closeCreatePlaylistPanel)="closePanel()" *ngIf="isPanelOpen"></app-make-new-playlist>
+<!--<div *ngIf="isPanelOpen" class="dark-background-2" (click)="closePanel()"></div>-->
+
 <!-- //TODO -->
 <!-- <div class="btn-wrapper" [ngClass]="playlistItem.isSelected ? 'menu-selected' : ''">
     <img [src]="playlistItem.icon" alt="" />
