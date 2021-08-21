@@ -8,11 +8,13 @@
     (dblclick)="onDoubleClick()"
 >
     <div class="song-cover">
-        <img class="song-cover-img" loading="lazy" [src]="song.cover" alt="">
-        <img class="song-cover-play"
-             src="../../../../assets/images/controls/play-button.svg" alt=""
-          (click)="onPlayCover()"
-        >
+        <img class="song-cover-img" loading="lazy" [src]="song.cover" alt="" />
+        <img
+            class="song-cover-play"
+            src="../../../../assets/images/controls/play-button.svg"
+            alt=""
+            (click)="onPlayCover()"
+        />
     </div>
     <div class="song-info">
         <p id="song-name">{{ song.name }}</p>
@@ -33,9 +35,7 @@
         class="more-options"
         (click)="isMoreOptionsOpened = !isMoreOptionsOpened"
         [ngClass]="isMoreOptionsOpened ? 'display-block' : ''"
-    >
-
-    </button>
+    ></button>
 
     <div class="options" *ngIf="isMoreOptionsOpened">
         <div class="button-wrapper">
@@ -46,10 +46,10 @@
             <img src="../../../../assets/images/playlist-add.svg" alt="" />
             <button (click)="openNewPlaylistPanel()">افزودن به پلی‌لیست ها</button>
         </div>
-      <div class="button-wrapper button-wrapper--delete" *ngIf="canDelete">
-        <img src="../../../../assets/images/trash.svg" alt="" />
-        <button (click)="onDeletePlaylist()">حذف از پلی‌لیست</button>
-      </div>
+        <div class="button-wrapper button-wrapper--delete" *ngIf="canDelete">
+            <img src="../../../../assets/images/trash.svg" alt="" />
+            <button (click)="onDeletePlaylist()">حذف از پلی‌لیست</button>
+        </div>
     </div>
 </div>
 
@@ -57,10 +57,8 @@
 <div *ngIf="isAddToPlaylistPanelOpen" class="dark-background-2" (click)="toggleNewPlaylistPanel()"></div>
 
 <app-add-to-playlist-panel
-  [song]="song"
-  [@inOutAnimation]
+    [song]="song"
+    [@inOutAnimation]
     (closeAddToNewPlaylistPanel)="toggleNewPlaylistPanel()"
-  *ngIf="isAddToPlaylistPanelOpen"
+    *ngIf="isAddToPlaylistPanelOpen"
 ></app-add-to-playlist-panel>
-
-<!--[@inOutAnimation]-->
