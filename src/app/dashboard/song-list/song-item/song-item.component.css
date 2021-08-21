@@ -17,6 +17,16 @@
   object-fit: cover;
   user-select: none;
 }
+.song-wrapper > .song-cover .song-cover-play {
+  height: 24px;
+  width: 24px;
+  position: absolute;
+  right: 0;
+  top: 0;
+  transform: translate(-50%, 50%);
+  opacity: 0;
+  cursor: pointer;
+}
 .song-wrapper > :is(.song-prop, .song-info) {
   display: flex;
   flex-direction: column;
@@ -114,6 +124,9 @@
 }
 .song-wrapper:hover .more-options {
   display: block;
+}
+.song-wrapper:hover .song-cover .song-cover-play {
+  opacity: 0.6;
 }
 
 > .is-playing * {

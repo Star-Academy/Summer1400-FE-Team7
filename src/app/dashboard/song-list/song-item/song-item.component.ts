@@ -18,17 +18,18 @@ import {Playlist} from "../../../models/playlist";
         transition(
           ':enter',
           [
-            style({  opacity: 0, transform: 'scale(0.8)'}),
+            style({  opacity: 0, transform: 'scale(0.8)',
+            transformOrigin:"center"}),
             animate('0.3s ease-out',
-              style({  opacity: 1 , transform: 'scale(1)'}))
+              style({  opacity: 1 , transform: 'scale(1)',transformOrigin:"center"}))
           ]
         ),
         transition(
           ':leave',
           [
-            style({  opacity: 1,transform: 'scale(1)' }),
+            style({  opacity: 1,transform: 'scale(1)',transformOrigin:"center" }),
             animate('0.1s ease-in',
-              style({  opacity: 0 , transform: 'scale(0.8)'}))
+              style({  opacity: 0 , transform: 'scale(0.8)',transformOrigin:"center"}))
           ]
         )
       ]
@@ -98,8 +99,12 @@ export class SongItemComponent implements OnInit {
   onDeletePlaylist() {
     this.songService.removeFromPlaylist(this.currentPlaylist.id,this.song.id)
     this.isMoreOptionsOpened=false;
-    this.uiManager.showNotification("حذف شد",false,()=>{
-      this.songService.addToPlaylist(this.currentPlaylist.id,this.song)
+    this.uiManager.showNotification("از پلی‌لیست حذف شد",false,()=>{
+     this.songService.addToPlaylist(this.currentPlaylist.id,this.song)
     })
+  }
+
+  onPlayCover() {
+    console.log("Aaaaaaaaaa")
   }
 }

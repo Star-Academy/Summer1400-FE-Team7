@@ -8,7 +8,11 @@
     (dblclick)="onDoubleClick()"
 >
     <div class="song-cover">
-        <img class="song-cover-img" loading="lazy" [src]="song.cover" alt="" />
+        <img class="song-cover-img" loading="lazy" [src]="song.cover" alt="">
+        <img class="song-cover-play"
+             src="../../../../assets/images/controls/play-button.svg" alt=""
+          (click)="onPlayCover()"
+        >
     </div>
     <div class="song-info">
         <p id="song-name">{{ song.name }}</p>
@@ -29,7 +33,9 @@
         class="more-options"
         (click)="isMoreOptionsOpened = !isMoreOptionsOpened"
         [ngClass]="isMoreOptionsOpened ? 'display-block' : ''"
-    ></button>
+    >
+
+    </button>
 
     <div class="options" *ngIf="isMoreOptionsOpened">
         <div class="button-wrapper">
@@ -52,6 +58,7 @@
 
 <app-add-to-playlist-panel
   [song]="song"
+  [@inOutAnimation]
     (closeAddToNewPlaylistPanel)="toggleNewPlaylistPanel()"
   *ngIf="isAddToPlaylistPanelOpen"
 ></app-add-to-playlist-panel>
