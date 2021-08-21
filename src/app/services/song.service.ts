@@ -289,6 +289,7 @@ export class SongService {
     this.sendRequest('playlist/add-song', body).subscribe(() => {
       let playlistTemp: Playlist = this.allPlaylists.filter((playlist: Playlist) => playlist.id === playlistId)[0];
       playlistTemp.songs.push(song)
+      if(playlistId=== this.currentPlaylist.id)
       this.currentPlaylist = playlistTemp;
     });
 
@@ -299,7 +300,10 @@ export class SongService {
     this.sendRequest('playlist/remove-song', body).subscribe(() => {
       let playlistTemp: Playlist = this.allPlaylists.filter((playlist: Playlist) => playlist.id === playlistId)[0];
       playlistTemp.songs = playlistTemp.songs.filter(song => song.id !== songId);
-      this.currentPlaylist = playlistTemp;
+
+      if(playlistId=== this.currentPlaylist.id)
+        this.currentPlaylist = playlistTemp;
+
       this.allPlaylists = this.allPlaylists.map((playlist: Playlist) => {
         if (playlist.id === playlistId)
           return playlistTemp
