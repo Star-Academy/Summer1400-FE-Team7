@@ -8,20 +8,21 @@
 
     <div class="menu-items-wrapper">
         <app-menu-item
-          (openAddNewPlaylistPanel)="openAddNewPlaylistPanel()"
-           *ngFor="let playlistItem of playlists" [playlistItem]="playlistItem">
+            (openAddNewPlaylistPanel)="openAddNewPlaylistPanel()"
+            *ngFor="let playlistItem of playlists"
+            [playlistItem]="playlistItem"
+        >
         </app-menu-item>
     </div>
 
     <div class="profile-wrapper btn-wrapper" (click)="onLogOutClick()">
-        <p id="user-email">{{email}}</p>
+        <p id="user-email">{{ email }}</p>
         <button>
             <img src="../../../assets/images/logout.svg" alt="" />
         </button>
     </div>
-
-
 </div>
 
 <app-make-new-playlist (closeCreatePlaylistPanel)="closePanel()" *ngIf="isPanelOpen"></app-make-new-playlist>
 
+<div class="dark-glass" *ngIf="isPanelOpen" (click)="closePanel()"></div>

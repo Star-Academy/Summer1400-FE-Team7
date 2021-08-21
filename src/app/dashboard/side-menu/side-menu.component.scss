@@ -216,3 +216,13 @@ $--bg-mellow-black: rgb(40, 40, 40);
         height: 1rem;
     }
 }
+
+.dark-glass {
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    z-index: 5;
+    background: $--bg-glass;
+}
