@@ -23,6 +23,7 @@ export class SideMenuComponent implements OnInit {
   @Input() public isOpen!: boolean;
   email!: string;
   playlistsSub!: Subscription;
+  isPanelOpen: boolean=false;
 
 
   constructor(private songService: SongService,private authService: AuthService,
@@ -59,5 +60,14 @@ export class SideMenuComponent implements OnInit {
     this.authService.logoutUser();
     //TODO not this :)
     this.router.navigate(['/']).then()
+  }
+
+  openAddNewPlaylistPanel() {
+    this.isPanelOpen=true;
+  }
+
+  closePanel() {
+    this.isPanelOpen=false;
+
   }
 }
