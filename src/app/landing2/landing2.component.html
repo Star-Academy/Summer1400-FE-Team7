@@ -1,0 +1,48 @@
+<header [ngClass]="!isfirstSection ? 'header-transition' : ''">
+    <div class="logo-wrapper">
+        <img src="../../assets/images/new-landing/logo.svg" alt="" />
+    </div>
+    <ul>
+        <li>
+            <a [routerLink]="['auth']" [queryParams]="{name: 'register'}">ثبت‌ نام</a>
+        </li>
+        <li>
+            <a [routerLink]="['auth']" [queryParams]="{name: 'login'}">ورود</a>
+        </li>
+    </ul>
+</header>
+
+<div class="container" (scroll)="onScroll($event)">
+    <section class="section-1">
+        <div class="text-wrapper">
+            <h1>Lorem ipsum dolor sit amet consectetur</h1>
+            <h3>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Fugiat, sapiente</h3>
+        </div>
+        <img src="../../assets/images/new-landing/wave-line.svg" alt="" />
+    </section>
+
+    <section class="section-2">
+        <div class="text-wrapper">
+            <h1>Lorem ipsum dolor sit amet consectetur</h1>
+            <h3>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Fugiat, sapiente</h3>
+            <h3>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Fugiat, sapiente</h3>
+            <div class="btn-wrapper">
+                <button>Check Here</button>
+            </div>
+        </div>
+
+        <div class="wave-wrapper">
+            <img src="../../assets/images/new-landing/section-2.svg" alt="" />
+        </div>
+    </section>
+
+    <section class="section-3">
+        <div class="text-wrapper">
+            <h1>Lorem ipsum dolor sit amet consectetur</h1>
+        </div>
+
+        <div class="wave-wrapper">
+            <img src="../../assets/images/new-landing/section-3.svg" alt="" />
+        </div>
+    </section>
+</div>

@@ -8,8 +8,14 @@ import {Component, EventEmitter, OnInit, Output} from '@angular/core';
 export class MobileComponent implements OnInit {
     @Output() toggleLyric = new EventEmitter<void>();
 
+    isSongPreviewPanelOpen: boolean = false;
+
     lyricToggler() {
         this.toggleLyric.emit();
+    }
+
+    songPreivewToggler() {
+        this.isSongPreviewPanelOpen = !this.isSongPreviewPanelOpen;
     }
 
     constructor() {}

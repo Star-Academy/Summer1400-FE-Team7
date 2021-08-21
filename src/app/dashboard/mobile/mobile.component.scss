@@ -1,0 +1,16 @@
+$--clr-grayish: #7b7b7b;
+$--hover-bg-clr: rgba(138, 135, 135, 0.15);
+$--select-bg-clr: hsl(139, 182, 113);
+$--selected-bg-blue: rgb(29, 125, 215);
+$--bg-glass: rgba(0, 0, 0, 0.85);
+$--bg-mellow-black: rgb(40, 40, 40);
+
+.dark-glass {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(to bottom, $--bg-mellow-black, black);
+    z-index: 1999;
+}

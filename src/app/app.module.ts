@@ -8,9 +8,10 @@ import {AppComponent} from './app.component';
 import {AuthModule} from './auth/auth.module';
 import {LandingModule} from './landing/landing.module';
 import {DashboardModule} from './dashboard/dashboard.module';
+import { Landing2Component } from './landing2/landing2.component';
 
 @NgModule({
-    declarations: [AppComponent],
+    declarations: [AppComponent, Landing2Component],
     imports: [
         BrowserModule,
         HttpClientModule,
