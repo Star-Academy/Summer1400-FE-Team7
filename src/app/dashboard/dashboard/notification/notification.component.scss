@@ -1,95 +1,92 @@
 $--selected-bg-blue: rgb(29, 125, 215);
 
 .alert {
-  background: hsl(0, 0%, 12%);
-  padding: 20px 40px;
-  min-width: 420px;
-  position: absolute;
-  z-index: 1000;
-  direction: ltr;
-  bottom: 12vh;
-  right: 0;
-  border-radius: 4px;
-  overflow: hidden;
-  text-align: center;
-  opacity: 0;
-  pointer-events: none;
-
-
-  &::after{
-    content:"";
+    background: hsl(0, 0%, 12%);
+    padding: 20px 40px;
+    min-width: 420px;
     position: absolute;
-    left: 0;
-    bottom: 0;
-    height: 100%;
-    width:100%;
-    pointer-events: none;
-    border-bottom: 2px solid $--selected-bg-blue;
-    animation: loading-bar 5s ease .9s forwards;
-    transform:translateX(-100%);
-  }
-  @keyframes loading-bar {
-    from {transform:translateX(-100%);}
-    to {transform:translateX(0)}
-  }
-
-  &.show {
-    opacity: 1;
-    pointer-events: auto;
-    animation: show_slide 1s ease forwards;
-
-  }
-
-  &.hide {
-    animation: hide_slide 1s ease forwards;
-  }
-
-  .msg {
-    font-size: 18px;
-    color: #fff;
-    user-select: none;
-  }
-
-  .close-btn {
-    position: absolute;
-    height:100%;
-    width: 30%;
+    z-index: 1000;
+    direction: ltr;
+    bottom: 12vh;
     right: 0;
-    top: 0;
-    display: flex;
-    justify-content: space-evenly;
-    align-items: center;
-    background: hsl(0, 0%, 10%);
-    cursor: pointer;
+    border-radius: 4px;
+    overflow: hidden;
+    text-align: center;
+    opacity: 0;
+    pointer-events: none;
 
-    &:hover {
-      background: hsl(0, 0%, 20%);
+    &::after {
+        content: '';
+        position: absolute;
+        left: 0;
+        bottom: 0;
+        height: 5px;
+        width: 100%;
+        transform: translateX(-100%);
+        pointer-events: none;
+        background: $--selected-bg-blue;
+        animation: loadingBar 4.5s ease 0.5s;
     }
 
-    p {
-      color: $--selected-bg-blue;
-      font-size:1rem;
+    @keyframes loadingBar {
+        100% {
+            transform: translateX(0);
+        }
     }
 
-  }
+    &.show {
+        opacity: 1;
+        pointer-events: auto;
+        animation: showSlide 1s ease forwards;
+    }
+
+    &.hide {
+        animation: hideSlide 1s ease forwards;
+    }
+
+    .msg {
+        font-size: 18px;
+        color: #fff;
+        user-select: none;
+    }
+
+    .close-btn {
+        position: absolute;
+        height: 100%;
+        width: 30%;
+        right: 0;
+        top: 0;
+        display: flex;
+        justify-content: space-evenly;
+        align-items: center;
+        background: hsl(0, 0%, 10%);
+        cursor: pointer;
+
+        &:hover {
+            background: hsl(0, 0%, 20%);
+        }
+
+        p {
+            color: $--selected-bg-blue;
+            font-size: 1rem;
+        }
+    }
 }
 
-
-@keyframes show_slide {
-  0% {
-    transform: translateX(100%);
-  }
-  100% {
-    transform: translateX(0);
-  }
+@keyframes showSlide {
+    0% {
+        transform: translateX(100%);
+    }
+    100% {
+        transform: translateX(0);
+    }
 }
 
-
-@keyframes hide_slide {
-  0% {
-    transform: translateX(0);
-  }
-  100% {
-    transform: translateX(100%);
-  }
+@keyframes hideSlide {
+    0% {
+        transform: translateX(0);
+    }
+    100% {
+        transform: translateX(100%);
+    }
 }
