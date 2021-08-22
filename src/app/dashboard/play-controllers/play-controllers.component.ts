@@ -31,7 +31,6 @@ export class PlayControllersComponent implements OnInit, OnDestroy {
     this.lyricToggle.emit();
   }
 
-  // @ViewChild('audio', {static: false}) audio!: HTMLAudioElement;
 
   status!: string;
   statusSub!: Subscription;
