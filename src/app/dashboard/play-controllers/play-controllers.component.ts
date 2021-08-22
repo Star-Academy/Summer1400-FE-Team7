@@ -1,4 +1,4 @@
-import {Component, OnDestroy, OnInit, EventEmitter, Output} from '@angular/core';
+import {Component, OnDestroy, OnInit, EventEmitter, Output, Input} from '@angular/core';
 import {SongService} from 'src/app/services/song.service';
 import {Song} from '../../models/song';
 import {Subscription} from 'rxjs';
@@ -10,6 +10,7 @@ import {PlayControllerService} from "../../services/play-controller.service";
   styleUrls: ['./play-controllers.component.scss'],
 })
 export class PlayControllersComponent implements OnInit, OnDestroy {
+  @Input() isMobile!: boolean;
   readonly statusTypes = {
     PLAYING: 'playing',
     PAUSED: 'paused',
