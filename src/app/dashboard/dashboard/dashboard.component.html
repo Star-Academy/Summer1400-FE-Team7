@@ -35,7 +35,7 @@
                 </button>
             </div>
         </div> -->
-        <app-song-list [ngClass]="sideMenuOpen ? 'side-menu-opened' : ''"></app-song-list>
+        <app-song-list  [ngClass]="sideMenuOpen ? 'side-menu-opened' : ''"></app-song-list>
         <!-- // TODO -->
         <!-- <div class="song-list side-menu-opended">
             <div>
@@ -62,9 +62,8 @@
         </div> -->
     </section>
 
-    <section class="music-controls">
-        <app-play-controllers (lyricToggle)="lyricPanelToggle()"></app-play-controllers>
-    </section>
+        <app-play-controllers [isMobile]="false" (lyricToggle)="lyricPanelToggle()"></app-play-controllers>
+
     <!-- //TODO -->
     <!-- <section class="lyric-wrapper">
         <button id="return" class="display-none">
@@ -128,7 +127,8 @@
         </div>
     </section> -->
 </main>
-<div class="bg-cover"></div>
+<div class="bg-cover"
+     [ngStyle]="{'background': background}"></div>
 <div class="dark-glass"></div>
 
 <div class="dark-glass3 display-none"></div>
