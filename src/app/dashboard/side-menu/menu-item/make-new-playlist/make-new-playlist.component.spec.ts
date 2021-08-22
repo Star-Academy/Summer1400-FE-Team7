@@ -1,6 +1,8 @@
 import {ComponentFixture, TestBed} from '@angular/core/testing';
 
 import {MakeNewPlaylistComponent} from './make-new-playlist.component';
+import {RouterTestingModule} from "@angular/router/testing";
+import {HttpClientTestingModule} from "@angular/common/http/testing";
 
 describe('MakeNewPlaylistComponent', () => {
     let component: MakeNewPlaylistComponent;
@@ -9,6 +11,8 @@ describe('MakeNewPlaylistComponent', () => {
     beforeEach(async () => {
         await TestBed.configureTestingModule({
             declarations: [MakeNewPlaylistComponent],
+          imports: [  HttpClientTestingModule, RouterTestingModule],
+
         }).compileComponents();
     });
 
@@ -18,7 +22,7 @@ describe('MakeNewPlaylistComponent', () => {
         fixture.detectChanges();
     });
 
-    // it('should create', () => {
-    //   expect(component).toBeTruthy();
-    // });
+    it('should create', () => {
+      expect(component).toBeTruthy();
+    });
 });

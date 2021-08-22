@@ -44,7 +44,7 @@ describe('LoginFormComponent', () => {
         },
     ];
 
-    const MOCK_USER_UNVALID = [
+    const MOCK_USER_INVALID = [
         {
             email: 'ParsA',
             password: 'Parsa123',
@@ -89,7 +89,7 @@ describe('LoginFormComponent', () => {
     it('testing form inputs validation(incorrect values)', () => {
         let form = component.loginForm;
 
-        for (let user of MOCK_USER_UNVALID) {
+        for (let user of MOCK_USER_INVALID) {
             form.controls['email'].setValue(user.email);
             form.controls['password'].setValue(user.password);
             expect(form.valid).toBeFalsy();

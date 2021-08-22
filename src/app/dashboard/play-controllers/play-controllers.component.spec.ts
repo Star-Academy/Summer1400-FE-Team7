@@ -1,6 +1,8 @@
 import {ComponentFixture, TestBed} from '@angular/core/testing';
 
 import {PlayControllersComponent} from './play-controllers.component';
+import {HttpClientTestingModule} from "@angular/common/http/testing";
+import {RouterTestingModule} from "@angular/router/testing";
 
 describe('PlayControllersComponent', () => {
     let component: PlayControllersComponent;
@@ -9,6 +11,8 @@ describe('PlayControllersComponent', () => {
     beforeEach(async () => {
         await TestBed.configureTestingModule({
             declarations: [PlayControllersComponent],
+          imports: [  HttpClientTestingModule, RouterTestingModule],
+
         }).compileComponents();
     });
 
@@ -18,7 +22,7 @@ describe('PlayControllersComponent', () => {
         fixture.detectChanges();
     });
 
-    // it('should create', () => {
-    //   expect(component).toBeTruthy();
-    // });
+    it('should create', () => {
+      expect(component).toBeTruthy();
+    });
 });

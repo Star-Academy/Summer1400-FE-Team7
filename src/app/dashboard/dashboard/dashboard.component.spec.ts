@@ -1,6 +1,9 @@
 import {ComponentFixture, TestBed} from '@angular/core/testing';
 
 import {DashboardComponent} from './dashboard.component';
+import {HttpClientTestingModule} from "@angular/common/http/testing";
+import {BrowserModule} from "@angular/platform-browser";
+import {RouterTestingModule} from "@angular/router/testing";
 
 describe('DashboardComponent', () => {
     let component: DashboardComponent;
@@ -9,6 +12,8 @@ describe('DashboardComponent', () => {
     beforeEach(async () => {
         await TestBed.configureTestingModule({
             declarations: [DashboardComponent],
+          imports: [HttpClientTestingModule, RouterTestingModule],
+
         }).compileComponents();
     });
 
@@ -18,7 +23,7 @@ describe('DashboardComponent', () => {
         fixture.detectChanges();
     });
 
-    // it('should create', () => {
-    //   expect(component).toBeTruthy();
-    // });
+    it('should create', () => {
+      expect(component).toBeTruthy();
+    });
 });

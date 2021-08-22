@@ -9,12 +9,16 @@ import {SongService} from '../../../services/song.service';
 })
 export class MenuItemComponent implements OnInit {
     @Input() playlistItem!: PlaylistItem;
-    @Output() openAddNewPlaylistPanel = new EventEmitter<void>()
+    @Output() openAddNewPlaylistPanel = new EventEmitter<void>();
+  buttonType!:string;
+
 
 
     constructor(private songService: SongService) {}
 
-    ngOnInit(): void {}
+    ngOnInit(): void {
+      this.buttonType =this.playlistItem.buttonType
+    }
 
     openNewPlaylistPanel() {
         this.openAddNewPlaylistPanel.emit();

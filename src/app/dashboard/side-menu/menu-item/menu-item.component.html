@@ -1,5 +1,5 @@
 <!--<script src="menu-item.component.ts"></script>-->
-<div [ngSwitch]="playlistItem.buttonType">
+<div [ngSwitch]="buttonType">
     <div *ngSwitchCase="'add'" class="playlist-container">
         <div class="btn-wrapper" routerLinkActive="menu-selected">
             <img [src]="playlistItem.icon" alt="" />

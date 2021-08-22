@@ -46,7 +46,7 @@ export class DashboardComponent implements OnInit, OnDestroy {
         this.messageNotification=notification.message;
     });
     this.playingSongSub= this.songService.playingSongChange.subscribe((song:Song)=>{
-      this.background = `url('${song.cover}') no-repeat  `;
+      this.background = `url('${song.cover}') no-repeat `;
     })
 
   }

@@ -33,21 +33,21 @@ describe('SignupFormComponent', () => {
         {
             email: 'Parsa@gmail.com',
             password: 'Parsa123',
-            confirmPasswrod: 'Parsa123',
+            confirmPassword: 'Parsa123',
         },
         {
             email: 'Parsa@gmail',
             password: 'Min5a',
-            confirmPasswrod: 'Min5a',
+            confirmPassword: 'Min5a',
         },
         {
             email: 'pa@pa',
             password: '12345a',
-            confirmPasswrod: '12345a',
+            confirmPassword: '12345a',
         },
     ];
 
-    const MOCK_USER_UNVALID = [
+    const MOCK_USER_INVALID = [
         {
             email: 'ParsA',
             password: 'Parsa123',
@@ -89,10 +89,8 @@ describe('SignupFormComponent', () => {
     });
 
     it('should initial values be empty', async () => {
-        console.log(component);
-        const user = component.signupForm.value;
-        console.log(component.signupForm.value);
-        expect(user.email === '' && user.password === '' && user.confirmPassword === '').toBeTruthy();
+         const user = component.signupForm.value;
+         expect(user.email === '' && user.password === '' && user.confirmPassword === '').toBeTruthy();
     });
 
     it('testing form inputs validation(correct values)', () => {
@@ -101,7 +99,7 @@ describe('SignupFormComponent', () => {
         for (let user of MOCK_USER_VALID) {
             form.controls['email'].setValue(user.email);
             form.controls['password'].setValue(user.password);
-            form.controls['confirmPassword'].setValue(user.confirmPasswrod);
+            form.controls['confirmPassword'].setValue(user.confirmPassword);
             expect(form.valid).toBeTruthy();
         }
     });
@@ -109,7 +107,7 @@ describe('SignupFormComponent', () => {
     it('testing form inputs validation(incorrect values)', () => {
         let form = component.signupForm;
 
-        for (let user of MOCK_USER_UNVALID) {
+        for (let user of MOCK_USER_INVALID) {
             form.controls['email'].setValue(user.email);
             form.controls['confirmPassword'].setValue(user.confirmPassword);
             expect(form.valid).toBeFalsy();

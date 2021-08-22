@@ -1,6 +1,8 @@
 import {ComponentFixture, TestBed} from '@angular/core/testing';
 
 import {LayoutManagerComponent} from './layout-manager.component';
+import {HttpClientTestingModule} from "@angular/common/http/testing";
+import {RouterTestingModule} from "@angular/router/testing";
 
 describe('LayoutManagerComponent', () => {
     let component: LayoutManagerComponent;
@@ -9,6 +11,8 @@ describe('LayoutManagerComponent', () => {
     beforeEach(async () => {
         await TestBed.configureTestingModule({
             declarations: [LayoutManagerComponent],
+          imports: [  HttpClientTestingModule, RouterTestingModule],
+
         }).compileComponents();
     });
 
@@ -18,7 +22,7 @@ describe('LayoutManagerComponent', () => {
         fixture.detectChanges();
     });
 
-    // it('should create', () => {
-    //   expect(component).toBeTruthy();
-    // });
+    it('should create', () => {
+      expect(component).toBeTruthy();
+    });
 });
