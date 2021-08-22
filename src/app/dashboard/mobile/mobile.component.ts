@@ -10,11 +10,11 @@ export class MobileComponent implements OnInit {
 
     isSongPreviewPanelOpen: boolean = false;
 
-    lyricToggler() {
+    lyricToggle() {
         this.toggleLyric.emit();
     }
 
-    songPreivewToggler() {
+    songPreviewToggle() {
         this.isSongPreviewPanelOpen = !this.isSongPreviewPanelOpen;
     }
 

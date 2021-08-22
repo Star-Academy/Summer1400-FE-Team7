@@ -1,82 +1,82 @@
-<div class="mobile-song-preview">
-  <button class="mobile-song-preview-return" (click)="onSongPreviewToggle()">
-    <img src="../../../../assets/images/controls/previous-1.svg" alt=" back button"/>
-  </button>
+<!--<div class="mobile-song-preview">-->
+<!--  <button class="mobile-song-preview-return" (click)="onSongPreviewToggle()">-->
+<!--    <img src="../../../../assets/images/controls/previous-1.svg" alt=" back button"/>-->
+<!--  </button>-->
 
-  <img [src]="playingSong.cover" alt="song cover" class="mobile-preview-song-cover"/>
+<!--  <img [src]="playingSong.cover" alt="song cover" class="mobile-preview-song-cover"/>-->
 
-  <div class="mobile-info mobile-info-animation">
-    <p class="mobile-preview-name-section">
-      <span class="mobile-music-name">{{ playingSong.name }}</span><span>&nbsp;•&nbsp;</span><span
-      class="mobile-artist-name">{{ playingSong.artist }}</span>
-    </p>
-  </div>
+<!--  <div class="mobile-info mobile-info-animation">-->
+<!--    <p class="mobile-preview-name-section">-->
+<!--      <span class="mobile-music-name">{{ playingSong.name }}</span><span>&nbsp;•&nbsp;</span><span-->
+<!--      class="mobile-artist-name">{{ playingSong.artist }}</span>-->
+<!--    </p>-->
+<!--  </div>-->
 
-  <div class="music-bar-wrapper">
-    <p class="current-time" *ngIf="seekBarValue !== 0">{{ seekBarValue | hmsTime }}</p>
-    <input
-      type="range"
-      class="seek-slider"
-      [max]="seekBarMaxvalue"
-      [ngModel]="seekBarValue"
-      #seekBar
-      (change)="onChangeMusicBarValue(seekBar)"
-      step="1"
-      (input)="onChangeMusicBarValue(seekBar)"
-    />
-    <p class="end-time" *ngIf="seekBarMaxvalue !== 0">{{ seekBarMaxvalue | hmsTime }}</p>
-  </div>
+<!--  <div class="music-bar-wrapper">-->
+<!--    <p class="current-time" *ngIf="seekBarValue !== 0">{{ seekBarValue | hmsTime }}</p>-->
+<!--    <input-->
+<!--      type="range"-->
+<!--      class="seek-slider"-->
+<!--      [max]="seekBarMaxvalue"-->
+<!--      [ngModel]="seekBarValue"-->
+<!--      #seekBar-->
+<!--      (change)="onChangeMusicBarValue(seekBar)"-->
+<!--      step="1"-->
+<!--      (input)="onChangeMusicBarValue(seekBar)"-->
+<!--    />-->
+<!--    <p class="end-time" *ngIf="seekBarMaxvalue !== 0">{{ seekBarMaxvalue | hmsTime }}</p>-->
+<!--  </div>-->
 
-  <div class="mobile-preview-controls">
-    <button class="size-1 ctl-btn shuffle-btn" (click)="onShuffle()" data-tooltip="درهم‌رختن">
-      <img src="../../../../assets/images/controls/shuffle.svg"
-           [ngClass]="shuffleMode ? 'active-btn' : ''"
-           alt="shuffle button"/>
-    </button>
+<!--  <div class="mobile-preview-controls">-->
+<!--    <button class="size-1 ctl-btn shuffle-btn" (click)="onShuffle()" data-tooltip="درهم‌رختن">-->
+<!--      <img src="../../../../assets/images/controls/shuffle.svg"-->
+<!--           [ngClass]="shuffleMode ? 'active-btn' : ''"-->
+<!--           alt="shuffle button"/>-->
+<!--    </button>-->
 
-    <button class="size-1 ctl-btn next-btn" (click)="onNextSong()" data-tooltip="بعدی">
-      <img src="../../../../assets/images/controls/next.svg" alt="next music button"/>
-    </button>
+<!--    <button class="size-1 ctl-btn next-btn" (click)="onNextSong()" data-tooltip="بعدی">-->
+<!--      <img src="../../../../assets/images/controls/next.svg" alt="next music button"/>-->
+<!--    </button>-->
 
-    <button class="size-2 ctl-btn play-music-btn" (click)="onPlay()" data-tooltip="پخش">
-      <img [src]="
-                    status === statusTypes.PLAYING
-                        ? '../../../assets/images/controls/pause.svg'
-                        : status === statusTypes.LOADING
-                        ? '../../../assets/images/controls/loading.svg'
-                        : '../../../assets/images/controls/play-button.svg'
-                " alt="play puase button"/>
-    </button>
+<!--    <button class="size-2 ctl-btn play-music-btn" (click)="onPlay()" data-tooltip="پخش">-->
+<!--      <img [src]="-->
+<!--                    status === statusTypes.PLAYING-->
+<!--                        ? '../../../assets/images/controls/pause.svg'-->
+<!--                        : status === statusTypes.LOADING-->
+<!--                        ? '../../../assets/images/controls/loading.svg'-->
+<!--                        : '../../../assets/images/controls/play-button.svg'-->
+<!--                " alt="play puase button"/>-->
+<!--    </button>-->
 
-    <button class="size-1 ctl-btn previous-btn" (click)="onPreviousSong()" data-tooltip="قبلی">
-      <img src="../../../../assets/images/controls/back.svg" alt="previous music button"/>
-    </button>
+<!--    <button class="size-1 ctl-btn previous-btn" (click)="onPreviousSong()" data-tooltip="قبلی">-->
+<!--      <img src="../../../../assets/images/controls/back.svg" alt="previous music button"/>-->
+<!--    </button>-->
 
-    <button class="size-1 ctl-btn repeat-btn"
-            [ngClass]="
-                repeatMode === repeatTypes.ONE_REPEAT || repeatMode === repeatTypes.ALL_REPEAT ? 'active-btn' : ''
-            "
-            (click)="onRepeatSong()"
-            data-tooltip=" تکرار">
-      <img [src]="
-                    repeatMode === repeatTypes.NO_REPEAT
-                        ? '../../../assets/images/controls/repeat.svg'
-                        : repeatMode === repeatTypes.ONE_REPEAT
-                        ? '../../../assets/images/controls/repeat1.svg'
-                        : '../../../assets/images/controls/repeat.svg'
-                " alt="repeat mode button"/>
-    </button>
-  </div>
+<!--    <button class="size-1 ctl-btn repeat-btn"-->
+<!--            [ngClass]="-->
+<!--                repeatMode === repeatTypes.ONE_REPEAT || repeatMode === repeatTypes.ALL_REPEAT ? 'active-btn' : ''-->
+<!--            "-->
+<!--            (click)="onRepeatSong()"-->
+<!--            data-tooltip=" تکرار">-->
+<!--      <img [src]="-->
+<!--                    repeatMode === repeatTypes.NO_REPEAT-->
+<!--                        ? '../../../assets/images/controls/repeat.svg'-->
+<!--                        : repeatMode === repeatTypes.ONE_REPEAT-->
+<!--                        ? '../../../assets/images/controls/repeat1.svg'-->
+<!--                        : '../../../assets/images/controls/repeat.svg'-->
+<!--                " alt="repeat mode button"/>-->
+<!--    </button>-->
+<!--  </div>-->
 
-  <button class="mobile-preview-like">
-    <img
-       appLikeHover
-      (click)="onFavoriteClick()"
-      [src]="!playingSong.isFavourite ? '../../../../assets/images/like.svg' : '../../../../assets/images/liked.svg'"
-      alt=""
-    />  </button>
+<!--  <button class="mobile-preview-like">-->
+<!--    <img-->
+<!--       appLikeHover-->
+<!--      (click)="onFavoriteClick()"-->
+<!--      [src]="!playingSong.isFavourite ? '../../../../assets/images/like.svg' : '../../../../assets/images/liked.svg'"-->
+<!--      alt=""-->
+<!--    />  </button>-->
 
-  <button class="mobile-preview-add-playlist">
-    <img src="../../../../assets/images/playlist.svg" alt="add to playlist"/>
-  </button>
-</div>
+<!--  <button class="mobile-preview-add-playlist">-->
+<!--    <img src="../../../../assets/images/playlist.svg" alt="add to playlist"/>-->
+<!--  </button>-->
+<!--</div>-->

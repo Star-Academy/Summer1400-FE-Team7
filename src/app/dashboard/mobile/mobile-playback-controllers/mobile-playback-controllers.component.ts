@@ -1,13 +1,15 @@
 import {Component, EventEmitter, OnDestroy, OnInit, Output} from '@angular/core';
-import { PlayControllerService } from 'src/app/services/play-controller.service';
+import {PlayControllerService} from 'src/app/services/play-controller.service';
 import {Subscription} from "rxjs";
+import {SongService} from "../../../services/song.service";
+import {Song} from "../../../models/song";
 
 @Component({
-    selector: 'app-mobile-playback-controllers',
-    templateUrl: './mobile-playback-controllers.component.html',
-    styleUrls: ['./mobile-playback-controllers.component.scss'],
+  selector: 'app-mobile-playback-controllers',
+  templateUrl: './mobile-playback-controllers.component.html',
+  styleUrls: ['./mobile-playback-controllers.component.scss'],
 })
-export class MobilePlaybackControllersComponent implements OnInit,OnDestroy {
+export class MobilePlaybackControllersComponent implements OnInit, OnDestroy {
   readonly statusTypes = {
     PLAYING: 'playing',
     PAUSED: 'paused',
@@ -17,25 +19,32 @@ export class MobilePlaybackControllersComponent implements OnInit,OnDestroy {
   };
 
   @Output() lyricToggle = new EventEmitter<void>();
-    @Output() songPreviewToggle = new EventEmitter();
-    status!:string;
-    statusSub!:Subscription;
-    onSongPreviewToggle() {
-        this.songPreviewToggle.emit();
-    }
+  @Output() songPreviewToggle = new EventEmitter();
+  status!: string;
+  statusSub!: Subscription;
+  playingSongSub!: Subscription;
+  playingSong: Song = new Song();
 
-    lyricToggler() {
-        this.lyricToggle.emit();
-    }
+  onSongPreviewToggle() {
+    this.songPreviewToggle.emit();
+  }
 
-    constructor(private playController: PlayControllerService) {}
+  lyricToggler() {
+    this.lyricToggle.emit();
+  }
 
-    ngOnInit(): void {
-      this.status = this.playController.status;
-      this.statusSub = this.playController.statusChanged.subscribe((status:string) => {
-        this.status = status;
-      })
-    }
+  constructor(private playController: PlayControllerService, private songService: SongService) {
+  }
+
+  ngOnInit(): void {
+    this.status = this.playController.status;
+    this.statusSub = this.playController.statusChanged.subscribe((status: string) => {
+      this.status = status;
+    });
+    this.playingSongSub = this.songService.playingSongChange.subscribe((song: Song) => {
+      this.playingSong = song;
+    });
+  }
 
   onPlay() {
     switch (this.status) {
@@ -52,9 +61,11 @@ export class MobilePlaybackControllersComponent implements OnInit,OnDestroy {
         //TODO
         this.playController.pause();
         break;
-    }  }
+    }
+  }
 
   ngOnDestroy(): void {
-      this.statusSub.unsubscribe()
+    this.statusSub.unsubscribe();
+    this.playingSongSub.unsubscribe();
   }
 }

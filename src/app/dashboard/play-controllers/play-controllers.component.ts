@@ -11,6 +11,7 @@ import {PlayControllerService} from "../../services/play-controller.service";
 })
 export class PlayControllersComponent implements OnInit, OnDestroy {
   @Input() isMobile!: boolean;
+  @Output() closeMobilePreview = new EventEmitter<void>();
   readonly statusTypes = {
     PLAYING: 'playing',
     PAUSED: 'paused',
@@ -175,4 +176,7 @@ export class PlayControllersComponent implements OnInit, OnDestroy {
   }
 
 
+  onSongPreviewToggle() {
+    this.closeMobilePreview.emit();
+  }
 }

@@ -1,13 +1,17 @@
 <section class="mobile-navigation">
     <div class="music-contolers">
-        <button id="lyrics-btn-mobile" (click)="lyricToggler()">
+        <button   (click)="lyricToggler()">
             <img src="../../../../assets/images/controls/lyric.svg" alt="lyrics button" />
         </button>
 
-        <div class="mobile-info" (click)="onSongPreviewToggle()">
+      <button   (click)="onSongPreviewToggle()">
+        <img src="../../../../assets/images/controls/up-arrow.svg" alt="lyrics button" />
+      </button>
+
+        <div class="mobile-info">
             <p>
-                <span class="mobile-music-name"></span><span>&nbsp;•&nbsp;</span>
-                <span class="mobile-artist-name"></span>
+                <span class="mobile-music-name">{{playingSong.name }}</span><span>&nbsp;•&nbsp;</span>
+                <span class="mobile-artist-name">{{playingSong.artist}}</span>
             </p>
         </div>
 
