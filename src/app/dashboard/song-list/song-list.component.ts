@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, HostListener, OnInit} from '@angular/core';
 import {Subscription} from 'rxjs';
 import {Song} from 'src/app/models/song';
 import {SongService} from 'src/app/services/song.service';
@@ -17,10 +17,11 @@ export class SongListComponent implements OnInit {
     currentPlaylist: Song[] = [];
     currentPlaylistName: string = '';
 
-    isPlaceholderNeeded: boolean = false;
+    showPlaceholder: boolean = false;
 
     // allSongsSub!: Subscription;
     currentPlaylistSub!: Subscription;
+    loadingSongs!: Subscription;
 
     layoutView: string = '';
 
@@ -30,12 +31,16 @@ export class SongListComponent implements OnInit {
     constructor(private songService: SongService) {}
 
     ngOnInit(): void {
+
         this.currentPlaylistSub = this.songService.currentPlaylistChanged.subscribe((data: Playlist) => {
             this.currentPlaylistName = data.name;
             this.currentPlaylist = data.songs;
             this.isListEmpty = data.songs.length === 0;
         });
 
+        this.loadingSongs = this.songService.loadingSongs.subscribe((loading:boolean)=>{
+           this.showPlaceholder=loading;
+        });
         // this.allSongsSub = this.songService.allSongsChanged.subscribe((data: Song[]) => {
         //     this.allSongs = data;
         // });
@@ -54,10 +59,22 @@ export class SongListComponent implements OnInit {
 
     ngOnDestroy(): void {
         // this.allSongsSub.unsubscribe();
-        this.currentPlaylistSub.unsubscribe();
+      this.loadingSongs.unsubscribe();
+      this.currentPlaylistSub.unsubscribe();
     }
 
     changeLayoutViewHandler(viewType: any) {
         this.layoutView = viewType;
     }
+
+  onScroll() {
+    let pos = (document.documentElement.scrollTop || document.body.scrollTop) + document.documentElement.offsetHeight;
+    let max = document.documentElement.scrollHeight;
+    console.log(document.body.offsetHeight);
+// pos/max will give you the distance between scroll bottom and and bottom of screen in percentage.
+    if(pos == max )   {
+      //Do your action here
+      console.log("aaaaaaaaaa")
+    }
+  }
 }
