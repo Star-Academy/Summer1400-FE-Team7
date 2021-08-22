@@ -3,6 +3,7 @@ import {ActivatedRoute} from '@angular/router';
 import {Subscription} from 'rxjs';
 import {SongService} from 'src/app/services/song.service';
 import { NotificationService } from 'src/app/services/notification.service';
+import {Song} from "../../models/song";
 
 @Component({
   selector: 'app-dashboard',
@@ -12,12 +13,15 @@ import { NotificationService } from 'src/app/services/notification.service';
 export class DashboardComponent implements OnInit, OnDestroy {
   sideMenuOpen: boolean = true;
   isLyricPanelOpen: boolean = false;
+  background:string="rgb(29, 125, 215)"
 
-  public notificationSub: Subscription = new Subscription();
+  playingSongSub!:Subscription
 
-  public showNotification: boolean = false;
-  public isErrorNotification: boolean = false;
-  public messageNotification: string = "";
+  notificationSub!: Subscription;
+
+    showNotification: boolean = false;
+    isErrorNotification: boolean = false;
+    messageNotification: string = "";
 
 //TODO on refresh other play list
   constructor(private songService: SongService
@@ -25,10 +29,12 @@ export class DashboardComponent implements OnInit, OnDestroy {
               private uiManager:NotificationService) {}
 
   ngOnInit(): void {
-    this.songService.fetchPlaylist();
+    const playlistName =  this.route.snapshot.paramMap.get('playlist')||"";
+
+    this.songService.fetchPlaylist(playlistName);
     this.route.queryParams.subscribe((params) => {
       if (params['playlist']) {
-        this.songService.changeCurrentPlaylist(params['playlist']);
+         this.songService.changeCurrentPlaylist(params['playlist']);
         this.songService.currentPlaylistName = params['playlist'];
       }
     });
@@ -38,12 +44,16 @@ export class DashboardComponent implements OnInit, OnDestroy {
         this.showNotification=notification.show;
         this.isErrorNotification=notification.isError;
         this.messageNotification=notification.message;
+    });
+    this.playingSongSub= this.songService.playingSongChange.subscribe((song:Song)=>{
+      this.background = `url('${song.cover}') no-repeat  `;
     })
 
   }
 
   ngOnDestroy(): void {
     this.notificationSub.unsubscribe();
+    this.playingSongSub.unsubscribe();
   }
 
 
@@ -54,4 +64,5 @@ export class DashboardComponent implements OnInit, OnDestroy {
   lyricPanelToggle() {
     this.isLyricPanelOpen = !this.isLyricPanelOpen;
   }
+
 }
