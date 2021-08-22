@@ -1,4 +1,8 @@
-import {Component, ElementRef, OnInit} from '@angular/core';
+import {Component, ElementRef, OnInit, Output} from '@angular/core';
+import { SongService } from 'src/app/services/song.service';
+
+class EventEmitter<T> {
+}
 
 @Component({
     selector: 'app-placeholder',
@@ -6,7 +10,8 @@ import {Component, ElementRef, OnInit} from '@angular/core';
     styleUrls: ['./placeholder.component.scss'],
 })
 export class PlaceholderComponent implements OnInit {
-    constructor(private elementRef: ElementRef) {}
+
+    constructor(private elementRef: ElementRef,private songService:SongService) {}
 
     placeholdersCount: number = 13;
     timeoutID!: any;
@@ -18,5 +23,11 @@ export class PlaceholderComponent implements OnInit {
             this.currentValue += 5;
             document.documentElement.style.setProperty('--placeholder-rotation', this.currentValue + 'deg');
         }, 40);
+
+        this.songService.loadingSongs.subscribe((loading:boolean)=>{
+          if(!loading){
+            clearInterval(this.timeoutID)
+          }
+        })
     }
 }
