@@ -1,4 +1,4 @@
-import {Component, HostListener, OnInit} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 
 @Component({
     selector: 'app-landing2',
@@ -8,14 +8,10 @@ import {Component, HostListener, OnInit} from '@angular/core';
 export class Landing2Component implements OnInit {
     constructor() {}
 
-    isfirstSection: boolean = true;
+    isFirstSection: boolean = true;
 
     ngOnInit(): void {}
     onScroll(event: any) {
-        if (event.target.scrollTop === 0) {
-            this.isfirstSection = true;
-        } else {
-            this.isfirstSection = false;
-        }
+        this.isFirstSection = event.target.scrollTop === 0;
     }
 }

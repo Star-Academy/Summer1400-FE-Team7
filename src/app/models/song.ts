@@ -8,7 +8,6 @@ export class Song {
     lyrics!: string;
     file!: string;
     isSelected!: boolean;
-    playlistIndexes!: number[];
 
     constructor(
         id: number=-1,

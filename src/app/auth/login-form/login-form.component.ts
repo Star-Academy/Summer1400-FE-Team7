@@ -26,7 +26,7 @@ export class LoginFormComponent implements OnInit, OnDestroy {
 
     loading = false;
     error = '';
-
+    //
     constructor(private authService: AuthService, private router: Router) {
         this.loadingSubscription = this.authService.loading.subscribe((loading: boolean) => {
             this.loading = loading;

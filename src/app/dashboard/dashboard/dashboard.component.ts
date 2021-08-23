@@ -29,9 +29,8 @@ export class DashboardComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit(): void {
-    const playlistName = this.route.snapshot.paramMap.get('playlist') || "";
 
-    this.songService.fetchPlaylist(playlistName);
+    this.songService.fetchPlaylist( );
     this.route.queryParams.subscribe((params) => {
       if (params['playlist']) {
         this.songService.changeCurrentPlaylist(params['playlist']);

@@ -3,8 +3,7 @@ import {ComponentFixture, inject, TestBed} from '@angular/core/testing';
 
 import {LyricsComponent} from './lyrics.component';
 import {RouterTestingModule} from "@angular/router/testing";
-import {Song} from "../../models/song";
-import {SongService} from "../../services/song.service";
+ import {SongService} from "../../services/song.service";
 
 describe('LyricsComponent', () => {
   let component: LyricsComponent;
@@ -56,11 +55,6 @@ describe('LyricsComponent', () => {
 
 
   });
-  // it('lyricToggles() should emit  lyricToggle  ', () => {
-  //   spyOn(component.lyricToggle, 'emit');
-  //   component.lyricToggles();
-  //   expect(component.lyricToggle.emit).toHaveBeenCalled();
-  // });
 
   it('should create', () => {
     expect(component).toBeTruthy();

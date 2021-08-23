@@ -46,7 +46,7 @@ export class SongService {
     this.userFavId = localStorage.getItem('favId');
 
     this.currentPlaylistNameChanged.subscribe((name: string) => {
-       this.changeCurrentPlaylist(name)
+      this.changeCurrentPlaylist(name)
     });
   }
 
@@ -113,8 +113,9 @@ export class SongService {
     this.searchSongsChanged.next(value);
   }
 
-  public get favouriteSongs(): Song[] {
-    return this._favouriteSongs.slice();
+
+  get favouriteSongs(): Song[] {
+    return this._favouriteSongs;
   }
 
   public set favouriteSongs(value: Song[]) {
@@ -162,15 +163,15 @@ export class SongService {
   }
 
   changeCurrentPlaylist(playlistName: string) {
-     this.loadingSongs.next(true);
+    this.loadingSongs.next(true);
     let currentPlaylist;
     switch (playlistName) {
       case  Constants.ALL_SONGS:
         currentPlaylist = this.allSongs;
-        if (currentPlaylist.length ===0)
+        if (currentPlaylist.length === 0)
           this.fetchSongs()
         else
-        this.currentPlaylist = new Playlist(playlistName, -1, currentPlaylist);
+          this.currentPlaylist = new Playlist(playlistName, -1, currentPlaylist);
         this.loadingSongs.next(false);
         break;
       case  Constants.SEARCH_SONGS:
@@ -208,6 +209,9 @@ export class SongService {
       });
       if (playlistName === Constants.FAVOURITE_SONGS) {
         this.favouriteSongs = songs;
+        if (songs.length === 0) {
+          songs = this.favouriteSongs;
+        }
       }
 
       this.currentPlaylist = new Playlist(playlistName, playlistId, songs)
@@ -240,7 +244,7 @@ export class SongService {
     });
   }
 
-  public fetchPlaylist(playlistName: string): void {
+  public fetchPlaylist(): void {
     const body = {
       token: this.userToken,
     };
@@ -255,10 +259,9 @@ export class SongService {
       });
       this.allPlaylists = playlists;
       if (this.currentPlaylistName === Constants.ALL_SONGS) {
-
         this.fetchSongs();
       } else {
-         this.changeCurrentPlaylist(this.currentPlaylistName)
+        this.changeCurrentPlaylist(this.currentPlaylistName)
       }
     });
   }
