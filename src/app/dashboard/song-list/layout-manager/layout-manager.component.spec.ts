@@ -1,8 +1,8 @@
 import {ComponentFixture, TestBed} from '@angular/core/testing';
 
 import {LayoutManagerComponent} from './layout-manager.component';
-import {HttpClientTestingModule} from "@angular/common/http/testing";
-import {RouterTestingModule} from "@angular/router/testing";
+import {HttpClientTestingModule} from '@angular/common/http/testing';
+import {RouterTestingModule} from '@angular/router/testing';
 
 describe('LayoutManagerComponent', () => {
     let component: LayoutManagerComponent;
@@ -11,8 +11,7 @@ describe('LayoutManagerComponent', () => {
     beforeEach(async () => {
         await TestBed.configureTestingModule({
             declarations: [LayoutManagerComponent],
-          imports: [  HttpClientTestingModule, RouterTestingModule],
-
+            imports: [HttpClientTestingModule, RouterTestingModule],
         }).compileComponents();
     });
 
@@ -23,6 +22,13 @@ describe('LayoutManagerComponent', () => {
     });
 
     it('should create', () => {
-      expect(component).toBeTruthy();
+        expect(component).toBeTruthy();
+    });
+
+    it('should emit layoutChangeHandler ', () => {
+        fixture.detectChanges();
+        spyOn(component.chosedLayout, 'emit');
+        component.layoutChangeHandler({target: 123});
+        expect(component.chosedLayout.emit).toHaveBeenCalled();
     });
 });

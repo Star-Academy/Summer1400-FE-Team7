@@ -10,14 +10,12 @@ import {SongService} from '../../../services/song.service';
 export class MenuItemComponent implements OnInit {
     @Input() playlistItem!: PlaylistItem;
     @Output() openAddNewPlaylistPanel = new EventEmitter<void>();
-  buttonType!:string;
-
-
+    buttonType!: string;
 
     constructor(private songService: SongService) {}
 
     ngOnInit(): void {
-      this.buttonType =this.playlistItem.buttonType
+        this.buttonType = this.playlistItem.buttonType;
     }
 
     openNewPlaylistPanel() {
@@ -27,28 +25,4 @@ export class MenuItemComponent implements OnInit {
     onRemove() {
         this.songService.removePlaylist(this.playlistItem.id);
     }
-
-    // @HostListener('document:keydown', ['$event'])
-    // handleKeyboardEvent(event: KeyboardEvent) {
-    //     if (event.key === 'Escape')
-    //         if (this.isPanelOpen) {
-    //             this.isPanelOpen = false;
-    //         }
-    // }
-    // onPlaylistItemClick() {
-    //   console.log(this.playlistItem.name);
-    //   this.router.navigate(["/dashboard"],
-    //     {queryParams:{playlist:this.playlistItem.name}})
-    // }
-    // closePanel() {
-    //     this.isPanelOpen = false;
-    // }
-
-    // onMouseout() {
-    //     this.showRemoveIcon = false;
-    // }
-
-    // onMouseover() {
-    //     this.showRemoveIcon = true;
-    // }
 }

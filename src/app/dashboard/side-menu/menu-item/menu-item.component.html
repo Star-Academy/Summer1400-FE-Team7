@@ -1,6 +1,6 @@
 <!--<script src="menu-item.component.ts"></script>-->
 <div [ngSwitch]="buttonType">
-    <div *ngSwitchCase="'add'" class="playlist-container">
+    <div *ngSwitchCase="'add'" class="playlist-container add-class">
         <div class="btn-wrapper" routerLinkActive="menu-selected">
             <img [src]="playlistItem.icon" alt="" />
             <a [routerLink]="['/dashboard']" [queryParams]="{playlist: playlistItem.name}">{{ playlistItem.name }}</a>
@@ -10,7 +10,7 @@
         </button>
     </div>
 
-    <div *ngSwitchCase="'remove'" class="playlist-container">
+    <div *ngSwitchCase="'remove'" class="playlist-container remove-class">
         <div class="btn-wrapper" routerLinkActive="menu-selected">
             <img [src]="playlistItem.icon" alt="" />
             <a [routerLink]="['/dashboard']" [queryParams]="{playlist: playlistItem.name}">{{ playlistItem.name }}</a>
@@ -20,15 +20,8 @@
         </button>
     </div>
 
-    <div *ngSwitchDefault class="btn-wrapper" routerLinkActive="menu-selected">
+    <div *ngSwitchDefault class="btn-wrapper default-class" routerLinkActive="menu-selected">
         <img [src]="playlistItem.icon" alt="" />
         <a [routerLink]="['/dashboard']" [queryParams]="{playlist: playlistItem.name}">{{ playlistItem.name }}</a>
     </div>
 </div>
-<!--<div *ngIf="isPanelOpen" class="dark-background-2" (click)="closePanel()"></div>-->
-
-<!-- //TODO -->
-<!-- <div class="btn-wrapper" [ngClass]="playlistItem.isSelected ? 'menu-selected' : ''">
-    <img [src]="playlistItem.icon" alt="" />
-    <button>{{ playlistItem.name }}</button>
-</div> -->

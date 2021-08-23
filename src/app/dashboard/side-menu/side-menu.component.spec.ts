@@ -1,18 +1,21 @@
 import {ComponentFixture, TestBed} from '@angular/core/testing';
 
 import {SideMenuComponent} from './side-menu.component';
-import {HttpClientTestingModule} from "@angular/common/http/testing";
-import {RouterTestingModule} from "@angular/router/testing";
+import {HttpClientTestingModule} from '@angular/common/http/testing';
+import {RouterTestingModule} from '@angular/router/testing';
+import {DebugElement} from '@angular/core';
+import {By} from '@angular/platform-browser';
+import {AuthService} from 'src/app/services/auth.service';
 
 describe('SideMenuComponent', () => {
     let component: SideMenuComponent;
     let fixture: ComponentFixture<SideMenuComponent>;
+    let debug: DebugElement;
 
     beforeEach(async () => {
         await TestBed.configureTestingModule({
             declarations: [SideMenuComponent],
-          imports: [  HttpClientTestingModule, RouterTestingModule],
-
+            imports: [HttpClientTestingModule, RouterTestingModule],
         }).compileComponents();
     });
 
@@ -23,6 +26,78 @@ describe('SideMenuComponent', () => {
     });
 
     it('should create', () => {
-      expect(component).toBeTruthy();
+        expect(component).toBeTruthy();
+    });
+
+    it('should side-menu be open', () => {
+        debug = fixture.debugElement.query(By.css('.side-menu'));
+        component.isOpen = false;
+        fixture.detectChanges();
+        expect(debug.nativeNode.classList).not.toContain('side-menu-closed');
+
+        component.isOpen = true;
+        fixture.detectChanges();
+        expect(debug.nativeNode.classList).toContain('side-menu-closed');
+    });
+
+    it('should show email correclty', () => {
+        const email = 'parsa.arvaneh@gmail.com';
+        component.email = email;
+
+        debug = fixture.debugElement.query(By.css('#user-email'));
+        fixture.detectChanges();
+
+        expect(debug.nativeNode.innerText).toBe(email);
+    });
+
+    it('should render app-make-new-playlist component', () => {
+        component.isPanelOpen = false;
+        fixture.detectChanges();
+        debug = fixture.debugElement.query(By.css('.app-make-new-playlist-test'));
+        expect(debug).toBeNull();
+
+        component.isPanelOpen = true;
+        fixture.detectChanges();
+        debug = fixture.debugElement.query(By.css('.app-make-new-playlist-test'));
+        expect(debug).not.toBeNull();
+    });
+
+    it('should render dark-glass', () => {
+        component.isPanelOpen = false;
+        fixture.detectChanges();
+        debug = fixture.debugElement.query(By.css('.dark-glass'));
+        expect(debug).toBeNull();
+
+        component.isPanelOpen = true;
+        fixture.detectChanges();
+        debug = fixture.debugElement.query(By.css('.dark-glass'));
+        expect(debug).not.toBeNull();
+    });
+
+    it('should closePanel() work', () => {
+        component.isPanelOpen = true;
+        component.closePanel();
+        expect(component.isPanelOpen).toBeFalsy();
+    });
+
+    it('should openAddNewPlaylistPanel() work', () => {
+        component.isPanelOpen = false;
+        component.openAddNewPlaylistPanel();
+        expect(component.isPanelOpen).toBeTruthy();
+    });
+
+    it('should onLogOutClick call', () => {
+        let authService = fixture.debugElement.injector.get(AuthService);
+        fixture.detectChanges();
+        spyOn(authService, 'logoutUser');
+        component.onLogOutClick();
+        expect(authService.logoutUser).toHaveBeenCalled();
+    });
+
+    it('variables should not be null after ngOnInit', () => {
+        let status = component.email;
+        localStorage.setItem('email', 'test');
+        component.ngOnInit();
+        expect(status).not.toBeNull();
     });
 });

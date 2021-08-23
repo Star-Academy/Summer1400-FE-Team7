@@ -1,11 +1,5 @@
 <div class="side-menu" [ngClass]="!isOpen ? '' : 'side-menu-closed'">
     <app-search></app-search>
-    <!-- //TODO -->
-    <!-- <div class="search">
-        <input type="search" placeholder="جست و جو..." class="search-box" />
-        <div class="search__icon"></div>
-    </div> -->
-
     <div class="menu-items-wrapper">
         <app-menu-item
             (openAddNewPlaylistPanel)="openAddNewPlaylistPanel()"
@@ -23,6 +17,10 @@
     </div>
 </div>
 
-<app-make-new-playlist (closeCreatePlaylistPanel)="closePanel()" *ngIf="isPanelOpen"></app-make-new-playlist>
+<app-make-new-playlist
+    class="app-make-new-playlist-test"
+    (closeCreatePlaylistPanel)="closePanel()"
+    *ngIf="isPanelOpen"
+></app-make-new-playlist>
 
 <div class="dark-glass" *ngIf="isPanelOpen" (click)="closePanel()"></div>

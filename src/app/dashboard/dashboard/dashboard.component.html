@@ -1,22 +1,17 @@
 <main>
-    <section  class="section-1" [ngClass]="!isLyricPanelOpen ? 'section-close' : ''">
+    <section class="section-1" [ngClass]="isLyricPanelOpen ? 'section-close' : ''">
         <app-side-menu [isOpen]="!sideMenuOpen"></app-side-menu>
-        <app-song-list  [ngClass]="sideMenuOpen ? 'side-menu-opened' : ''"></app-song-list>
+        <app-song-list [ngClass]="sideMenuOpen ? 'side-menu-opened' : ''"></app-song-list>
     </section>
     <app-play-controllers [isMobile]="false" (lyricToggle)="lyricPanelToggle()"></app-play-controllers>
 
     <app-lyrics [isPanelOpen]="isLyricPanelOpen" (toggleLyric)="lyricPanelToggle()"></app-lyrics>
     <app-mobile (toggleLyric)="lyricPanelToggle()"></app-mobile>
-
-
 </main>
-<div class="bg-cover"
-     [ngStyle]="{'background': background}"></div>
+<div class="bg-cover" [ngStyle]="{background: background}"></div>
 <div class="dark-glass"></div>
 
 <div class="dark-glass3 display-none"></div>
-
-
 
 <div *ngIf="!isLyricPanelOpen" class="side-menu-opener-closer" (click)="onToggleSideMenu()">
     <button id="side-menu-opener-closer-btn">
@@ -34,6 +29,3 @@
     [message]="messageNotification"
     [isError]="isErrorNotification"
 ></app-notification>
-
-
-
