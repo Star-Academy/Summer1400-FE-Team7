@@ -41,10 +41,12 @@ describe('LyricsComponent', () => {
   });
 
 
-  it('onBackClick() should make isPanelOpen false', () => {
+  it('onBackClick() should make isPanelOpen false and emit toggleLyric', () => {
     let isPanelOpen = component.isPanelOpen;
+    spyOn(component.toggleLyric, 'emit');
     component.onBackClick();
     expect(isPanelOpen).toBeFalsy();
+    expect(component.toggleLyric.emit).toHaveBeenCalled();
 
   });
 
@@ -52,8 +54,13 @@ describe('LyricsComponent', () => {
     let playingSong = component.playingSong;
     expect(playingSong.id).toEqual(-1);
 
-  });
 
+  });
+  // it('lyricToggles() should emit  lyricToggle  ', () => {
+  //   spyOn(component.lyricToggle, 'emit');
+  //   component.lyricToggles();
+  //   expect(component.lyricToggle.emit).toHaveBeenCalled();
+  // });
 
   it('should create', () => {
     expect(component).toBeTruthy();
