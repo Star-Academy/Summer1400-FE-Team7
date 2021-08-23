@@ -5,8 +5,7 @@ import {SongService} from "../../../services/song.service";
 import {BrowserModule} from "@angular/platform-browser";
 import {HttpClientTestingModule} from "@angular/common/http/testing";
 import {RouterTestingModule} from "@angular/router/testing";
-import {NotificationService} from "../../../services/notification.service";
-import {PlayControllerService} from "../../../services/play-controller.service";
+ import {PlayControllerService} from "../../../services/play-controller.service";
 
 describe('MobilePlaybackControllersComponent', () => {
   let component: MobilePlaybackControllersComponent;
@@ -65,7 +64,7 @@ describe('MobilePlaybackControllersComponent', () => {
     expect(playingSongSub).not.toBeNull();
 
   });
-  it('onPlay() should call  playController.play if status = statusType.STOPPED', () => {
+  it(' should call  playController.play if status == statusType.STOPPED', () => {
     let playControllerService = fixture.debugElement.injector.get(PlayControllerService);
     fixture.detectChanges();
     spyOn(playControllerService, 'play');
@@ -74,7 +73,7 @@ describe('MobilePlaybackControllersComponent', () => {
     expect(playControllerService.play).toHaveBeenCalled();
   });
 
-  it('onPlay() should call  playController.pause if status = statusType.PLAYING', () => {
+  it(' should call  playController.pause if status == statusType.PLAYING', () => {
     let playControllerService = fixture.debugElement.injector.get(PlayControllerService);
     fixture.detectChanges();
     spyOn(playControllerService, 'pause');
@@ -83,7 +82,7 @@ describe('MobilePlaybackControllersComponent', () => {
     expect(playControllerService.pause).toHaveBeenCalled();
   });
 
-  it('onPlay() should call  playController.resume if status = statusType.PAUSED', () => {
+  it(' should call  playController.resume if status == statusType.PAUSED', () => {
     let playControllerService = fixture.debugElement.injector.get(PlayControllerService);
     fixture.detectChanges();
     spyOn(playControllerService, 'resume');
@@ -91,13 +90,21 @@ describe('MobilePlaybackControllersComponent', () => {
     component.onPlay();
     expect(playControllerService.resume).toHaveBeenCalled();
   });
-  it('onPlay() should call  playController.pause in other case of status ', () => {
+  it('  should call  playController.pause  if status == statusType.LOADING ', () => {
     let playControllerService = fixture.debugElement.injector.get(PlayControllerService);
     fixture.detectChanges();
     spyOn(playControllerService, 'pause');
     component.status = playControllerService.statusTypes.LOADING;
     component.onPlay();
     expect(playControllerService.pause).toHaveBeenCalled();
+
+  });
+
+  it('  should call  playController.pause  if status == statusType.MUTED ', () => {
+    let playControllerService = fixture.debugElement.injector.get(PlayControllerService);
+    fixture.detectChanges();
+    spyOn(playControllerService, 'pause');
+
     component.status = playControllerService.statusTypes.MUTED;
     component.onPlay();
     expect(playControllerService.pause).toHaveBeenCalled();

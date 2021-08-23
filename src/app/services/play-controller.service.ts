@@ -7,9 +7,6 @@ import {SongService} from "./song.service";
   providedIn: 'root'
 })
 export class PlayControllerService {
-  get seekBarMaxvalue(): number {
-    return this._seekBarMaxvalue;
-  }
 
   set seekBarMaxvalue(value: number) {
     this._seekBarMaxvalue = value;

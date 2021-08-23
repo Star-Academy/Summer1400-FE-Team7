@@ -3,6 +3,5 @@
     (songPreviewToggle)="songPreviewToggle()"
 ></app-mobile-playback-controllers>
 
-<!--<app-song-preview *ngIf="isSongPreviewPanelOpen" (songPreviewToggle)="songPreivewToggler()"></app-song-preview>-->
 <app-play-controllers *ngIf="isSongPreviewPanelOpen" [isMobile]="true"  (closeMobilePreview)="isSongPreviewPanelOpen=false"></app-play-controllers>
 <div class="dark-glass" *ngIf="isSongPreviewPanelOpen"></div>
