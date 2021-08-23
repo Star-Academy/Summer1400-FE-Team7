@@ -126,7 +126,7 @@ describe('MenuItemComponent default switch', () => {
         expect(component).toBeTruthy();
     });
 
-    it('should be defaulttype', () => {
+    it('should be defaultType', () => {
         playlistItem = new PlaylistItem(
             'nametest',
             -3,

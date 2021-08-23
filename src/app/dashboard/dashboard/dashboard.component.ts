@@ -22,8 +22,7 @@ export class DashboardComponent implements OnInit, OnDestroy {
   isErrorNotification: boolean = false;
   messageNotification: string = "";
 
-//TODO on refresh other play list
-  constructor(private songService: SongService
+   constructor(private songService: SongService
     , private route: ActivatedRoute,
               private notificationService: NotificationService) {
   }

@@ -3,8 +3,7 @@ import {ComponentFixture, TestBed} from '@angular/core/testing';
 import {SongListComponent} from './song-list.component';
 import {HttpClientTestingModule} from '@angular/common/http/testing';
 import {RouterTestingModule} from '@angular/router/testing';
-import {DebugElement} from '@angular/core';
-import {By} from '@angular/platform-browser';
+ import {By} from '@angular/platform-browser';
 
 describe('SongListComponent', () => {
     let component: SongListComponent;
@@ -63,8 +62,7 @@ describe('SongListComponent', () => {
         fixture.detectChanges();
         debug = fixture.debugElement.query(By.css('.song-list-header'));
         expect(debug.nativeNode.innerText).toBe(title);
-        expect(debug.nativeNode.innerText).not.toBe('wowowoowow');
-    });
+     });
 
     it('should render app-placeholder component', () => {
         component.showPlaceholder = false;
@@ -78,10 +76,5 @@ describe('SongListComponent', () => {
         expect(debug).not.toBeNull();
     });
 
-    // it('should render app-song-itme count correctly', () => {
-    //     let count = 40;
-    //     fixture.detectChanges();
-    //     debug = fixture.debugElement.queryAll(By.css('.song-test'));
-    //     expect(debug.length).toBe(count);
-    // });
+
 });

@@ -40,7 +40,12 @@
         class="more-options"
         (click)="isMoreOptionsOpened = !isMoreOptionsOpened"
         [ngClass]="isMoreOptionsOpened ? 'display-block' : ''"
-    ></button>
+    >
+      <img
+        src= '../../../../assets/images/more.svg'
+        alt=""
+      />
+    </button>
 
     <div class="options" *ngIf="isMoreOptionsOpened">
         <div class="button-wrapper">

@@ -45,7 +45,6 @@ $--hover-bg-clr: rgba(138, 135, 135, 0.15);
       justify-self: flex-start;
       align-self: baseline;
       width: 100%;
-      // margin-right: 5px;
 
       & > .btn-wrapper {
         margin-right: 0;
@@ -84,8 +83,7 @@ $--hover-bg-clr: rgba(138, 135, 135, 0.15);
 
       > img {
         height: 1rem;
-        //TODO delete cancle from imgs
-        transform: rotate(45deg);
+         transform: rotate(45deg);
       }
 
 

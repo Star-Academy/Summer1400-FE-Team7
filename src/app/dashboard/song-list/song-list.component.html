@@ -1,7 +1,7 @@
-<div (scroll)="onScroll()" class="song-list" [ngClass]="layoutView">
+<div  class="song-list" [ngClass]="layoutView">
     <div>
         <h2 class="song-list-header">{{ currentPlaylistName }}</h2>
-        <app-layout-manager (chosedLayout)="changeLayoutViewHandler($event)"></app-layout-manager>
+        <app-layout-manager (chooseLayout)="changeLayoutViewHandler($event)"></app-layout-manager>
     </div>
 
     <app-placeholder class="placeholder-test" *ngIf="showPlaceholder; else elseBlock"></app-placeholder>

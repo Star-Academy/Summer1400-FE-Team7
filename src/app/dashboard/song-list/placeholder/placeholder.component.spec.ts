@@ -5,7 +5,6 @@ import {PlaceholderComponent} from './placeholder.component';
 import {BrowserModule, By} from '@angular/platform-browser';
 import {HttpClientTestingModule} from '@angular/common/http/testing';
 import {RouterTestingModule} from '@angular/router/testing';
-import {DebugElement} from '@angular/core';
 
 describe('PlaceholderComponent', () => {
     let component: PlaceholderComponent;

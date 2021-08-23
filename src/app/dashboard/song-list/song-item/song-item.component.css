@@ -32,21 +32,18 @@
   flex-direction: column;
   height: 80%;
   justify-content: space-evenly;
-  align-items: space-evenly;
 }
 .song-wrapper > .more-options {
-  height: 30%;
+  height: 100%;
   width: 0.5rem;
   position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
   left: 0.5rem;
-  background: url(../../../../assets/images/more.svg) no-repeat;
-  background-size: cover;
-  background-position: center;
   display: none;
   align-items: center;
   justify-content: flex-start;
+}
+.song-wrapper > .more-options img {
+  transform: scale(2);
 }
 .song-wrapper .more-options ~ .options {
   display: flex;

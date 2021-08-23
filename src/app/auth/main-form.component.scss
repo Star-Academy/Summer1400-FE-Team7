@@ -131,23 +131,7 @@ form {
   justify-content: space-evenly;
 }
 
-.error{
-  position: relative;
-  box-shadow: inset 0 0 0.3em $--clr-boarder-error,
-  0 0 0.3em $--clr-boarder-error !important;
-
-  &::after {
-    color: var(--clr-white);
-    content: attr(data-error);
-    background-color: $--clr-background-error;
-    position: absolute;
-    bottom: -1.5rem;
-    right: 0;
-    font-size: 0.8rem;
-    padding: 0 1rem;
-    border-radius: 1000rem;
-  }
-}
+ 
 
 .display-none {
   display: none !important;

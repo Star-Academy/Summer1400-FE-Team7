@@ -7,11 +7,11 @@ import {Component, OnInit, Output, EventEmitter} from '@angular/core';
 })
 export class LayoutManagerComponent implements OnInit {
     constructor() {}
-    @Output() chosedLayout = new EventEmitter<string>();
+    @Output() chooseLayout = new EventEmitter<string>();
 
     ngOnInit(): void {}
 
     layoutChangeHandler(e: any) {
-        this.chosedLayout.emit(e.target.id);
+        this.chooseLayout.emit(e.target.id);
     }
 }

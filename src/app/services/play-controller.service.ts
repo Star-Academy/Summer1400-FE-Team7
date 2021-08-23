@@ -152,7 +152,6 @@ export class PlayControllerService {
           break;
       }
     };
-    //TODO handle onAudioError
 
 
   }

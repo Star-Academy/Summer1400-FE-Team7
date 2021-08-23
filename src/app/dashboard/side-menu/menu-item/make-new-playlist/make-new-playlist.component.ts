@@ -1,6 +1,5 @@
 import {Component, EventEmitter, OnDestroy, OnInit, Output} from '@angular/core';
 import {SongService} from 'src/app/services/song.service';
-import {NotificationService} from 'src/app/services/notification.service';
 import {Subscription} from "rxjs";
 
 @Component({

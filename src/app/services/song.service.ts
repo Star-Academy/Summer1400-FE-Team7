@@ -222,8 +222,7 @@ export class SongService {
   public fetchSongs(): void {
     this.loadingSongs.next(true);
     const body = {
-      //TODO
-      size: 25,
+       size: 25,
       current: 1,
       sorter: 'name',
       desc: false,

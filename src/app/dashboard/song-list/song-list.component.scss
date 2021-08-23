@@ -59,72 +59,11 @@ $--bg-mellow-black: rgb(40, 40, 40);
             align-items: center;
             justify-content: center;
             gap: 0.25rem;
-            //TODO
-            * {
+             * {
                 background: linear-gradient(var(--placeholder-rotation), $--bg-mellow-black, $--selected-bg-blue);
             }
 
-            // > .place-holders {
-            //     width: 100%;
-            //     height: 3rem;
-            //     background: transparent !important;
 
-            //     display: flex;
-
-            //     .img-placeholder {
-            //         width: 3rem;
-            //         height: 3rem;
-            //         border-radius: 100%;
-            //     }
-
-            //     .right-info-placeholder {
-            //         flex: 1;
-            //         display: flex;
-            //         flex-direction: column;
-            //         justify-content: center;
-            //         gap: 0.2rem;
-            //         background: none;
-            //         margin-right: 0.3rem;
-
-            //         > div {
-            //             border-radius: 999rem;
-            //             height: 35%;
-            //         }
-
-            //         .title-placeholder {
-            //             width: 60px;
-            //         }
-
-            //         .artist-placeholder {
-            //             width: 100px;
-            //         }
-            //     }
-
-            //     .left-info-placeholder {
-            //         width: 3rem;
-            //         height: 100%;
-            //         display: flex;
-            //         flex-direction: column;
-            //         justify-content: center;
-            //         align-items: flex-end;
-            //         gap: 0.2rem;
-            //         margin-left: 0.5rem;
-            //         background: none;
-
-            //         > div {
-            //             height: 35%;
-            //             border-radius: 999rem;
-            //         }
-
-            //         > .duration-placeholder {
-            //             width: 3rem;
-            //         }
-
-            //         > .like-btn-placeholder {
-            //             width: 2rem;
-            //         }
-            //     }
-            // }
         }
 
         .playlist-wrapper {
@@ -204,8 +143,7 @@ $--bg-mellow-black: rgb(40, 40, 40);
 
             align-self: baseline;
         }
-        //TODO
-        .song-wrapper {
+         .song-wrapper {
             display: flex;
             flex-direction: column;
             height: auto;

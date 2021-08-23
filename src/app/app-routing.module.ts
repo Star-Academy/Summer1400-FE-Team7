@@ -4,7 +4,6 @@ import {AuthComponent} from './auth/auth/auth.component';
 import {DashboardComponent} from './dashboard/dashboard/dashboard.component';
 import {LandingComponent} from './landing/landing/landing.component';
 import {Landing2Component} from './landing2/landing2.component';
-import {Constants} from './utils/constants';
 
 const routes: Routes = [
     {path: '', component: LandingComponent},
@@ -12,8 +11,7 @@ const routes: Routes = [
     {path: 'auth', component: AuthComponent},
     {path: 'dashboard', component: DashboardComponent},
 ];
-//TODO page not found
-@NgModule({
+ @NgModule({
     imports: [RouterModule.forRoot(routes)],
     exports: [RouterModule],
 })

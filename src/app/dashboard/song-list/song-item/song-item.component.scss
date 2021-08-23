@@ -51,25 +51,20 @@ $--bg-option-hovered: rgba(255, 255, 255, 0.1);
         flex-direction: column;
         height: 80%;
         justify-content: space-evenly;
-        align-items: space-evenly;
     }
 
     & > .more-options {
-        height: 30%;
+        height: 100%;
         width: 0.5rem;
-
         position: absolute;
-        top: 50%;
-        transform: translateY(-50%);
-        left: 0.5rem;
-
-        background: url(../../../../assets/images/more.svg) no-repeat;
-        background-size: cover;
-        background-position: center;
+         left: 0.5rem;
         display: none;
 
         align-items: center;
         justify-content: flex-start;
+      img{
+        transform:scale(2);
+       }
     }
 
     .more-options {
@@ -211,95 +206,6 @@ p {
     display: block !important;
 }
 
-// .song-wrapper {
-//     background: red !important;
-//     display: flex;
-//     flex-direction: column;
-//     height: auto;
-
-//     > .song-cover {
-//         width: 98%;
-//         height: auto;
-//         overflow: unset;
-
-//         > img {
-//             object-fit: contain;
-//         }
-//     }
-
-//     > .song-info {
-//         justify-content: flex-start;
-//         width: 98%;
-//     }
-
-//     > .song-prop {
-//         margin-left: 0.5rem;
-//     }
-
-//     > .more-options {
-//         height: 5%;
-//         bottom: 10%;
-//         top: unset;
-//     }
-
-//     > .options {
-//         bottom: 13%;
-//         top: unset;
-//     }
-// }
-
-// .grid-view {
-//     background: blue;
-//     display: grid;
-//     grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-//     grid-column-gap: 1rem;
-//     grid-row-gap: 1rem;
-
-//     > div:nth-of-type(1) {
-//         grid-column: 1/-1;
-//         grid-row: 1 /1;
-
-//         align-self: baseline;
-//         background: blue;
-//     }
-//     //TODO
-//     .song-wrapper {
-//         background: red !important;
-//         display: flex;
-//         flex-direction: column;
-//         height: auto;
-
-//         > .song-cover {
-//             width: 98%;
-//             height: auto;
-//             overflow: unset;
-
-//             > img {
-//                 object-fit: contain;
-//             }
-//         }
-
-//         > .song-info {
-//             justify-content: flex-start;
-//             width: 98%;
-//         }
-
-//         > .song-prop {
-//             margin-left: 0.5rem;
-//         }
-
-//         > .more-options {
-//             height: 5%;
-//             bottom: 10%;
-//             top: unset;
-//         }
-
-//         > .options {
-//             bottom: 13%;
-//             top: unset;
-//         }
-//     }
-// }
 
 .song-wrapper-grid {
     display: flex;

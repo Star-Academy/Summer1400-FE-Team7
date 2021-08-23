@@ -6,8 +6,7 @@ import {RouterTestingModule} from '@angular/router/testing';
 import {PlayControllerService} from '../../services/play-controller.service';
 import {DebugElement} from '@angular/core';
 import {By} from '@angular/platform-browser';
-import {Subscription} from 'rxjs';
-import {Song} from '../../models/song';
+
 
 describe('PlayControllersComponent', () => {
     let component: PlayControllersComponent;

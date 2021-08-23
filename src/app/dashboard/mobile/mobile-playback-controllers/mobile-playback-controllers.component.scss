@@ -15,7 +15,7 @@ $--bg-mellow-black: rgb(40, 40, 40);
     bottom: 0;
     left: 0;
 
-    > .music-controled {
+    > .music-controlles {
         flex: 1;
         display: flex;
         flex-direction: row-reverse;
@@ -49,13 +49,7 @@ $--bg-mellow-black: rgb(40, 40, 40);
             // gap: 2rem;
 
             overflow: hidden;
-            -webkit-mask: linear-gradient(
-                to right,
-                transparent 0%,
-                rgb(0, 0, 0) 10px,
-                rgb(0, 0, 0) calc(100% - 10px),
-                transparent 100%
-            );
+
 
             > p {
                 font-size: 0.7rem;

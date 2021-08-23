@@ -1,8 +1,6 @@
-import {Component, ElementRef, OnInit, Output} from '@angular/core';
+import {Component, ElementRef, OnInit} from '@angular/core';
 import { SongService } from 'src/app/services/song.service';
 
-class EventEmitter<T> {
-}
 
 @Component({
     selector: 'app-placeholder',
@@ -16,7 +14,6 @@ export class PlaceholderComponent implements OnInit {
     placeholdersCount: number = 13;
     timeoutID!: any;
     currentValue: number = -45;
-    isPlaceHolder: boolean = true;
 
     ngOnInit(): void {
         this.timeoutID = setInterval(() => {

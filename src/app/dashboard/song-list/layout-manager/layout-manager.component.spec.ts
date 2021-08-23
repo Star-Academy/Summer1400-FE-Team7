@@ -27,8 +27,8 @@ describe('LayoutManagerComponent', () => {
 
     it('should emit layoutChangeHandler ', () => {
         fixture.detectChanges();
-        spyOn(component.chosedLayout, 'emit');
+        spyOn(component.chooseLayout, 'emit');
         component.layoutChangeHandler({target: 123});
-        expect(component.chosedLayout.emit).toHaveBeenCalled();
+        expect(component.chooseLayout.emit).toHaveBeenCalled();
     });
 });
