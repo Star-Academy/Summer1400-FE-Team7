@@ -19,7 +19,7 @@ export class MobilePlaybackControllersComponent implements OnInit, OnDestroy {
   };
 
   @Output() lyricToggle = new EventEmitter<void>();
-  @Output() songPreviewToggle = new EventEmitter();
+  @Output() songPreviewToggle = new EventEmitter<void>();
   status!: string;
   statusSub!: Subscription;
   playingSongSub!: Subscription;
@@ -29,7 +29,7 @@ export class MobilePlaybackControllersComponent implements OnInit, OnDestroy {
     this.songPreviewToggle.emit();
   }
 
-  lyricToggler() {
+  lyricToggles() {
     this.lyricToggle.emit();
   }
 
@@ -58,8 +58,7 @@ export class MobilePlaybackControllersComponent implements OnInit, OnDestroy {
         this.playController.resume();
         break;
       default:
-        //TODO
-        this.playController.pause();
+         this.playController.pause();
         break;
     }
   }
