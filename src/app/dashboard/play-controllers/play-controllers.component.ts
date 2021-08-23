@@ -42,13 +42,9 @@ export class PlayControllersComponent implements OnInit, OnDestroy {
   seekBarValueSub!: Subscription;
   seekBarMaxvalue: number = 0;
   seekBarMaxvalueSub!: Subscription;
-
   selectedSong: Song = new Song();
-
-
   selectedSongSub!: Subscription;
   playingSong: Song = new Song();
-
   playingSongSub!: Subscription;
 
   isMute: boolean = false;
@@ -99,7 +95,7 @@ export class PlayControllersComponent implements OnInit, OnDestroy {
   onPlay() {
     switch (this.status) {
       case this.playController.statusTypes.STOPPED:
-        this.playController.play()
+        this.playController.play();
         break;
       case this.playController.statusTypes.PLAYING:
         this.playController.pause();
@@ -108,7 +104,6 @@ export class PlayControllersComponent implements OnInit, OnDestroy {
         this.playController.resume();
         break;
       default:
-        //TODO
         this.playController.pause();
         break;
     }
@@ -130,7 +125,6 @@ export class PlayControllersComponent implements OnInit, OnDestroy {
 
   onRepeatSong() {
     this.playController.onRepeatSong();
-
   }
 
   onChangeMusicBarValue(seekBar: HTMLInputElement) {
@@ -170,8 +164,6 @@ export class PlayControllersComponent implements OnInit, OnDestroy {
     this.seekBarValueSub.unsubscribe();
     this.seekBarMaxvalueSub.unsubscribe();
 
-    //TODO fix it
-    // localStorage.setItem('volume', String(this.volumeBarValue));
   }
 
 
