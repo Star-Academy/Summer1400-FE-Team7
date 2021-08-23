@@ -5,11 +5,14 @@ import {HttpClientTestingModule} from '@angular/common/http/testing';
 import {RouterTestingModule} from '@angular/router/testing';
 import {DebugElement} from '@angular/core';
 import {By} from '@angular/platform-browser';
+import {Song} from 'src/app/models/song';
 
 describe('SongListComponent', () => {
     let component: SongListComponent;
     let fixture: ComponentFixture<SongListComponent>;
     let debug: any;
+
+    let newPlaylist: Song[] = [];
 
     beforeEach(async () => {
         await TestBed.configureTestingModule({
@@ -78,10 +81,17 @@ describe('SongListComponent', () => {
         expect(debug).not.toBeNull();
     });
 
-    // it('should render app-song-itme count correctly', () => {
-    //     let count = 40;
-    //     fixture.detectChanges();
-    //     debug = fixture.debugElement.queryAll(By.css('.song-test'));
-    //     expect(debug.length).toBe(count);
-    // });
+    it('should render app-song-itme count correctly', () => {
+        let count = 40;
+        for (let index = 0; index < count; index++) {
+            newPlaylist = [
+                ...newPlaylist,
+                new Song(123, 'test', 'parsa', 123, 'asd', false, 'qweqweasdasd', 'qwe/qwe', false),
+            ];
+        }
+        component.currentPlaylist = newPlaylist;
+        fixture.detectChanges();
+        debug = fixture.debugElement.queryAll(By.css('.song-test'));
+        expect(debug.length).toBe(count);
+    });
 });
