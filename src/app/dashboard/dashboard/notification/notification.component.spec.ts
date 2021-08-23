@@ -3,6 +3,7 @@ import {ComponentFixture, inject, TestBed} from '@angular/core/testing';
 import { NotificationComponent } from './notification.component';
 
 import {NotificationService} from "../../../services/notification.service";
+import {PlayControllerService} from "../../../services/play-controller.service";
 
 describe('NotificationComponent', () => {
   let component: NotificationComponent;
@@ -30,6 +31,13 @@ describe('NotificationComponent', () => {
       expect(injectService).toBe(notificationService);
     })
   );
+  it('onClose() should call  notificationService.undoNotification()  ', () => {
+    let playControllerService = fixture.debugElement.injector.get(NotificationService);
+    fixture.detectChanges();
+    spyOn(notificationService, 'undoNotification');
+    component.onClose();
+    expect(notificationService.undoNotification).toHaveBeenCalled();
+  });
 
 
   it('should create', () => {

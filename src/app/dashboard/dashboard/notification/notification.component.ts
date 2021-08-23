@@ -11,12 +11,12 @@ export class NotificationComponent implements OnInit {
   @Input() isError!: boolean;
   @Input() show!: boolean;
 
-  constructor(private uiManager:NotificationService) { }
+  constructor(private notificationService:NotificationService) { }
 
   ngOnInit(): void {
   }
 
   onClose() {
-    this.uiManager.undoNotification()
+    this.notificationService.undoNotification()
   }
 }
