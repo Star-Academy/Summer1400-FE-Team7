@@ -1,5 +1,5 @@
 import {Component, OnInit, Input, HostListener, OnDestroy} from '@angular/core';
-import {trigger, state, style, animate, transition} from '@angular/animations';
+import {trigger, style, animate, transition} from '@angular/animations';
 
 import {Song} from 'src/app/models/song';
 import {SongService} from 'src/app/services/song.service';

@@ -10,7 +10,7 @@ import {SongService} from './song.service';
 
 describe('SongService', () => {
     let songService: SongService;
-    let song: Song = new Song(1, 'name', 'artust', 123, 'test', true, 'lyric', 'asd/asd', true);
+    let song: Song = new Song(1, 'name', 'artist', 123, 'test', true, 'lyric', 'asd/asd', true);
     let playlist: Playlist = new Playlist('asd', 123, [song]);
 
     beforeEach(() => {

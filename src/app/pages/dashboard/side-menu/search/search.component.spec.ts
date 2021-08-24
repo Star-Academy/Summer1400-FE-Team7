@@ -19,7 +19,7 @@ describe('SearchComponent', () => {
             .then(() => {
                 fixture = TestBed.createComponent(SearchComponent);
                 component = fixture.componentInstance;
-                songService = TestBed.get(SongService);
+                songService = TestBed.inject(SongService);
             });
         fixture.detectChanges();
     });

@@ -20,7 +20,7 @@ describe('PlaceholderComponent', () => {
         })
             .compileComponents()
             .then(() => {
-                songService = TestBed.get(SongService);
+                songService = TestBed.inject(SongService);
             });
     });
 

@@ -26,8 +26,8 @@ describe('mobile-bottom-navigationComponent', () => {
         fixture = TestBed.createComponent(MobileBottomNavigationComponent);
         component = fixture.componentInstance;
         fixture.detectChanges();
-        songService = TestBed.get(SongService);
-        playControllerService = TestBed.get(PlayControllerService);
+        songService = TestBed.inject(SongService);
+        playControllerService = TestBed.inject(PlayControllerService);
     });
 
     it('SongService should be injected with same instance', inject([SongService], (injectService: SongService) => {

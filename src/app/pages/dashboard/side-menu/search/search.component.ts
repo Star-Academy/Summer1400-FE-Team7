@@ -4,7 +4,6 @@ import {Subscription} from 'rxjs';
 import {debounceTime} from 'rxjs/operators';
 import {SongService} from 'src/app/services/song.service';
 import {Playlist} from '../../../../models/playlist';
-import {Constants} from '../../../../utils/constants';
 
 @Component({
     selector: 'app-search',
@@ -12,7 +11,6 @@ import {Constants} from '../../../../utils/constants';
     styleUrls: ['./search.component.scss'],
 })
 export class SearchComponent implements OnInit {
-    searchPlaylist!: Playlist;
 
     form: FormGroup = new FormGroup({
         searchText: new FormControl(),

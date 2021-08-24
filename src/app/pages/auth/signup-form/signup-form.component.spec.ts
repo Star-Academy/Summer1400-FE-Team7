@@ -4,9 +4,7 @@ import {ComponentFixture, TestBed} from '@angular/core/testing';
 import {FormsModule} from '@angular/forms';
 import {BrowserModule, By} from '@angular/platform-browser';
 import {RouterTestingModule} from '@angular/router/testing';
-
 import {SignupFormComponent} from './signup-form.component';
-import {LoginFormComponent} from '../login-form/login-form.component';
 
 describe('SignupFormComponent', () => {
     let component: SignupFormComponent;
@@ -33,8 +31,8 @@ describe('SignupFormComponent', () => {
     const MOCK_USER_VALID = [
         {
             email: 'Parsa@gmail.com',
-            password: 'Parsa123',
-            confirmPassword: 'Parsa123',
+            password: 'abc123',
+            confirmPassword: 'abc123',
         },
         {
             email: 'Parsa@gmail',
@@ -51,17 +49,17 @@ describe('SignupFormComponent', () => {
     const MOCK_USER_INVALID = [
         {
             email: 'ParsA',
-            password: 'Parsa123',
-            confirmPassword: 'Parsa123',
+            password: 'abc123',
+            confirmPassword: 'abc123',
         },
         {
             email: 'Parsa@gmail',
             password: '',
-            confirmPassword: 'Parsa123',
+            confirmPassword: 'abc123',
         },
         {
             email: 'pa ar@asd',
-            password: 'Parsa123',
+            password: 'abc123',
             confirmPassword: '',
         },
         {
@@ -71,13 +69,13 @@ describe('SignupFormComponent', () => {
         },
         {
             email: 'paar.gmail.com',
-            password: 'Parsa123',
-            confirmPassword: 'parsa123',
+            password: 'abc123',
+            confirmPassword: 'abc123',
         },
         {
             email: 'paar$gmail.com',
-            password: 'Parsa123',
-            confirmPassword: 'Parsa123',
+            password: 'abc123',
+            confirmPassword: 'abc123',
         },
     ];
 

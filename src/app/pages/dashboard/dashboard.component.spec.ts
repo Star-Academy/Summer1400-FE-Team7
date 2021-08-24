@@ -24,8 +24,8 @@ describe('DashboardComponent', () => {
             .then(() => {
                 fixture = TestBed.createComponent(DashboardComponent);
                 component = fixture.componentInstance;
-                songService = TestBed.get(SongService);
-                notificationService = TestBed.get(NotificationService);
+                songService = TestBed.inject(SongService);
+                notificationService = TestBed.inject(NotificationService);
             });
         fixture.detectChanges();
     });
@@ -41,7 +41,7 @@ describe('DashboardComponent', () => {
         }
     ));
 
-    it('playingSongSub should not be null after ngOninit', () => {
+    it('playingSongSub should not be null after ngOnInit', () => {
         let playingSongSub = component.playingSongSub;
         component.ngOnInit();
         expect(playingSongSub).not.toBeNull();

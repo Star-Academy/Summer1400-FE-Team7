@@ -23,8 +23,7 @@ class TestShowPasswordEffectComponent {}
 describe('ShowPasswordDirective', () => {
     let component: TestShowPasswordEffectComponent;
     let fixture: ComponentFixture<TestShowPasswordEffectComponent>;
-    let debug: DebugElement;
-    let showPassToggler: DebugElement;
+    let showPassToggle: DebugElement;
     let input: DebugElement;
 
     beforeEach(() => {
@@ -34,7 +33,7 @@ describe('ShowPasswordDirective', () => {
         fixture = TestBed.createComponent(TestShowPasswordEffectComponent);
         component = fixture.componentInstance;
         input = fixture.debugElement.query(By.css('input'));
-        showPassToggler = fixture.debugElement.query(By.css('img'));
+        showPassToggle = fixture.debugElement.query(By.css('img'));
     });
 
     it('should create an instance', () => {
@@ -45,11 +44,11 @@ describe('ShowPasswordDirective', () => {
     });
 
     it('should toggle showPassword', () => {
-        showPassToggler.triggerEventHandler('click', null);
+        showPassToggle.triggerEventHandler('click', null);
         fixture.detectChanges();
         expect(input.nativeNode.type).toBe('text');
 
-        showPassToggler.triggerEventHandler('click', null);
+        showPassToggle.triggerEventHandler('click', null);
         fixture.detectChanges();
         expect(input.nativeNode.type).toBe('password');
     });

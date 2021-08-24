@@ -1,8 +1,7 @@
 import {ComponentFixture, TestBed} from '@angular/core/testing';
 
 import {MenuItemComponent} from './menu-item.component';
-import {RouterTestingModule} from '@angular/router/testing';
-import {HttpClientTestingModule} from '@angular/common/http/testing';
+ import {HttpClientTestingModule} from '@angular/common/http/testing';
 import {PlaylistItem} from 'src/app/models/playlistItem';
 import {By} from '@angular/platform-browser';
 import {DebugElement} from '@angular/core';
@@ -13,16 +12,13 @@ describe('MenuItemComponent add switch', () => {
     let fixture: ComponentFixture<MenuItemComponent>;
     let parentDiv: DebugElement;
 
-    let playlistItem = new PlaylistItem('nametest', -3, '../../../assets/images/playlist-add.svg', 'add', '', false);
+    let playlistItem = new PlaylistItem('name', -3, '../../../assets/images/playlist-add.svg', 'add', '', false);
 
     beforeEach(async () => {
         await TestBed.configureTestingModule({
             declarations: [MenuItemComponent],
-            imports: [HttpClientTestingModule, RouterTestingModule],
+            imports: [HttpClientTestingModule],
         }).compileComponents();
-    });
-
-    beforeEach(() => {
         fixture = TestBed.createComponent(MenuItemComponent);
         component = fixture.componentInstance;
         component.playlistItem = playlistItem;
@@ -31,12 +27,14 @@ describe('MenuItemComponent add switch', () => {
         fixture.detectChanges();
     });
 
+
+
     it('should create', () => {
         expect(component).toBeTruthy();
     });
 
     it('should be add type', () => {
-        playlistItem = new PlaylistItem('nametest', -3, '../../../assets/images/playlist-add.svg', 'add', '', false);
+        playlistItem = new PlaylistItem('name', -3, '../../../assets/images/playlist-add.svg', 'add', '', false);
         component.playlistItem = playlistItem;
         fixture.detectChanges();
         expect(parentDiv.children[0].nativeNode.classList).toContain('add-class');
@@ -57,7 +55,7 @@ describe('MenuItemComponent add switch', () => {
     });
 
     it('should call openNewPlaylistPanel', async () => {
-        playlistItem = new PlaylistItem('nametest', -3, '../../../assets/images/playlist-add.svg', 'add', '', false);
+        playlistItem = new PlaylistItem('name', -3, '../../../assets/images/playlist-add.svg', 'add', '', false);
         let fixture = TestBed.createComponent(MenuItemComponent);
         let app = fixture.debugElement.componentInstance;
         let compiled = fixture.debugElement.nativeElement;
@@ -74,21 +72,17 @@ describe('MenuItemComponent remove switch', () => {
     let fixture: ComponentFixture<MenuItemComponent>;
     let parentDiv: DebugElement;
 
-    let playlistItem = new PlaylistItem('nametest', -3, '../../../assets/images/playlist-add.svg', 'remove', '', false);
+    let playlistItem = new PlaylistItem('name', -3, '../../../assets/images/playlist-add.svg', 'remove', '', false);
 
     beforeEach(async () => {
         await TestBed.configureTestingModule({
             declarations: [MenuItemComponent],
-            imports: [HttpClientTestingModule, RouterTestingModule],
+            imports: [HttpClientTestingModule],
         }).compileComponents();
-    });
-
-    beforeEach(() => {
         fixture = TestBed.createComponent(MenuItemComponent);
         component = fixture.componentInstance;
         component.playlistItem = playlistItem;
         parentDiv = fixture.debugElement.query(By.css('div'));
-
         fixture.detectChanges();
     });
 
@@ -97,16 +91,15 @@ describe('MenuItemComponent remove switch', () => {
     });
 
     it('should be remove type', () => {
-        playlistItem = new PlaylistItem('nametest', -3, '../../../assets/images/playlist-add.svg', 'remove', '', false);
+        playlistItem = new PlaylistItem('name', -3, '../../../assets/images/playlist-add.svg', 'remove', '', false);
         component.playlistItem = playlistItem;
         fixture.detectChanges();
         expect(parentDiv.children[0].nativeNode.classList).toContain('remove-class');
     });
 
     it('should call onRemove', () => {
-        playlistItem = new PlaylistItem('nametest', -3, '../../../assets/images/playlist-add.svg', 'remove', '', false);
-        let fixture = TestBed.createComponent(MenuItemComponent);
-        let app = fixture.debugElement.componentInstance;
+        playlistItem = new PlaylistItem('name', -3, '../../../assets/images/playlist-add.svg', 'remove', '', false);
+         let app = fixture.debugElement.componentInstance;
         let compiled = fixture.debugElement.nativeElement;
         app.playlistItem = playlistItem;
         fixture.detectChanges();
@@ -122,7 +115,7 @@ describe('MenuItemComponent default switch', () => {
     let parentDiv: DebugElement;
 
     let playlistItem = new PlaylistItem(
-        'nametest',
+        'name',
         -3,
         '../../../assets/images/playlist-add.svg',
         'default',
@@ -133,7 +126,7 @@ describe('MenuItemComponent default switch', () => {
     beforeEach(async () => {
         await TestBed.configureTestingModule({
             declarations: [MenuItemComponent],
-            imports: [HttpClientTestingModule, RouterTestingModule],
+            imports: [HttpClientTestingModule],
         }).compileComponents();
     });
 
@@ -152,7 +145,7 @@ describe('MenuItemComponent default switch', () => {
 
     it('should be defaultType', () => {
         playlistItem = new PlaylistItem(
-            'nametest',
+            'name',
             -3,
             '../../../assets/images/playlist-add.svg',
             'defaultShit',

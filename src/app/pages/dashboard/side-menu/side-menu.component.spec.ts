@@ -40,7 +40,7 @@ describe('SideMenuComponent', () => {
         expect(debug.nativeNode.classList).toContain('side-menu-closed');
     });
 
-    it('should show email correclty', () => {
+    it('should show email correctly', () => {
         const email = 'parsa.arvaneh@gmail.com';
         component.email = email;
 

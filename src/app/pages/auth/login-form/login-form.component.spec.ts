@@ -30,7 +30,7 @@ describe('LoginFormComponent', () => {
     const MOCK_USER_VALID = [
         {
             email: 'Parsa@gmail.com',
-            password: 'Parsa123',
+            password: 'abc123',
         },
         {
             email: 'Parsa@gmail',
@@ -45,7 +45,7 @@ describe('LoginFormComponent', () => {
     const MOCK_USER_INVALID = [
         {
             email: 'ParsA',
-            password: 'Parsa123',
+            password: 'abc123',
         },
         {
             email: 'Parsa@gmail',

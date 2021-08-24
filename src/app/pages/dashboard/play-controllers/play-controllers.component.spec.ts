@@ -169,7 +169,7 @@ describe('PlayControllersComponent', () => {
         expect(component).toBeTruthy();
     });
 
-    it('should cahnge value', () => {
+    it('should change value', () => {
         let name = 'new name';
         let artist = 'new artist';
         let cover = 'new cover';

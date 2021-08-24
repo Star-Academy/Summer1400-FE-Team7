@@ -1,4 +1,4 @@
-import {Component, OnInit, Input, HostListener, Output, EventEmitter} from '@angular/core';
+import {Component, OnInit, Input, Output, EventEmitter} from '@angular/core';
 import {PlaylistItem} from 'src/app/models/playlistItem';
 import {SongService} from '../../../../services/song.service';
 

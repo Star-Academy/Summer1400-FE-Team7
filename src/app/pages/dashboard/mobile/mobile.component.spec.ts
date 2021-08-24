@@ -44,12 +44,12 @@ describe('MobileComponent', () => {
     it('should show app-play-controllers-component', () => {
         component.isSongPreviewPanelOpen = false;
         fixture.detectChanges();
-        let debug: DebugElement = fixture.debugElement.query(By.css('#app-play-conrtollers'));
+        let debug: DebugElement = fixture.debugElement.query(By.css('#app-play-controllers'));
         expect(debug).toBeNull();
 
         component.isSongPreviewPanelOpen = true;
         fixture.detectChanges();
-        debug = fixture.debugElement.query(By.css('#app-play-conrtollers'));
+        debug = fixture.debugElement.query(By.css('#app-play-controllers'));
         expect(debug).not.toBeNull();
     });
 

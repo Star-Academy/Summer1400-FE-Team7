@@ -40,10 +40,14 @@ export class SignupFormComponent implements OnInit, OnDestroy {
         });
         this.completeSubscription = this.authService.complete.subscribe((complete: boolean) => {
             if (complete) {
-                this.signupForm.reset();
-                router.navigate(['/dashboard'], {queryParams: {playlist: Constants.ALL_SONGS}}).then();
+                this.completeRegister();
             }
         });
+    }
+
+    private completeRegister() {
+        this.signupForm.reset();
+        this.router.navigate(['/dashboard'], {queryParams: {playlist: Constants.ALL_SONGS}}).then();
     }
 
     user = {

@@ -5,17 +5,17 @@ import {Component, DebugElement} from '@angular/core';
 import {By} from '@angular/platform-browser';
 
 @Component({
-    template: `<input type="email" id="signup-email-input" required appFloatingLabel email name="email" />
-        <label for="signup-email-input"> ایمیل </label>`,
+    template: `<input type="email" id="signup-email-input" required appFloatingLabel  name="email" />
+    <label for="signup-email-input"> ایمیل </label>`,
 })
-class TestFloatingEffectComponent {}
+class TestFloatingEffectComponent {
+}
 
 const _FULL_LABEL = 'full-label';
 
 describe('LikeHoverDirective', () => {
     let component: TestFloatingEffectComponent;
     let fixture: ComponentFixture<TestFloatingEffectComponent>;
-    let debug: DebugElement;
     let input: DebugElement;
     let label: DebugElement;
 
