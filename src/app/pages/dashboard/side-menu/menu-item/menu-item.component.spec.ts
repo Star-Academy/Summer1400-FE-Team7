@@ -55,6 +55,18 @@ describe('MenuItemComponent add switch', () => {
         component.onRemove();
         expect(songService.removePlaylist).toHaveBeenCalled();
     });
+
+    it('should call openNewPlaylistPanel', async () => {
+        playlistItem = new PlaylistItem('nametest', -3, '../../../assets/images/playlist-add.svg', 'add', '', false);
+        let fixture = TestBed.createComponent(MenuItemComponent);
+        let app = fixture.debugElement.componentInstance;
+        let compiled = fixture.debugElement.nativeElement;
+        app.playlistItem = playlistItem;
+        fixture.detectChanges();
+        spyOn(app, 'openNewPlaylistPanel');
+        compiled.querySelector('.add-btn').click();
+        expect(app.openNewPlaylistPanel).toHaveBeenCalled();
+    });
 });
 
 describe('MenuItemComponent remove switch', () => {
@@ -89,6 +101,18 @@ describe('MenuItemComponent remove switch', () => {
         component.playlistItem = playlistItem;
         fixture.detectChanges();
         expect(parentDiv.children[0].nativeNode.classList).toContain('remove-class');
+    });
+
+    it('should call onRemove', async () => {
+        playlistItem = new PlaylistItem('nametest', -3, '../../../assets/images/playlist-add.svg', 'remove', '', false);
+        let fixture = TestBed.createComponent(MenuItemComponent);
+        let app = fixture.debugElement.componentInstance;
+        let compiled = fixture.debugElement.nativeElement;
+        app.playlistItem = playlistItem;
+        fixture.detectChanges();
+        spyOn(app, 'onRemove');
+        compiled.querySelector('.delete-btn').click();
+        expect(app.onRemove).toHaveBeenCalled();
     });
 });
 

@@ -1,4 +1,4 @@
-<div  class="song-list" [ngClass]="layoutView">
+<div class="song-list" [ngClass]="layoutView">
     <div>
         <h2 class="song-list-header">{{ currentPlaylistName }}</h2>
         <app-layout-manager (chooseLayout)="changeLayoutViewHandler($event)"></app-layout-manager>
@@ -16,5 +16,5 @@
         ></app-song-item>
     </ng-template>
 
-    <h1 *ngIf="isListEmpty">موردی وجود ندارد</h1>
+    <h1 *ngIf="isListEmpty" id="nth-to-show">موردی وجود ندارد</h1>
 </div>

@@ -1,8 +1,9 @@
 import {ComponentFixture, TestBed} from '@angular/core/testing';
 
 import {SongItemComponent} from './song-item.component';
-import {HttpClientTestingModule} from "@angular/common/http/testing";
-import {RouterTestingModule} from "@angular/router/testing";
+import {HttpClientTestingModule} from '@angular/common/http/testing';
+import {RouterTestingModule} from '@angular/router/testing';
+import {HmsTimePipe} from 'src/app/pipes/hms-time.pipe';
 
 describe('SongItemComponent', () => {
     let component: SongItemComponent;
@@ -10,9 +11,8 @@ describe('SongItemComponent', () => {
 
     beforeEach(async () => {
         await TestBed.configureTestingModule({
-            declarations: [SongItemComponent],
-          imports: [  HttpClientTestingModule, RouterTestingModule],
-
+            declarations: [SongItemComponent, HmsTimePipe],
+            imports: [HttpClientTestingModule, RouterTestingModule],
         }).compileComponents();
     });
 

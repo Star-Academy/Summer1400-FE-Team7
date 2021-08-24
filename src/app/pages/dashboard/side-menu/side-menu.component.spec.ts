@@ -100,4 +100,23 @@ describe('SideMenuComponent', () => {
         component.ngOnInit();
         expect(status).not.toBeNull();
     });
+
+    it('should call onLogOutClick', async () => {
+        let fixture = TestBed.createComponent(SideMenuComponent);
+        let app = fixture.debugElement.componentInstance;
+        fixture.detectChanges();
+        spyOn(app, 'onLogOutClick');
+        fixture.debugElement.query(By.css('.profile-wrapper')).triggerEventHandler('click', {});
+        expect(app.onLogOutClick).toHaveBeenCalled();
+    });
+
+    it('should call closePanel', async () => {
+        let fixture = TestBed.createComponent(SideMenuComponent);
+        let app = fixture.debugElement.componentInstance;
+        app.isPanelOpen = true;
+        fixture.detectChanges();
+        spyOn(app, 'closePanel');
+        fixture.debugElement.query(By.css('.dark-glass')).triggerEventHandler('click', {});
+        expect(app.closePanel).toHaveBeenCalled();
+    });
 });

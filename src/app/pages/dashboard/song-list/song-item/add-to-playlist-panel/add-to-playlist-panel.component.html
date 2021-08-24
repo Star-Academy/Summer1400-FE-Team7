@@ -1,6 +1,8 @@
 <div class="header">
     <p>افزودن به...</p>
-    <button (click)="closeNewPlaylistPanel()"><img src="../../../../../../assets/images/controls/cancel.svg" alt="" /></button>
+    <button id="close-btn" (click)="closeNewPlaylistPanel()">
+        <img src="../../../../../../assets/images/controls/cancel.svg" alt="" />
+    </button>
 </div>
 <hr />
 
@@ -8,7 +10,12 @@
     <div class="playlists-container" *ngFor="let playlist of playlists; let i = index">
         <div class="checkbox-container">
             <label class="checkbox-label">
-                <input type="checkbox" [checked]="playlist.isChecked" (change)="onCheckChanged(playlist,$event)"  />
+                <input
+                    type="checkbox"
+                    id="checkbox-type"
+                    [checked]="playlist.isChecked"
+                    (change)="onCheckChanged(playlist, $event)"
+                />
                 <span class="checkbox-custom rectangular"></span>
                 <p>{{ playlist.name }}</p>
             </label>
@@ -39,10 +46,11 @@
                 [disabled]="playlistName === ''"
                 [attr.data-error]="error !== '' ? error : ''"
                 [ngClass]="error !== '' && !loading ? 'error' : ''"
+                id="create-btn"
             >
                 ساخت پلی‌لیست
             </button>
-            <button (click)="onCancelClick()">انصراف</button>
+            <button id="exit-btn" (click)="onCancelClick()">انصراف</button>
         </div>
     </div>
 </div>

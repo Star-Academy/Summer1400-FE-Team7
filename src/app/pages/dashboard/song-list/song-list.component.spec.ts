@@ -3,7 +3,7 @@ import {ComponentFixture, TestBed} from '@angular/core/testing';
 import {SongListComponent} from './song-list.component';
 import {HttpClientTestingModule} from '@angular/common/http/testing';
 import {RouterTestingModule} from '@angular/router/testing';
- import {By} from '@angular/platform-browser';
+import {By} from '@angular/platform-browser';
 
 describe('SongListComponent', () => {
     let component: SongListComponent;
@@ -62,7 +62,7 @@ describe('SongListComponent', () => {
         fixture.detectChanges();
         debug = fixture.debugElement.query(By.css('.song-list-header'));
         expect(debug.nativeNode.innerText).toBe(title);
-     });
+    });
 
     it('should render app-placeholder component', () => {
         component.showPlaceholder = false;
@@ -76,5 +76,13 @@ describe('SongListComponent', () => {
         expect(debug).not.toBeNull();
     });
 
+    it('should render list empty title', () => {
+        component.isListEmpty = true;
+        fixture.detectChanges();
+        expect(fixture.debugElement.query(By.css('#nth-to-show'))).not.toBeNull();
 
+        component.isListEmpty = false;
+        fixture.detectChanges();
+        expect(fixture.debugElement.query(By.css('#nth-to-show'))).toBeNull();
+    });
 });

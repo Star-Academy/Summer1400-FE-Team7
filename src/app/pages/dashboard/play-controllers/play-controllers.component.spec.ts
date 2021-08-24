@@ -7,7 +7,6 @@ import {PlayControllerService} from '../../../services/play-controller.service';
 import {DebugElement} from '@angular/core';
 import {By} from '@angular/platform-browser';
 
-
 describe('PlayControllersComponent', () => {
     let component: PlayControllersComponent;
     let fixture: ComponentFixture<PlayControllersComponent>;
@@ -168,5 +167,215 @@ describe('PlayControllersComponent', () => {
 
     it('should create', () => {
         expect(component).toBeTruthy();
+    });
+
+    it('should cahnge value', () => {
+        let name = 'new name';
+        let artist = 'new artist';
+        let cover = 'new cover';
+
+        component.playingSong.name = name;
+        component.playingSong.artist = artist;
+        component.playingSong.cover = cover;
+
+        component.isMobile = false;
+        fixture.detectChanges();
+
+        expect(fixture.debugElement.query(By.css('#music-title')).nativeNode.innerText).toEqual(name);
+        expect(fixture.debugElement.query(By.css('#music-artist')).nativeNode.innerText).toEqual(artist);
+
+        component.isMobile = true;
+        fixture.detectChanges();
+
+        expect(fixture.debugElement.query(By.css('.mobile-music-name')).nativeNode.innerText).toEqual(name);
+        expect(fixture.debugElement.query(By.css('.mobile-artist-name')).nativeNode.innerText).toEqual(artist);
+    });
+
+    it('should call onShuffle', async () => {
+        let fixture = TestBed.createComponent(PlayControllersComponent);
+        let app = fixture.debugElement.componentInstance;
+        let compiled = fixture.debugElement.nativeElement;
+        fixture.detectChanges();
+        spyOn(app, 'onShuffle');
+        compiled.querySelector('.shuffle-btn').click();
+        expect(app.onShuffle).toHaveBeenCalled();
+    });
+
+    it('should call onNextSong', async () => {
+        let fixture = TestBed.createComponent(PlayControllersComponent);
+        let app = fixture.debugElement.componentInstance;
+        let compiled = fixture.debugElement.nativeElement;
+        fixture.detectChanges();
+        spyOn(app, 'onNextSong');
+        compiled.querySelector('.next-btn').click();
+        expect(app.onNextSong).toHaveBeenCalled();
+    });
+
+    it('should call onPlay', async () => {
+        let fixture = TestBed.createComponent(PlayControllersComponent);
+        let app = fixture.debugElement.componentInstance;
+        let compiled = fixture.debugElement.nativeElement;
+        fixture.detectChanges();
+        spyOn(app, 'onPlay');
+        compiled.querySelector('.play-music-btn').click();
+        expect(app.onPlay).toHaveBeenCalled();
+    });
+
+    it('should call onPreviousSong', async () => {
+        let fixture = TestBed.createComponent(PlayControllersComponent);
+        let app = fixture.debugElement.componentInstance;
+        let compiled = fixture.debugElement.nativeElement;
+        fixture.detectChanges();
+        spyOn(app, 'onPreviousSong');
+        compiled.querySelector('.previous-btn').click();
+        expect(app.onPreviousSong).toHaveBeenCalled();
+    });
+
+    it('should call onRepeatSong', async () => {
+        let fixture = TestBed.createComponent(PlayControllersComponent);
+        let app = fixture.debugElement.componentInstance;
+        let compiled = fixture.debugElement.nativeElement;
+        fixture.detectChanges();
+        spyOn(app, 'onRepeatSong');
+        compiled.querySelector('.repeat-btn').click();
+        expect(app.onRepeatSong).toHaveBeenCalled();
+    });
+
+    it('should call onChangeMusicBarValue', async () => {
+        let fixture = TestBed.createComponent(PlayControllersComponent);
+        let app = fixture.debugElement.componentInstance;
+        let compiled = fixture.debugElement.nativeElement;
+        fixture.detectChanges();
+        spyOn(app, 'onChangeMusicBarValue');
+        fixture.debugElement.query(By.css('.seek-slider')).triggerEventHandler('change', {});
+        expect(app.onChangeMusicBarValue).toHaveBeenCalled();
+    });
+
+    it('should call onChangeMusicBarValue', async () => {
+        let fixture = TestBed.createComponent(PlayControllersComponent);
+        let app = fixture.debugElement.componentInstance;
+        let compiled = fixture.debugElement.nativeElement;
+        fixture.detectChanges();
+        spyOn(app, 'onChangeMusicBarValue');
+        fixture.debugElement.query(By.css('.seek-slider')).triggerEventHandler('input', {});
+        expect(app.onChangeMusicBarValue).toHaveBeenCalled();
+    });
+
+    it('should call onMuteClick', async () => {
+        let fixture = TestBed.createComponent(PlayControllersComponent);
+        let app = fixture.debugElement.componentInstance;
+        let compiled = fixture.debugElement.nativeElement;
+        fixture.detectChanges();
+        spyOn(app, 'onMuteClick');
+        compiled.querySelector('#volume-btn').click();
+        expect(app.onMuteClick).toHaveBeenCalled();
+    });
+
+    it('should call updateVolumeValue', async () => {
+        let fixture = TestBed.createComponent(PlayControllersComponent);
+        let app = fixture.debugElement.componentInstance;
+        let compiled = fixture.debugElement.nativeElement;
+        fixture.detectChanges();
+        spyOn(app, 'updateVolumeValue');
+        fixture.debugElement.query(By.css('#volume-slider')).triggerEventHandler('change', {});
+        expect(app.updateVolumeValue).toHaveBeenCalled();
+    });
+
+    it('should call updateVolumeValue', async () => {
+        let fixture = TestBed.createComponent(PlayControllersComponent);
+        let app = fixture.debugElement.componentInstance;
+        let compiled = fixture.debugElement.nativeElement;
+        fixture.detectChanges();
+        spyOn(app, 'updateVolumeValue');
+        fixture.debugElement.query(By.css('#volume-slider')).triggerEventHandler('input', {});
+        expect(app.updateVolumeValue).toHaveBeenCalled();
+    });
+
+    it('should call onSongPreviewToggle', async () => {
+        let fixture = TestBed.createComponent(PlayControllersComponent);
+        let app = fixture.debugElement.componentInstance;
+        let compiled = fixture.debugElement.nativeElement;
+        app.isMobile = true;
+        fixture.detectChanges();
+        spyOn(app, 'onSongPreviewToggle');
+        compiled.querySelector('.mobile-song-preview-return').click();
+        expect(app.onSongPreviewToggle).toHaveBeenCalled();
+    });
+
+    it('should call onChangeMusicBarValue', async () => {
+        let fixture = TestBed.createComponent(PlayControllersComponent);
+        let app = fixture.debugElement.componentInstance;
+        let compiled = fixture.debugElement.nativeElement;
+        app.isMobile = true;
+        fixture.detectChanges();
+        spyOn(app, 'onChangeMusicBarValue');
+        fixture.debugElement.query(By.css('.seek-slider')).triggerEventHandler('change', {});
+        expect(app.onChangeMusicBarValue).toHaveBeenCalled();
+    });
+
+    it('should call onChangeMusicBarValue', async () => {
+        let fixture = TestBed.createComponent(PlayControllersComponent);
+        let app = fixture.debugElement.componentInstance;
+        let compiled = fixture.debugElement.nativeElement;
+        app.isMobile = true;
+        fixture.detectChanges();
+        spyOn(app, 'onChangeMusicBarValue');
+        fixture.debugElement.query(By.css('.seek-slider')).triggerEventHandler('input', {});
+        expect(app.onChangeMusicBarValue).toHaveBeenCalled();
+    });
+
+    it('should call onShuffle', async () => {
+        let fixture = TestBed.createComponent(PlayControllersComponent);
+        let app = fixture.debugElement.componentInstance;
+        let compiled = fixture.debugElement.nativeElement;
+        app.isMobile = true;
+        fixture.detectChanges();
+        spyOn(app, 'onShuffle');
+        compiled.querySelector('.shuffle-btn').click();
+        expect(app.onShuffle).toHaveBeenCalled();
+    });
+
+    it('should call onNextSong', async () => {
+        let fixture = TestBed.createComponent(PlayControllersComponent);
+        let app = fixture.debugElement.componentInstance;
+        let compiled = fixture.debugElement.nativeElement;
+        app.isMobile = true;
+        fixture.detectChanges();
+        spyOn(app, 'onNextSong');
+        compiled.querySelector('.next-btn').click();
+        expect(app.onNextSong).toHaveBeenCalled();
+    });
+
+    it('should call onPlay', async () => {
+        let fixture = TestBed.createComponent(PlayControllersComponent);
+        let app = fixture.debugElement.componentInstance;
+        let compiled = fixture.debugElement.nativeElement;
+        app.isMobile = true;
+        fixture.detectChanges();
+        spyOn(app, 'onPlay');
+        compiled.querySelector('.play-music-btn').click();
+        expect(app.onPlay).toHaveBeenCalled();
+    });
+
+    it('should call onPreviousSong', async () => {
+        let fixture = TestBed.createComponent(PlayControllersComponent);
+        let app = fixture.debugElement.componentInstance;
+        let compiled = fixture.debugElement.nativeElement;
+        app.isMobile = true;
+        fixture.detectChanges();
+        spyOn(app, 'onPreviousSong');
+        compiled.querySelector('.previous-btn').click();
+        expect(app.onPreviousSong).toHaveBeenCalled();
+    });
+
+    it('should call onRepeatSong', async () => {
+        let fixture = TestBed.createComponent(PlayControllersComponent);
+        let app = fixture.debugElement.componentInstance;
+        let compiled = fixture.debugElement.nativeElement;
+        app.isMobile = true;
+        fixture.detectChanges();
+        spyOn(app, 'onRepeatSong');
+        compiled.querySelector('.repeat-btn').click();
+        expect(app.onRepeatSong).toHaveBeenCalled();
     });
 });
