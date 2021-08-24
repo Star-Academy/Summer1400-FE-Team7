@@ -53,7 +53,7 @@ export class AuthService {
         }
     }
 
-      sendRequest(url: string, body?: object): Observable<any> {
+    sendRequest(url: string, body?: object): Observable<any> {
         this.loading.next(true);
         return new Observable((observer) =>
             this.http
