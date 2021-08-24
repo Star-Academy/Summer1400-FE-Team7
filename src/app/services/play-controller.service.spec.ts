@@ -2,9 +2,7 @@ import {TestBed} from '@angular/core/testing';
 
 import {PlayControllerService} from './play-controller.service';
 import {SongService} from './song.service';
-import {BrowserModule} from '@angular/platform-browser';
 import {HttpClientTestingModule} from '@angular/common/http/testing';
-import {RouterTestingModule} from '@angular/router/testing';
 import {Song} from '../models/song';
 
 describe('PlayControllerService', () => {
@@ -13,7 +11,7 @@ describe('PlayControllerService', () => {
 
     beforeEach(() => {
         TestBed.configureTestingModule({
-            imports: [BrowserModule, HttpClientTestingModule, RouterTestingModule],
+            imports: [HttpClientTestingModule],
         });
         playControllerService = TestBed.inject(PlayControllerService);
         songService = TestBed.inject(SongService);
@@ -75,14 +73,18 @@ describe('PlayControllerService', () => {
         let song = new Song();
         songService.selectedSong = {...song, file: 'selectedSong.mp3'};
         playControllerService.generatePlayingSong();
-        expect(playControllerService.audio.src).toEqual('http://localhost:9876/selectedSong.mp3');
-    });
+
+        let lastIndex=playControllerService.audio.src.split("/").length - 1;
+        let audioSrc =playControllerService.audio.src.split("/")[lastIndex]
+        expect(audioSrc).toEqual('selectedSong.mp3');    });
 
     it('generatePlayingSong() should use playingSong file playingSong is not undefined', () => {
         let song = new Song();
         songService.playingSong = {...song, file: 'playingSong.mp3'};
         playControllerService.generatePlayingSong();
-        expect(playControllerService.audio.src).toEqual('http://localhost:9876/playingSong.mp3');
+        let lastIndex=playControllerService.audio.src.split("/").length - 1;
+        let audioSrc =playControllerService.audio.src.split("/")[lastIndex]
+        expect(audioSrc).toEqual('playingSong.mp3');
     });
 
     it('play() should make status LOADING', () => {
