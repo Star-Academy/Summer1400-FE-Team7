@@ -71,11 +71,4 @@ describe('SongItemComponent', () => {
         fixture.debugElement.query(By.css('.song-wrapper')).triggerEventHandler('dblclick', {});
         expect(app.onDoubleClick).toHaveBeenCalled();
     });
-
-    it('should src be correct', async () => {
-        let cover = 'cover';
-        component.song.cover = cover;
-        console.log(fixture.debugElement.query(By.css('.song-cover-img')).nativeNode.src.split('/')[1]);
-        expect(fixture.debugElement.query(By.css('.song-cover-img')).nativeNode.src.splite('/')[2]).toBe(cover);
-    });
 });
