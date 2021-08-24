@@ -29,6 +29,6 @@ export class LyricsComponent implements OnInit ,OnDestroy{
 
   onBackClick() {
     this.isPanelOpen=false;
-    this.toggleLyric.emit()
+    this.toggleLyric.emit();
   }
 }
