@@ -11,6 +11,7 @@ describe('PlayControllersComponent', () => {
     let component: PlayControllersComponent;
     let fixture: ComponentFixture<PlayControllersComponent>;
 
+
     beforeEach(async () => {
         await TestBed.configureTestingModule({
             declarations: [PlayControllersComponent],
@@ -244,8 +245,7 @@ describe('PlayControllersComponent', () => {
     it('should call onChangeMusicBarValue', async () => {
         let fixture = TestBed.createComponent(PlayControllersComponent);
         let app = fixture.debugElement.componentInstance;
-        let compiled = fixture.debugElement.nativeElement;
-        fixture.detectChanges();
+         fixture.detectChanges();
         spyOn(app, 'onChangeMusicBarValue');
         fixture.debugElement.query(By.css('.seek-slider')).triggerEventHandler('change', {});
         expect(app.onChangeMusicBarValue).toHaveBeenCalled();
@@ -254,7 +254,6 @@ describe('PlayControllersComponent', () => {
     it('should call onChangeMusicBarValue', async () => {
         let fixture = TestBed.createComponent(PlayControllersComponent);
         let app = fixture.debugElement.componentInstance;
-        let compiled = fixture.debugElement.nativeElement;
         fixture.detectChanges();
         spyOn(app, 'onChangeMusicBarValue');
         fixture.debugElement.query(By.css('.seek-slider')).triggerEventHandler('input', {});
@@ -274,7 +273,6 @@ describe('PlayControllersComponent', () => {
     it('should call updateVolumeValue', async () => {
         let fixture = TestBed.createComponent(PlayControllersComponent);
         let app = fixture.debugElement.componentInstance;
-        let compiled = fixture.debugElement.nativeElement;
         fixture.detectChanges();
         spyOn(app, 'updateVolumeValue');
         fixture.debugElement.query(By.css('#volume-slider')).triggerEventHandler('change', {});
@@ -284,7 +282,6 @@ describe('PlayControllersComponent', () => {
     it('should call updateVolumeValue', async () => {
         let fixture = TestBed.createComponent(PlayControllersComponent);
         let app = fixture.debugElement.componentInstance;
-        let compiled = fixture.debugElement.nativeElement;
         fixture.detectChanges();
         spyOn(app, 'updateVolumeValue');
         fixture.debugElement.query(By.css('#volume-slider')).triggerEventHandler('input', {});
@@ -305,7 +302,6 @@ describe('PlayControllersComponent', () => {
     it('should call onChangeMusicBarValue', async () => {
         let fixture = TestBed.createComponent(PlayControllersComponent);
         let app = fixture.debugElement.componentInstance;
-        let compiled = fixture.debugElement.nativeElement;
         app.isMobile = true;
         fixture.detectChanges();
         spyOn(app, 'onChangeMusicBarValue');
@@ -316,7 +312,6 @@ describe('PlayControllersComponent', () => {
     it('should call onChangeMusicBarValue', async () => {
         let fixture = TestBed.createComponent(PlayControllersComponent);
         let app = fixture.debugElement.componentInstance;
-        let compiled = fixture.debugElement.nativeElement;
         app.isMobile = true;
         fixture.detectChanges();
         spyOn(app, 'onChangeMusicBarValue');

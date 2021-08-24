@@ -34,16 +34,23 @@ export class AuthComponent implements OnInit {
   pageNavigation(currentState: string) {
     if (currentState === 'login') {
       this.currentBgState = this.BG_ANIMATION.TYPE2;
-
-      setTimeout(() => {
-        this.currentBgState = this.BG_ANIMATION.TYPE3;
-      }, 400);
+      this.prepareRegisterBgAnimation()
     } else {
       this.currentBgState = this.BG_ANIMATION.TYPE4;
-      setTimeout(() => {
-        this.currentBgState = this.BG_ANIMATION.TYPE1;
-      }, 400);
+      this.prepareLoginBgAnimation()
     }
     this.isLoginPage = !this.isLoginPage;
+  }
+
+  prepareRegisterBgAnimation(){
+    setTimeout(() => {
+      this.currentBgState = this.BG_ANIMATION.TYPE3;
+    }, 400);
+  }
+
+  prepareLoginBgAnimation(){
+    setTimeout(() => {
+      this.currentBgState = this.BG_ANIMATION.TYPE1;
+    }, 400);
   }
 }

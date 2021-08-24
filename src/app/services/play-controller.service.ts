@@ -8,46 +8,6 @@ import {SongService} from "./song.service";
 })
 export class PlayControllerService {
 
-  set seekBarMaxvalue(value: number) {
-    this._seekBarMaxvalue = value;
-    this.seekBarMaxvalueChanged.next(value);
-  }
-  get seekBarValue(): number {
-    return this._seekBarValue;
-  }
-
-  set seekBarValue(value: number) {
-    this._seekBarValue = value;
-    this.seekBarValueChanged.next(value);
-  }
-
-  get shuffleMode(): boolean {
-    return this._shuffleMode;
-  }
-
-  set shuffleMode(value: boolean) {
-    this._shuffleMode = value;
-    this.shuffleModeChanged.next(value);
-  }
-
-  get repeatMode(): string {
-    return this._repeatMode;
-  }
-
-  set repeatMode(value: string) {
-    this._repeatMode = value;
-    this.repeatModeChanged.next(value);
-  }
-
-  get status(): string {
-    return this._status;
-  }
-
-  set status(value: string) {
-    this._status = value;
-    this.statusChanged.next(value);
-  }
-
   readonly statusTypes = {
     PLAYING: 'playing',
     PAUSED: 'paused',
@@ -92,15 +52,11 @@ export class PlayControllerService {
 
   constructor(private songService: SongService) {
 
-
-
     this.selectedSongSub = this.songService.selectedSongChange.subscribe((song: Song) => {
       this.selectedSong = song;
     });
     this.playingSongSub = this.songService.playingSongChange.subscribe((song: Song) => {
       this.playingSong = song;
-      //this.audio.src=this.playingSong.file
-      // this.play();
     });
     this.currentSongIndexSub = this.songService.currenSongIndexChange.subscribe((index: number) => {
       this.currentSongIndex = index;
@@ -109,37 +65,76 @@ export class PlayControllerService {
       this.currentPlaylist = data.songs;
     });
   }
+  set seekBarMaxvalue(value: number) {
+    this._seekBarMaxvalue = value;
+    this.seekBarMaxvalueChanged.next(value);
+  }
+  get seekBarValue(): number {
+    return this._seekBarValue;
+  }
+
+  set seekBarValue(value: number) {
+    this._seekBarValue = value;
+    this.seekBarValueChanged.next(value);
+  }
+
+  get shuffleMode(): boolean {
+    return this._shuffleMode;
+  }
+
+  set shuffleMode(value: boolean) {
+    this._shuffleMode = value;
+    this.shuffleModeChanged.next(value);
+  }
+
+  get repeatMode(): string {
+    return this._repeatMode;
+  }
+
+  set repeatMode(value: string) {
+    this._repeatMode = value;
+    this.repeatModeChanged.next(value);
+  }
+
+  get status(): string {
+    return this._status;
+  }
+
+  set status(value: string) {
+    this._status = value;
+    this.statusChanged.next(value);
+  }
 
   loadMusic(index?: number) {
     if (index === undefined) {
-      if (this.songService.playingSong === undefined) {
-        this.audio.src = this.songService.selectedSong.file;
-        this.songService.playingSong = this.songService.selectedSong;
-      } else {
-        this.audio.src = this.playingSong.file;
-      }
-    } else {
+      this.generatePlayingSong();
+    }
+    else {
       this.songService.playingSong = this.currentPlaylist[index];
     }
     this.audio.load();
   }
 
+    generatePlayingSong() {
+    if (this.songService.playingSong === undefined) {
+      this.audio.src = this.songService.selectedSong.file;
+      this.songService.playingSong = this.songService.selectedSong;
+    } else {
+      this.audio.src = this.playingSong.file;
+    }
+  }
+
   play() {
     this.status = this.statusTypes.LOADING;
     this.loadMusic();
+    this.playSongWhenPossible();
+    this.updateSeekBarValue();
+    this.onPlayEnded();
 
-    this.audio.oncanplaythrough = () => {
-      if(this.status === this.statusTypes.LOADING){
-      this.status = this.statusTypes.PLAYING;
-      this.audio.play();
-      this.seekBarMaxvalue = this.audio.duration;
-      }else if (this.status === this.statusTypes.PAUSED){
-        this.audio.pause();
-      }
-    };
-    this.audio.ontimeupdate = () => {
-      this.seekBarValue = this.audio.currentTime;
-    };
+
+  }
+
+    onPlayEnded() {
     this.audio.onended = () => {
       switch (this.repeatMode) {
         case this.repeatTypes.NO_REPEAT:
@@ -152,8 +147,25 @@ export class PlayControllerService {
           break;
       }
     };
+  }
 
+  updateSeekBarValue() {
+    this.audio.ontimeupdate = () => {
+      this.seekBarValue = this.audio.currentTime;
+    };
+  }
 
+  playSongWhenPossible() {
+    this.audio.oncanplaythrough = () => {
+      console.log("loading")
+      if (this.status === this.statusTypes.LOADING) {
+        this.status = this.statusTypes.PLAYING;
+        this.audio.play();
+        this.seekBarMaxvalue = this.audio.duration;
+      } else if (this.status === this.statusTypes.PAUSED) {
+        this.audio.pause();
+      }
+    };
   }
 
   stop() {

@@ -24,6 +24,20 @@ describe('AuthServiceService', () => {
     expect(localStorage.removeItem).toHaveBeenCalled();
   });
 
+  it('initializeUser() should call  localStorage.setItem()', () => {
+    spyOn(localStorage, 'setItem')
+    service.initializeUser({id:1,token:"token"},"email@example.com",true);
+    expect(localStorage.setItem).toHaveBeenCalled();
+  });
+
+  it('initializeUser() should call complete.next if createFavorites == false', () => {
+    spyOn(service.complete, 'next')
+    service.initializeUser({id:1,token:"token"},"email@example.com",false);
+    expect(service.complete.next).toHaveBeenCalled();
+  });
+
+
+
 
 
 
