@@ -8,7 +8,6 @@ import {By} from '@angular/platform-browser';
     template: `<img
         class="fav-icon"
         appLikeHover
-        (click)="onFavoriteClick()"
         [src]="'../../../../assets/images/like.svg'"
         alt=""
     />`,

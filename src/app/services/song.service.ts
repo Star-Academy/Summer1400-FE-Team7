@@ -382,7 +382,6 @@ export class SongService {
       });
     } else {
       this.changeCurrentPlaylist(this.currentPlaylistName)
-
     }
 
   }
