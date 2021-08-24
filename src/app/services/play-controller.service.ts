@@ -128,7 +128,7 @@ export class PlayControllerService {
     this.status = this.statusTypes.LOADING;
     this.loadMusic();
     this.playSongWhenPossible();
-    this.updateSeekBarValue();
+    this.onAudioPlayTimeChange();
     this.onPlayEnded();
 
 
@@ -136,20 +136,28 @@ export class PlayControllerService {
 
     onPlayEnded() {
     this.audio.onended = () => {
-      switch (this.repeatMode) {
-        case this.repeatTypes.NO_REPEAT:
-        case this.repeatTypes.ALL_REPEAT:
-          this.nextSong();
-          break;
-
-        case this.repeatTypes.ONE_REPEAT:
-          this.resume();
-          break;
-      }
+      this.nextActionOnPlayEnd();
     };
   }
 
-  updateSeekBarValue() {
+    nextActionOnPlayEnd() {
+    switch (this.repeatMode) {
+      case this.repeatTypes.NO_REPEAT:
+      case this.repeatTypes.ALL_REPEAT:
+        this.nextSong();
+        break;
+
+      case this.repeatTypes.ONE_REPEAT:
+        this.resume();
+        break;
+    }
+  }
+
+  onAudioPlayTimeChange() {
+    this.updateSeekBarValue();
+  }
+
+    updateSeekBarValue() {
     this.audio.ontimeupdate = () => {
       this.seekBarValue = this.audio.currentTime;
     };
@@ -157,15 +165,18 @@ export class PlayControllerService {
 
   playSongWhenPossible() {
     this.audio.oncanplaythrough = () => {
-      console.log("loading")
-      if (this.status === this.statusTypes.LOADING) {
-        this.status = this.statusTypes.PLAYING;
-        this.audio.play();
-        this.seekBarMaxvalue = this.audio.duration;
-      } else if (this.status === this.statusTypes.PAUSED) {
-        this.audio.pause();
-      }
+      this.audioActionWhenCanPlay();
     };
+  }
+
+  audioActionWhenCanPlay() {
+    if (this.status === this.statusTypes.LOADING) {
+      this.status = this.statusTypes.PLAYING;
+      this.audio.play();
+      this.seekBarMaxvalue = this.audio.duration;
+    } else if (this.status === this.statusTypes.PAUSED) {
+      this.audio.pause();
+    }
   }
 
   stop() {
@@ -186,7 +197,11 @@ export class PlayControllerService {
   }
 
   nextSong() {
-    let stopOnLast: boolean = false;
+    this.handleShuffleModeOnNextSong();
+    this.handleNextSong();
+  }
+
+  handleShuffleModeOnNextSong() {
     if (this.shuffleMode) {
       this.shuffleIndex++;
       if (this.shuffleIndex >= this.currentPlaylist.length) {
@@ -196,7 +211,10 @@ export class PlayControllerService {
     } else {
       this.songService.currenSongIndex++;
     }
+  }
 
+   handleNextSong() {
+    let stopOnLast: boolean = false;
     if (this.currentSongIndex >= this.currentPlaylist.length) {
       this.songService.currenSongIndex = 0;
       if (this.repeatMode == this.repeatTypes.NO_REPEAT && !this.shuffleMode) {
@@ -204,10 +222,24 @@ export class PlayControllerService {
         stopOnLast = true;
       }
     }
-    if (!stopOnLast) this.loadMusic(this.songService.currenSongIndex);
+    if (!stopOnLast)
+      this.loadMusic(this.songService.currenSongIndex);
   }
 
   previousSong() {
+    this.handleShuffleModeOnPreviousSong();
+    this.handlePreviousSong();
+  }
+
+
+    handlePreviousSong() {
+    if (this.currentSongIndex < 0) {
+      this.songService.currenSongIndex = this.currentPlaylist.length - 1;
+    }
+    this.loadMusic(this.songService.currenSongIndex);
+  }
+
+    handleShuffleModeOnPreviousSong() {
     if (this.shuffleMode) {
       this.shuffleIndex--;
       if (this.shuffleIndex < 0) {
@@ -217,15 +249,7 @@ export class PlayControllerService {
     } else {
       this.songService.currenSongIndex--;
     }
-
-    if (this.currentSongIndex < 0) {
-      this.songService.currenSongIndex = this.currentPlaylist.length - 1;
-    }
-
-    this.loadMusic(this.songService.currenSongIndex);
   }
-
-
 
   updateMusicBarValue(value: number) {
      this.audio.currentTime =  value;

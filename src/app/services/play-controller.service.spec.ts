@@ -74,7 +74,7 @@ describe('PlayControllerService', () => {
     it('generatePlayingSong() should use selectedSong file playingSong is undefined', () => {
         let song = new Song()
         songService.selectedSong = {...song, file: "selectedSong.mp3"}
-         playControllerService.generatePlayingSong();
+        playControllerService.generatePlayingSong();
         expect(playControllerService.audio.src).toEqual("http://localhost:9876/selectedSong.mp3");
     });
 
@@ -91,37 +91,199 @@ describe('PlayControllerService', () => {
     });
 
     it('play() should call loadMusic()', () => {
-        spyOn(playControllerService,"loadMusic")
+        spyOn(playControllerService, "loadMusic")
         playControllerService.play();
         expect(playControllerService.loadMusic).toHaveBeenCalled();
     });
 
     it('play() should call playSongWhenPossible()', () => {
-        spyOn(playControllerService,"playSongWhenPossible")
+        spyOn(playControllerService, "playSongWhenPossible")
         playControllerService.play();
         expect(playControllerService.playSongWhenPossible).toHaveBeenCalled();
     });
 
     it('play() should call updateSeekBarValue()', () => {
-        spyOn(playControllerService,"updateSeekBarValue")
+        spyOn(playControllerService, "onAudioPlayTimeChange")
         playControllerService.play();
-        expect(playControllerService.updateSeekBarValue).toHaveBeenCalled();
+        expect(playControllerService.onAudioPlayTimeChange).toHaveBeenCalled();
     });
 
     it('play() should call onPlayEnded()', () => {
-        spyOn(playControllerService,"onPlayEnded")
+        spyOn(playControllerService, "onPlayEnded")
         playControllerService.play();
         expect(playControllerService.onPlayEnded).toHaveBeenCalled();
     });
 
-    // it('onPlayEnded() should call nextSong() if repeatTypes is NO_REPEAT ', async() => {
-    //     spyOn(playControllerService,"nextSong");
-    //     playControllerService.repeatMode = playControllerService.repeatTypes.NO_REPEAT
-    //     playControllerService.onPlayEnded();
-    //     expect(playControllerService.nextSong).toHaveBeenCalled();
-    // });
+    it('nextActionOnPlayEnd() should call nextSong() if repeatTypes is NO_REPEAT ', async () => {
+        spyOn(playControllerService, "nextSong");
+        playControllerService.repeatMode = playControllerService.repeatTypes.NO_REPEAT
+        playControllerService.nextActionOnPlayEnd();
+        expect(playControllerService.nextSong).toHaveBeenCalled();
+    });
+
+    it('nextActionOnPlayEnd() should call nextSong() if repeatTypes is ALL_REPEAT ', async () => {
+        spyOn(playControllerService, "nextSong");
+        playControllerService.repeatMode = playControllerService.repeatTypes.ALL_REPEAT;
+        playControllerService.nextActionOnPlayEnd();
+        expect(playControllerService.nextSong).toHaveBeenCalled();
+    });
+
+    it('nextActionOnPlayEnd() should call resume() if repeatTypes is ONE_REPEAT ', async () => {
+        spyOn(playControllerService, "resume");
+        playControllerService.repeatMode = playControllerService.repeatTypes.ONE_REPEAT;
+        playControllerService.nextActionOnPlayEnd();
+        expect(playControllerService.resume).toHaveBeenCalled();
+    });
 
 
+    it('onAudioPlayTimeChange() should call updateSeekBarValue() ', async () => {
+        spyOn(playControllerService, "updateSeekBarValue");
+        playControllerService.onAudioPlayTimeChange();
+        expect(playControllerService.updateSeekBarValue).toHaveBeenCalled();
+    });
+
+    it('audioActionWhenCanPlay() should call make status PLAYING if status == LOADING ', async () => {
+        playControllerService.status = playControllerService.statusTypes.LOADING
+        playControllerService.audioActionWhenCanPlay();
+        expect(playControllerService.status).toEqual(playControllerService.statusTypes.PLAYING);
+    });
+
+    it('audioActionWhenCanPlay() should call audio.play() if status == LOADING ', async () => {
+        spyOn(playControllerService.audio, "play");
+        playControllerService.status = playControllerService.statusTypes.LOADING
+        playControllerService.audioActionWhenCanPlay();
+        expect(playControllerService.audio.play).toHaveBeenCalled();
+    });
+
+    it('audioActionWhenCanPlay() should call audio.pause() if status == PAUSED ', async () => {
+        spyOn(playControllerService.audio, "pause");
+        playControllerService.status = playControllerService.statusTypes.PAUSED
+        playControllerService.audioActionWhenCanPlay();
+        expect(playControllerService.audio.pause).toHaveBeenCalled();
+    });
+
+    it('stop() should call audio.pause()', async () => {
+        spyOn(playControllerService.audio, "pause");
+        playControllerService.stop();
+        expect(playControllerService.audio.pause).toHaveBeenCalled();
+    });
+
+    it('stop() should make status STOPPED', async () => {
+        playControllerService.stop();
+        expect(playControllerService.status).toEqual(playControllerService.statusTypes.STOPPED)
+    });
+
+
+    it('pause() should call audio.pause()', async () => {
+        spyOn(playControllerService.audio, "pause");
+        playControllerService.pause();
+        expect(playControllerService.audio.pause).toHaveBeenCalled();
+    });
+
+    it('pause() should make status PAUSED', async () => {
+        playControllerService.pause();
+        expect(playControllerService.status).toEqual(playControllerService.statusTypes.PAUSED)
+    });
+    it('resume() should call audio.play()', async () => {
+        spyOn(playControllerService.audio, "play");
+        playControllerService.resume();
+        expect(playControllerService.audio.play).toHaveBeenCalled();
+    });
+
+    it('resume() should make status PLAYING', async () => {
+        playControllerService.resume();
+        expect(playControllerService.status).toEqual(playControllerService.statusTypes.PLAYING)
+    });
+
+    it('nextSong() should call handleShuffleModeOnNextSong()', async () => {
+        playControllerService.currentPlaylist = []
+        spyOn(playControllerService, "handleShuffleModeOnNextSong");
+        playControllerService.nextSong();
+        expect(playControllerService.handleShuffleModeOnNextSong).toHaveBeenCalled();
+    });
+
+    it('nextSong() should call handleShuffleModeOnNextSong()', async () => {
+        playControllerService.currentPlaylist = []
+        spyOn(playControllerService, "handleShuffleModeOnNextSong");
+        playControllerService.nextSong();
+        expect(playControllerService.handleShuffleModeOnNextSong).toHaveBeenCalled();
+    });
+    it('nextSong() should call handleNextSong()', async () => {
+        playControllerService.currentPlaylist = []
+        spyOn(playControllerService, "handleNextSong");
+        playControllerService.nextSong();
+        expect(playControllerService.handleNextSong).toHaveBeenCalled();
+    });
+
+    it('handleShuffleModeOnNextSong() should increase shuffleIndex by 1 if shuffleMode on', async () => {
+        playControllerService.currentPlaylist = [new Song() , new Song()];
+         playControllerService.shuffleIndex = 0;
+        let currentShuffleIndex = playControllerService.shuffleIndex;
+        playControllerService.shuffleMode = true;
+        playControllerService.handleShuffleModeOnNextSong();
+        expect(playControllerService.shuffleIndex).toEqual(currentShuffleIndex+1);
+    });
+
+    it('handleShuffleModeOnNextSong() should make shuffleIndex 0 if shuffleIndex >= currentPlaylist.length', async () => {
+        playControllerService.currentPlaylist = [];
+        playControllerService.shuffleIndex = 5;
+         playControllerService.shuffleMode = true;
+        playControllerService.handleShuffleModeOnNextSong();
+        expect(playControllerService.shuffleIndex).toEqual(0);
+    });
+
+    it('handleShuffleModeOnNextSong() should increase currenSongIndex by 1 if shuffleMode off', async () => {
+        playControllerService.currentPlaylist = [new Song() , new Song()];
+        let currentSongIndex = songService.currenSongIndex;
+         playControllerService.shuffleMode = false;
+        playControllerService.handleShuffleModeOnNextSong();
+         expect(songService.currenSongIndex).toEqual(currentSongIndex+1);
+    });
+
+    it('handleNextSong() should make currenSongIndex 0 if currentSongIndex >= this.currentPlaylist.length', async () => {
+        playControllerService.currentPlaylist = [];
+         songService.currenSongIndex++;
+         playControllerService.handleNextSong();
+         expect(songService.currenSongIndex).toEqual(0);
+    });
+
+    it('handleNextSong() should call pause() if repeatTypes.NO_REPEAT && !this.shuffleMode', async () => {
+        playControllerService.currentPlaylist = [];
+        spyOn(playControllerService,"pause")
+         songService.currenSongIndex++;
+         playControllerService.repeatMode =playControllerService.repeatTypes.NO_REPEAT;
+         playControllerService.shuffleMode =false;
+         playControllerService.handleNextSong();
+         expect(playControllerService.pause).toHaveBeenCalled()
+    });
+
+
+
+
+
+    it('previousSong() should call handleShuffleModeOnPreviousSong()', async () => {
+        playControllerService.currentPlaylist = []
+        spyOn(playControllerService, "handleShuffleModeOnPreviousSong");
+        playControllerService.previousSong();
+        expect(playControllerService.handleShuffleModeOnPreviousSong).toHaveBeenCalled();
+    });
+    it('previousSong() should call handlePreviousSong()', async () => {
+        playControllerService.currentPlaylist = []
+        spyOn(playControllerService, "handlePreviousSong");
+        playControllerService.previousSong();
+        expect(playControllerService.handlePreviousSong).toHaveBeenCalled();
+    });
+
+
+
+    it('handleShuffleModeOnNextSong() should decrease shuffleIndex by 1 if shuffleMode on', async () => {
+        playControllerService.currentPlaylist = [new Song() , new Song()];
+        playControllerService.shuffleIndex = 2;
+        let currentShuffleIndex = playControllerService.shuffleIndex;
+        playControllerService.shuffleMode = true;
+        playControllerService.handleShuffleModeOnPreviousSong();
+        expect(playControllerService.shuffleIndex).toEqual(currentShuffleIndex-1);
+    });
 
 
 
