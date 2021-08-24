@@ -253,7 +253,6 @@ export class PlayControllerService {
 
   updateMusicBarValue(value: number) {
      this.audio.currentTime =  value;
-
   }
 
   //
@@ -270,7 +269,12 @@ export class PlayControllerService {
     this.shuffleMode = !this.shuffleMode;
     if (this.shuffleMode) this.generateShuffleList();
   }
-  private static shuffle(array: number[]) {
+  generateShuffleList = () => {
+    for (let i = 0; i < this.currentPlaylist.length; i++) this.shuffleArray[i] = i;
+    this.shuffleArray = this.shuffle(this.shuffleArray);
+  };
+
+  shuffle(array: number[]) {
     let tmp,
       current,
       top = array.length;
@@ -283,11 +287,6 @@ export class PlayControllerService {
       }
     return array;
   }
-
-  private generateShuffleList = () => {
-    for (let i = 0; i < this.currentPlaylist.length; i++) this.shuffleArray[i] = i;
-    this.shuffleArray = PlayControllerService.shuffle(this.shuffleArray);
-  };
 
   onRepeatSong() {
     switch (this.repeatMode) {

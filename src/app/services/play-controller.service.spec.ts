@@ -285,6 +285,45 @@ describe('PlayControllerService', () => {
         expect(playControllerService.shuffleIndex).toEqual(currentShuffleIndex-1);
     });
 
+    it('handlePreviousSong() should call loadMusic()', async () => {
+        playControllerService.currentPlaylist = []
+        spyOn(playControllerService, "loadMusic");
+        playControllerService.handlePreviousSong();
+        expect(playControllerService.loadMusic).toHaveBeenCalled();
+    });
+
+
+    it('onRepeatSong() should set repeatMode to ONE_REPEAT if it is NO_REPEAT ', async () => {
+        playControllerService.repeatMode = playControllerService.repeatTypes.NO_REPEAT;
+        playControllerService.onRepeatSong();
+        expect(playControllerService.repeatMode).toEqual(playControllerService.repeatTypes.ONE_REPEAT)
+    });
+
+    it('onRepeatSong() should set repeatMode to ALL_REPEAT if it is ONE_REPEAT ', async () => {
+        playControllerService.repeatMode = playControllerService.repeatTypes.ONE_REPEAT;
+        playControllerService.onRepeatSong();
+        expect(playControllerService.repeatMode).toEqual(playControllerService.repeatTypes.ALL_REPEAT)
+    });
+
+    it('onRepeatSong() should set repeatMode to NO_REPEAT if it is ALL_REPEAT ', async () => {
+        playControllerService.repeatMode = playControllerService.repeatTypes.ALL_REPEAT;
+        playControllerService.onRepeatSong();
+        expect(playControllerService.repeatMode).toEqual(playControllerService.repeatTypes.NO_REPEAT)
+    });
+
+
+    it('onShuffle() should toggle shuffleMode ', async () => {
+        playControllerService.currentPlaylist = [new Song() , new Song()];
+        let shuffleMode = playControllerService.shuffleMode;
+        playControllerService.onShuffle();
+        let shuffleModeAfterChange = playControllerService.shuffleMode;
+        expect(shuffleMode).not.toEqual(shuffleModeAfterChange)
+    });
+
+
+
+
+
 
 
 });
