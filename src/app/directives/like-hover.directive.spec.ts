@@ -5,12 +5,7 @@ import {Component, DebugElement} from '@angular/core';
 import {By} from '@angular/platform-browser';
 
 @Component({
-    template: `<img
-        class="fav-icon"
-        appLikeHover
-        [src]="'../../../../assets/images/like.svg'"
-        alt=""
-    />`,
+    template: `<img class="fav-icon" appLikeHover [src]="'../../../../assets/images/like.svg'" alt="" />`,
 })
 class TestHoverEffectComponent {}
 

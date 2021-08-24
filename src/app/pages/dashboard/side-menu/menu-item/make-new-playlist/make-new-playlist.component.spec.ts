@@ -26,8 +26,7 @@ describe('MakeNewPlaylistComponent', () => {
         expect(component).toBeTruthy();
     });
 
-    it('should call createNewPlaylist', async () => {
-        let fixture = TestBed.createComponent(MakeNewPlaylistComponent);
+    it('should call createNewPlaylist', () => {
         let app = fixture.debugElement.componentInstance;
         fixture.detectChanges();
         spyOn(app, 'createNewPlaylist');
@@ -35,8 +34,7 @@ describe('MakeNewPlaylistComponent', () => {
         expect(app.createNewPlaylist).toHaveBeenCalled();
     });
 
-    it('should call closeNewPlaylistPanel', async () => {
-        let fixture = TestBed.createComponent(MakeNewPlaylistComponent);
+    it('should call closeNewPlaylistPanel', () => {
         let app = fixture.debugElement.componentInstance;
         fixture.detectChanges();
         spyOn(app, 'closeNewPlaylistPanel');

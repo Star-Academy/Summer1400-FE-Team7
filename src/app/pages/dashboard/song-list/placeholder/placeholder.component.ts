@@ -1,6 +1,5 @@
 import {Component, ElementRef, OnInit} from '@angular/core';
-import { SongService } from 'src/app/services/song.service';
-
+import {SongService} from 'src/app/services/song.service';
 
 @Component({
     selector: 'app-placeholder',
@@ -8,8 +7,7 @@ import { SongService } from 'src/app/services/song.service';
     styleUrls: ['./placeholder.component.scss'],
 })
 export class PlaceholderComponent implements OnInit {
-
-    constructor(private elementRef: ElementRef,private songService:SongService) {}
+    constructor(private elementRef: ElementRef, private songService: SongService) {}
 
     placeholdersCount: number = 13;
     timeoutID!: any;
@@ -21,10 +19,10 @@ export class PlaceholderComponent implements OnInit {
             document.documentElement.style.setProperty('--placeholder-rotation', this.currentValue + 'deg');
         }, 40);
 
-        this.songService.loadingSongs.subscribe((loading:boolean)=>{
-          if(!loading){
-            clearInterval(this.timeoutID)
-          }
-        })
+        this.songService.loadingSongs.subscribe((loading: boolean) => {
+            if (!loading) {
+                clearInterval(this.timeoutID);
+            }
+        });
     }
 }

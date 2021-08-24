@@ -10,15 +10,15 @@ export class Song {
     isSelected!: boolean;
 
     constructor(
-        id: number=-1,
-        name: string="",
-        artist: string="",
-        duration: number=0,
-        cover: string="",
-        isFavourite: boolean=false,
-        lyrics: string="",
-        file: string="",
-        isSelected: boolean = false,
+        id: number = -1,
+        name: string = '',
+        artist: string = '',
+        duration: number = 0,
+        cover: string = '',
+        isFavourite: boolean = false,
+        lyrics: string = '',
+        file: string = '',
+        isSelected: boolean = false
     ) {
         this.id = id;
         this.name = name;
@@ -29,6 +29,5 @@ export class Song {
         this.lyrics = lyrics;
         this.file = file;
         this.isSelected = isSelected;
-
     }
 }

@@ -6,7 +6,7 @@ import {BrowserModule, By} from '@angular/platform-browser';
 import {RouterTestingModule} from '@angular/router/testing';
 
 import {SignupFormComponent} from './signup-form.component';
-import {LoginFormComponent} from "../login-form/login-form.component";
+import {LoginFormComponent} from '../login-form/login-form.component';
 
 describe('SignupFormComponent', () => {
     let component: SignupFormComponent;
@@ -90,8 +90,8 @@ describe('SignupFormComponent', () => {
     });
 
     it('should initial values be empty', async () => {
-         const user = component.signupForm.value;
-         expect(user.email === '' && user.password === '' && user.confirmPassword === '').toBeTruthy();
+        const user = component.signupForm.value;
+        expect(user.email === '' && user.password === '' && user.confirmPassword === '').toBeTruthy();
     });
 
     it('testing form inputs validation(correct values)', () => {
@@ -115,13 +115,13 @@ describe('SignupFormComponent', () => {
         }
     });
 
-  it('already-have-account link onclick should call alreadyHaveAccountClick()', async () => {
-    let fixture = TestBed.createComponent(SignupFormComponent);
-    let app = fixture.debugElement.componentInstance;
-    fixture.detectChanges();
-    let compiled = fixture.debugElement.nativeElement;
-    spyOn(app,"alreadyHaveAccountClick");
-    compiled.querySelector('#already-have-account').click()
-    expect(app.alreadyHaveAccountClick).toHaveBeenCalled();
-  });
+    it('already-have-account link onclick should call alreadyHaveAccountClick()', async () => {
+        let fixture = TestBed.createComponent(SignupFormComponent);
+        let app = fixture.debugElement.componentInstance;
+        fixture.detectChanges();
+        let compiled = fixture.debugElement.nativeElement;
+        spyOn(app, 'alreadyHaveAccountClick');
+        compiled.querySelector('#already-have-account').click();
+        expect(app.alreadyHaveAccountClick).toHaveBeenCalled();
+    });
 });

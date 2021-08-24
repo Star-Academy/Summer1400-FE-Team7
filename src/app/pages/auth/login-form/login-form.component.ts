@@ -3,7 +3,7 @@ import {NgForm} from '@angular/forms';
 import {Subscription} from 'rxjs';
 import {AuthService} from '../../../services/auth.service';
 import {Router} from '@angular/router';
-import { Constants } from 'src/app/utils/constants';
+import {Constants} from 'src/app/utils/constants';
 
 @Component({
     selector: 'app-login-form',
@@ -38,9 +38,7 @@ export class LoginFormComponent implements OnInit, OnDestroy {
         this.completeSubscription = this.authService.complete.subscribe((complete: boolean) => {
             if (complete) {
                 this.loginForm.reset();
-                router.navigate(['/dashboard'],
-                  {queryParams:{playlist:Constants.ALL_SONGS}}).then();
-
+                router.navigate(['/dashboard'], {queryParams: {playlist: Constants.ALL_SONGS}}).then();
             }
         });
     }

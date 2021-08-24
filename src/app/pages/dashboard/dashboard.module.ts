@@ -17,9 +17,9 @@ import {HmsTimePipe} from '../../pipes/hms-time.pipe';
 import {MobileComponent} from './mobile/mobile.component';
 import {MobileBottomNavigationComponent} from './mobile/mobile-bottom-navigation/mobile-bottom-navigation.component';
 import {LikeHoverDirective} from '../../directives/like-hover.directive';
- import {NotificationComponent} from './notification/notification.component';
+import {NotificationComponent} from './notification/notification.component';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
-import { PlaceholderComponent } from './song-list/placeholder/placeholder.component';
+import {PlaceholderComponent} from './song-list/placeholder/placeholder.component';
 
 @NgModule({
     declarations: [
@@ -38,7 +38,7 @@ import { PlaceholderComponent } from './song-list/placeholder/placeholder.compon
         MobileComponent,
         MobileBottomNavigationComponent,
         LikeHoverDirective,
-         NotificationComponent,
+        NotificationComponent,
         PlaceholderComponent,
     ],
     imports: [CommonModule, RouterModule, BrowserAnimationsModule, FormsModule, ReactiveFormsModule],

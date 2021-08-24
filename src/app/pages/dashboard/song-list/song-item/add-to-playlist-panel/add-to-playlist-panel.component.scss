@@ -21,9 +21,9 @@ $--clr-boarder-error: rgb(255, 0, 0);
     display: flex;
     flex-direction: column;
 
-  padding: 0 1.5rem 0 0.1rem;
+    padding: 0 1.5rem 0 0.1rem;
 
-  p {
+    p {
         font-size: 0.8rem;
         color: var(--clr-white);
 
@@ -103,7 +103,7 @@ $--clr-boarder-error: rgb(255, 0, 0);
             font-size: 18px;
             line-height: $--check-box-width;
             height: $--check-box-width;
-             clear: both;
+            clear: both;
             width: 100%;
         }
 

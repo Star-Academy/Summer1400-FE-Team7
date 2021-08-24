@@ -15,7 +15,7 @@ import {SignupFormComponent} from './signup-form/signup-form.component';
         ShowPasswordDirective,
         LoginFormComponent,
         SignupFormComponent,
-     ],
+    ],
     exports: [],
     imports: [CommonModule, RouterModule, FormsModule],
 })

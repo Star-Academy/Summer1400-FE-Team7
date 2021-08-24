@@ -4,14 +4,12 @@ import {ComponentFixture, inject, TestBed} from '@angular/core/testing';
 import {LyricsComponent} from './lyrics.component';
 import {RouterTestingModule} from '@angular/router/testing';
 import {SongService} from '../../../services/song.service';
-import {DebugElement} from '@angular/core';
 import {By} from '@angular/platform-browser';
 
 describe('LyricsComponent', () => {
     let component: LyricsComponent;
     let fixture: ComponentFixture<LyricsComponent>;
     let songService: SongService;
-    let debug = DebugElement;
 
     beforeEach(async () => {
         await TestBed.configureTestingModule({
@@ -25,7 +23,7 @@ describe('LyricsComponent', () => {
         fixture = TestBed.createComponent(LyricsComponent);
         component = fixture.componentInstance;
         fixture.detectChanges();
-        songService = TestBed.get(SongService);
+        songService = TestBed.inject(SongService);
     });
 
     it('SongService should be injected with same instance', inject([SongService], (injectService: SongService) => {
@@ -72,7 +70,6 @@ describe('LyricsComponent', () => {
     });
 
     it('create lyric btn', async () => {
-        let fixture = TestBed.createComponent(LyricsComponent);
         let app = fixture.debugElement.componentInstance;
         app.isPanelOpen = true;
         let compiled = fixture.debugElement.nativeElement;

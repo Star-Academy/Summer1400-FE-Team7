@@ -101,7 +101,7 @@ describe('SideMenuComponent', () => {
         expect(status).not.toBeNull();
     });
 
-    it('should call onLogOutClick', async () => {
+    it('should call onLogOutClick', () => {
         let fixture = TestBed.createComponent(SideMenuComponent);
         let app = fixture.debugElement.componentInstance;
         fixture.detectChanges();
@@ -110,7 +110,7 @@ describe('SideMenuComponent', () => {
         expect(app.onLogOutClick).toHaveBeenCalled();
     });
 
-    it('should call closePanel', async () => {
+    it('should call closePanel', () => {
         let fixture = TestBed.createComponent(SideMenuComponent);
         let app = fixture.debugElement.componentInstance;
         app.isPanelOpen = true;

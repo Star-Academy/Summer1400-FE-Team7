@@ -11,7 +11,6 @@ describe('PlayControllersComponent', () => {
     let component: PlayControllersComponent;
     let fixture: ComponentFixture<PlayControllersComponent>;
 
-
     beforeEach(async () => {
         await TestBed.configureTestingModule({
             declarations: [PlayControllersComponent],
@@ -245,7 +244,7 @@ describe('PlayControllersComponent', () => {
     it('should call onChangeMusicBarValue', async () => {
         let fixture = TestBed.createComponent(PlayControllersComponent);
         let app = fixture.debugElement.componentInstance;
-         fixture.detectChanges();
+        fixture.detectChanges();
         spyOn(app, 'onChangeMusicBarValue');
         fixture.debugElement.query(By.css('.seek-slider')).triggerEventHandler('change', {});
         expect(app.onChangeMusicBarValue).toHaveBeenCalled();

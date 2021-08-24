@@ -1,15 +1,6 @@
 <main [ngClass]="currentBgState">
-  <div
-    class="form-wrapper"
-    [ngClass]="!isLoginPage ? 'signup-form-wrapper' : ''"
-  >
-    <app-login-form
-            (onCreateAccountClick)="pageNavigation('login')"
-      *ngIf="isLoginPage"
-    ></app-login-form>
-    <app-signup-form
-      *ngIf="!isLoginPage"
-      (onAlreadyHaveAccount)="pageNavigation('signup')"
-    ></app-signup-form>
-  </div>
+    <div class="form-wrapper" [ngClass]="!isLoginPage ? 'signup-form-wrapper' : ''">
+        <app-login-form (onCreateAccountClick)="pageNavigation('login')" *ngIf="isLoginPage"></app-login-form>
+        <app-signup-form *ngIf="!isLoginPage" (onAlreadyHaveAccount)="pageNavigation('signup')"></app-signup-form>
+    </div>
 </main>

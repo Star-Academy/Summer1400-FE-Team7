@@ -22,7 +22,7 @@ describe('NotificationComponent', () => {
     beforeEach(() => {
         fixture = TestBed.createComponent(NotificationComponent);
         component = fixture.componentInstance;
-        notificationService = TestBed.get(NotificationService);
+        notificationService = TestBed.inject(NotificationService);
 
         fixture.detectChanges();
     });
@@ -69,7 +69,7 @@ describe('NotificationComponent', () => {
         expect(fixture.debugElement.query(By.css('.msg')).nativeNode.innerText).toEqual(message);
     });
 
-    it('should onClose() be called ', async () => {
+    it('should onClose() be called ', () => {
         let fixture = TestBed.createComponent(NotificationComponent);
         let app = fixture.debugElement.componentInstance;
         fixture.detectChanges();

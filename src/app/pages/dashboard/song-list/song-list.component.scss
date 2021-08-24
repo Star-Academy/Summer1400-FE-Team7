@@ -58,11 +58,9 @@ $--bg-mellow-black: rgb(40, 40, 40);
             align-items: center;
             justify-content: center;
             gap: 0.25rem;
-             * {
+            * {
                 background: linear-gradient(var(--placeholder-rotation), $--bg-mellow-black, $--selected-bg-blue);
             }
-
-
         }
 
         .playlist-wrapper {
@@ -142,7 +140,7 @@ $--bg-mellow-black: rgb(40, 40, 40);
 
             align-self: baseline;
         }
-         .song-wrapper {
+        .song-wrapper {
             display: flex;
             flex-direction: column;
             height: auto;

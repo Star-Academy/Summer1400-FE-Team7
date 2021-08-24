@@ -103,7 +103,7 @@ describe('MenuItemComponent remove switch', () => {
         expect(parentDiv.children[0].nativeNode.classList).toContain('remove-class');
     });
 
-    it('should call onRemove', async () => {
+    it('should call onRemove', () => {
         playlistItem = new PlaylistItem('nametest', -3, '../../../assets/images/playlist-add.svg', 'remove', '', false);
         let fixture = TestBed.createComponent(MenuItemComponent);
         let app = fixture.debugElement.componentInstance;

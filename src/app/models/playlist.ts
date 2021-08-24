@@ -1,7 +1,6 @@
 import {Song} from './song';
 
 export class Playlist {
-
     name!: string;
     id!: number;
     songs!: Song[];
