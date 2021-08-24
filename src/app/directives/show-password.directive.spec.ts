@@ -13,10 +13,10 @@ import {By} from '@angular/platform-browser';
             required
             autocomplete="off"
             name="password"
-        />
+    />
 
-        <label for="signup-password-input"> رمز عبور </label>
-        <img src="../../assets/images/show-password.svg" alt="" class="show-pass-cta" appShowPassword />`,
+    <label for="signup-password-input"> رمز عبور </label>
+    <img src="../../assets/images/show-password.svg" alt="" class="show-pass-cta" appShowPassword/>`,
 })
 class TestShowPasswordEffectComponent {}
 

@@ -1,0 +1,52 @@
+<section class="mobile-navigation">
+    <div class="music-control">
+        <button   (click)="lyricToggles()">
+            <img src="../../../../../assets/images/controls/lyric.svg" alt="lyrics button" />
+        </button>
+
+      <button   (click)="onSongPreviewToggle()">
+        <img src="../../../../../assets/images/controls/up-arrow.svg" alt="lyrics button" />
+      </button>
+
+        <div class="mobile-info">
+            <p>
+                <span class="mobile-music-name">{{playingSong.name }}</span><span>&nbsp;•&nbsp;</span>
+                <span class="mobile-artist-name">{{playingSong.artist}}</span>
+            </p>
+        </div>
+
+        <button class="play-music-btn" (click)="onPlay()">
+            <img                [src]="
+                    status === statusTypes.PLAYING
+                        ? '../../../assets/images/controls/pause.svg'
+                        : status === statusTypes.LOADING
+                        ? '../../../assets/images/controls/loading.svg'
+                        : '../../../assets/images/controls/play-button.svg'
+                " alt="play pause button" />
+        </button>
+    </div>
+
+    <div class="tab-navigation">
+        <a  routerLinkActive="active" [routerLink]="['/dashboard']" [queryParams]="{playlist: navigationName.ALL_SONGS}"
+          id="all-songs-tab-navigation-mobile" class="tab-nav">
+            <img   src="../../../../../assets/images/playlist.svg" alt="all songs tab" />
+            <p >همه آهنگ ها</p>
+        </a>
+
+        <a [routerLink]="['/dashboard']" [queryParams]="{playlist: navigationName.FAVOURITE_SONGS}"
+          class="tab-nav">
+            <img src="../../../../../assets/images/favourite.svg" alt="favourite songs tab" />
+            <p>مورد علاقه</p>
+        </a>
+
+        <a class="tab-nav">
+            <img src="../../../../../assets/images/playlist-add.svg" alt="playlist tab" />
+            <p>پلی لیست ها</p>
+        </a>
+
+        <a class="tab-nav">
+            <img src="../../../../../assets/images/logout.svg" alt="logout button" />
+            <p>خروج</p>
+        </a>
+    </div>
+</section>

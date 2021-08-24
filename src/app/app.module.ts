@@ -5,13 +5,12 @@ import {FormsModule} from '@angular/forms';
 
 import {AppRoutingModule} from './app-routing.module';
 import {AppComponent} from './app.component';
-import {AuthModule} from './auth/auth.module';
-import {LandingModule} from './landing/landing.module';
-import {DashboardModule} from './dashboard/dashboard.module';
-import { Landing2Component } from './landing2/landing2.component';
+import {AuthModule} from './pages/auth/auth.module';
+import {LandingModule} from './pages/landing/landing.module';
+import {DashboardModule} from './pages/dashboard/dashboard.module';
 
 @NgModule({
-    declarations: [AppComponent, Landing2Component],
+    declarations: [AppComponent],
     imports: [
         BrowserModule,
         HttpClientModule,
