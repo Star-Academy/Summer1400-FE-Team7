@@ -10,7 +10,7 @@
     "
     [ngClass]="!email.valid && email.touched ? 'error' : ''"
   >
-    <img src="../../assets/images/email.svg" alt="" />
+    <img src="../../../../assets/images/email.svg" alt="" />
     <input
       type="email"
       id="signup-email-input"
@@ -34,7 +34,7 @@
     "
     [ngClass]="!password.valid && password.touched ? 'error' : ''"
   >
-    <img src="../../assets/images/password.svg" alt="" appShowPassword />
+    <img src="../../../../assets/images/password.svg" alt="" appShowPassword />
     <input
       type="password"
       title="رمز عبور باید دارای حداقل ۵ کاراکتر،یک حرف و یک عدد باشد"
@@ -50,7 +50,7 @@
 
     <label for="signup-password-input"> رمز عبور </label>
     <img
-      src="../../assets/images/show-password.svg"
+      src="../../../../assets/images/show-password.svg"
       alt=""
       class="show-pass-cta"
       appShowPassword
@@ -62,7 +62,7 @@
     id="confirm-password-register-input-wrapper"
     [attr.data-error]="
       confirmPassword.value === ''
-        ? _ERROR_MSG.MSG_CONFIRM_PASSWORD_EPMTY
+        ? _ERROR_MSG.MSG_CONFIRM_PASSWORD_EMPTY
         : _ERROR_MSG.MSG_PASSWORDS_NOT_MATCH
     "
     [ngClass]="
@@ -71,7 +71,7 @@
         : ''
     "
   >
-    <img src="../../assets/images/confirm-password.svg" alt="" />
+    <img src="../../../../assets/images/confirm-password.svg" alt="" />
     <input
       type="password"
       title="رمز عبور باید دارای حداقل ۵ کاراکتر،یک حرف و یک عدد باشد"
@@ -85,7 +85,7 @@
     />
     <label for="signup-confirm-password-input"> تکرار رمز عبور </label>
     <img
-      src="../../assets/images/show-password.svg"
+      src="../../../../assets/images/show-password.svg"
       alt=""
       class="show-pass-cta"
       appShowPassword

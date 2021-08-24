@@ -1,6 +1,6 @@
 import {DebugElement} from '@angular/core';
 import {ComponentFixture, fakeAsync, TestBed} from '@angular/core/testing';
-import {FormsModule, ReactiveFormsModule} from '@angular/forms';
+import {FormsModule} from '@angular/forms';
 import {BrowserModule, By} from '@angular/platform-browser';
 import {HttpClientTestingModule} from '@angular/common/http/testing';
 import {RouterTestingModule} from '@angular/router/testing';
@@ -20,7 +20,6 @@ describe('LoginFormComponent', () => {
       .compileComponents()
       .then(() => {
         fixture = TestBed.createComponent(LoginFormComponent);
-
         component = fixture.componentInstance;
         debug = fixture.debugElement.query(By.css('form'));
       });
@@ -93,5 +92,23 @@ describe('LoginFormComponent', () => {
       form.controls['password'].setValue(user.password);
       expect(form.valid).toBeFalsy();
     }
+  });
+
+  it('create new account link onclick should call createAccountClick()', async () => {
+    let fixture = TestBed.createComponent(LoginFormComponent);
+    let app = fixture.debugElement.componentInstance;
+    fixture.detectChanges();
+    let compiled = fixture.debugElement.nativeElement;
+    spyOn(app,"createAccountClick");
+    compiled.querySelector('#create-new-account').click()
+    expect(app.createAccountClick).toHaveBeenCalled();
+  });
+
+  it('createAccountClick() should emit onCreateAccountClick', async () => {
+    let fixture = TestBed.createComponent(LoginFormComponent);
+    let app = fixture.debugElement.componentInstance;
+    fixture.detectChanges();
+     spyOn(app,"createAccountClick");
+     expect(app.createAccountClick).toHaveBeenCalled();
   });
 });

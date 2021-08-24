@@ -6,6 +6,7 @@ import {BrowserModule, By} from '@angular/platform-browser';
 import {RouterTestingModule} from '@angular/router/testing';
 
 import {SignupFormComponent} from './signup-form.component';
+import {LoginFormComponent} from "../login-form/login-form.component";
 
 describe('SignupFormComponent', () => {
     let component: SignupFormComponent;
@@ -113,4 +114,14 @@ describe('SignupFormComponent', () => {
             expect(form.valid).toBeFalsy();
         }
     });
+
+  it('already-have-account link onclick should call alreadyHaveAccountClick()', async () => {
+    let fixture = TestBed.createComponent(SignupFormComponent);
+    let app = fixture.debugElement.componentInstance;
+    fixture.detectChanges();
+    let compiled = fixture.debugElement.nativeElement;
+    spyOn(app,"alreadyHaveAccountClick");
+    compiled.querySelector('#already-have-account').click()
+    expect(app.alreadyHaveAccountClick).toHaveBeenCalled();
+  });
 });
