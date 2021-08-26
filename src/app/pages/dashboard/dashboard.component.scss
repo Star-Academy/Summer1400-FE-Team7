@@ -1,0 +1,238 @@
+$--clr-grayish: #7b7b7b;
+$--hover-bg-clr: rgba(138, 135, 135, 0.15);
+$--selected-bg-blue: rgb(29, 125, 215);
+$--bg-glass: rgba(0, 0, 0, 0.85);
+$--bg-mellow-black: rgb(40, 40, 40);
+
+:root {
+    --animation-width: 0px;
+    --placeholder-rotation: 150deg;
+}
+
+main {
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+
+    position: relative;
+    z-index: 10;
+
+    display: flex;
+    flex-direction: column;
+
+    > .section-1 {
+        display: flex;
+        flex: 1;
+
+        transition: transform 1s ease;
+
+        .list-compact-view {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(400px, 1fr));
+            grid-column-gap: 1rem;
+            grid-row-gap: 1rem;
+
+            > div:nth-of-type(1) {
+                grid-column: 1/-1;
+                grid-row: 1 /1;
+
+                align-self: baseline;
+            }
+        }
+
+        .grid-view {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            grid-column-gap: 1rem;
+            grid-row-gap: 1rem;
+
+            > div:nth-of-type(1) {
+                grid-column: 1/-1;
+                grid-row: 1 /1;
+
+                align-self: baseline;
+            }
+        }
+    }
+}
+
+.dark-glass,
+.dark-background-2,
+.dark-glass3,
+.bg-cover {
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    z-index: 5;
+}
+
+.dark-background-2 {
+    animation: opacityAnimation 0.35s ease;
+    z-index: 100;
+    @keyframes opacityAnimation {
+        from {
+            opacity: 0;
+        }
+        to {
+            opacity: 1;
+        }
+    }
+}
+
+.dark-glass,
+.dark-background-2 {
+    background: $--bg-glass;
+}
+
+.dark-glass3 {
+    background: linear-gradient(to bottom, $--bg-mellow-black, black);
+    z-index: 1999;
+}
+
+.bg-cover {
+    transition: background 1s ease;
+
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+
+.ctl-btn {
+    position: relative;
+
+    > img:hover {
+        filter: invert(39%) sepia(96%) saturate(903%) hue-rotate(184deg) brightness(86%) contrast(97%);
+    }
+
+    &:hover::after {
+        transition: opacity 0.2s ease;
+        transition-delay: 0.5s;
+        opacity: 1;
+    }
+
+    &::after {
+        content: attr(data-tooltip);
+        position: absolute;
+        top: 0;
+        right: 0;
+        background: $--selected-bg-blue;
+        opacity: 0;
+        transform: translate(50%, -120%);
+        color: var(--clr-white);
+        font-size: 0.7rem;
+        width: max-content;
+        padding: 0.3rem;
+    }
+}
+
+.side-menu-opener-closer {
+    position: absolute;
+    top: 2vh;
+    right: 0;
+    padding: 0.5rem 1.6rem;
+    background: $--selected-bg-blue;
+    z-index: 120;
+    border-radius: 200px 0 0 200px;
+    cursor: pointer;
+
+    transition: transform 1s ease;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    > button {
+        width: 15px;
+        height: 15px;
+
+        > img {
+            width: 100%;
+            height: 100%;
+            user-select: none;
+        }
+
+        .rotate {
+            transform: rotate(45deg);
+        }
+    }
+}
+
+.song-wrapper-selected {
+    background-color: $--selected-bg-blue;
+
+    * {
+        color: var(--clr-white) !important;
+    }
+
+    &:hover {
+        background: $--selected-bg-blue !important;
+    }
+}
+
+.side-menu-opened {
+    width: calc(100% - 275px) !important;
+
+    @media only screen and (max-width: 750px) {
+        width: 100% !important;
+    }
+}
+
+.section-close,
+.lyrics-wrapper-open {
+    transform: translateX(100%);
+}
+
+.display-none {
+    display: none !important;
+}
+
+@media only screen and (max-width: 750px) {
+    main {
+        > .music-controls {
+            display: none;
+        }
+
+        > .section-1 {
+            > .side-menu {
+                display: none;
+            }
+
+            > .song-list {
+                width: 100% !important;
+                height: calc(100vh - #{'max(12vh, 102px)'});
+                padding: 5rem 1.5rem;
+                gap: 0.5rem;
+
+                > div:nth-of-type(1) {
+                    > div {
+                        > label:nth-of-type(2) {
+                            display: none;
+                        }
+                    }
+                }
+            }
+
+            > .grid-view {
+                grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+            }
+        }
+
+        > .lyric-wrapper {
+
+            > .lyrics-music-cover {
+                display: none;
+            }
+
+            > .lyrics-text {
+                margin-right: unset;
+            }
+        }
+    }
+
+    .side-menu-opener-closer {
+        display: none;
+    }
+}
+
+

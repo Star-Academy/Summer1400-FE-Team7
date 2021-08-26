@@ -1,0 +1,82 @@
+@font-face {
+    font-family: 'Sahel';
+    src: url('assets/fonts/sahel-bold.ttf');
+    src: url('assets/fonts/sahel.ttf');
+}
+
+$--font-size-sm: 1rem;
+$--font-size-md: 1.5rem;
+$--font-size-lg: 2rem;
+$--font-size-xl: 2.5rem;
+$--clr-background-error: rgba(255, 0, 0, 0.431);
+$--clr-boarder-error: rgb(255, 0, 0);
+
+*,
+*::before,
+*::after {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Sahel', sans-serif;
+    outline: none;
+    border: none;
+}
+
+$--clr-scrollbar: rgb(29, 125, 215);
+
+:root {
+    --clr-bg: hsl(323 21% 16%);
+    --clr-blue: rgb(8, 192, 255);
+    --clr-black: rgb(0, 0, 0);
+    --clr-white: rgb(255, 255, 255);
+    --clr-gray-light: rgb(200, 200, 200);
+}
+
+body {
+    height: 100vh;
+
+    font-size: 62.5%;
+}
+
+button {
+    background: none;
+    border: none;
+    cursor: pointer;
+    -webkit-tap-highlight-color: transparent;
+}
+
+*::-webkit-scrollbar {
+    width: 0.5rem;
+    height: 1rem;
+}
+
+*::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+*::-webkit-scrollbar-thumb {
+    background: $--clr-scrollbar;
+
+    border: none;
+    border-radius: 1rem;
+}
+
+img {
+    user-select: none;
+}
+.error {
+  box-shadow: inset 0 0 0.3em $--clr-boarder-error, 0 0 0.3em $--clr-boarder-error !important;
+  position: relative;
+
+  &::after {
+    content: attr(data-error);
+    color: var(--clr-white);
+    position: absolute;
+    background-color: $--clr-background-error;
+    right: 0;
+    bottom: -1.5rem;
+    font-size: 0.8rem;
+    padding: 0 1rem;
+    border-radius: 1000rem;
+  }
+}

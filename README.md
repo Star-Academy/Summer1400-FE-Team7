@@ -1,57 +1,27 @@
-Hi👋 this is Music Club (موزیک کلاب),<br><br>
-This project is a simple music player.<br><br>
-checkout our [github pages](https://star-academy.github.io/Summer1400-FE-Team7/pages/landing/)
+# MusicClub
 
-# Landing Page
+This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 12.2.0.
 
-- Usual Stuff
+## Development server
 
-# Login
+Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
 
-- che dade hayi azamoon gerefte mishe?
+## Code scaffolding
 
-# Sign Up
+Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
 
-- che dade hayi azamoon gerefte mishe?
+## Build
 
-# Main
+Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
 
-## sidbar
+## Running unit tests
 
-- favourites
-- search
-- All songs
-- login/logout
+Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
 
-# playList
+## Running end-to-end tests
 
+Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
 
-- music cover
-- name
-- artist
-- wave animation when playing
-- favourites
-- timestamp
-- play/pause btn
+## Further help
 
-
-# player
-
-- required CTAs
-- lyrics
-- showCase
-
-# optional
-
-
-- drag & drop files from pc
-- save to server
-- Playlist Title
-- Customized Playlist
-- album
-
-
-**_notes_**<br>
-album or not?<br>
-dataset che shekli hast?<br>
-eng or per?
+To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.

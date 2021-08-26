@@ -1,0 +1,20 @@
+<div class="song-list" [ngClass]="layoutView">
+    <div>
+        <h2 class="song-list-header">{{ currentPlaylistName }}</h2>
+        <app-layout-manager (chooseLayout)="changeLayoutViewHandler($event)"></app-layout-manager>
+    </div>
+
+    <app-placeholder class="placeholder-test" *ngIf="showPlaceholder; else elseBlock"></app-placeholder>
+
+    <ng-template #elseBlock>
+        <app-song-item
+            [layout]="layoutView"
+            *ngFor="let song of currentPlaylist; let i = index"
+            [song]="song"
+            [index]="i"
+            class="song-test"
+        ></app-song-item>
+    </ng-template>
+
+    <h1 *ngIf="isListEmpty" id="nth-to-show">موردی وجود ندارد</h1>
+</div>

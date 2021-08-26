@@ -1,0 +1,13 @@
+<app-mobile-playback-controllers
+    (lyricToggle)="lyricToggle()"
+    (songPreviewToggle)="songPreviewToggle()"
+></app-mobile-playback-controllers>
+
+<app-play-controllers
+    *ngIf="isSongPreviewPanelOpen"
+    [isMobile]="true"
+    (closeMobilePreview)="isSongPreviewPanelOpen = false"
+    id="app-play-controllers"
+></app-play-controllers>
+
+<div class="dark-glass" *ngIf="isSongPreviewPanelOpen"></div>

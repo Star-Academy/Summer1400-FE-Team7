@@ -1,0 +1,44 @@
+:host {
+    margin-right: auto;
+
+    .song-list-view-wrapper {
+        margin-right: auto;
+        display: flex;
+        flex-direction: row-reverse;
+        gap: 0.5rem;
+        margin-left: 0.5rem;
+
+        > label {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+            > img {
+                width: 1rem;
+                height: 1rem;
+                cursor: pointer;
+            }
+        }
+
+        > input[type='radio'] {
+            display: none;
+
+            + label > img {
+                filter: invert(0%) sepia(0%) saturate(0%) hue-rotate(0deg) brightness(0%) contrast(0%);
+            }
+
+            &:checked + label > img {
+                filter: invert(39%) sepia(96%) saturate(903%) hue-rotate(184deg) brightness(86%) contrast(97%);
+            }
+        }
+
+        > label:nth-of-type(1) > img {
+            transform: rotate(180deg);
+        }
+    }
+}
+@media only screen and (max-width: 750px) {
+    .list-compact-view-label {
+        display: none !important;
+    }
+}

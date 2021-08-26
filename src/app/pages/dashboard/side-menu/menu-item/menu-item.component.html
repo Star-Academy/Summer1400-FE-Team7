@@ -1,0 +1,26 @@
+<div [ngSwitch]="buttonType">
+    <div *ngSwitchCase="'add'" class="playlist-container add-class">
+        <div class="btn-wrapper" routerLinkActive="menu-selected">
+            <img [src]="playlistItem.icon" alt="" />
+            <a [routerLink]="['/dashboard']" [queryParams]="{playlist: playlistItem.name}">{{ playlistItem.name }}</a>
+        </div>
+        <button class="add-btn" (click)="openNewPlaylistPanel()">
+            <img src="../../../../../assets/images/add.svg" alt="add svg" />
+        </button>
+    </div>
+
+    <div *ngSwitchCase="'remove'" class="playlist-container remove-class">
+        <div class="btn-wrapper" routerLinkActive="menu-selected">
+            <img [src]="playlistItem.icon" alt="" />
+            <a [routerLink]="['/dashboard']" [queryParams]="{playlist: playlistItem.name}">{{ playlistItem.name }}</a>
+        </div>
+        <button class="delete-btn" (click)="onRemove()">
+            <img src="../../../../../assets/images/add.svg" alt="delete playlist" />
+        </button>
+    </div>
+
+    <div *ngSwitchDefault class="btn-wrapper default-class" routerLinkActive="menu-selected">
+        <img [src]="playlistItem.icon" alt="" />
+        <a [routerLink]="['/dashboard']" [queryParams]="{playlist: playlistItem.name}">{{ playlistItem.name }}</a>
+    </div>
+</div>

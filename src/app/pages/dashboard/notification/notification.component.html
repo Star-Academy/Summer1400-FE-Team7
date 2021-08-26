@@ -1,0 +1,6 @@
+<div class="alert" [ngClass]="show ? 'show' : 'hide'">
+    <p class="msg">{{ message }}</p>
+    <div class="close-btn" (click)="onClose()">
+        <p>برگرداندن</p>
+    </div>
+</div>

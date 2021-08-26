@@ -1,0 +1,50 @@
+$--lg-bg-1: hsl(14, 82%, 63%);
+$--lg-bg-2: hsl(337, 78%, 57%);
+$--lg-bg-3: hsl(196, 72%, 49%);
+$--lg-bg-4: hsl(113, 91%, 44%);
+
+
+
+@mixin _body-lg-bg {
+    background: linear-gradient(-45deg, $--lg-bg-1, $--lg-bg-2, $--lg-bg-3, $--lg-bg-4);
+    background-size: 400% 400%;
+    animation: gradientBg 15s ease infinite;
+
+    @keyframes gradientBg {
+        0% {
+            background-position: 0 50%;
+        }
+        50% {
+            background-position: 100% 50%;
+        }
+        100% {
+            background-position: 0 50%;
+        }
+    }
+}
+
+.container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+
+    @include _body-lg-bg();
+
+    app-header {
+        width: 80%;
+        height: 8vh;
+        max-width: 90rem;
+        font-size: clamp(15px, 2.5vw, 18px);
+
+        position: relative;
+    }
+    app-main {
+        width: 80%;
+        height: 88vh;
+
+        display: flex;
+        align-items: center;
+    }
+}

@@ -1,0 +1,113 @@
+$--clr-grayish: #7b7b7b;
+$--hover-bg-clr: rgba(138, 135, 135, 0.15);
+$--selected-bg-blue: rgb(29, 125, 215);
+$--bg-glass: rgba(0, 0, 0, 0.85);
+$--bg-mellow-black: rgb(40, 40, 40);
+
+.side-menu {
+    width: 275px;
+    height: 90vh;
+    background: #00000066;
+    padding-top: 4rem;
+    position: fixed;
+    overflow-y: hidden;
+
+    user-select: none;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    transition: transform 0.1s linear;
+    transform-origin: right;
+    transform: translateX(0);
+
+    z-index: 100;
+
+    > * {
+        width: 100%;
+        height: 3rem;
+    }
+
+    > .menu-selected {
+        border-right: 5px solid $--selected-bg-blue;
+    }
+
+    .profile-wrapper {
+        display: flex;
+        width: 100%;
+        height: 3rem;
+        flex-direction: row-reverse;
+        align-items: center;
+        cursor: pointer;
+        font-size: 0.8rem;
+        border-top: 2px solid $--selected-bg-blue;
+
+        margin-top: auto;
+        padding: 0 0.5rem;
+
+        > p {
+            flex: 1;
+            user-select: none;
+            color: var(--clr-white);
+            text-align: left;
+        }
+
+        > button {
+            width: 3rem;
+
+            display: flex;
+            align-items: center;
+
+            > img {
+                height: 1.5rem;
+            }
+        }
+
+        &:hover {
+            background: $--hover-bg-clr;
+        }
+    }
+
+    @media only screen and (max-width: 750px) {
+        display: none;
+    }
+}
+.side-menu-closed {
+    transform: translateX(100%) !important;
+}
+
+.side-menu-opened {
+    width: calc(100% - 275px) !important;
+}
+
+.side-menu-opener-closed {
+    transform: translateX(100%);
+}
+
+.menu-items-wrapper {
+    flex: 1;
+
+    &:hover {
+        overflow-y: auto;
+        &::-webkit-scrollbar {
+            width: 0.4rem;
+            height: 1rem;
+        }
+    }
+
+    &::-webkit-scrollbar {
+        width: 0;
+        height: 1rem;
+    }
+}
+
+.dark-glass {
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    z-index: 5;
+    background: $--bg-glass;
+}
