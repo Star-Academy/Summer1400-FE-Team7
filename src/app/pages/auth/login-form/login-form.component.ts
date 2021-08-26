@@ -1,24 +1,20 @@
-import {Component, OnInit, ViewChild, Output, EventEmitter, OnDestroy} from '@angular/core';
+import {Component, ViewChild, Output, EventEmitter, OnDestroy} from '@angular/core';
 import {NgForm} from '@angular/forms';
 import {Subscription} from 'rxjs';
 import {AuthService} from '../../../services/auth.service';
 import {Router} from '@angular/router';
 import {Constants} from 'src/app/utils/constants';
+import {ErrorMessages} from "../../../utils/error-messages";
 
 @Component({
     selector: 'app-login-form',
     templateUrl: './login-form.component.html',
     styleUrls: ['../main-form.component.scss'],
 })
-export class LoginFormComponent implements OnInit, OnDestroy {
+export class LoginFormComponent implements  OnDestroy {
     @Output() onCreateAccountClick = new EventEmitter<void>();
 
-    _ERROR_MSG = {
-        MSG_EMAIL_EMPTY: 'ایمیل نمی‌تواند خالی باشد',
-        MSG_EMAIL_NOT_VALID: 'ایمیل وارد شده معتبر نیست',
-        MSG_PASSWORD_EMPTY: 'رمزعبور نمی‌تواند خالی باشد',
-    };
-
+   readonly ERROR_MSG = ErrorMessages.LOGIN_ERROR_MSG;
     @ViewChild('f', {static: false}) loginForm!: NgForm;
     loadingSubscription: Subscription = new Subscription();
     errorSubscription: Subscription = new Subscription();
@@ -26,7 +22,7 @@ export class LoginFormComponent implements OnInit, OnDestroy {
 
     loading = false;
     error = '';
-    //
+
     constructor(private authService: AuthService, private router: Router) {
         this.loadingSubscription = this.authService.loading.subscribe((loading: boolean) => {
             this.loading = loading;
@@ -48,7 +44,6 @@ export class LoginFormComponent implements OnInit, OnDestroy {
         password: '',
     };
 
-    ngOnInit = (): void => {};
 
     onSubmit() {
         if (!this.loginForm.valid) return;

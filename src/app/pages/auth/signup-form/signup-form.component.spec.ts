@@ -6,6 +6,57 @@ import {BrowserModule, By} from '@angular/platform-browser';
 import {RouterTestingModule} from '@angular/router/testing';
 import {SignupFormComponent} from './signup-form.component';
 
+const MOCK_USER_VALID = [
+    {
+        email: 'Parsa@gmail.com',
+        password: 'abc123',
+        confirmPassword: 'abc123',
+    },
+    {
+        email: 'Parsa@gmail',
+        password: 'Min5a',
+        confirmPassword: 'Min5a',
+    },
+    {
+        email: 'pa@pa',
+        password: '12345a',
+        confirmPassword: '12345a',
+    },
+];
+
+const MOCK_USER_INVALID = [
+    {
+        email: 'ParsA',
+        password: 'abc123',
+        confirmPassword: 'abc123',
+    },
+    {
+        email: 'Parsa@gmail',
+        password: '',
+        confirmPassword: 'abc123',
+    },
+    {
+        email: 'pa ar@asd',
+        password: 'abc123',
+        confirmPassword: '',
+    },
+    {
+        email: 'paar$gmail.com',
+        password: '12345a',
+        confirmPassword: '',
+    },
+    {
+        email: 'paar.gmail.com',
+        password: 'abc123',
+        confirmPassword: 'abc123',
+    },
+    {
+        email: 'paar$gmail.com',
+        password: 'abc123',
+        confirmPassword: 'abc123',
+    },
+];
+
 describe('SignupFormComponent', () => {
     let component: SignupFormComponent;
     let fixture: ComponentFixture<SignupFormComponent>;
@@ -28,56 +79,6 @@ describe('SignupFormComponent', () => {
         fixture.detectChanges();
     });
 
-    const MOCK_USER_VALID = [
-        {
-            email: 'Parsa@gmail.com',
-            password: 'abc123',
-            confirmPassword: 'abc123',
-        },
-        {
-            email: 'Parsa@gmail',
-            password: 'Min5a',
-            confirmPassword: 'Min5a',
-        },
-        {
-            email: 'pa@pa',
-            password: '12345a',
-            confirmPassword: '12345a',
-        },
-    ];
-
-    const MOCK_USER_INVALID = [
-        {
-            email: 'ParsA',
-            password: 'abc123',
-            confirmPassword: 'abc123',
-        },
-        {
-            email: 'Parsa@gmail',
-            password: '',
-            confirmPassword: 'abc123',
-        },
-        {
-            email: 'pa ar@asd',
-            password: 'abc123',
-            confirmPassword: '',
-        },
-        {
-            email: 'paar$gmail.com',
-            password: '12345a',
-            confirmPassword: '',
-        },
-        {
-            email: 'paar.gmail.com',
-            password: 'abc123',
-            confirmPassword: 'abc123',
-        },
-        {
-            email: 'paar$gmail.com',
-            password: 'abc123',
-            confirmPassword: 'abc123',
-        },
-    ];
 
     it('should create', () => {
         expect(component).toBeTruthy();

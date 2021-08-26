@@ -4,7 +4,7 @@
     <div
         class="input-wrapper"
         id="email-login-input-wrapper"
-        [attr.data-error]="email.value === '' ? _ERROR_MSG.MSG_EMAIL_EMPTY : _ERROR_MSG.MSG_EMAIL_NOT_VALID"
+        [attr.data-error]="email.value === '' ? ERROR_MSG.MSG_EMAIL_EMPTY : ERROR_MSG.MSG_EMAIL_NOT_VALID"
         [ngClass]="!email.valid && email.touched ? 'error' : ''"
     >
         <img src="../../../../assets/images/email.svg" alt="" />
@@ -24,7 +24,7 @@
     <div
         class="input-wrapper"
         id="password-login-input-wrapper"
-        [attr.data-error]="password.value === '' ? _ERROR_MSG.MSG_PASSWORD_EMPTY : ''"
+        [attr.data-error]="password.value === '' ? ERROR_MSG.MSG_PASSWORD_EMPTY : ''"
         [ngClass]="!password.valid && password.touched ? 'error' : ''"
     >
         <img src="../../../../assets/images/password.svg" alt="" />
@@ -38,14 +38,14 @@
             name="password"
             #password="ngModel"
         />
-        <label for="login-password-input"> رمز عبور </label>
+        <label for="login-password-input">رمز عبور</label>
         <img src="../../../../assets/images/show-password.svg" alt="" class="show-pass-cta" appShowPassword />
     </div>
 
     <div class="check-box-wrapper">
         <div class="input-checkbox">
             <input type="checkbox" id="checkbox-input" />
-            <label for="checkbox-input"> مرا به خاطر بسپار </label>
+            <label for="checkbox-input">مرا به خاطر بسپار</label>
         </div>
 
         <div class="forgot-pass">

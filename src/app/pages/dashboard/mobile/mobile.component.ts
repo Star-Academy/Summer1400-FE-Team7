@@ -1,11 +1,11 @@
-import {Component, EventEmitter, OnInit, Output} from '@angular/core';
+import {Component, EventEmitter, Output} from '@angular/core';
 
 @Component({
     selector: 'app-mobile',
     templateUrl: './mobile.component.html',
     styleUrls: ['./mobile.component.scss'],
 })
-export class MobileComponent implements OnInit {
+export class MobileComponent     {
     @Output() toggleLyric = new EventEmitter<void>();
 
     isSongPreviewPanelOpen: boolean = false;
@@ -20,5 +20,4 @@ export class MobileComponent implements OnInit {
 
     constructor() {}
 
-    ngOnInit(): void {}
-}
+ }

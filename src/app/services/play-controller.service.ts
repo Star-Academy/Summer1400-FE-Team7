@@ -246,11 +246,9 @@ export class PlayControllerService {
         this.audio.currentTime = value;
     }
 
-    //
-    updateVolumeValue(volume: number) {
+     updateVolumeValue(volume: number) {
         this.audio.volume = volume / 100;
     }
-    //
     onMuteClick(volume: number) {
         this.audio.volume = volume / 100;
     }

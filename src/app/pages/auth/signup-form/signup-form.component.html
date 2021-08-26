@@ -3,7 +3,7 @@
     <div
         class="input-wrapper"
         id="email-register-input-wrapper"
-        [attr.data-error]="email.value === '' ? _ERROR_MSG.MSG_EMAIL_EMPTY : _ERROR_MSG.MSG_EMAIL_NOT_VALID"
+        [attr.data-error]="email.value === '' ? ERROR_MSG.MSG_EMAIL_EMPTY : ERROR_MSG.MSG_EMAIL_NOT_VALID"
         [ngClass]="!email.valid && email.touched ? 'error' : ''"
     >
         <img src="../../../../assets/images/email.svg" alt="" />
@@ -17,13 +17,13 @@
             name="email"
             #email="ngModel"
         />
-        <label for="signup-email-input"> ایمیل </label>
+        <label for="signup-email-input">ایمیل</label>
     </div>
 
     <div
         class="input-wrapper"
         id="password-register-input-wrapper"
-        [attr.data-error]="password.value === '' ? _ERROR_MSG.MSG_PASSWORD_EMPTY : _ERROR_MSG.MSG_PASSWORD_NOT_VALID"
+        [attr.data-error]="password.value === '' ? ERROR_MSG.MSG_PASSWORD_EMPTY : ERROR_MSG.MSG_PASSWORD_NOT_VALID"
         [ngClass]="!password.valid && password.touched ? 'error' : ''"
     >
         <img src="../../../../assets/images/password.svg" alt="" appShowPassword />
@@ -40,7 +40,7 @@
             #password="ngModel"
         />
 
-        <label for="signup-password-input"> رمز عبور </label>
+        <label for="signup-password-input">رمزعبور</label>
         <img src="../../../../assets/images/show-password.svg" alt="" class="show-pass-cta" appShowPassword />
     </div>
 
@@ -48,7 +48,7 @@
         class="input-wrapper"
         id="confirm-password-register-input-wrapper"
         [attr.data-error]="
-            confirmPassword.value === '' ? _ERROR_MSG.MSG_CONFIRM_PASSWORD_EMPTY : _ERROR_MSG.MSG_PASSWORDS_NOT_MATCH
+            confirmPassword.value === '' ? ERROR_MSG.MSG_CONFIRM_PASSWORD_EMPTY : ERROR_MSG.MSG_PASSWORDS_NOT_MATCH
         "
         [ngClass]="(!confirmPassword.valid && confirmPassword.touched) || !isPasswordsMatch ? 'error' : ''"
     >
@@ -64,7 +64,7 @@
             name="confirmPassword"
             #confirmPassword="ngModel"
         />
-        <label for="signup-confirm-password-input"> تکرار رمز عبور </label>
+        <label for="signup-confirm-password-input">تکرار رمز عبور</label>
         <img src="../../../../assets/images/show-password.svg" alt="" class="show-pass-cta" appShowPassword />
     </div>
 

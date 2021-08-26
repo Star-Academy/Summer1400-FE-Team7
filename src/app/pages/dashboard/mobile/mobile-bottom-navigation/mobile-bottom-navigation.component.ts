@@ -26,6 +26,7 @@ export class MobileBottomNavigationComponent implements OnInit, OnDestroy {
     statusSub!: Subscription;
     playingSongSub!: Subscription;
     playingSong: Song = new Song();
+    playButtonSrc: string='../../../assets/images/controls/play-button.svg';
 
     onSongPreviewToggle() {
         this.songPreviewToggle.emit();
@@ -41,6 +42,13 @@ export class MobileBottomNavigationComponent implements OnInit, OnDestroy {
         this.status = this.playController.status;
         this.statusSub = this.playController.statusChanged.subscribe((status: string) => {
             this.status = status;
+            this.playButtonSrc=
+                status === this.statusTypes.PLAYING
+                    ? '../../../assets/images/controls/pause.svg'
+                    : status === this.statusTypes.LOADING
+                        ? '../../../assets/images/controls/loading.svg'
+                        : '../../../assets/images/controls/play-button.svg'
+
         });
         this.playingSongSub = this.songService.playingSongChange.subscribe((song: Song) => {
             this.playingSong = song;

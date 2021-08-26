@@ -11,7 +11,6 @@ import {By} from '@angular/platform-browser';
 class TestFloatingEffectComponent {
 }
 
-const _FULL_LABEL = 'full-label';
 
 describe('LikeHoverDirective', () => {
     let component: TestFloatingEffectComponent;
@@ -39,12 +38,12 @@ describe('LikeHoverDirective', () => {
     it('should float label', () => {
         input.triggerEventHandler('focus', null);
         fixture.detectChanges();
-        expect(label.nativeNode.classList).toContain(_FULL_LABEL);
+        expect(label.nativeNode.classList).toContain("float-label");
     });
 
     it('should unFloat label', () => {
         input.triggerEventHandler('blur', null);
         fixture.detectChanges();
-        expect(label.nativeNode.classList).not.toContain(_FULL_LABEL);
+        expect(label.nativeNode.classList).not.toContain("float-label");
     });
 });

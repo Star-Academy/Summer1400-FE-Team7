@@ -3,11 +3,7 @@ $--lg-bg-2: hsl(337, 78%, 57%);
 $--lg-bg-3: hsl(196, 72%, 49%);
 $--lg-bg-4: hsl(113, 91%, 44%);
 
-p,
-a,
-h1 {
-    // text-shadow: 0 0 0.125em $text-shadow, 0 0 0.45em var(--clr-white);
-}
+
 
 @mixin _body-lg-bg {
     background: linear-gradient(-45deg, $--lg-bg-1, $--lg-bg-2, $--lg-bg-3, $--lg-bg-4);

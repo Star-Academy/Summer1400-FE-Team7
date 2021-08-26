@@ -1,26 +1,26 @@
 import {Directive, ElementRef, HostListener, Renderer2} from '@angular/core';
 
-const _FULL_LABEL = 'full-label';
+const floatLabelClass = 'float-label';
 
 @Directive({
     selector: '[appFloatingLabel]',
 })
 export class FloatingLabelDirective {
-    constructor(private el: ElementRef, private renderer: Renderer2) {}
+    constructor(private el: ElementRef, private renderer: Renderer2) {
+    }
 
     private float(focused: boolean) {
         const value: string = this.el.nativeElement.value;
         const label: HTMLLabelElement = this.el.nativeElement.nextElementSibling;
 
-        if (focused) {
-            if (value === '') {
-                this.renderer.addClass(label, _FULL_LABEL);
-            }
-        } else {
-            if (value === '') {
-                this.renderer.removeClass(label, _FULL_LABEL);
-            }
+        if (value === '') {
+            focused ?
+                this.renderer.addClass(label, floatLabelClass)
+                : this.renderer.removeClass(label, floatLabelClass);
+
+
         }
+
     }
 
     @HostListener('focus') onInputFocus() {

@@ -18,14 +18,8 @@
 
         <button class="play-music-btn" (click)="onPlay()">
             <img
-                [src]="
-                    status === statusTypes.PLAYING
-                        ? '../../../assets/images/controls/pause.svg'
-                        : status === statusTypes.LOADING
-                        ? '../../../assets/images/controls/loading.svg'
-                        : '../../../assets/images/controls/play-button.svg'
-                "
-                alt="play pause button"
+                [src]="playButtonSrc"
+                alt=""
             />
         </button>
     </div>

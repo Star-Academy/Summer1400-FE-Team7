@@ -1,26 +1,20 @@
-import {Component, EventEmitter, OnDestroy, OnInit, Output, ViewChild} from '@angular/core';
+import {Component, EventEmitter, OnDestroy, Output, ViewChild} from '@angular/core';
 import {NgForm} from '@angular/forms';
 import {Subscription} from 'rxjs';
 import {AuthService} from '../../../services/auth.service';
 import {Router} from '@angular/router';
 import {Constants} from '../../../utils/constants';
+import {ErrorMessages} from "../../../utils/error-messages";
 
 @Component({
     selector: 'app-signup-form',
     templateUrl: './signup-form.component.html',
     styleUrls: ['../main-form.component.scss'],
 })
-export class SignupFormComponent implements OnInit, OnDestroy {
+export class SignupFormComponent implements   OnDestroy {
     @Output() onAlreadyHaveAccount = new EventEmitter<void>();
 
-    _ERROR_MSG = {
-        MSG_PASSWORD_NOT_VALID: 'رمز عبور باید دارای حداقل ۵ کاراکتر،یک حرف و یک عدد باشد',
-        MSG_CONFIRM_PASSWORD_EMPTY: 'تکرار رمزعبور نمی‌تواند خالی باشد',
-        MSG_PASSWORDS_NOT_MATCH: 'رمزعبور و تکرارش باید برابر باشند',
-        MSG_EMAIL_EMPTY: 'ایمیل نمی‌تواند خالی باشد',
-        MSG_EMAIL_NOT_VALID: 'ایمیل وارد شده معتبر نیست',
-        MSG_PASSWORD_EMPTY: 'رمزعبور نمی‌تواند خالی باشد',
-    };
+    readonly ERROR_MSG = ErrorMessages.REGISTER_ERROR_MSG ;
 
     @ViewChild('f', {static: false}) signupForm!: NgForm;
     loadingSubscription: Subscription = new Subscription();
@@ -55,7 +49,6 @@ export class SignupFormComponent implements OnInit, OnDestroy {
         password: '',
     };
 
-    ngOnInit(): void {}
 
     onSubmit() {
         if (!this.signupForm.valid) return;

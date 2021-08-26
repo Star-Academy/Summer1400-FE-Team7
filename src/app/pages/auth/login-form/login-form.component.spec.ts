@@ -7,6 +7,39 @@ import {RouterTestingModule} from '@angular/router/testing';
 
 import {LoginFormComponent} from './login-form.component';
 
+const MOCK_USER_VALID = [
+    {
+        email: 'Parsa@gmail.com',
+        password: 'abc123',
+    },
+    {
+        email: 'Parsa@gmail',
+        password: 'Min5a',
+    },
+    {
+        email: 'pa@pa',
+        password: '12345a',
+    },
+];
+
+const MOCK_USER_INVALID = [
+    {
+        email: 'ParsA',
+        password: 'abc123',
+    },
+    {
+        email: 'Parsa@gmail',
+        password: '',
+    },
+    {
+        email: 'pa ar@asd',
+        password: '12345a',
+    },
+    {
+        email: 'paar$gmail.com',
+        password: '12345a',
+    },
+];
 describe('LoginFormComponent', () => {
     let component: LoginFormComponent;
     let fixture: ComponentFixture<LoginFormComponent>;
@@ -27,39 +60,6 @@ describe('LoginFormComponent', () => {
         fixture.detectChanges();
     });
 
-    const MOCK_USER_VALID = [
-        {
-            email: 'Parsa@gmail.com',
-            password: 'abc123',
-        },
-        {
-            email: 'Parsa@gmail',
-            password: 'Min5a',
-        },
-        {
-            email: 'pa@pa',
-            password: '12345a',
-        },
-    ];
-
-    const MOCK_USER_INVALID = [
-        {
-            email: 'ParsA',
-            password: 'abc123',
-        },
-        {
-            email: 'Parsa@gmail',
-            password: '',
-        },
-        {
-            email: 'pa ar@asd',
-            password: '12345a',
-        },
-        {
-            email: 'paar$gmail.com',
-            password: '12345a',
-        },
-    ];
 
     it('should create', () => {
         expect(component).toBeTruthy();
